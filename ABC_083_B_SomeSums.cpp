@@ -1,36 +1,41 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(int& rnNum, int& rnMin, int& rnMax)
+void fnInput(int& rnSpcNum, int& rnMinSum, int& rnMaxSum)
 {
-  cin >> rnNum >> rnMin >> rnMax;
+  cin >> rnSpcNum >> rnMinSum >> rnMaxSum;
 }
 
-
-void fnSomeSums(int nNum, int nMin, int nMax, int& rnSum)
+int fnDigitsSum(int nNum)
 {
-  for (int i = 1; i <= nNum; i++)
+  int nDigitsSum = 0;
+  while ( nNum )
   {
-    int n1Place    = i % 10;
-    int n10Place   = i % 100 - n1Place;
-    int n100Place  = i % 1000 - (n100Place * 10 + n1Place);
-    int n1000Place = i / 1000;
-
-    if (n1000Place + n100Place + n10Place + n1Place >= nMin &&
-        n1000Place + n100Place + n10Place + n1Place <= nMax   )
-      rnSum += i;
+    nDigitsSum += nNum % 10;
+    nNum /= 10;
   }
+  return nDigitsSum;
+}
+
+int fnSomeSums(int nSpcNum, int nMinSum, int nMaxSum)
+{
+  int nTotal = 0;
+  for (int n = 1; n <= nSpcNum; n++)
+  {  
+    int nDigitsSum = 0;
+    nDigitsSum += fnDigitsSum(n);
+    if (nMinSum <= nDigitsSum && nDigitsSum <= nMaxSum)
+      nTotal += n;
+  }
+  return nTotal;
 }
 
 int main()
 {
-  int nNum, nMin, nMax;
-  int nSum = 0;
+  int nSpcNum, nMinSum, nMaxSum;
+  fnInput(nSpcNum, nMinSum, nMaxSum);
 
-  fnInput(nNum, nMin, nMax);
-  fnSomeSums(nNum, nMin, nMax, nSum);
-  cout << nSum << endl;
-
+  cout << fnSomeSums(nSpcNum, nMinSum, nMaxSum) << endl;
   return 0;
 }
  
