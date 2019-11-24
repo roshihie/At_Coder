@@ -38,4 +38,4 @@ int main()
   cout << fnSomeSums(nSpcNum, nMinSum, nMaxSum) << endl;
   return 0;
 }
- 
+
