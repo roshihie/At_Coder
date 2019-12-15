@@ -1,45 +1,49 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(string& sTarget)
+struct StPoint
 {
-  cin >> sTarget;
+  StPoint() :
+    m_nTime(0), m_nPntX(0), m_nPntY(0)
+  { }
+
+  int m_nTime;
+  int m_nPntX;
+  int m_nPntY;
+};
+
+void fnInput(vector<StPoint>& rvoPoint)
+{
+  StPoint oPoint;
+  int nSiz;
+  cin >> nSiz;
+
+  rvoPoint.resize(nSiz + 1, oPoint);
+  for (int i = 0; i < nSiz; i++)
+    cin >> rvoPoint[i + 1].m_nTime >> rvoPoint[i + 1].m_nPntX >> rvoPoint[i + 1].m_nPntY;
 }
 
-int fnParse(string sTarget)
+int fnTravel(const vector<StPoint>& cnrvoPoint)
 {
-  const vector<string> cnvsWord{"dream", "dreamer", "erase", "eraser"};
-  int ixBgn, ixEnd;
-  ixBgn = sTarget.size();
-
-  while (ixBgn)
+  for (int i = 0; i < cnrvoPoint.size() - 1; i++)
   {
-    bool bRslt = false;
-    ixEnd = ixBgn;
-    for (int i = 0; i < cnvsWord.size(); i++)
-    {
-      ixBgn = ixEnd - cnvsWord[i].size();
-      if (ixBgn < 0)  ixBgn = 0;
+    int nTime = cnrvoPoint[i + 1].m_nTime - cnrvoPoint[i].m_nTime;
+    int nDist = abs(cnrvoPoint[i + 1].m_nPntX - cnrvoPoint[i].m_nPntX)
+              + abs(cnrvoPoint[i + 1].m_nPntY - cnrvoPoint[i].m_nPntY);
 
-      if (sTarget.substr(ixBgn, cnvsWord[i].size()) == cnvsWord[i])
-      {
-        bRslt = true;
-        break;
-      }
-    }
-    if (!bRslt)  return 0;
+    if (nTime < nDist)           return 0;
+    if (nTime % 2 != nDist % 2)  return 0;
   }
   return 1;
 }
 
 int main()
 {
-  string sTarget;
-  
-  fnInput(sTarget);
-  if (fnParse(sTarget)) cout << "YES" << endl;
-  else                  cout << "NO"  << endl;
+  vector<StPoint> voPoint;
+
+  fnInput(voPoint);
+  if (fnTravel(voPoint))  cout << "Yes" << endl;
+  else                    cout << "No"  << endl;
 
   return 0;
 }
- 
