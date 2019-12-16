@@ -33,7 +33,7 @@ void fnMinesweeper(vector<string>& rvsBoard)
         for (int i = 0; i < cnvnDy.size(); i++)
           nCount += fnCountBomb(ny + cnvnDy[i], nx + cnvnDx[i], rvsBoard);
 
-        rvsBoard[ny][nx] = '0' + nCount;       // int ¨ char •ÏŠ·
+        rvsBoard[ny][nx] = '0' + nCount;       // int â†’ char å¤‰æ›
       }
 }
 
