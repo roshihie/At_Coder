@@ -4,12 +4,12 @@ using namespace std;
 struct StPoint
 {
   StPoint() :
-    m_nTime(0), m_nPntX(0), m_nPntY(0)
+    m_nTime(0), m_nXcrd(0), m_nYcrd(0)
   { }
 
   int m_nTime;
-  int m_nPntX;
-  int m_nPntY;
+  int m_nXcrd;
+  int m_nYcrd;
 };
 
 void fnInput(vector<StPoint>& rvoPoint)
@@ -20,7 +20,7 @@ void fnInput(vector<StPoint>& rvoPoint)
 
   rvoPoint.resize(nSiz + 1, oPoint);
   for (int i = 0; i < nSiz; i++)
-    cin >> rvoPoint[i + 1].m_nTime >> rvoPoint[i + 1].m_nPntX >> rvoPoint[i + 1].m_nPntY;
+    cin >> rvoPoint[i + 1].m_nTime >> rvoPoint[i + 1].m_nXcrd >> rvoPoint[i + 1].m_nYcrd;
 }
 
 int fnTravel(const vector<StPoint>& cnrvoPoint)
@@ -28,8 +28,8 @@ int fnTravel(const vector<StPoint>& cnrvoPoint)
   for (int i = 0; i < cnrvoPoint.size() - 1; i++)
   {
     int nTime = cnrvoPoint[i + 1].m_nTime - cnrvoPoint[i].m_nTime;
-    int nDist = abs(cnrvoPoint[i + 1].m_nPntX - cnrvoPoint[i].m_nPntX)
-              + abs(cnrvoPoint[i + 1].m_nPntY - cnrvoPoint[i].m_nPntY);
+    int nDist = abs(cnrvoPoint[i + 1].m_nXcrd - cnrvoPoint[i].m_nXcrd)
+              + abs(cnrvoPoint[i + 1].m_nYcrd - cnrvoPoint[i].m_nYcrd);
 
     if (nTime < nDist)           return 0;
     if (nTime % 2 != nDist % 2)  return 0;
