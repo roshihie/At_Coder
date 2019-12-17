@@ -3,13 +3,13 @@ using namespace std;
 
 int main()
 {
-  int nAmin, nAmax, nBmin, nBmax;
-  cin >> nAmin >> nAmax >> nBmin >> nBmax;
+  int nAlow, nAhigh, nBlow, nBhigh;
+  cin >> nAlow >> nAhigh >> nBlow >> nBhigh;
 
-  int nSameTime = min(nAmax, nBmax) - max(nAmin, nBmin);
-  if (nSameTime < 0)  nSameTime = 0;
+  int nHigher = min(nAhigh, nBhigh);
+  int nLower  = max(nAlow,  nBlow);
 
-  cout << nSameTime << endl;
+  cout << max(0, nHigher - nLower) << endl;
 
   return 0;
 }
