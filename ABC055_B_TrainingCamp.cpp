@@ -6,7 +6,7 @@ int main()
   int nNum;
   cin >> nNum;
 
-  int64_t nFact = 1;
+  long nFact = 1;
   for (int n = 1; n <= nNum; n++)
   {
     nFact *= n;

@@ -15,11 +15,11 @@ struct StPoint
 void fnInput(vector<StPoint>& rvoPoint)
 {
   StPoint oPoint;
-  int nSiz;
-  cin >> nSiz;
+  int nSize;
+  cin >> nSize;
 
-  rvoPoint.resize(nSiz + 1, oPoint);
-  for (int i = 0; i < nSiz; i++)
+  rvoPoint.resize(nSize + 1, oPoint);
+  for (int i = 0; i < nSize; i++)
     cin >> rvoPoint[i + 1].m_nTime >> rvoPoint[i + 1].m_nXcrd >> rvoPoint[i + 1].m_nYcrd;
 }
 

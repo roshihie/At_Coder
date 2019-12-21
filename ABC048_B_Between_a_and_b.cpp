@@ -3,11 +3,11 @@ using namespace std;
 
 int main()
 {
-  int64_t nAnum, nBnum, nXpos;
+  long nAnum, nBnum, nXpos;
   cin >> nAnum >> nBnum >> nXpos;
 
-  int64_t nDivHigh = nBnum / nXpos;
-  int64_t nDivLow;
+  long nDivHigh = nBnum / nXpos;
+  long nDivLow;
 
   if (nAnum - 1 < 0)
   {
