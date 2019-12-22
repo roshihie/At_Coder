@@ -1,51 +1,40 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct StTrain
-{
-  StTrain() :
-    m_nNext(0), m_nDone(false)
-  { }
-
-  int  m_nNext;
-  bool m_nDone;
-};
-
-void fnInput(vector<StTrain>& rvoTrain)
+void fnInput(vector<vector<int>>& rvvnCandy)
 {
   int nSize;
   cin >> nSize;
 
-  StTrain oTrain;
-  rvoTrain.resize(nSize, oTrain);
-  
-  for (int n = 0; n < nSize; n++)
-    cin >> rvoTrain[n].m_nNext;
+  rvvnCandy.resize(2, vector<int>(nSize, 0));
+ 
+  for (int i = 0; i < 2; i++)
+    for (int j = 0; j < nSize; j++)
+      cin >> rvvnCandy[i][j];
 }
 
-int fnTrain(vector<StTrain>& rvoTrain)
+int fnCumlSum(const vector<vector<int>>& cnrvvnCandy)
 {
-  int nCnt = 0;
-  int n = 0;
-  while (true)
+  int nCumlSum = 0;
+  int n1stSum  = 0;
+  for (int i = 0; i < cnrvvnCandy[0].size(); i++)
   {
-    nCnt++;
-    if (rvoTrain[n].m_nDone)       return -1;
+    n1stSum += cnrvvnCandy[0][i];
+    int n2ndSum = 0;
+    for (int j = i; j < cnrvvnCandy[1].size(); j++)
+      n2ndSum += cnrvvnCandy[1][j];
 
-    rvoTrain[n].m_nDone = true;
-    if (rvoTrain[n].m_nNext == 2)  return nCnt;
- 
-    n = rvoTrain[n].m_nNext - 1;
+    nCumlSum = max(nCumlSum, (n1stSum + n2ndSum));
   }
+  return nCumlSum;
 }
     
 int main()
 {
-  vector<StTrain> voTrain;
+  vector<vector<int>> vvnCandy;
   
-  fnInput(voTrain);
-  int nRslt = fnTrain(voTrain);
-  cout << nRslt << endl;
+  fnInput(vvnCandy);
+  cout << fnCumlSum(vvnCandy) << endl;
 
   return 0;
 }
