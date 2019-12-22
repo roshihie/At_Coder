@@ -4,8 +4,7 @@ using namespace std;
 void fnInput(string& rsLine)
 {
   int nSize;
-  cin >> nSize;
-  cin >> rsLine;
+  cin >> nSize >> rsLine;
 }
 
 int fnAttention(const string& cnrsLine)
