@@ -7,7 +7,7 @@ void fnInput(vector<int>& rvnNum)
   cin >> sNum;
 
   for (int i = 0; i < rvnNum.size(); i++)
-    rvnNum[i] = sNum[i] - '0';
+    rvnNum[i] = sNum[i] - '0';                 // char → int 変換
 }
 
 int fnBitFullSch(const vector<int>& cnrvnNum)
