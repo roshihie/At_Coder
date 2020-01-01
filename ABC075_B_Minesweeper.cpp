@@ -44,7 +44,7 @@ void fnResult(const vector<string>& cnrvsBoard)
 }
 
 int main()
-{ 
+{
   vector<string> vsBoard;
 
   fnInput(vsBoard);
