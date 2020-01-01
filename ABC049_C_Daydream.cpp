@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-<<<<<<< HEAD
 void fnInput(string& rsTarget)
 {
   cin >> rsTarget;

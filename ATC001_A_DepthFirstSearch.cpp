@@ -24,14 +24,14 @@ int fnDFS_Main(int ny, int nx, const vector<string>& cnrvsBoard, vector<vector<b
   if (cnrvsBoard[ny][nx] == 'g')  return 1;
 
   rvvbReached[ny][nx] = true;
-  int nRslt;
 
   for (int n = 0; n < cnvnDy.size(); n++)
   {
-    nRslt = fnDFS_Main(ny + cnvnDy[n], nx + cnvnDx[n], cnrvsBoard, rvvbReached);
-    if (nRslt)  break;
+    if (fnDFS_Main(ny + cnvnDy[n], nx + cnvnDx[n], cnrvsBoard, rvvbReached))
+      return 1;
+    else;
   }
-  return nRslt;
+  return 0;
 }
 
 void fnDFS_Cntl(const vector<string>& cnrvsBoard)
