@@ -11,11 +11,11 @@ void fnInput(vector<string>& rvsBoard)
     cin >> rvsBoard[ny];
 }
 
-int fnCountBomb(int ny, int nx, const vector<string>& cnrvsBoad)
+int fnCountBomb(int ny, int nx, const vector<string>& cnrvsBoard)
 {
-  if (   ny >= 0  && ny < cnrvsBoad.size()
-      && nx >= 0  && nx < cnrvsBoad[ny].size())
-    if (cnrvsBoad[ny][nx] == '#')  return 1;
+  if (   ny >= 0  && ny < cnrvsBoard.size()
+      && nx >= 0  && nx < cnrvsBoard[ny].size())
+    if (cnrvsBoard[ny][nx] == '#')  return 1;
     else;
 
   return 0;
