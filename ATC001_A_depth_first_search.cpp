@@ -34,7 +34,7 @@ int fnDFS_Main(int ny, int nx, const vector<string>& cnrvsBoard, vector<vector<b
   return nRslt;
 }
 
-int fnDFS_Cntl(const vector<string>& cnrvsBoard)
+void fnDFS_Cntl(const vector<string>& cnrvsBoard)
 {
   vector<vector<bool>> vvbReached(cnrvsBoard.size(), vector<bool>(cnrvsBoard[0].size()));
   bool bFind_s = false;
