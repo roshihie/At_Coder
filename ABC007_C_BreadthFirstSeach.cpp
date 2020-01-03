@@ -30,14 +30,13 @@ void fnInput(StCoord& roCoord_S, StCoord& roCoord_G, vector<string>& rvsBoard)
 
 int fnCanReach(StCoord oNxtCrd, const vector<string>& cnrvsBoard, const vector<vector<int>>& cnrvvnDis)
 {
-  if (oNxtCrd.m_ny < 0 || 
-      oNxtCrd.m_ny >= cnrvsBoard.size())               return 0;
-  if (oNxtCrd.m_nx < 0 ||
-      oNxtCrd.m_nx >= cnrvsBoard[oNxtCrd.m_ny].size()) return 0;
-  if (cnrvvnDis[oNxtCrd.m_ny][oNxtCrd.m_nx])           return 0;
-  if (cnrvsBoard[oNxtCrd.m_ny][oNxtCrd.m_nx] == '#')   return 0;
-
-  return 1;
+  if      (oNxtCrd.m_ny < 0 || 
+           oNxtCrd.m_ny >= cnrvsBoard.size())               return 0;
+  else if (oNxtCrd.m_nx < 0 ||
+           oNxtCrd.m_nx >= cnrvsBoard[oNxtCrd.m_ny].size()) return 0;
+  else if (cnrvvnDis[oNxtCrd.m_ny][oNxtCrd.m_nx])           return 0;
+  else if (cnrvsBoard[oNxtCrd.m_ny][oNxtCrd.m_nx] == '#')   return 0;
+  else                                                      return 1;
 }
 
 int fnBFS_Main(queue<StCoord>& rqoCoord ,   const vector<string>& cnrvsBoard, 

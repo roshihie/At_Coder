@@ -19,7 +19,7 @@ int fnParse(string sTarget)
     for (int i = 0; i < cnvsWord.size(); i++)
     {
       ixBgn = ixEnd - cnvsWord[i].size();
-      if (ixBgn < 0)  ixBgn = 0;
+      if (ixBgn < 0)  continue;
 
       if (sTarget.substr(ixBgn, cnvsWord[i].size()) == cnvsWord[i])
       {
