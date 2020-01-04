@@ -8,7 +8,7 @@ void fnInput(int& rnTrgSu, int& rnTrgKin)
 
 int fnRcsSch(int nTrgSu, int nTrgKin)
 {
-  vector<int> vnMoney{10000, 5000, 1000};
+  vector<int> cnvnMoney{10000, 5000, 1000};
 
   int nCalKin;
   int i, j;
@@ -18,9 +18,9 @@ int fnRcsSch(int nTrgSu, int nTrgKin)
     {
       nCalKin = nTrgKin;
 
-      nCalKin -= vnMoney[0] * i;
-      nCalKin -= vnMoney[1] * j;
-      nCalKin -= vnMoney[2] * (nTrgSu - i - j);
+      nCalKin -= cnvnMoney[0] * i;
+      nCalKin -= cnvnMoney[1] * j;
+      nCalKin -= cnvnMoney[2] * (nTrgSu - i - j);
       if (!nCalKin)
         break;
     }
@@ -32,16 +32,6 @@ int fnRcsSch(int nTrgSu, int nTrgKin)
   else
     cout << -1 << " " << -1 << " " << -1 << endl;
 }
-
-/*
-int fnExhSch(int nTrgSu, int nTrgKin)
-{
-  vector<int> vnNumMoney(3);
-
-  fnRcsSch(0, nTrgSu, nTrgKin, vnNumMoney);
-  cout << vnNumMoney[0] << " " << vnNumMoney[1] << " " << vnNumMoney[2] << endl;
-}
-*/
 
 int main()
 {

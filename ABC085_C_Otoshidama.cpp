@@ -6,37 +6,47 @@ void fnInput(int& rnTrgSu, int& rnTrgKin)
   cin >> rnTrgSu >> rnTrgKin;
 }
 
-int fnRcsSch(int nPos, int nTrgSu, int nTrgKin, vector<int>& rvnNumMoney)
+int fnRcsSch(int nPos, int nTrgSu, int nTrgKin, vector<int>& rvnMoneyCnt)
 {
-  vector<int> vnMoney{10000, 5000, 1000};
+  const vector<int> cnvnMoney{10000, 5000, 1000};
 
-  if (nTrgKin < 0)  return -1;
-  if (nPos == rvnNumMoney.size() - 1)
-  {
-    rvnNumMoney[nPos] = nTrgSu;
-    if (nTrgKin - vnMoney[nPos] * nTrgSu == 0)
-      return 1;
-    else
-      return 0;
-  }
+  if (nTrgSu == 0 && nTrgKin == 0) return  1;
+  if (nTrgKin <  0)                return -1;
+  if (nPos == rvnMoneyCnt.size())  return  0;
 
-  for (int i = 0; i <= nTrgSu; i++)
+  if (nPos == rvnMoneyCnt.size() - 1)
   {
-    rvnNumMoney[nPos] = i;
-    int nRtn = fnRcsSch(nPos + 1, nTrgSu - i, nTrgKin - vnMoney[nPos] * i, rvnNumMoney);
-    if      (nRtn == -1)  return 0;
-    else if (nRtn)        return 1;
+    rvnMoneyCnt[nPos] = nTrgSu;
+    return fnRcsSch(nPos + 1, 0, nTrgKin - cnvnMoney[nPos] * nTrgSu, rvnMoneyCnt);
   }
+  else
+    for (int i = 0; i <= nTrgSu; i++)
+    {
+      rvnMoneyCnt[nPos] = i;
+      for (int i = nPos + 1; i < rvnMoneyCnt.size(); i++)
+        rvnMoneyCnt[i] = 0;
+
+      int nRslt = fnRcsSch(nPos + 1, nTrgSu - i, nTrgKin - cnvnMoney[nPos] * i, rvnMoneyCnt);
+      if      (nRslt ==  1)  return 1;
+      else if (nRslt == -1)  break;
+    }
 
   return 0;
 }
 
 int fnExhSch(int nTrgSu, int nTrgKin)
 {
-  vector<int> vnNumMoney(3);
+  vector<int> vnMoneyCnt(3);
 
-  if (fnRcsSch(0, nTrgSu, nTrgKin, vnNumMoney))
-    cout << vnNumMoney[0] << " " << vnNumMoney[1] << " " << vnNumMoney[2] << endl;
+  if (fnRcsSch(0, nTrgSu, nTrgKin, vnMoneyCnt))
+  {
+    for (int i = 0; i < vnMoneyCnt.size(); i++)
+    {
+      if ( i )  cout << " ";
+      cout << vnMoneyCnt[i];
+    }
+    cout << endl;
+  }
   else
     cout << -1 << " " << -1 << " " << -1 << endl;
 }
@@ -50,4 +60,3 @@ int main()
 
   return 0;
 }
- 
