@@ -14,13 +14,13 @@ int fnMinCheck(int nPriceA, int nPriceB, int nPriceH, int nNumA, int nNumB)
   if      (nNumA < nNumB)
     nPriceMin = min( nPriceA * nNumA + nPriceB * nNumB,
                      min( (2 * nPriceH - nPriceB) * nNumA + nPriceB * nNumB,
-                          2 * nPriceH * nNumB));
+                          2 * nPriceH * nNumB ) );
   else if (nNumA == nNumB)
-    nPriceMin = min( (nPriceA + nPriceB) * nNumA, 2 * nPriceH * nNumA);
+    nPriceMin = min( (nPriceA + nPriceB) * nNumA, 2 * nPriceH * nNumA );
   else
     nPriceMin = min( nPriceA * nNumA + nPriceB * nNumB,
                      min( nPriceA * nNumA + (2 * nPriceH - nPriceA) * nNumB,
-                          2 * nPriceH * nNumA));
+                          2 * nPriceH * nNumA ) );
   return nPriceMin;
 }
 
