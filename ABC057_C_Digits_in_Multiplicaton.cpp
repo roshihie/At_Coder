@@ -25,7 +25,7 @@ int fnMultiplCheck(int64_t nNum)
   for (int64_t n = 2; n * n <= nNum; n++)  // int型 n では n * n が int型の範囲を
   {                                        // 超えて桁落ちが発生し 永久ループとなる
     if (nNum % n != 0)  continue;          // nNum の平方根を超えない整数 + 1 ～ nNum
-    int64_t nOtr = nNum / n;               // で左記検査を行うと当然 TLE となる
+    int64_t nOtr = nNum / n;               // の範囲でループさせると当然 TLE となる
     nMinDigit = min(nMinDigit, fnDigitsCheck(nOtr));
   }
   return nMinDigit;
