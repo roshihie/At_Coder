@@ -54,16 +54,16 @@ int fnAmtSumup(string sProc, const StCond& cnroCond, const StAmt& cnroAmt)
 
 double fnConcCalc(const StCond& cnroCond, const StAmt& cnroAmt)
 {
-  static double nLimtConc = 0.0;
+  static double stnLimtConc = 0.0;
 
-  if (!nLimtConc)
-    nLimtConc = (double)cnroCond.m_nConcE / (100.0 + (double)cnroCond.m_nConcE);
+  if (!stnLimtConc)
+    stnLimtConc = (double)cnroCond.m_nConcE / (100.0 + (double)cnroCond.m_nConcE);
 
   double nNowConc =  (double)fnAmtSumup("SUG", cnroCond, cnroAmt)
                    / (double)fnAmtSumup("ALL", cnroCond, cnroAmt);
 
-  if (nLimtConc < nNowConc)  return 0.0;
-  else                       return nNowConc;
+  if (stnLimtConc < nNowConc)  return 0.0;
+  else                         return nNowConc;
 }
 
 void fnConcCheck(const StCond& cnroCond, StRslt& roRslt)
