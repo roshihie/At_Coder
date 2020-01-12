@@ -7,7 +7,7 @@ struct StCond                  // 材料質量・限界量
   int m_nWaterB;
   int m_nSugerC;
   int m_nSugerD;
-  double m_nConcE;
+  int m_nConcE;
   int m_nLimitF;
 };
 
@@ -57,7 +57,7 @@ double fnConcCalc(const StCond& cnroCond, const StAmt& cnroAmt)
   static double nLimtConc = 0.0;
 
   if (!nLimtConc)
-    nLimtConc = cnroCond.m_nConcE / (100.0 + cnroCond.m_nConcE);
+    nLimtConc = (double)cnroCond.m_nConcE / (100.0 + (double)cnroCond.m_nConcE);
 
   double nNowConc =  (double)fnAmtSumup("SUG", cnroCond, cnroAmt)
                    / (double)fnAmtSumup("ALL", cnroCond, cnroAmt);
