@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(int& rnSpcNum, int& rnMinSum, int& rnMaxSum)
+void fnInput(int& rnHighNum, int& rnMinSum, int& rnMaxSum)
 {
-  cin >> rnSpcNum >> rnMinSum >> rnMaxSum;
+  cin >> rnHighNum >> rnMinSum >> rnMaxSum;
 }
 
 int fnDigitsSum(int nNum)
@@ -17,10 +17,10 @@ int fnDigitsSum(int nNum)
   return nDigitsSum;
 }
 
-int fnSomeSums(int nSpcNum, int nMinSum, int nMaxSum)
+int fnSomeSums(int nHighNum, int nMinSum, int nMaxSum)
 {
   int nTotal = 0;
-  for (int n = 1; n <= nSpcNum; n++)
+  for (int n = 1; n <= nHighNum; n++)
   {  
     int nDigitsSum = 0;
     nDigitsSum += fnDigitsSum(n);
@@ -32,10 +32,10 @@ int fnSomeSums(int nSpcNum, int nMinSum, int nMaxSum)
 
 int main()
 {
-  int nSpcNum, nMinSum, nMaxSum;
-  fnInput(nSpcNum, nMinSum, nMaxSum);
+  int nHighNum, nMinSum, nMaxSum;
+  fnInput(nHighNum, nMinSum, nMaxSum);
 
-  cout << fnSomeSums(nSpcNum, nMinSum, nMaxSum) << endl;
+  cout << fnSomeSums(nHighNum, nMinSum, nMaxSum) << endl;
   return 0;
 }
 
