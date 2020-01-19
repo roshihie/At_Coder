@@ -38,4 +38,3 @@ int main()
   cout << fnSomeSums(nHighNum, nMinSum, nMaxSum) << endl;
   return 0;
 }
-
