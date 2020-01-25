@@ -57,10 +57,10 @@ double fnConcCalc(const StCond& cnroCond, const StAmt& cnroAmt)
   static double stnLimtConc = 0.0;
 
   if (!stnLimtConc)
-    stnLimtConc = (double)cnroCond.m_nConcE / (100.0 + (double)cnroCond.m_nConcE);
+    stnLimtConc = cnroCond.m_nConcE / (100.0 + cnroCond.m_nConcE);
 
   double nNowConc =  (double)fnAmtSumup("SUG", cnroCond, cnroAmt)
-                   / (double)fnAmtSumup("ALL", cnroCond, cnroAmt);
+                    /        fnAmtSumup("ALL", cnroCond, cnroAmt);
 
   if (stnLimtConc < nNowConc)  return 0.0;
   else                         return nNowConc;
