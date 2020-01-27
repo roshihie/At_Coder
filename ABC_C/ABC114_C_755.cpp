@@ -23,14 +23,14 @@ int64_t fnConvInt(const vector<char>& cnrvcNum)
   return nNum;
 }
 
-int fnDgt753_Check(const vector<char>& rvcNum)
+int fnDgt753_Check(const vector<char>& cnrvcNum)
 {
   int nDig3 = 0, nDig5 = 0, nDig7 = 0;
 
-  for (int i = 0; i <rvcNum.size(); i++)
-    if      (rvcNum[i] == '1') nDig3++;
-    else if (rvcNum[i] == '2') nDig5++;
-    else if (rvcNum[i] == '3') nDig7++;
+  for (int i = 0; i < cnrvcNum.size(); i++)
+    if      (cnrvcNum[i] == '1') nDig3++;
+    else if (cnrvcNum[i] == '2') nDig5++;
+    else if (cnrvcNum[i] == '3') nDig7++;
 
   if (nDig3 && nDig5 && nDig7)
     return 1;
@@ -40,7 +40,7 @@ int fnDgt753_Check(const vector<char>& rvcNum)
 
 int fnDgt753_Count(int nMaxNum)
 {
-  vector<char> vcNum(11, '0');
+  vector<char> vcNum(10, '0');
   int nDgt753Cnt = 0;
 
   while (true)
