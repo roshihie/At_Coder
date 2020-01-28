@@ -43,8 +43,10 @@ int fnDgt753_Count(int nMaxNum)
   vector<char> vcNum(10, '0');
   int nDgt753Cnt = 0;
 
-  while (true)
+  while (fnConvInt(vcNum) <= nMaxNum) 
   {
+    if (fnDgt753_Check(vcNum)) nDgt753Cnt++;
+
     vcNum[vcNum.size() - 1]++;
     for (int i = vcNum.size() - 1; i >= 1; i--)
       if (vcNum[i] > '3')
@@ -54,10 +56,6 @@ int fnDgt753_Count(int nMaxNum)
       }
       else
         break;
-
-    if (!fnDgt753_Check(vcNum)) continue;
-    if (fnConvInt(vcNum) > nMaxNum) break;
-    nDgt753Cnt++;
   }
 
   return nDgt753Cnt;
