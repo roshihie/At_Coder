@@ -30,6 +30,7 @@ int main()
 {
   vector<int> vnBallCnt;
   int nVarie;
+
   fnInput(vnBallCnt, nVarie);
   cout << fnRewCount(vnBallCnt, nVarie) << endl;
 
