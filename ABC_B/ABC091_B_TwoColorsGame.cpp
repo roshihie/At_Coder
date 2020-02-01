@@ -1,51 +1,44 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(vector<string>& rvsBlue, vector<string>& rvsRed)
+void fnInput(map<string, int>& rmpScore)
 {
   int nBluelSiz;
   cin >> nBluelSiz;
 
-  rvsBlue.resize(nBluelSiz);
-  for (string& rsBlue : rvsBlue)
-    cin >> rsBlue;
+  for (int i = 0; i < nBluelSiz; i++)
+  {
+    string sBlueStr;
+    cin >> sBlueStr;
+    rmpScore[sBlueStr]++;
+  }
 
   int nRedSiz;
   cin >> nRedSiz;
 
-  rvsRed.resize(nRedSiz);
-  for (string& rsRed : rvsRed)
-    cin >> rsRed;
+  for (int i = 0; i < nRedSiz; i++)
+  {
+    string sRedStr;
+    cin >> sRedStr;
+    rmpScore[sRedStr]--;
+  }
 }
 
-int fnPointCount(const vector<string>& cnrvsBlue, 
-                 const vector<string>& cnrvsRed  )
+int fnScoreCheck(const map<string, int>& cnrmpScore)
 {
-  map<string, int> mpCounter;
+  int nMaxScore = 0;
+  for (pair<const string, int> PScore : cnrmpScore)
+    nMaxScore = max(nMaxScore, PScore.second);
 
-  for (string sBlue : cnrvsBlue)
-    mpCounter[sBlue]++;
-
-  for (string sRed : cnrvsRed)
-    mpCounter[sRed]--;
-
-  vector<int> vnNum;
-  for (pair<const string, int> PCounter : mpCounter)
-    vnNum.push_back(PCounter.second);
-
-  auto itNum = max_element(begin(vnNum), end(vnNum));
-  int nMaxCnt = max(0, *itNum);
-
-  return nMaxCnt;
+  return nMaxScore;
 }
 
 int main()
 {
-  vector<string> vsBlue;
-  vector<string> vsRed;
+  map<string, int> mpScore;
 
-  fnInput(vsBlue, vsRed);
-  cout << fnPointCount(vsBlue, vsRed) << endl;
+  fnInput(mpScore);
+  cout << fnScoreCheck(mpScore) << endl;
 
   return 0;
 }

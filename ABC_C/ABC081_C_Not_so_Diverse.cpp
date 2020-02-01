@@ -1,44 +1,37 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(vector<int>& rvnBall, int& rnVarie)
+void fnInput(vector<int>& rvnBallCnt, int& rnVarie)
 {
   int nBallSiz;
   cin >> nBallSiz >> rnVarie;
 
-  rvnBall.resize(nBallSiz);
-  for (int& rnBall : rvnBall)
-    cin >> rnBall;
+  rvnBallCnt.resize(nBallSiz);
+  for (int i = 0; i < nBallSiz; i++)
+  {
+    int nBall;
+    cin >> nBall;
+    rvnBallCnt[nBall - 1]++;
+  }
 }
 
-int fnRewCount(const vector<int>& cnrvnBall, int nVarie)
+int fnRewCount(vector<int>& rvnBallCnt, int nVarie)
 {
-  map<int, int> mpBall;
-
-  for (int nBall : cnrvnBall)
-    mpBall[nBall]++;
-
-  vector<int> vnNum;
-  for (pair<const int, int> PBall : mpBall)
-    vnNum.push_back(PBall.second);
-
+  sort(begin(rvnBallCnt), end(rvnBallCnt));
   int nRewCnt = 0;
-  sort(begin(vnNum), end(vnNum), greater<int>());
-  if (vnNum.size() <= nVarie)
-    nRewCnt = 0;
-  else
-    for (int i = nVarie; i < vnNum.size(); i++)
-      nRewCnt += vnNum[i];
+
+  for (int i = 0; i < rvnBallCnt.size() - nVarie; i++)
+    nRewCnt += rvnBallCnt[i];
 
   return nRewCnt;
 }
 
 int main()
 {
-  vector<int> vnBall;
+  vector<int> vnBallCnt;
   int nVarie;
-  fnInput(vnBall, nVarie);
-  cout << fnRewCount(vnBall, nVarie) << endl;
+  fnInput(vnBallCnt, nVarie);
+  cout << fnRewCount(vnBallCnt, nVarie) << endl;
 
   return 0;
 }
