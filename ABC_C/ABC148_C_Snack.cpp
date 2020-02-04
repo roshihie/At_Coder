@@ -18,10 +18,10 @@ int64_t fnLCMGet(int nNumA, int nNumB)
     nDivisor  = nRemain;
   }
 
-  int64_t nGCM = nDivisor;
+  int nGCM = nDivisor;
   int nQuotA = nNumA / nGCM;
   int nQuotB = nNumB / nGCM;
-  return (nGCM * nQuotA * nQuotB);
+  return ((int64_t)nGCM * nQuotA * nQuotB);
 }
 
 int main()
