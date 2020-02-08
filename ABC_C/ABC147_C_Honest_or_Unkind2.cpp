@@ -88,5 +88,4 @@ int main()
   cout << fnMaxHonestGet(vvoExpr) << endl;
 
   return 0;
-
 }
