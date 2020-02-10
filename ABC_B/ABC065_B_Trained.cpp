@@ -44,8 +44,8 @@ int main()
   vector<StTrain> voTrain;
   
   fnInput(voTrain);
-  int nRslt = fnTrain(voTrain);
-  cout << nRslt << endl;
+  int nReslt = fnTrain(voTrain);
+  cout << nReslt << endl;
 
   return 0;
 }

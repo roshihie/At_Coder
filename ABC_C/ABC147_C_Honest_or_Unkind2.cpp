@@ -67,15 +67,15 @@ int fnMaxHonestGet(const vector<vector<StExpr>>& cnrvvoExpr)
       else
         vnHonest[i + 1] = 0;           // UnKind
 
-    bool bTrue = true;
+    bool bReslt = true;
     for (int nMan = 1; nMan < vnHonest.size(); nMan++)
       if (!fnHonestCheck(cnrvvoExpr, vnHonest, nMan))
       {
-        bTrue = false;
+        bReslt = false;
         break;
       }
 
-    if (bTrue) nMaxHonestCnt = max(nMaxHonestCnt, nHonestCnt);
+    if (bReslt) nMaxHonestCnt = max(nMaxHonestCnt, nHonestCnt);
   }
   return nMaxHonestCnt;
 }

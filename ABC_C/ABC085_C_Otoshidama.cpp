@@ -26,9 +26,9 @@ int fnRcsSch(int nPos, int nTrgSu, int nTrgKin, vector<int>& rvnMoneyCnt)
       for (int i = nPos + 1; i < rvnMoneyCnt.size(); i++)
         rvnMoneyCnt[i] = 0;
 
-      int nRslt = fnRcsSch(nPos + 1, nTrgSu - i, nTrgKin - cnvnMoney[nPos] * i, rvnMoneyCnt);
-      if      (nRslt ==  1)  return 1;
-      else if (nRslt == -1)  break;
+      int nReslt = fnRcsSch(nPos + 1, nTrgSu - i, nTrgKin - cnvnMoney[nPos] * i, rvnMoneyCnt);
+      if      (nReslt ==  1)  return 1;
+      else if (nReslt == -1)  break;
     }
 
   return 0;

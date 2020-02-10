@@ -31,12 +31,12 @@ int fnGridRepaint(const vector<string>& cnrvsGrid)
     for (int nx = 0; nx < cnrvsGrid[ny].size(); nx++)
       if (cnrvsGrid[ny][nx] == '#')
       {
-        bool bRslt = false;
+        bool bReslt = false;
         for (int i = 0; i < cnvnDy.size(); i++)
           if (fnRepaint(ny + cnvnDy[i], nx + cnvnDx[i], cnrvsGrid))
-            bRslt = true;
+            bReslt = true;
 
-        if (!bRslt)  return 0;
+        if (!bReslt)  return 0;
       }
 
   return 1;

@@ -6,16 +6,16 @@ int main()
   int nAnum, nBnum, nCnum;
   cin >> nAnum >> nBnum >> nCnum;
 
-  bool nRslt = false;
+  bool nReslt = false;
   for (int n = 1; n <= nBnum; n++)
     if ((nAnum * n - nCnum) % nBnum == 0)
     {
-      nRslt = true;
+      nReslt = true;
       break;
     }
 
-  if (nRslt)  cout << "YES" << endl;
-  else        cout << "NO"  << endl;
+  if (nReslt)  cout << "YES" << endl;
+  else         cout << "NO"  << endl;
 
   return 0;
 }

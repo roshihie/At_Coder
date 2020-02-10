@@ -14,7 +14,7 @@ int fnParse(string sTarget)
 
   while (ixBgn)
   {
-    bool bRslt = false;
+    bool bReslt = false;
     ixEnd = ixBgn;
     for (int i = 0; i < cnvsWord.size(); i++)
     {
@@ -23,11 +23,11 @@ int fnParse(string sTarget)
 
       if (sTarget.substr(ixBgn, cnvsWord[i].size()) == cnvsWord[i])
       {
-        bRslt = true;
+        bReslt = true;
         break;
       }
     }
-    if (!bRslt)  return 0;
+    if (!bReslt)  return 0;
   }
   return 1;
 }

@@ -24,12 +24,12 @@ int fnBitFullSch(const vector<int>& cnrvnNum)
   return 7;
 }
     
-void fnResult(const vector<int>& cnrvnNum, int nRslt)
+void fnResult(const vector<int>& cnrvnNum, int nReslt)
 {
   cout << cnrvnNum[0];
   for (int i = 0; i < 3; i++)
   {
-    if (nRslt & (1 << i))  cout << "+";
+    if (nReslt & (1 << i))  cout << "+";
     else                   cout << "-";
 
     cout << cnrvnNum[i + 1];
@@ -42,8 +42,8 @@ int main()
   vector<int> vnNum(4);
   
   fnInput(vnNum);
-  int nRslt = fnBitFullSch(vnNum);
-  fnResult(vnNum, nRslt);
+  int nReslt = fnBitFullSch(vnNum);
+  fnResult(vnNum, nReslt);
 
   return 0;
 }

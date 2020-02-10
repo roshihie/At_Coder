@@ -18,9 +18,9 @@ struct StAmt                   // 使用量
   int m_nAmtA, m_nAmtB, m_nAmtC, m_nAmtD;
 };
 
-struct StRslt                  // 出力結果
+struct StReslt                  // 出力結果
 {
-  StRslt() : m_nAllMass(0), m_nSugerMass(0) { }
+  StReslt() : m_nAllMass(0), m_nSugerMass(0) { }
 
   int m_nAllMass, m_nSugerMass;
 };
@@ -66,7 +66,7 @@ double fnConcCalc(const StCond& cnroCond, const StAmt& cnroAmt)
   else                         return nNowConc;
 }
 
-void fnConcCheck(const StCond& cnroCond, StRslt& roRslt)
+void fnConcCheck(const StCond& cnroCond, StReslt& roReslt)
 {
   StAmt oAmt;
   double nMaxConc = -1.0;
@@ -96,8 +96,8 @@ void fnConcCheck(const StCond& cnroCond, StRslt& roRslt)
           if (nMaxConc < nNowConc)
           {
             nMaxConc = nNowConc;
-            roRslt.m_nAllMass = fnAmtSumup("ALL", cnroCond, oAmt);
-            roRslt.m_nSugerMass = fnAmtSumup("SUG", cnroCond, oAmt);
+            roReslt.m_nAllMass = fnAmtSumup("ALL", cnroCond, oAmt);
+            roReslt.m_nSugerMass = fnAmtSumup("SUG", cnroCond, oAmt);
           }
           oAmt.m_nAmtD++;
         }
@@ -112,11 +112,11 @@ void fnConcCheck(const StCond& cnroCond, StRslt& roRslt)
 int main()
 {
   StCond oCond;
-  StRslt oRslt;
+  StReslt oReslt;
 
   fnInput(oCond);
-  fnConcCheck(oCond, oRslt);
-  cout << oRslt.m_nAllMass << " " << oRslt.m_nSugerMass << endl;
+  fnConcCheck(oCond, oReslt);
+  cout << oReslt.m_nAllMass << " " << oReslt.m_nSugerMass << endl;
 
   return 0;
 }
