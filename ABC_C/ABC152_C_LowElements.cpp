@@ -14,7 +14,7 @@ void fnInput(vector<int>& rvnSeq)
 int fnLowElemCnt(const vector<int>& cnrvnSeq)
 {
   int nLowElemCnt = 0;
-  int nMinLowElem = 200001;
+  int nMinLowElem = cnrvnSeq[0] + 1;
 
   for (int i = 0; i < cnrvnSeq.size(); i++)
     if (cnrvnSeq[i] < nMinLowElem)
