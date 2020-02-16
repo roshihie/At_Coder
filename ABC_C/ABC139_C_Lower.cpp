@@ -13,17 +13,27 @@ void fnInput(vector<int>& rvnSeq)
   
 int fnLowerCnt(const vector<int>& cnrvnSeq)
 {
-  int nLowElemCnt = 0;
-  int nMinLowElem = cnrvnSeq[0] + 1;
+  vector<int> vnRevSeq(cnrvnSeq);
+  reverse(begin(vnRevSeq), end(vnRevSeq));
 
-  for (int i = 0; i < cnrvnSeq.size(); i++)
-    if (cnrvnSeq[i] < nMinLowElem)
-    {
-      nLowElemCnt++;
-      nMinLowElem = cnrvnSeq[i];
-    }
+  int nMaxSeqCnt = 0;
+  int nFoward = 0;
+  while (nFoward < vnRevSeq.size())
+  {
+    int nSeqCnt = 0;
 
-  return nLowElemCnt;
+    for (int n = nFoward; n < vnRevSeq.size(); n++)
+      if (vnRevSeq[n] <= vnRevSeq[n + 1])
+        nSeqCnt++;
+      else
+      {
+        nFoward = n + 1;
+        break;
+      }
+
+    nMaxSeqCnt = max(nMaxSeqCnt, nSeqCnt);
+  }
+  return nMaxSeqCnt;
 }
   
 int main()
