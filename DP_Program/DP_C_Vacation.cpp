@@ -15,9 +15,9 @@ int fnDPHappy(const vector<vector<int>>& cnrvvnEnjoy)
 {
   vector<vector<int>> vvnDPHappy(cnrvvnEnjoy.size() + 1, vector<int>(cnrvvnEnjoy[0].size()));
 
-  for (int i = 0; i < vvnDPHappy.size() - 1; i++)
-    for (int j = 0; j < vvnDPHappy[i].size(); j++)
-      for (int k = 0; k < vvnDPHappy[i].size(); k++)
+  for (int i = 0; i < cnrvvnEnjoy.size(); i++)
+    for (int j = 0; j < cnrvvnEnjoy[i].size(); j++)
+      for (int k = 0; k < cnrvvnEnjoy[i].size(); k++)
         if (j != k)
           vvnDPHappy[i + 1][j] = max(vvnDPHappy[i + 1][j], vvnDPHappy[i][k] + cnrvvnEnjoy[i][j]);
 
