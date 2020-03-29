@@ -1,39 +1,40 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(vector<int>& rvnEnjoyA, vector<int>& rvnEnjoyB, vector<int>& rvnEnjoyC)
+void fnInput(vector<vector<int>>& rvvnEnjoy)
 {
   int nEnjoySiz;
   cin >> nEnjoySiz;
-  rvnEnjoyA.resize(nEnjoySiz);
-  rvnEnjoyB.resize(nEnjoySiz);
-  rvnEnjoyC.resize(nEnjoySiz);
+  rvvnEnjoy.resize(nEnjoySiz, vector<int>(3));
 
   for (int i = 0; i < nEnjoySiz; i++)
-    cin >> rvnEnjoyA[i] >> rvnEnjoyB[i] >> rvnEnjoyC[i];
+    cin >> rvvnEnjoy[i][0] >> rvvnEnjoy[i][1] >> rvvnEnjoy[i][2];
 }
   
-int fnDPCost(const vector<int>& cnrvnStage, int nJmpStage)
+int fnDPHappy(const vector<vector<int>>& cnrvvnEnjoy)
 {
-  vector<int> vnDPCost(cnrvnStage.size(), INT_MAX);
-  vnDPCost[0] = 0;
+  vector<vector<int>> vvnDPHappy(cnrvvnEnjoy.size() + 1, vector<int>(cnrvvnEnjoy[0].size()));
 
-  for (int i = 0; i < cnrvnStage.size() - 1; i++)
-    for (int j = 1; j <= nJmpStage; j++)
-      if (i + j < cnrvnStage.size())
-        vnDPCost[i + j] = 
-          min(vnDPCost[i + j], vnDPCost[i] + abs(cnrvnStage[i + j] - cnrvnStage[i]));
-      else
-        break;
+  for (int i = 0; i < vvnDPHappy.size() - 1; i++)
+    for (int j = 0; j < vvnDPHappy[i].size(); j++)
+      for (int k = 0; k < vvnDPHappy[i].size(); k++)
+        if (j != k)
+          vvnDPHappy[i + 1][j] = max(vvnDPHappy[i + 1][j], vvnDPHappy[i][k] + cnrvvnEnjoy[i][j]);
 
-  return vnDPCost[cnrvnStage.size() - 1];
+  int nMaxHappy = 0;
+  int nLastDay = vvnDPHappy.size() - 1;
+
+  for (int j = 0; j < vvnDPHappy[nLastDay].size(); j++)
+    nMaxHappy = max(nMaxHappy, vvnDPHappy[nLastDay][j]);
+
+  return nMaxHappy;
 }
   
 int main()
 {
-  vector<int> vnEnjoyA, vnEnjoyB, vnEnjoyC;
-  fnInput(vnEnjoyA, vnEnjoyB, vnEnjoyC);
-  cout << fnDPCost(vnStage, nJmpStage) << endl;
+  vector<vector<int>> vvnEnjoy;
+  fnInput(vvnEnjoy);
+  cout << fnDPHappy(vvnEnjoy) << endl;
 
   return 0;
 }
