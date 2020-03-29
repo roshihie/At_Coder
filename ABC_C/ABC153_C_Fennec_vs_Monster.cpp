@@ -6,7 +6,7 @@ void fnInput(int& rnMonster, int& rnFinCnt, vector<int>& rvnLifePnt)
   cin >> rnMonster >> rnFinCnt;
   rvnLifePnt.resize(rnMonster);
 
-  for(int& rnLifePnt : rvnLifePnt)
+  for (int& rnLifePnt : rvnLifePnt)
     cin >> rnLifePnt;
 }
   

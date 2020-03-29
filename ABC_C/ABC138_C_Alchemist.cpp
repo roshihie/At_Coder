@@ -7,7 +7,7 @@ void fnInput(vector<double>& rvnValue)
   cin >> nValueSiz;
   rvnValue.resize(nValueSiz);
 
-  for(double& rnValue : rvnValue)
+  for (double& rnValue : rvnValue)
     cin >> rnValue;
 }
   

@@ -7,7 +7,7 @@ void fnInput(vector<int>& rvnSeq)
   cin >> nSeqSiz;
   rvnSeq.resize(nSeqSiz);
 
-  for(int& rnSeq : rvnSeq)
+  for (int& rnSeq : rvnSeq)
     cin >> rnSeq;
 }
   

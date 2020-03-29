@@ -15,7 +15,7 @@ void fnInput(int& rnProblmSiz, vector<StAnsHist>& rvoAnsHist)
   cin >> rnProblmSiz >> nSubmitSiz;
   rvoAnsHist.resize(nSubmitSiz);
 
-  for(StAnsHist& roAnsHist : rvoAnsHist)
+  for (StAnsHist& roAnsHist : rvoAnsHist)
     cin >> roAnsHist.m_nProblmNo >> roAnsHist.m_sJudge;
 }
   
