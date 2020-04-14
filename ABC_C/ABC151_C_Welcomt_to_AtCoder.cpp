@@ -23,21 +23,21 @@ void fnAnserCheck(int nProblmSiz, const vector<StAnsHist>& cnrvoAnsHist,
                   int& rnRightAns, int& rnPenalty)
 {
   vector<int> vnWACnt(nProblmSiz + 1);
-  set<int> stRightAns;
+  set<int> seRightAns;
 
   rnRightAns = 0;
   rnPenalty = 0;
 
   for (StAnsHist oAnsHist : cnrvoAnsHist)
     if (oAnsHist.m_sJudge == "AC")
-      stRightAns.insert( oAnsHist.m_nProblmNo );
+      seRightAns.insert( oAnsHist.m_nProblmNo );
     else
-      if (!stRightAns.count( oAnsHist.m_nProblmNo ))
+      if (!seRightAns.count( oAnsHist.m_nProblmNo ))
         vnWACnt[ oAnsHist.m_nProblmNo ]++;
 
-  rnRightAns = stRightAns.size();
+  rnRightAns = seRightAns.size();
 
-  for (int nRightAns : stRightAns)
+  for (int nRightAns : seRightAns)
     rnPenalty += vnWACnt[nRightAns]; 
 }
   
