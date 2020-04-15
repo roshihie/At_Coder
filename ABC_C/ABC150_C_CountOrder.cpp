@@ -17,7 +17,9 @@ void fnInput(vector<int>& rvnSeqP, vector<int>& rvnSeqQ)
 int fnCountOrderGet(const vector<int>& cnrvnSeqP, const vector<int>& cnrvnSeqQ)
 {
   vector<int> vnSeqX(cnrvnSeqP.size());
-  int nCntP, nCntQ, nCntX = 0;
+  int nCntP = 0;
+  int nCntQ = 0;
+  int nCntX = 0;
 
   iota(begin(vnSeqX), end(vnSeqX), 1);
   do {
@@ -25,7 +27,8 @@ int fnCountOrderGet(const vector<int>& cnrvnSeqP, const vector<int>& cnrvnSeqQ)
     if (cnrvnSeqP == vnSeqX) nCntP = nCntX;
     if (cnrvnSeqQ == vnSeqX) nCntQ = nCntX;
   }
-  while ( next_permutation(begin(vnSeqX), end(vnSeqX)) );
+  while ( next_permutation(begin(vnSeqX), end(vnSeqX)) &&
+          ( nCntP == 0 || nCntQ == 0 )                   );
 
   return abs(nCntP - nCntQ);
 }
