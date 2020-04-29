@@ -25,7 +25,7 @@ void fnInput(vector<vector<StExpr>>& rvvoExpr)
       cin >> rvvoExpr[i][j].m_nPerson >> rvvoExpr[i][j].m_nAttr;
   }
 }
-  
+ 
 int fnHonestCheck(const vector<vector<StExpr>>& cnrvvoExpr, 
                   const vector<int>& cnrvnHonest, int nMan)
 {
@@ -79,7 +79,7 @@ int fnMaxHonestGet(const vector<vector<StExpr>>& cnrvvoExpr)
   }
   return nMaxHonestCnt;
 }
-  
+
 int main()
 {
   vector<vector<StExpr>> vvoExpr;
