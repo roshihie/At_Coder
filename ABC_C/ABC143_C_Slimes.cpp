@@ -17,12 +17,12 @@ int fnColorCount(string sColor)
     char cColor = sColor[nBgn];
     nColorCnt++;
 
-    int nPos = nBgn + 1;
-    while (nPos < sColor.size() &&
-           cColor == sColor[nPos] )
-      nPos++;
+    int nFoward = nBgn + 1;
+    while ( nFoward < sColor.size()  &&
+            cColor == sColor[nFoward]  )
+      nFoward++;
 
-    nBgn = nPos;
+    nBgn = nFoward;
   }
 
   return nColorCnt;
