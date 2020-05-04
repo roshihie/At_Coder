@@ -1,35 +1,31 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(vector<double>& rvnValue)
+void fnInput(vector<int>& rvnValue)
 {
   int nValueSiz;
   cin >> nValueSiz;
   rvnValue.resize(nValueSiz);
 
-  for (double& rnValue : rvnValue)
+  for (int& rnValue : rvnValue)
     cin >> rnValue;
 }
   
-double fnMaxValueGet(const vector<double>& cnrvnValue)
+double fnMaxValueGet(const vector<int>& cnrvnValue)
 {
-  vector<double> vnAscValue(cnrvnValue);
+  vector<int> vnAsdValue(cnrvnValue);
+  sort(begin(vnAsdValue), end(vnAsdValue));
 
-  while (vnAscValue.size() > 1)
-  {
-    sort(begin(vnAscValue), end(vnAscValue));
-    auto it = begin(vnAscValue);
-    double nAveValue = ( *it + *(it + 1) ) / 2;
+  double nMaxValue = vnAsdValue[0];
+  for (int i = 1; i < vnAsdValue.size(); i++)
+    nMaxValue = (nMaxValue + vnAsdValue[i]) / 2;
 
-    vnAscValue.erase(it, it + 2);
-    vnAscValue.push_back(nAveValue);
-  }
-  return vnAscValue[0];
+  return nMaxValue;
 }
   
 int main()
 {
-  vector<double> vnValue;
+  vector<int> vnValue;
 
   fnInput(vnValue);
   cout << fnMaxValueGet(vnValue) << endl;
