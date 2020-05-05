@@ -6,58 +6,39 @@ void fnInput(int& rnMaxNum)
   cin >> rnMaxNum;
 }
 
-int64_t fnToInt(const vector<char>& cnrvcNum)
+bool fnDgt753_Check(int64_t nRecNum)
 {
-  const vector<int> cnvnDgt = {0, 3, 5, 7};
-  int64_t nRtn = 0;
-  int nNumPos = 0;
+  int nDgt3 = 0, nDgt5 = 0, nDgt7 = 0;
 
-  for (int i = cnrvcNum.size() - 1; i >= 0; i--)
+  while (nRecNum)
   {
-    if (cnrvcNum[i] == '0') break;
-    nRtn += cnvnDgt[ cnrvcNum[i] - '0' ] * pow(10.0, nNumPos++);
+    int n1stDgt = nRecNum % 10;
+
+    if      (n1stDgt == 3) nDgt3++;
+    else if (n1stDgt == 5) nDgt5++;
+    else if (n1stDgt == 7) nDgt7++;
+
+    nRecNum /= 10;
   }
 
-  return nRtn;
-}
-
-int fnDgt753_Check(const vector<char>& cnrvcNum)
-{
-  int nDig3 = 0, nDig5 = 0, nDig7 = 0;
-
-  for (int i = 0; i < cnrvcNum.size(); i++)
-    if      (cnrvcNum[i] == '1') nDig3++;
-    else if (cnrvcNum[i] == '2') nDig5++;
-    else if (cnrvcNum[i] == '3') nDig7++;
-
-  if (nDig3 && nDig5 && nDig7)
-    return 1;
+  if (nDgt3 && nDgt5 && nDgt7)
+    return true;
   else
-    return 0;
+    return false;
 }
 
-int fnDgt753_Count(int nMaxNum)
+void fnDFS_Main(int nMaxNum, int64_t nRecNum)
 {
-  int nDgt753Cnt = 0;
-  int nDgtSiz = to_string(nMaxNum).size();
-  vector<char> vcNum(nDgtSiz + 1, '0');
+  static int stn753DgtCnt = 0;
 
-  while (fnToInt(vcNum) <= nMaxNum) 
-  {
-    if (fnDgt753_Check(vcNum)) nDgt753Cnt++;
+  if (nRecNum > nMaxNum) return;
+  if (fnDgt753_Check(nRecNum)) stn753DgtCnt++;
 
-    vcNum[vcNum.size() - 1]++;
-    for (int i = vcNum.size() - 1; i > 0; i--)
-      if (vcNum[i] > '3')
-      {  
-        vcNum[i - 1]++;
-        vcNum[i] = '1';
-      }
-      else
-        break;
-  }
+  fnDFS_Main(nMaxNum, 10 * nRecNum + 3);
+  fnDFS_Main(nMaxNum, 10 * nRecNum + 5);
+  fnDFS_Main(nMaxNum, 10 * nRecNum + 7);
 
-  return nDgt753Cnt;
+  if (!nRecNum) cout << stn753DgtCnt << endl;
 }
 
 int main()
@@ -65,7 +46,7 @@ int main()
   int nMaxNum;
 
   fnInput(nMaxNum);
-  cout << fnDgt753_Count(nMaxNum) << endl;
+  fnDFS_Main(nMaxNum, 0);
 
   return 0;
 }
