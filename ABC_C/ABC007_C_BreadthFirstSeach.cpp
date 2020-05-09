@@ -39,7 +39,7 @@ int fnCanReach(StCoord oNxtCrd, const vector<string>& cnrvsBoard, const vector<v
   else                                                      return 1;
 }
 
-int fnBFS_Main(queue<StCoord>& rqoCoord ,   const vector<string>& cnrvsBoard, 
+int fnBfs(queue<StCoord>& rqoCoord ,   const vector<string>& cnrvsBoard, 
                vector<vector<int>> rvvnDis, StCoord oCoord_G)
 {
   const vector<int> cnvnDy = {0, -1,  0, 1};
@@ -68,13 +68,13 @@ int fnBFS_Main(queue<StCoord>& rqoCoord ,   const vector<string>& cnrvsBoard,
   return 0;
 }
 
-void fnBFS_Cntl(StCoord oCoord_S, StCoord oCoord_G, const vector<string>& cnrvsBoard)
+void fnBfsCntl(StCoord oCoord_S, StCoord oCoord_G, const vector<string>& cnrvsBoard)
 {
   queue<StCoord> qoCoord;
   vector<vector<int>> vvnDis(cnrvsBoard.size(), vector<int>(cnrvsBoard[0].size()));
 
   qoCoord.push(oCoord_S);
-  cout << fnBFS_Main(qoCoord, cnrvsBoard, vvnDis, oCoord_G) << endl;
+  cout << fnBfs(qoCoord, cnrvsBoard, vvnDis, oCoord_G) << endl;
 }
 
 int main()
@@ -83,7 +83,7 @@ int main()
   vector<string> vsBoard;
 
   fnInput(oCoord_S, oCoord_G, vsBoard);
-  fnBFS_Cntl(oCoord_S, oCoord_G, vsBoard);
+  fnBfsCntl(oCoord_S, oCoord_G, vsBoard);
 
   return 0;
 }

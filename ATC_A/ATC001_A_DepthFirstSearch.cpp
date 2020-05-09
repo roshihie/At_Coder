@@ -11,7 +11,7 @@ void fnInput(vector<string>& rvsBoard)
     cin >> rvsBoard[ny];
 }
 
-int fnDFS_Main(int ny, int nx, const vector<string>& cnrvsBoard, vector<vector<bool>>& rvvbReached)
+int fnDfs(int ny, int nx, const vector<string>& cnrvsBoard, vector<vector<bool>>& rvvbReached)
 {
   const vector<int> cnvnDy = {0, -1,  0, 1};
   const vector<int> cnvnDx = {1,  0, -1, 0};
@@ -27,14 +27,14 @@ int fnDFS_Main(int ny, int nx, const vector<string>& cnrvsBoard, vector<vector<b
 
   for (int n = 0; n < cnvnDy.size(); n++)
   {
-    if (fnDFS_Main(ny + cnvnDy[n], nx + cnvnDx[n], cnrvsBoard, rvvbReached))
+    if (fnDfs(ny + cnvnDy[n], nx + cnvnDx[n], cnrvsBoard, rvvbReached))
       return 1;
     else;
   }
   return 0;
 }
 
-void fnDFS_Cntl(const vector<string>& cnrvsBoard)
+void fnFfsCntl(const vector<string>& cnrvsBoard)
 {
   vector<vector<bool>> vvbReached(cnrvsBoard.size(), vector<bool>(cnrvsBoard[0].size()));
   bool bFind_s = false;
@@ -51,7 +51,7 @@ void fnDFS_Cntl(const vector<string>& cnrvsBoard)
     if (bFind_s)  break;
   }
 
-  if (fnDFS_Main(ny, nx, cnrvsBoard, vvbReached))
+  if (fnDfs(ny, nx, cnrvsBoard, vvbReached))
     cout << "Yes" << endl;
   else
     cout << "No"  << endl;
@@ -68,7 +68,7 @@ int main()
   vector<string> vsBoard;
 
   fnInput(vsBoard);
-  fnDFS_Cntl(vsBoard);
+  fnFfsCntl(vsBoard);
 
   return 0;
 }
