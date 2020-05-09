@@ -27,16 +27,16 @@ bool fnDgt753_Check(int64_t nRecNum)
     return false;
 }
 
-void fnDFS_Main(int nMaxNum, int64_t nRecNum)
+void fnDfs(int nMaxNum, int64_t nRecNum)
 {
   static int stn753DgtCnt = 0;
 
   if (nRecNum > nMaxNum) return;
   if (fnDgt753_Check(nRecNum)) stn753DgtCnt++;
 
-  fnDFS_Main(nMaxNum, 10 * nRecNum + 3);
-  fnDFS_Main(nMaxNum, 10 * nRecNum + 5);
-  fnDFS_Main(nMaxNum, 10 * nRecNum + 7);
+  fnDfs(nMaxNum, 10 * nRecNum + 3);
+  fnDfs(nMaxNum, 10 * nRecNum + 5);
+  fnDfs(nMaxNum, 10 * nRecNum + 7);
 
   if (!nRecNum) cout << stn753DgtCnt << endl;
 }
@@ -46,7 +46,7 @@ int main()
   int nMaxNum;
 
   fnInput(nMaxNum);
-  fnDFS_Main(nMaxNum, 0);
+  fnDfs(nMaxNum, 0);
 
   return 0;
 }
