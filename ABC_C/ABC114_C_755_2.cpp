@@ -1,69 +1,71 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(string& rsMaxNum)
+void fnInput(int& rnMaxNum)
 {
-  cin >> rsMaxNum;
+  cin >> rnMaxNum;
 }
 
-int fnDgtDP(string sMaxNum)
+int64_t fnToInt(const vector<char>& cnrvcNum)
 {
-  // dp[nPos][nSmall][nFlag] :=  nPos: 上位 nPos 桁目まで決定
-  //                             nSmall: small(数字を自由に選べる)か
-  //                             nFlag: {3,5,7} を選んだかのflag
-  //                             の条件を満たす数値の数
-  int dp[11][2][8] = {};
-  dp[0][0][0] = 1;
+  const vector<int> cnvnDgt = {0, 3, 5, 7};
+  int64_t nRtn = 0;
+  int nNumPos = 0;
 
-  int nLen = sMaxNum.size();
+  for (int i = cnrvcNum.size() - 1; i >= 0; i--)
+  {
+    if (cnrvcNum[i] == '0') break;
+    nRtn += cnvnDgt[ cnrvcNum[i] - '0' ] * pow(10.0, nNumPos++);
+  }
 
-  for (int nPos = 0; nPos < nLen; ++nPos)
-    for (int nSmall = 0; nSmall < 2; ++nSmall)
-      for (int nFlag = 0; nFlag < 8; ++nFlag)
-      {
-        if (!dp[nPos][nSmall][nFlag]) continue;
+  return nRtn;
+}
 
-        if (nSmall == 1)               // small ([0, 9] から数字を選べる)か
-        {
-          if (!nFlag) dp[nPos + 1][1][0] += dp[nPos][1][0];                // nothing
+int fnDgt753_Check(const vector<char>& cnrvcNum)
+{
+  int nDgt3 = 0, nDgt5 = 0, nDgt7 = 0;
 
-          dp[nPos + 1][1][nFlag | 1] += dp[nPos][1][nFlag];                // +3
-          dp[nPos + 1][1][nFlag | 2] += dp[nPos][1][nFlag];                // +5
-          dp[nPos + 1][1][nFlag | 4] += dp[nPos][1][nFlag];                // +7
-        }
-        else                           // not small ([0, d] から数字を選べる)か
-        {
-          int nDgt = sMaxNum[nPos] - '0';
+  for (int i = 0; i < cnrvcNum.size(); i++)
+    if      (cnrvcNum[i] == '1') nDgt3++;
+    else if (cnrvcNum[i] == '2') nDgt5++;
+    else if (cnrvcNum[i] == '3') nDgt7++;
 
-          if (!nFlag)        dp[nPos + 1][1][0]     += dp[nPos][0][0];     // nothing
+  if (nDgt3 && nDgt5 && nDgt7)
+    return 1;
+  else
+    return 0;
+}
 
-          if (nDgt == 3) dp[nPos + 1][0][nFlag | 1] += dp[nPos][0][nFlag]; // +3
-          if (3 < nDgt)  dp[nPos + 1][1][nFlag | 1] += dp[nPos][0][nFlag]; // +3
-          if (nDgt == 5) dp[nPos + 1][0][nFlag | 2] += dp[nPos][0][nFlag]; // +5
-          if (5 < nDgt)  dp[nPos + 1][1][nFlag | 2] += dp[nPos][0][nFlag]; // +5
-          if (nDgt == 7) dp[nPos + 1][0][nFlag | 4] += dp[nPos][0][nFlag]; // +7
-          if (7 < nDgt)  dp[nPos + 1][1][nFlag | 4] += dp[nPos][0][nFlag]; // +7
-        }
+int fnDgt753_Count(int nMaxNum)
+{
+  int nDgt753Cnt = 0;
+  int nDgtSiz = to_string(nMaxNum).size();
+  vector<char> vcNum(nDgtSiz + 1, '0');
+
+  while (fnToInt(vcNum) <= nMaxNum) 
+  {
+    if (fnDgt753_Check(vcNum)) nDgt753Cnt++;
+
+    vcNum[vcNum.size() - 1]++;
+    for (int i = vcNum.size() - 1; i > 0; i--)
+      if (vcNum[i] > '3')
+      {  
+        vcNum[i - 1]++;
+        vcNum[i] = '1';
       }
-/*
-  for (int nPos = 0; nPos <= nLen; ++nPos)
-     for (int nSmall = 0; nSmall < 2; ++nSmall)
-       for (int nFlag = 0; nFlag < 8; ++nFlag)
-         if (dp[nPos][nSmall][nFlag])
-         {
-           cout << "dp[" << nPos << "][" << nSmall << "][" << nFlag << "] = (";
-           cout << dp[nPos][nSmall][nFlag] << ")" << endl;
-         }
-*/
-  return dp[nLen][0][7] + dp[nLen][1][7];
+      else
+        break;
+  }
+
+  return nDgt753Cnt;
 }
 
 int main()
 {
-  string sMaxNum;
+  int nMaxNum;
 
-  fnInput(sMaxNum);
-  cout << fnDgtDP(sMaxNum) << endl;
-  
+  fnInput(nMaxNum);
+  cout << fnDgt753_Count(nMaxNum) << endl;
+
   return 0;
 }
