@@ -17,8 +17,8 @@ int fnColorCount(string sColor)
     nColorCnt++;
     int nFoward = nBgn + 1;
 
-    while ( nFoward < sColor.size()  &&
-            sColor[nBgn] == sColor[nFoward] )
+    while (nFoward < sColor.size() &&
+           sColor[nBgn] == sColor[nFoward])
       nFoward++;
 
     nBgn = nFoward;

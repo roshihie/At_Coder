@@ -7,18 +7,18 @@ void fnInput(vector<int>& rvnOrder)
   cin >> nOrderSiz;
   rvnOrder.resize(nOrderSiz + 1);
 
-  for (int n = 1; n < rvnOrder.size(); n++)
+  for (int nNo = 1; nNo < rvnOrder.size(); nNo++)
   {
-    int nOrder;
-    cin >> nOrder;
-    rvnOrder[nOrder] = n;
+    int nAttend;
+    cin >> nAttend;
+    rvnOrder[nAttend] = nNo;
   }
 }
 
 int fnOrderCheck(const vector<int>& cnrvnOrder)
 {
-  for (int nOrder : cnrvnOrder)
-    if (nOrder) cout << nOrder << " ";
+  for (int n = 1; n < cnrvnOrder.size(); n++)
+    cout << cnrvnOrder[n] << " ";
 
   cout << endl;
 }
