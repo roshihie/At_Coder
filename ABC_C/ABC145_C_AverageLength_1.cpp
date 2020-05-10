@@ -19,16 +19,19 @@ void fnInput(vector<StCoord>& rvoCoord)
     cin >> roCoord.m_nx >> roCoord.m_ny;
 }
 
-double fnDistGet(int nFrom, int nTo, const vector<StCoord>& cnrvoCoord)
-{
-  int nDistx = cnrvoCoord[nFrom].m_nx - cnrvoCoord[nTo].m_nx;
-  int nDisty = cnrvoCoord[nFrom].m_ny - cnrvoCoord[nTo].m_ny;
-
-  return sqrt(nDistx * nDistx + nDisty * nDisty);
-}
-
 double fnAveDistGet(const vector<StCoord>& cnrvoCoord)
 {
+  vector<vector<double>> vvnDist(cnrvoCoord.size(), vector<double>(cnrvoCoord.size()));
+  
+  for (int i = 0; i < cnrvoCoord.size(); i++)
+    for (int j = 0; j < cnrvoCoord.size(); j++)
+      if (i != j)
+      {
+        int nDistx = cnrvoCoord[i].m_nx - cnrvoCoord[j].m_nx;
+        int nDisty = cnrvoCoord[i].m_ny - cnrvoCoord[j].m_ny;
+        vvnDist[i][j] = vvnDist[j][i] = sqrt(nDistx * nDistx + nDisty * nDisty);
+      }
+
   double nTotalDist = 0.0;
   int nTotalCnt = 0;
 
@@ -36,8 +39,8 @@ double fnAveDistGet(const vector<StCoord>& cnrvoCoord)
   iota(begin(vnCity), end(vnCity), 0);
 
   do {
-    for (int n = 0; n < cnrvoCoord.size() - 1; n++)
-      nTotalDist += fnDistGet(vnCity[n], vnCity[n + 1], cnrvoCoord);
+    for (int i = 0; i < cnrvoCoord.size() - 1; i++)
+      nTotalDist += vvnDist[ vnCity[i] ][ vnCity[i + 1] ];
       nTotalCnt++;
   }
   while ( next_permutation(begin(vnCity), end(vnCity)) );
