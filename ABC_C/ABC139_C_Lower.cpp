@@ -19,14 +19,14 @@ int fnLowerCnt(const vector<int>& cnrvnSeq)
   while (nBgn < cnrvnSeq.size() - 1)
   {
     int nSeqCnt = 0;
-    int nFoward;
+    int nFoward = nBgn;
 
-    for (nFoward = nBgn; nFoward < cnrvnSeq.size() - 1; nFoward++)
-      if (cnrvnSeq[nFoward] >= cnrvnSeq[nFoward + 1])
-        nSeqCnt++;
-      else
-        break;
-
+    while ( nFoward < cnrvnSeq.size() - 1  &&
+            cnrvnSeq[nFoward] >= cnrvnSeq[nFoward + 1] )
+    {
+      nSeqCnt++;
+      nFoward++;
+    }
     nMaxSeqCnt = max(nMaxSeqCnt, nSeqCnt);
     nBgn = nFoward + 1;
   }
