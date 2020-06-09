@@ -32,7 +32,7 @@ int fnPeakCnt(const vector<int> cnrvnNode, const vector<vector<int>>& cnrvvnEdge
     for (int nEnd : cnrvvnEdge[nBgn])
       if (cnrvnNode[nBgn] <= cnrvnNode[nEnd])
       {
-        bPeak =false;
+        bPeak = false;
         break;
       }
 
