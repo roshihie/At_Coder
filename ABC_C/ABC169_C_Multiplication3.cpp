@@ -1,23 +1,22 @@
 #include <bits/stdc++.h>
 using namespace std;
 using lnglng = long long;
-using lngdbl = long double;
 
-void fnInput(lnglng& rnNumA, lngdbl& rnNumB)
+void fnInput(lnglng& rnNumA, double& rnNumB)
 {
   cin >> rnNumA >> rnNumB;
 }
 
-lnglng fnMultiple(lnglng nNumA, lngdbl nNumB)
+lnglng fnMultiple(lnglng nNumA, double nNumB)
 {
-  int nIntB = nNumB * 100 + 0.5;
-  return (lnglng)(nNumA * nIntB / 100);
+  int nNumIB = nNumB * 100 + 0.5;
+  return nNumA * nNumIB / 100;
 }
   
 int main()
 {
   lnglng nNumA;
-  lngdbl nNumB;
+  double nNumB;
 
   fnInput(nNumA, nNumB);
   cout << fnMultiple(nNumA, nNumB) << endl;
