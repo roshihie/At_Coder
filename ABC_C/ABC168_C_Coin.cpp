@@ -8,16 +8,16 @@ void fnInput(int& rnShtHand, int& rnLngHand, int& rnHour, int& rnMinute)
 
 double fnClockHandsDist(int nShtHand, int nLngHand, int nHour, int nMinute)
 {
-  static const double pi = 3.141592653589793;
+  static const double PI = 3.141592653589793;
 
-  double nShtAngl = (nHour + (nMinute / 60.0)) / 12.0 * 360;
-  double nLngAngl = (nMinute / 60.0) * 360;
+  double nShtAngl = (nHour + (nMinute / 60.0)) / 12.0 * 2 * PI;
+  double nLngAngl = (nMinute / 60.0) * 2 * PI;
   double nDiffAngl = abs(nShtAngl - nLngAngl);
-  if (nDiffAngl > 180)
-    nDiffAngl = 360 - nDiffAngl;
+  if (nDiffAngl > PI)
+    nDiffAngl = 2 * PI - nDiffAngl;
 
   double nHandsDist = nShtHand * nShtHand + nLngHand * nLngHand 
-                      - 2 * nShtHand * nLngHand * cos(2 * pi * nDiffAngl / 360);
+                      - 2 * nShtHand * nLngHand * cos(nDiffAngl);
   return sqrt(nHandsDist);
 }
   
