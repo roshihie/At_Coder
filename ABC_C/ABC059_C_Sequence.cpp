@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+using llong = long long;
 
 void fnInput(vector<int>& rvnNum)
 {
@@ -11,14 +12,14 @@ void fnInput(vector<int>& rvnNum)
     cin >> rnElm;
 }
 
-int64_t fnSignChgTimes(const vector<int>& cnrvnNum)
+llong fnSignChgTimes(const vector<int>& cnrvnNum)
 { 
-  vector<int64_t> vnTimes(2);
+  vector<llong> vnTimes(2);
 
   for (int nParity = 0; nParity < vnTimes.size(); nParity++)
   {
-    int64_t nTimes = 0;
-    int64_t nSum   = 0;
+    llong nTimes = 0;
+    llong nSum   = 0;
     for (int n = 0; n < cnrvnNum.size(); n++)
     {
       nSum += cnrvnNum[n];

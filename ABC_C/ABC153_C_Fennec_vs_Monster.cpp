@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+using llong = long long;
 
 void fnInput(int& rnMonster, int& rnFinCnt, vector<int>& rvnLifePnt)
 {
@@ -10,11 +11,11 @@ void fnInput(int& rnMonster, int& rnFinCnt, vector<int>& rvnLifePnt)
     cin >> rnLifePnt;
 }
   
-int64_t fnGameOverCnt(int nFinCnt, vector<int>& rvnLifePnt)
+llong fnGameOverCnt(int nFinCnt, vector<int>& rvnLifePnt)
 {
   sort(begin(rvnLifePnt), end(rvnLifePnt), greater<int>());
 
-  int64_t nGameOverCnt = 0;
+  llong nGameOverCnt = 0;
   for (int n = nFinCnt; n < rvnLifePnt.size(); n++)
     nGameOverCnt += rvnLifePnt[n];
 

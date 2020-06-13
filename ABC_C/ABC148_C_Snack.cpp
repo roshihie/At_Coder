@@ -1,12 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
+using llong = long long;
 
 void fnInput(int& rnNumA, int& rnNumB)
 {
   cin >> rnNumA >> rnNumB;
 }
 
-int64_t fnLCMGet(int nNumA, int nNumB)
+llong fnLCMGet(int nNumA, int nNumB)
 {
   int nDividend = max(nNumA, nNumB);
   int nDivisor  = min(nNumA, nNumB);
@@ -21,7 +22,7 @@ int64_t fnLCMGet(int nNumA, int nNumB)
   int nGCD = nDivisor;
   int nQuotA = nNumA / nGCD;
   int nQuotB = nNumB / nGCD;
-  return ((int64_t)nGCD * nQuotA * nQuotB);
+  return ((llong)nGCD * nQuotA * nQuotB);
 }
 
 int main()

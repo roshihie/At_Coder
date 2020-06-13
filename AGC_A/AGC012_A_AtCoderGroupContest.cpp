@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+using llong = long long;
 
 void fnInput(vector<int>& rvnEntry)
 {
@@ -13,9 +14,9 @@ void fnInput(vector<int>& rvnEntry)
   sort(begin(rvnEntry), end(rvnEntry), greater<int>());
 }
 
-int64_t fnStrengthChk(const vector<int>& cnrvnEntry)
+llong fnStrengthChk(const vector<int>& cnrvnEntry)
 {
-  int64_t nStrength = 0;
+  llong nStrength = 0;
   int nEntrySiz = cnrvnEntry.size() * 2 / 3;
 
   for (int n = 0; n < nEntrySiz; n++)

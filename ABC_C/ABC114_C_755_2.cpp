@@ -1,15 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
+using llong = long long;
 
 void fnInput(int& rnMaxNum)
 {
   cin >> rnMaxNum;
 }
 
-int64_t fnToInt(const vector<char>& cnrvcNum)
+llong fnToInt(const vector<char>& cnrvcNum)
 {
   const vector<int> cnvnDgt = {0, 3, 5, 7};
-  int64_t nRtn = 0;
+  llong nRtn = 0;
   int nNumPos = 0;
 
   for (int i = cnrvcNum.size() - 1; i >= 0; i--)

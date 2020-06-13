@@ -1,16 +1,17 @@
 #include <bits/stdc++.h>
 using namespace std;
+using llong = long long;
 
-void fnInput(int64_t& rnNumber)
+void fnInput(llong& rnNumber)
 {
   cin >> rnNumber;
 }
 
-int64_t fnMinStepGet(int64_t nNumber)
+llong fnMinStepGet(llong nNumber)
 {
   int nSqrtInt = sqrt(nNumber);
   int nMultpler;
-  int64_t nMultplcand;
+  llong nMultplcand;
 
   for (int n = 1; n <= nSqrtInt; n++)
     if (nNumber % n == 0)
@@ -24,7 +25,7 @@ int64_t fnMinStepGet(int64_t nNumber)
 
 int main()
 {
-  int64_t nNumber;
+  llong nNumber;
 
   fnInput(nNumber);
   cout << fnMinStepGet(nNumber) << endl;

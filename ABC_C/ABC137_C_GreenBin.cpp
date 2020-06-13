@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+using llong = long long;
 
 void fnInput(vector<string>& rvsStr)
 {
@@ -11,14 +12,14 @@ void fnInput(vector<string>& rvsStr)
     cin >> rsStr;
 }
   
-int64_t fnAnagramCnt(const vector<string>& cnrvsStr)
+llong fnAnagramCnt(const vector<string>& cnrvsStr)
 {
   vector<string> vsSortStr(cnrvsStr);
 
   for (string& rsSortStr : vsSortStr)
     sort(begin(rsSortStr), end(rsSortStr));
 
-  int64_t nAnagramCnt = 0;
+  llong nAnagramCnt = 0;
   map<string, int> mpSortStr;
 
   for (string sSortStr : vsSortStr)

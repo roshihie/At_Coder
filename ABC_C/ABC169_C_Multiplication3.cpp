@@ -1,13 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
-using lnglng = long long;
+using llong = long long;
 
-void fnInput(lnglng& rnNumA, double& rnNumB)
+void fnInput(llong& rnNumA, double& rnNumB)
 {
   cin >> rnNumA >> rnNumB;
 }
 
-lnglng fnMultiple(lnglng nNumA, double nNumB)
+llong fnMultiple(llong nNumA, double nNumB)
 {
   int nNumIB = nNumB * 100 + 0.5;
   return nNumA * nNumIB / 100;
@@ -15,7 +15,7 @@ lnglng fnMultiple(lnglng nNumA, double nNumB)
   
 int main()
 {
-  lnglng nNumA;
+  llong nNumA;
   double nNumB;
 
   fnInput(nNumA, nNumB);

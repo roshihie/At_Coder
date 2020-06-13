@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+using llong = long long;
 
 void fnInput(vector<int>& rvnMonstr, vector<int>& rvnBrave)
 {
@@ -15,9 +16,9 @@ void fnInput(vector<int>& rvnMonstr, vector<int>& rvnBrave)
     cin >> rnBrave;
 }
   
-int64_t fnStrikMonstr(vector<int>& rvnMonstr, vector<int>& rvnBrave)
+llong fnStrikMonstr(vector<int>& rvnMonstr, vector<int>& rvnBrave)
 {
-  int64_t nSumStrikMon = 0;
+  llong nSumStrikMon = 0;
 
   for (int nBgn = 0; nBgn < rvnBrave.size(); nBgn++)
     for (int nFoward = nBgn; nFoward < nBgn + 2; nFoward++)

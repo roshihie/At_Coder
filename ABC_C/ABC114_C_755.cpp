@@ -1,12 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
+using llong = long long;
 
 void fnInput(int& rnMaxNum)
 {
   cin >> rnMaxNum;
 }
 
-bool fnDgt753_Check(int64_t nRecNum)
+bool fnDgt753_Check(llong nRecNum)
 {
   int nDgt3 = 0, nDgt5 = 0, nDgt7 = 0;
 
@@ -27,7 +28,7 @@ bool fnDgt753_Check(int64_t nRecNum)
     return false;
 }
 
-void fnDfs(int nMaxNum, int64_t nRecNum)
+void fnDfs(int nMaxNum, llong nRecNum)
 {
   static int stn753DgtCnt = 0;
 

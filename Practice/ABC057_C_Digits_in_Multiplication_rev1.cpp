@@ -1,7 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
+using llong = long long;
 
-void fnInput(int64_t& rnNum)
+void fnInput(llong& rnNum)
 {
   cin >> rnNum;
 }
@@ -16,7 +17,7 @@ int fnDigitsCheck(int nDividend)
   return nDgtCnt;
 }
 
-int fnMultiplCheck(int64_t nNum)
+int fnMultiplCheck(llong nNum)
 {
   int nDivisor = sqrt(nNum);
 
@@ -29,7 +30,7 @@ int fnMultiplCheck(int64_t nNum)
 
 int main()
 {
-  int64_t nNum;
+  llong nNum;
   
   fnInput(nNum);
   cout << fnMultiplCheck(nNum) << endl;

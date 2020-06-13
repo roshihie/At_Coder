@@ -1,20 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
+using llong = long long;
 
-void fnInput(int64_t& nNumN, int64_t& nNumK)
+void fnInput(llong& nNumN, llong& nNumK)
 {
   cin >> nNumN >> nNumK;
 }
   
-int64_t fnMinRepNum(int64_t nNumN, int64_t nNumK)
+llong fnMinRepNum(llong nNumN, llong nNumK)
 {
-  int64_t nRepNum = nNumN % nNumK;
+  llong nRepNum = nNumN % nNumK;
   return min(nRepNum, nNumK - nRepNum);
 }
   
 int main()
 {
-  int64_t nNumN, nNumK;
+  llong nNumN, nNumK;
 
   fnInput(nNumN, nNumK);
   cout << fnMinRepNum(nNumN, nNumK) << endl;
