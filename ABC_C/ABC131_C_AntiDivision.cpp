@@ -9,19 +9,24 @@ void fnInput(llong& rnLow, llong& rnHigh, int& rnDivsor1, int& rnDivsor2)
 
 llong fnAntiDivCnt(llong nNum, int nDivsor1, int nDivsor2)
 {
-  int nDividend = max(nDivsor1, nDivsor2);
-  int nDivisor  = min(nDivsor1, nDivsor2);
+  static llong stnDivLcm = 0;
 
-  while (nDividend % nDivisor)
+  if (!stnDivLcm)
   {
-    int nRemndr = nDividend % nDivisor;
-    nDividend = nDivisor;
-    nDivisor  = nRemndr;
+    int nDividend = max(nDivsor1, nDivsor2);
+    int nDivisor  = min(nDivsor1, nDivsor2);
+
+    while (nDividend % nDivisor)
+    {
+      int nRemndr = nDividend % nDivisor;
+      nDividend = nDivisor;
+      nDivisor  = nRemndr;
+    }
+    stnDivLcm = (llong)nDivsor1 * (nDivsor2 / nDivisor);
   }
-  llong nDivLcm = (llong)nDivsor1 * (nDivsor2 / nDivisor);
   llong nDiv1Cnt = nNum / nDivsor1;
   llong nDiv2Cnt = nNum / nDivsor2;
-  llong nDLcmCnt = nNum / nDivLcm;
+  llong nDLcmCnt = nNum / stnDivLcm;
 
   return nNum - (nDiv1Cnt + nDiv2Cnt - nDLcmCnt);
 }
