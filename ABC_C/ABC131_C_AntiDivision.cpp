@@ -7,7 +7,8 @@ void fnInput(llong& rnLow, llong& rnHigh, int& rnDivsor1, int& rnDivsor2)
   cin >> rnLow >> rnHigh >> rnDivsor1 >> rnDivsor2;
 }
   
-llong fnAntiDivCnt(llong nLow, llong nHigh, int nDivsor1, int nDivsor2)
+
+llong fnAntiDivCnt(llong nNum, int nDivsor1, int nDivsor2)
 {
   int nDividend = max(nDivsor1, nDivsor2);
   int nDivisor  = min(nDivsor1, nDivsor2);
@@ -19,17 +20,11 @@ llong fnAntiDivCnt(llong nLow, llong nHigh, int nDivsor1, int nDivsor2)
     nDivisor  = nRemndr;
   }
   llong nDivLcm = (llong)nDivsor1 * (nDivsor2 / nDivisor);
-  llong nLowLessDiv1Cnt = (nLow - 1) / nDivsor1;
-  llong nLowLessDiv2Cnt = (nLow - 1) / nDivsor2;
-  llong nLowLessDLcmCnt = (nLow - 1) / nDivLcm;
+  llong nDiv1Cnt = nNum / nDivsor1;
+  llong nDiv2Cnt = nNum / nDivsor2;
+  llong nDLcmCnt = nNum / nDivLcm;
 
-  llong nHighDev1Cnt = nHigh / nDivsor1;
-  llong nHighDev2Cnt = nHigh / nDivsor2;
-  llong nHighDLcmCnt = nHigh / nDivLcm;
-  
-  llong nDivsible = (nHighDev1Cnt + nHighDev2Cnt - nHighDLcmCnt) -
-                    (nLowLessDiv1Cnt + nLowLessDiv2Cnt - nLowLessDLcmCnt);
-  return (nHigh - nLow + 1) - nDivsible;
+  return nNum - (nDiv1Cnt + nDiv2Cnt - nDLcmCnt);
 }
   
 int main()
@@ -38,7 +33,8 @@ int main()
   int nDivsor1, nDivsor2;
 
   fnInput(nLow, nHigh, nDivsor1, nDivsor2);
-  cout << fnAntiDivCnt(nLow, nHigh, nDivsor1, nDivsor2) << endl;
+  cout << fnAntiDivCnt(nHigh, nDivsor1, nDivsor2) - fnAntiDivCnt(nLow - 1, nDivsor1, nDivsor2);
+  cout << endl;
 
   return 0;
 }
