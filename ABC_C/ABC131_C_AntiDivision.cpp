@@ -6,7 +6,6 @@ void fnInput(llong& rnLow, llong& rnHigh, int& rnDivsor1, int& rnDivsor2)
 {
   cin >> rnLow >> rnHigh >> rnDivsor1 >> rnDivsor2;
 }
-  
 
 llong fnAntiDivCnt(llong nNum, int nDivsor1, int nDivsor2)
 {
