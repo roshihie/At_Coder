@@ -11,7 +11,7 @@ void fnInput(int& rnWide, int& rnHigh, int& rnx, int& rny)
 void fnRectCutArea(int nWide, int nHigh, int nx, int ny)
 {
   llong nRectArea = (llong)nWide * nHigh;
-  ldouble nRectCutArea = nRectArea / 2.0;
+  ldouble nRectCutArea = nRectArea / 2.0L;
   cout << nRectCutArea << " ";
 
   double nCenterx = nWide / 2.0;
