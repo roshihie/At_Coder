@@ -2,78 +2,46 @@
 using namespace std;
 using llong = long long;
 
-void fnInput(int& rnStair, vector<int>& rvnBroken)
+void fnInput(int& rnStair, vector<int>& rvnFine)
 {
-  int nBrokenSiz;
-  cin >> rnStair >> nBrokenSiz;
-  rvnBroken.resize(nBrokenSiz);
+  int nFineSiz;
+  cin >> rnStair >> nFineSiz;
+  rvnFine.resize(rnStair + 1, true);
 
-  for (int& rnBroken : rvnBroken)
-    cin >> rnBroken;
-}
-
-void fnDPWaySet(int nStair, vector<llong>& rvnDPWays)
-{
-  rvnDPWays.resize(nStair + 1);
-  rvnDPWays[0] = 1;
-
-  for (int i = 1; i < rvnDPWays.size(); i++)
+  for (int i = 0; i < nFineSiz; i++)
   {
-    rvnDPWays[i] += rvnDPWays[i - 1];
-    if (i > 1)
-      rvnDPWays[i] += rvnDPWays[i - 2];
-
-    rvnDPWays[i] %= 1000000007;
+    int nFine;
+    cin >> nFine;
+    rvnFine[ nFine ] = false;
   }
 }
 
-bool fnUseFulStairSet(int nStair, vector<int>& rvnUseful, const vector<int>& cnrvnBroken)
+llong fnNumOfWays(int nStair, const vector<int>& cnrvnFine)
 {
-  for (int i = 0; i < cnrvnBroken.size(); i++)
-    if (i == 0)
-      if (cnrvnBroken[i] == 1);
-      else
-        rvnUseful.push_back( cnrvnBroken[i] - 1 );
-    else
-      if (cnrvnBroken[i] - cnrvnBroken[i - 1] == 1)
-        return false;
-      else
-        rvnUseful.push_back( (cnrvnBroken[i] - 1) - (cnrvnBroken[i - 1] + 1) );
+  const llong cnnMod = 1000000007;
+  vector<llong> vnDPWays(nStair + 1);
+  vnDPWays[0] = 1;
 
-  if (cnrvnBroken.size())
-    rvnUseful.push_back( nStair - (cnrvnBroken[cnrvnBroken.size() - 1] + 1) );
-  else
-    rvnUseful.push_back( nStair );
-  return true;
-}
+  for (int i = 1; i < vnDPWays.size(); i++)
+    if (cnrvnFine[i])
+    {
+      vnDPWays[i] += vnDPWays[i - 1];
+      if (i > 1)
+        vnDPWays[i] += vnDPWays[i - 2];
 
-llong fnNumOfWays(int nStair, const vector<int>& cnrvnBroken)
-{
-  vector<llong> vnDPWays;
-  fnDPWaySet(nStair, vnDPWays);
+      vnDPWays[i] %= cnnMod;
+    }
 
-  vector<int> vnUseful;
-  if (!fnUseFulStairSet(nStair, vnUseful, cnrvnBroken))
-    return 0;
-
-  llong nNumOfWays = 1;
-
-  for (int nUseful : vnUseful)
-  {
-    nNumOfWays *= vnDPWays[ nUseful ];
-    nNumOfWays %= 1000000007;
-  }
-  
-  return nNumOfWays;
+  return vnDPWays[vnDPWays.size() - 1];
 }
   
 int main()
 {
   int nStair;
-  vector<int> vnBroken;
+  vector<int> vnFine;
 
-  fnInput(nStair, vnBroken);
-  cout << fnNumOfWays(nStair, vnBroken) << endl;
+  fnInput(nStair, vnFine);
+  cout << fnNumOfWays(nStair, vnFine) << endl;
 
   return 0;
 }
