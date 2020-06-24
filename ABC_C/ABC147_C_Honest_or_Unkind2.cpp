@@ -13,9 +13,9 @@ void fnInput(vector<vector<StExpr>>& rvvoExpr)
 {
   int nPersonSiz;
   cin >> nPersonSiz;
-  rvvoExpr.resize(nPersonSiz + 1);
+  rvvoExpr.resize(nPersonSiz);
 
-  for (int i = 1; i < rvvoExpr.size(); i++)
+  for (int i = 0; i < rvvoExpr.size(); i++)
   {
     int nAttrSiz;
     cin >> nAttrSiz;
@@ -33,7 +33,7 @@ int fnHonestCheck(const vector<vector<StExpr>>& cnrvvoExpr,
   {
     for (int j = 0; j < cnrvvoExpr[nMan].size(); j++)
       if (cnrvvoExpr[nMan][j].m_nAttr  !=
-          cnrvnHonest[ cnrvvoExpr[nMan][j].m_nPerson ] )
+          cnrvnHonest[ cnrvvoExpr[nMan][j].m_nPerson - 1 ] )
         return 0;
 
     return 1;
@@ -42,7 +42,7 @@ int fnHonestCheck(const vector<vector<StExpr>>& cnrvvoExpr,
   {
     for (int j = 0; j < cnrvvoExpr[nMan].size(); j++)
       if (cnrvvoExpr[nMan][j].m_nAttr  !=
-          cnrvnHonest[ cnrvvoExpr[nMan][j].m_nPerson ] )
+          cnrvnHonest[ cnrvvoExpr[nMan][j].m_nPerson - 1 ] )
         return 1;
 
     return 0;
@@ -54,21 +54,22 @@ int fnMaxHonestGet(const vector<vector<StExpr>>& cnrvvoExpr)
   vector<int> vnHonest(cnrvvoExpr.size());
   int nMaxHonestCnt = 0;
   
-  for (int n = 1; n < ( 1 << (cnrvvoExpr.size() - 1) ); n++)
+  for (int n = 0; n < ( 1 << cnrvvoExpr.size() ); n++)
   {
     int nHonestCnt = 0;
 
-    for (int i = 0; i < cnrvvoExpr.size() - 1; i++)
-      if (n & (1 << i))
+    for (int i = 0; i < cnrvvoExpr.size() ; i++)
+      if (n & ( 1 << i ))
       {
-        vnHonest[i + 1] = 1;           // Honest
+        vnHonest[i] = 1;               // Honest
         nHonestCnt++;
       }
       else
-        vnHonest[i + 1] = 0;           // UnKind
+        vnHonest[i] = 0;               // UnKind
 
     bool bReslt = true;
-    for (int nMan = 1; nMan < vnHonest.size(); nMan++)
+
+    for (int nMan = 0; nMan < vnHonest.size(); nMan++)
       if (!fnHonestCheck(cnrvvoExpr, vnHonest, nMan))
       {
         bReslt = false;
