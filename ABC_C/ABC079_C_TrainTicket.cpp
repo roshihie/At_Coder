@@ -12,16 +12,16 @@ void fnInput(vector<int>& rvnNum)
 
 int fnBitFullSch(const vector<int>& cnrvnNum)
 {
-  for (int n = 0; n < (1 << 3) - 1; n++)
+  for (int n = 0; n < ( 1 << 3 ) - 1; n++)
   {
     int nSum = cnrvnNum[0];
     for (int i = 0; i < 3; i++)
-      if (n & (1 << i)) nSum += cnrvnNum[i + 1];
-      else              nSum -= cnrvnNum[i + 1];
+      if (n & ( 1 << i )) nSum += cnrvnNum[i + 1];
+      else                nSum -= cnrvnNum[i + 1];
 
     if (nSum == 7)  return n;
   }
-  return (1 << 3) - 1;                         // 必ず答えが存在するため
+  return ( 1 << 3 ) - 1;                       // 必ず答えが存在するため
 }
     
 void fnResult(const vector<int>& cnrvnNum, int nReslt)
