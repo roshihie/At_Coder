@@ -24,7 +24,7 @@ double fnWinRate(int nMaxNum, int nWinPnt)
   }
   return nWinRate;
 }
-  
+ 
 int main()
 {
   int nMaxNum, nWinPnt;
