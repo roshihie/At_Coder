@@ -8,37 +8,19 @@ void fnInput(int& rnMaxNum, int& rnWinPnt)
 
 double fnWinRate(int nMaxNum, int nWinPnt)
 {
-  vector<int> vnBorder;
+  double nWinRate = 0;
 
-  int nBorder = nWinPnt;
-  vnBorder.push_back( nBorder );
-
-  while (nBorder > 1)
+  for (int n = 1; n <= nMaxNum; n++)
   {
-    nBorder = (nBorder + 1) / 2;
-    vnBorder.push_back( nBorder );
-  }
-  double nWinRate = 0.0;
+    double nOneRate = 1.0 / nMaxNum;
+    int nCur = n;
 
-  for (int nPower = vnBorder.size() - 1; nPower > 0; nPower--)
-  {
-    double nOneRate = 0.0;
-    int nNum = vnBorder[nPower];
-
-    while (nNum < min(vnBorder[nPower - 1], nMaxNum + 1))
+    while (nCur < nWinPnt)
     {
-      nOneRate += 1.0 / nMaxNum;
-      nNum++;
+      nOneRate /= 2;
+      nCur *= 2;
     }
-    for (int n = 0; n < nPower; n++)
-      nOneRate *= 1 / 2.0;
-
     nWinRate += nOneRate;
-  }
-  if (nMaxNum >= vnBorder[0])
-  {
-    int nDiff = nMaxNum - vnBorder[0] + 1;
-    nWinRate += (double)nDiff / nMaxNum;
   }
   return nWinRate;
 }
