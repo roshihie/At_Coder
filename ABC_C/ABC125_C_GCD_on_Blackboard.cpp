@@ -29,7 +29,7 @@ int fnMaxGcd(const vector<int>& cnrvnNum)
 {
   vector<int> vnLeftGcd(cnrvnNum.size());
   vector<int> vnRigtGcd(cnrvnNum.size());
-  vector<int> vnRemnGcd(cnrvnNum.size());
+  int nMaxGcd = 0;
 
   vnLeftGcd[0] = cnrvnNum[0];
   
@@ -43,14 +43,13 @@ int fnMaxGcd(const vector<int>& cnrvnNum)
 
   for (int i = 0; i < cnrvnNum.size(); i++)
     if (i == 0)
-      vnRemnGcd[i] = vnRigtGcd[i + 1];
+      nMaxGcd = max(nMaxGcd, vnRigtGcd[i + 1] );
     else if (i == cnrvnNum.size() - 1)
-      vnRemnGcd[i] = vnLeftGcd[i - 1];
+      nMaxGcd = max(nMaxGcd, vnLeftGcd[i - 1] );
     else
-      vnRemnGcd[i] = fnGcdGet(vnLeftGcd[i - 1], vnRigtGcd[i + 1]);
+      nMaxGcd = max(nMaxGcd, fnGcdGet(vnLeftGcd[i - 1], vnRigtGcd[i + 1] ));
   
-  auto it = max_element(begin(vnRemnGcd), end(vnRemnGcd));
-  return *it;
+  return nMaxGcd;
 }
  
 int main()
