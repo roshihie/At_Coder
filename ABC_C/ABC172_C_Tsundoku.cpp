@@ -29,20 +29,20 @@ int fnMaxSelCnt(int nLimit, const vector<llong>& cnrvnCostA,
 {
   int nMaxSelCnt = 0;
   int nBgnB = cnrvnCostB.size() - 1;
-  int nCntA = 0;
+  int nixA = 0;
 
-  while (nCntA < cnrvnCostA.size()  &&
-         cnrvnCostA[nCntA] <= nLimit   )
+  while (nixA < cnrvnCostA.size()  &&
+         cnrvnCostA[nixA] <= nLimit   )
   {
-    int nCntB = nBgnB;
+    int nixB = nBgnB;
 
-    while (cnrvnCostB[nCntB] > nLimit - cnrvnCostA[nCntA])
-      nCntB--;
+    while (cnrvnCostB[nixB] > nLimit - cnrvnCostA[nixA])
+      nixB--;
 
-    nMaxSelCnt = max(nMaxSelCnt, nCntA + nCntB);
-    nBgnB = nCntB;
+    nMaxSelCnt = max(nMaxSelCnt, nixA + nixB);
+    nBgnB = nixB;
 
-    nCntA++;
+    nixA++;
   }
   return nMaxSelCnt;
 }
