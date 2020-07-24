@@ -1,37 +1,67 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(string& rsColor)
+void fnInput(vector<vector<char>>& rvvcColor, int& rnRemain)
 {
-  cin >> rsColor;
-}
+  int nySiz, nxSiz;
+  cin >> nySiz >> nxSiz >> rnRemain;
+  rvvcColor.resize(nySiz);
 
-int fnChangeCnt(string sBgnColor, string sColor)
-{
-  int nChangeCnt = 0;
-
-  for (int i = 0; i < sColor.size(); i++)
+  for (int ny = 0; ny < rvvcColor.size(); ny++)
   {
-    int n = i % 2;
-    if (sColor[i] != sBgnColor[n]) nChangeCnt++;
+    rvvcColor[ny].resize(nxSiz);
+
+    for (int nx = 0; nx < rvvcColor[ny].size(); nx++)
+      cin >>  rvvcColor[ny][nx];
   }
-  return nChangeCnt;
 }
 
-int fnMinChangeCnt(string sColor)
+void fnColoringRed(int nEach, vector<vector<char>>& rvvcColor)
 {
-  int nMinChangeCnt = INT_MAX;
-  nMinChangeCnt = min(nMinChangeCnt, fnChangeCnt("01", sColor));
-  nMinChangeCnt = min(nMinChangeCnt, fnChangeCnt("10", sColor));
+  if (nEach < rvvcColor.size())
+  {
+    for (int nx = 0; nx < rvvcColor[nEach].size(); nx++)
+      rvvcColor[nEach][nx] = ' ';
+  }
+  else
+  {
+    nEach -= rvvcColor.size();
+    for (int ny = 0; ny < rvvcColor.size(); ny++)
+      rvvcColor[ny][nEach] = ' ';
+  }
+}
 
-  return nMinChangeCnt;
+int fnNumOfCase(const vector<vector<char>>& cnrvvcColor, int nRemain)
+{
+  int nNumOfCase = 0;
+  int nSize = cnrvvcColor.size() + cnrvvcColor[0].size();
+
+  for (int nCtl = 0; nCtl < ( 1 << nSize ) ; nCtl++)
+  {
+    vector<vector<char>> vvcColor(cnrvvcColor);
+
+    for (int nEach = 0; nEach < nSize; nEach++)
+      if (nCtl & ( 1 << nEach ))
+        fnColoringRed(nEach, vvcColor);
+
+    int nCntTrg = 0;
+
+    for (int ny = 0; ny < vvcColor.size(); ny++)
+      for (int nx = 0; nx < vvcColor[ny].size(); nx++)
+        if (vvcColor[ny][nx] == '#') nCntTrg++;
+
+    if (nCntTrg == nRemain) nNumOfCase++;
+  }
+  return nNumOfCase;
 }
  
 int main()
 {
-  string sColor;
-  fnInput(sColor);
-  cout << fnMinChangeCnt(sColor) << endl;
+  vector<vector<char>> vvcColor;
+  int nRemain;
+
+  fnInput(vvcColor, nRemain);
+  cout << fnNumOfCase(vvcColor, nRemain) << endl;
 
   return 0;
 }

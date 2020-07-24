@@ -47,13 +47,13 @@ int fnNumOfCase(int nSwitchSiz,
   int nNumOfCase = 0;
   vector<int> vnSwitch(nSwitchSiz);
 
-  for (int n = 0; n < ( 1 << nSwitchSiz ); n++)
+  for (int nCtl = 0; nCtl < ( 1 << nSwitchSiz ); nCtl++)
   {
-    for (int i = 0; i < nSwitchSiz; i++)
-      if (n & ( 1 << i ))
-        vnSwitch[i] = 1;
+    for (int nEach = 0; nEach < nSwitchSiz; nEach++)
+      if (nCtl & ( 1 << nEach ))
+        vnSwitch[nEach] = 1;
       else
-        vnSwitch[i] = 0;
+        vnSwitch[nEach] = 0;
 
     if (fnLightSwChk(cnrvvnLightSw, vnSwitch, cnrvnReslt))
       nNumOfCase++;

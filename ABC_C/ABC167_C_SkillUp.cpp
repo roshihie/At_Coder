@@ -8,12 +8,12 @@ void fnInput(int& rnAchieve, vector<int>& rvnPrice, vector<vector<int>>& rvvnSki
   rvnPrice.resize(nPriceSiz);
   rvvnSkill.resize(nPriceSiz, vector<int>(nSkillSiz));
 
-  for (int i = 0; i < rvvnSkill.size(); i++)
+  for (int ny = 0; ny < rvvnSkill.size(); ny++)
   {
-    cin >> rvnPrice[i];
+    cin >> rvnPrice[ny];
 
-    for (int j = 0; j < rvvnSkill[i].size(); j++)
-      cin >> rvvnSkill[i][j];
+    for (int nx = 0; nx < rvvnSkill[ny].size(); nx++)
+      cin >> rvvnSkill[ny][nx];
   }
 }
 
@@ -22,13 +22,13 @@ int fnMinPriceSkillup(int nAchieve, const vector<int> cnrvnPrice,
 {
   int nMinPrice = INT_MAX;
 
-  for (int nCtl = 0; nCtl < (1 << cnrvnPrice.size()); nCtl++)
+  for (int nCtl = 0; nCtl < ( 1 << cnrvnPrice.size() ); nCtl++)
   {
     int nPrice = 0;
     vector<int> vnSumSkill(cnrvvnSkill[0].size());
 
     for (int ny = 0; ny < cnrvnPrice.size(); ny++)
-      if (nCtl & (1 << ny))
+      if (nCtl & ( 1 << ny ))
       {
         for (int nx = 0; nx < cnrvvnSkill[ny].size(); nx++)
           vnSumSkill[nx] += cnrvvnSkill[ny][nx];

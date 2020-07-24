@@ -54,18 +54,18 @@ int fnMaxHonestGet(const vector<vector<StExpr>>& cnrvvoExpr)
   vector<int> vnHonest(cnrvvoExpr.size());
   int nMaxHonestCnt = 0;
   
-  for (int n = 0; n < ( 1 << cnrvvoExpr.size() ); n++)
+  for (int nCtl = 0; nCtl < ( 1 << cnrvvoExpr.size() ); nCtl++)
   {
     int nHonestCnt = 0;
 
-    for (int i = 0; i < cnrvvoExpr.size() ; i++)
-      if (n & ( 1 << i ))
+    for (int nEach = 0; nEach < cnrvvoExpr.size() ; nEach++)
+      if (nCtl & ( 1 << nEach ))
       {
-        vnHonest[i] = 1;               // Honest
+        vnHonest[nEach] = 1;            // Honest
         nHonestCnt++;
       }
       else
-        vnHonest[i] = 0;               // UnKind
+        vnHonest[nEach] = 0;            // UnKind
 
     bool bReslt = true;
 

@@ -12,14 +12,14 @@ void fnInput(vector<int>& rvnNum)
 
 int fnBitFullSch(const vector<int>& cnrvnNum)
 {
-  for (int n = 0; n < ( 1 << 3 ) - 1; n++)
+  for (int nCtl = 0; nCtl < ( 1 << 3 ) - 1; nCtl++)
   {
     int nSum = cnrvnNum[0];
-    for (int i = 0; i < 3; i++)
-      if (n & ( 1 << i )) nSum += cnrvnNum[i + 1];
-      else                nSum -= cnrvnNum[i + 1];
+    for (int nEach = 0; nEach < 3; nEach++)
+      if (nCtl & ( 1 << nEach )) nSum += cnrvnNum[nEach + 1];
+      else                       nSum -= cnrvnNum[nEach + 1];
 
-    if (nSum == 7)  return n;
+    if (nSum == 7)  return nCtl;
   }
   return ( 1 << 3 ) - 1;                       // 必ず答えが存在するため
 }
@@ -27,12 +27,12 @@ int fnBitFullSch(const vector<int>& cnrvnNum)
 void fnResult(const vector<int>& cnrvnNum, int nReslt)
 {
   cout << cnrvnNum[0];
-  for (int i = 0; i < 3; i++)
+  for (int nEach = 0; nEach < 3; nEach++)
   {
-    if (nReslt & (1 << i)) cout << "+";
-    else                   cout << "-";
+    if (nReslt & ( 1 << nEach )) cout << "+";
+    else                         cout << "-";
 
-    cout << cnrvnNum[i + 1];
+    cout << cnrvnNum[nEach + 1];
   }
   cout << "=7" << endl;
 }
