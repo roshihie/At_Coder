@@ -1,67 +1,48 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(vector<vector<char>>& rvvcColor, int& rnRemain)
+void fnInput(vector<string>& rvsColor, int& rnRemain)
 {
   int nySiz, nxSiz;
   cin >> nySiz >> nxSiz >> rnRemain;
-  rvvcColor.resize(nySiz);
+  rvsColor.resize(nySiz);
 
-  for (int ny = 0; ny < rvvcColor.size(); ny++)
-  {
-    rvvcColor[ny].resize(nxSiz);
-
-    for (int nx = 0; nx < rvvcColor[ny].size(); nx++)
-      cin >>  rvvcColor[ny][nx];
-  }
+  for (string& rsColor : rvsColor)
+    cin >> rsColor;
 }
 
-void fnColoringRed(int nEach, vector<vector<char>>& rvvcColor)
-{
-  if (nEach < rvvcColor.size())
-  {
-    for (int nx = 0; nx < rvvcColor[nEach].size(); nx++)
-      rvvcColor[nEach][nx] = ' ';
-  }
-  else
-  {
-    nEach -= rvvcColor.size();
-    for (int ny = 0; ny < rvvcColor.size(); ny++)
-      rvvcColor[ny][nEach] = ' ';
-  }
-}
-
-int fnNumOfCase(const vector<vector<char>>& cnrvvcColor, int nRemain)
+int fnNumOfCase(const vector<string>& cnrvsColor, int nRemain)
 {
   int nNumOfCase = 0;
-  int nSize = cnrvvcColor.size() + cnrvvcColor[0].size();
 
-  for (int nCtl = 0; nCtl < ( 1 << nSize ) ; nCtl++)
-  {
-    vector<vector<char>> vvcColor(cnrvvcColor);
+  for (int nyCtl = 0; nyCtl < ( 1 << cnrvsColor.size() ); nyCtl++)
+    for (int nxCtl = 0; nxCtl < ( 1 << cnrvsColor[0].size() ); nxCtl++)
+    {
+      int nCntTrg = 0;
 
-    for (int nEach = 0; nEach < nSize; nEach++)
-      if (nCtl & ( 1 << nEach ))
-        fnColoringRed(nEach, vvcColor);
+      for (int nyEach = 0; nyEach < cnrvsColor.size(); nyEach++)
+      {
+        if (nyCtl & ( 1 << nyEach )) continue;
 
-    int nCntTrg = 0;
+        for (int nxEach = 0; nxEach < cnrvsColor[nyEach].size(); nxEach++)
+        {
+          if (nxCtl & ( 1 << nxEach )) continue;
+          if (cnrvsColor[nyEach][nxEach] == '#') nCntTrg++;
+        }
+      }
+      if (nCntTrg == nRemain) nNumOfCase++;
+    }
 
-    for (int ny = 0; ny < vvcColor.size(); ny++)
-      for (int nx = 0; nx < vvcColor[ny].size(); nx++)
-        if (vvcColor[ny][nx] == '#') nCntTrg++;
-
-    if (nCntTrg == nRemain) nNumOfCase++;
-  }
   return nNumOfCase;
 }
  
 int main()
 {
-  vector<vector<char>> vvcColor;
+  vector<string> vsColor;
   int nRemain;
 
-  fnInput(vvcColor, nRemain);
-  cout << fnNumOfCase(vvcColor, nRemain) << endl;
+  fnInput(vsColor, nRemain);
+  cout << fnNumOfCase(vsColor, nRemain) << endl;
 
   return 0;
 }
