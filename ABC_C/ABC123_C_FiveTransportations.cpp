@@ -1,67 +1,43 @@
 #include <bits/stdc++.h>
 using namespace std;
+using llong = long long;
 
-void fnInput(vector<vector<char>>& rvvcColor, int& rnRemain)
+void fnInput(llong& rnMaxNum, vector<llong>& rvnCapcty)
 {
-  int nySiz, nxSiz;
-  cin >> nySiz >> nxSiz >> rnRemain;
-  rvvcColor.resize(nySiz);
-
-  for (int ny = 0; ny < rvvcColor.size(); ny++)
-  {
-    rvvcColor[ny].resize(nxSiz);
-
-    for (int nx = 0; nx < rvvcColor[ny].size(); nx++)
-      cin >>  rvvcColor[ny][nx];
-  }
+  cin >> rnMaxNum;
+  
+  for (llong& rnCapcty : rvnCapcty)
+    cin >> rnCapcty;
 }
 
-void fnColoringRed(int nEach, vector<vector<char>>& rvvcColor)
+llong fnTransptCnt(llong nMaxNum, vector<llong>& rvnCapcty)
 {
-  if (nEach < rvvcColor.size())
+  for (int i = 0; i < rvnCapcty.size() - 1; i++)   // 交通機関の容量を直前の大きさに合わせる
+    if (rvnCapcty[i] < rvnCapcty[i + 1])
+      rvnCapcty[i + 1] = rvnCapcty[i];
+  
+  vector<llong> vnTime(6);
+
+  for (int i = 0; i < vnTime.size() - 1; i++)      // 各都市への移動時間を計算
   {
-    for (int nx = 0; nx < rvvcColor[nEach].size(); nx++)
-      rvvcColor[nEach][nx] = ' ';
+    vnTime[i + 1] = (nMaxNum + (rvnCapcty[i] - 1)) / rvnCapcty[i]; 
+    vnTime[i + 1] += i;
   }
-  else
-  {
-    nEach -= rvvcColor.size();
-    for (int ny = 0; ny < rvvcColor.size(); ny++)
-      rvvcColor[ny][nEach] = ' ';
-  }
-}
+  llong nTotalTime = 0;
 
-int fnNumOfCase(const vector<vector<char>>& cnrvvcColor, int nRemain)
-{
-  int nNumOfCase = 0;
-  int nSize = cnrvvcColor.size() + cnrvvcColor[0].size();
-
-  for (int nCtl = 0; nCtl < ( 1 << nSize ) ; nCtl++)
-  {
-    vector<vector<char>> vvcColor(cnrvvcColor);
-
-    for (int nEach = 0; nEach < nSize; nEach++)
-      if (nCtl & ( 1 << nEach ))
-        fnColoringRed(nEach, vvcColor);
-
-    int nCntTrg = 0;
-
-    for (int ny = 0; ny < vvcColor.size(); ny++)
-      for (int nx = 0; nx < vvcColor[ny].size(); nx++)
-        if (vvcColor[ny][nx] == '#') nCntTrg++;
-
-    if (nCntTrg == nRemain) nNumOfCase++;
-  }
-  return nNumOfCase;
+  for (int i = 0; i < vnTime.size() - 1; i++)      // トータル時間を計算
+    nTotalTime += vnTime[i + 1] - vnTime[i];       // 各都市間へ同時に移動しているため
+                                                   // 移動時間の差分を加算
+  return nTotalTime;
 }
  
 int main()
 {
-  vector<vector<char>> vvcColor;
-  int nRemain;
+  llong nMaxNum;
+  vector<llong> vnCapcty(5);
 
-  fnInput(vvcColor, nRemain);
-  cout << fnNumOfCase(vvcColor, nRemain) << endl;
+  fnInput(nMaxNum, vnCapcty);
+  cout << fnTransptCnt(nMaxNum, vnCapcty) << endl;
 
   return 0;
 }
