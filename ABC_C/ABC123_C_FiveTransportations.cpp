@@ -16,9 +16,9 @@ llong fnTransptCnt(llong nMaxNum, vector<llong>& rvnCapcty)
     if (rvnCapcty[i] < rvnCapcty[i + 1])
       rvnCapcty[i + 1] = rvnCapcty[i];
   
-  vector<llong> vnTime(6);
+  vector<llong> vnTime(6);                         // 各都市への移動時間
 
-  for (int i = 0; i < vnTime.size() - 1; i++)      // 各都市への移動時間を計算
+  for (int i = 0; i < vnTime.size() - 1; i++)      // 移動時間を計算
   {
     vnTime[i + 1] = (nMaxNum + (rvnCapcty[i] - 1)) / rvnCapcty[i]; 
     vnTime[i + 1] += i;
