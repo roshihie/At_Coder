@@ -33,7 +33,7 @@ void fnSubStrACCnt(string sStr, const vector<StQuery>& cnrvoQuery)
   {
     vnCumlSum[ nBgn + 2 ] = vnCumlSum[ nBgn + 1 ];
     if (sStr[nBgn] == 'A' && sStr[nBgn + 1] == 'C')
-      vnCumlSum[ nBgn + 2 ] = vnCumlSum[ nBgn + 1] + 1;
+      vnCumlSum[ nBgn + 2 ]++;
   }
 
  for (int i = 0; i < cnrvoQuery.size(); i++)

@@ -48,10 +48,10 @@ void fnAmtClear(string sProc, const StCond& cnroCond, StAmt& roAmt)
 int fnAmtSumup(string sProc, const StCond& cnroCond, const StAmt& cnroAmt)
 { 
   if (sProc == "ALL")
-    return  (cnroCond.m_nWaterA * cnroAmt.m_nAmtA + cnroCond.m_nWaterB * cnroAmt.m_nAmtB) * 100
-          + (cnroCond.m_nSugerC * cnroAmt.m_nAmtC + cnroCond.m_nSugerD * cnroAmt.m_nAmtD);
+    return (cnroCond.m_nWaterA * cnroAmt.m_nAmtA + cnroCond.m_nWaterB * cnroAmt.m_nAmtB) * 100
+         + (cnroCond.m_nSugerC * cnroAmt.m_nAmtC + cnroCond.m_nSugerD * cnroAmt.m_nAmtD);
   else                       // sProc == "SUG"         
-    return  (cnroCond.m_nSugerC * cnroAmt.m_nAmtC + cnroCond.m_nSugerD * cnroAmt.m_nAmtD);
+    return (cnroCond.m_nSugerC * cnroAmt.m_nAmtC + cnroCond.m_nSugerD * cnroAmt.m_nAmtD);
 }
 
 double fnConcCalc(const StCond& cnroCond, const StAmt& cnroAmt)
@@ -64,35 +64,36 @@ double fnConcCalc(const StCond& cnroCond, const StAmt& cnroAmt)
   double nNowConc =  (double)fnAmtSumup("SUG", cnroCond, cnroAmt)
                     /        fnAmtSumup("ALL", cnroCond, cnroAmt);
 
-  if (stnLimtConc < nNowConc)  return 0.0;
-  else                         return nNowConc;
+  if (stnLimtConc < nNowConc) return 0.0;
+  else                        return nNowConc;
 }
 
 void fnConcCheck(const StCond& cnroCond, StReslt& roReslt)
 {
   StAmt oAmt;
   double nMaxConc = -1.0;
-
+  
   fnAmtClear("A", cnroCond, oAmt);
+
   while (true)
   {
     fnAmtClear("B", cnroCond, oAmt);
-    if (fnAmtSumup("ALL", cnroCond, oAmt) > cnroCond.m_nLimitF)  break;
-
+    if (fnAmtSumup("ALL", cnroCond, oAmt) > cnroCond.m_nLimitF) break;
     if (!oAmt.m_nAmtA)  oAmt.m_nAmtB = 1;
+
     while (true)
     {
       fnAmtClear("C", cnroCond, oAmt);
-      if (fnAmtSumup("ALL", cnroCond, oAmt) > cnroCond.m_nLimitF)  break;
+      if (fnAmtSumup("ALL", cnroCond, oAmt) > cnroCond.m_nLimitF) break;
 
       while (true)
       {
         fnAmtClear("D", cnroCond, oAmt);
-        if (fnAmtSumup("ALL", cnroCond, oAmt) > cnroCond.m_nLimitF)  break;
+        if (fnAmtSumup("ALL", cnroCond, oAmt) > cnroCond.m_nLimitF) break;
 
         while (true)
         {
-          if (fnAmtSumup("ALL", cnroCond, oAmt) > cnroCond.m_nLimitF)  break;
+          if (fnAmtSumup("ALL", cnroCond, oAmt) > cnroCond.m_nLimitF) break;
 
           double nNowConc = fnConcCalc(cnroCond, oAmt);
           if (nMaxConc < nNowConc)
