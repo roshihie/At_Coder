@@ -3,10 +3,12 @@ using namespace std;
 
 struct StCond                  // 材料質量・限界量
 {
-  int m_nWaterA;
-  int m_nWaterB;
-  int m_nSugerC;
-  int m_nSugerD;
+  StCond() : m_nWaterA(0), m_nWaterB(0),
+             m_nSugerC(0), m_nSugerD(0),
+             m_nConcE(0),  m_nLimitF(0) { }
+
+  int m_nWaterA, m_nWaterB;
+  int m_nSugerC, m_nSugerD;
   int m_nConcE;
   int m_nLimitF;
 };
