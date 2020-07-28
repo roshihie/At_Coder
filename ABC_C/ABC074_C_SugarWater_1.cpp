@@ -33,29 +33,39 @@ void fnInput(StCond& roCond)
   cin >> roCond.m_nConcE  >> roCond.m_nLimitF;
 }
 
+void fnAmtClear(string sProc, const StCond& cnroCond, StAmt& roAmt)
+{ 
+  if      (sProc == "A")
+    { roAmt.m_nAmtA = 0; roAmt.m_nAmtB = 0; roAmt.m_nAmtC = 0; roAmt.m_nAmtD = 0; }
+  else if (sProc == "B")
+    { roAmt.m_nAmtB = 0; roAmt.m_nAmtC = 0; roAmt.m_nAmtD = 0; }
+  else if (sProc == "C")
+    { roAmt.m_nAmtC = 0; roAmt.m_nAmtD = 0; }
+  else if (sProc == "D")
+    { roAmt.m_nAmtD = 0; }
+}
+
 int fnAmtSumup(string sProc, const StCond& cnroCond, const StAmt& cnroAmt)
 { 
   if (sProc == "ALL")
-    return  (cnroCond.m_nWaterA * cnroAmt.m_nAmtA + cnroCond.m_nWaterB * cnroAmt.m_nAmtB) * 100
-          + (cnroCond.m_nSugerC * cnroAmt.m_nAmtC + cnroCond.m_nSugerD * cnroAmt.m_nAmtD);
+    return (cnroCond.m_nWaterA * cnroAmt.m_nAmtA + cnroCond.m_nWaterB * cnroAmt.m_nAmtB) * 100
+         + (cnroCond.m_nSugerC * cnroAmt.m_nAmtC + cnroCond.m_nSugerD * cnroAmt.m_nAmtD);
   else                       // sProc == "SUG"         
-    return  (cnroCond.m_nSugerC * cnroAmt.m_nAmtC + cnroCond.m_nSugerD * cnroAmt.m_nAmtD);
+    return (cnroCond.m_nSugerC * cnroAmt.m_nAmtC + cnroCond.m_nSugerD * cnroAmt.m_nAmtD);
 }
 
 double fnConcCalc(const StCond& cnroCond, const StAmt& cnroAmt)
 {
   static double stnLimtConc = 0.0;
-  double nNowConc = 0.0;
 
   if (!stnLimtConc)
     stnLimtConc = cnroCond.m_nConcE / (100.0 + cnroCond.m_nConcE);
 
-  if ( fnAmtSumup("ALL", cnroCond, cnroAmt) )
-    nNowConc =  (double)fnAmtSumup("SUG", cnroCond, cnroAmt)
-               /        fnAmtSumup("ALL", cnroCond, cnroAmt);
+  double nNowConc =  (double)fnAmtSumup("SUG", cnroCond, cnroAmt)
+                    /        fnAmtSumup("ALL", cnroCond, cnroAmt);
 
-  if (stnLimtConc < nNowConc)  return 0.0;
-  else                         return nNowConc;
+  if (stnLimtConc < nNowConc) return 0.0;
+  else                        return nNowConc;
 }
 
 void fnConcCheck(const StCond& cnroCond, StReslt& roReslt)
@@ -63,22 +73,28 @@ void fnConcCheck(const StCond& cnroCond, StReslt& roReslt)
   StAmt oAmt;
   double nMaxConc = -1.0;
   
-  for ( oAmt.m_nAmtA = 0;
-        fnAmtSumup("ALL", cnroCond, oAmt) <= cnroCond.m_nLimitF;
-        oAmt.m_nAmtA++ )
+  fnAmtClear("A", cnroCond, oAmt);
+
+  while (true)
   {
-    for ( oAmt.m_nAmtB = 0;
-          fnAmtSumup("ALL", cnroCond, oAmt) <= cnroCond.m_nLimitF;
-          oAmt.m_nAmtB++ )
+    fnAmtClear("B", cnroCond, oAmt);
+    if (fnAmtSumup("ALL", cnroCond, oAmt) > cnroCond.m_nLimitF) break;
+    if (!oAmt.m_nAmtA)  oAmt.m_nAmtB = 1;
+
+    while (true)
     {
-      for ( oAmt.m_nAmtC = 0;
-            fnAmtSumup("ALL", cnroCond, oAmt) <= cnroCond.m_nLimitF;
-            oAmt.m_nAmtC++ )
+      fnAmtClear("C", cnroCond, oAmt);
+      if (fnAmtSumup("ALL", cnroCond, oAmt) > cnroCond.m_nLimitF) break;
+
+      while (true)
       {
-        for ( oAmt.m_nAmtD = 0;
-              fnAmtSumup("ALL", cnroCond, oAmt) <= cnroCond.m_nLimitF;
-              oAmt.m_nAmtD++ )
+        fnAmtClear("D", cnroCond, oAmt);
+        if (fnAmtSumup("ALL", cnroCond, oAmt) > cnroCond.m_nLimitF) break;
+
+        while (true)
         {
+          if (fnAmtSumup("ALL", cnroCond, oAmt) > cnroCond.m_nLimitF) break;
+
           double nNowConc = fnConcCalc(cnroCond, oAmt);
           if (nMaxConc < nNowConc)
           {
@@ -86,9 +102,13 @@ void fnConcCheck(const StCond& cnroCond, StReslt& roReslt)
             roReslt.m_nAllMass = fnAmtSumup("ALL", cnroCond, oAmt);
             roReslt.m_nSugerMass = fnAmtSumup("SUG", cnroCond, oAmt);
           }
+          oAmt.m_nAmtD++;
         }
+        oAmt.m_nAmtC++;
       }
+      oAmt.m_nAmtB++;
     }
+    oAmt.m_nAmtA++;
   }
 }
 
