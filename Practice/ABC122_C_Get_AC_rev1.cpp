@@ -23,24 +23,18 @@ void fnInput(string& rsStr, vector<StQuery>& rvoQuery)
 
 void fnSubStrACCnt(string sStr, const vector<StQuery>& cnrvoQuery)
 {
-  vector<int> vnCumlSum(sStr.size() + 1);      // 累積和
-
-  //vnCumlSum_ix 0 1 2 3 4 5 6 7 8
-  //sStr_pos      1 2 3 4 5 6 7 8
-  //sStr_pos      A C A C T A C G
-  //sStr_ix       0 1 2 3 4 5 6 7
-  for (int nBgn = 0; nBgn < vnCumlSum.size() - 1; nBgn++)
+  vector<int> vnCumlSum(sStr.size() + 1);
+  //vnCumlSum 0 1 2 3 4 5 6 7 8
+  //sStr_pos   1 2 3 4 5 6 7 8
+  //sStr       A C A C T A C G
+  //sStr_ix    0 1 2 3 4 5 6 7
+  for (int i = 1; i < vnCumlSum.size(); i++)
   {
-    vnCumlSum[ nBgn + 2 ] = vnCumlSum[ nBgn + 1 ];
-    if (sStr[nBgn] == 'A' && sStr[nBgn + 1] == 'C')
-      vnCumlSum[ nBgn + 2 ]++;
+    vnCumlSum[i + 1] = vnCumlSum[i];
+    if (sStr[i - 1] == 'A' && sStr[i] == 'C') vnCumlSum[i + 1]++;
   }
-
- for (int i = 0; i < cnrvoQuery.size(); i++)
-  {
-    cout << vnCumlSum[ cnrvoQuery[i].m_nRigt ] - vnCumlSum[ cnrvoQuery[i].m_nLeft ];
-    cout << endl; 
-  }
+  for (int i = 0; i < cnrvoQuery.size(); i++)
+    cout << vnCumlSum[ cnrvoQuery[i].m_nRigt ] - vnCumlSum[ cnrvoQuery[i].m_nLeft ] << endl;
 }
  
 int main()
