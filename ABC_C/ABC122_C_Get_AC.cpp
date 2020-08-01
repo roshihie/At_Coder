@@ -27,7 +27,7 @@ void fnSubStrACCnt(string sStr, const vector<StQuery>& cnrvoQuery)
 
   //vnCumlSum_ix 0 1 2 3 4 5 6 7 8
   //sStr_pos      1 2 3 4 5 6 7 8
-  //sStr_pos      A C A C T A C G
+  //sStr          A C A C T A C G
   //sStr_ix       0 1 2 3 4 5 6 7
   for (int nBgn = 0; nBgn < vnCumlSum.size() - 1; nBgn++)
   {
