@@ -29,32 +29,32 @@ void fnInput(StTrgLen& roTrgLen, vector<int>& rvnMatLen)
     cin >> rnMatLen;
 }
 
-int fnDfs(int nDpth, StTrgLen oTrgLen, StMatrl& roMatrl, const vector<int>& cnrvnMatLen)
+int fnDfs(int nDpth, StTrgLen oTrgLen, StMatrl oMatrl, const vector<int>& cnrvnMatLen)
 {
   if (nDpth == cnrvnMatLen.size())
-    if ( roMatrl.m_nLenA && roMatrl.m_nLenB && roMatrl.m_nLenC )
-      return  abs(oTrgLen.m_nLenA - roMatrl.m_nLenA)
-            + abs(oTrgLen.m_nLenB - roMatrl.m_nLenB) 
-            + abs(oTrgLen.m_nLenC - roMatrl.m_nLenC);
+    if ( oMatrl.m_nLenA && oMatrl.m_nLenB && oMatrl.m_nLenC )
+      return  abs(oTrgLen.m_nLenA - oMatrl.m_nLenA)
+            + abs(oTrgLen.m_nLenB - oMatrl.m_nLenB) 
+            + abs(oTrgLen.m_nLenC - oMatrl.m_nLenC);
     else
       return 1 << 30; 
 
   int nMinMp = 0; 
   int nAddMp;
 
-  nMinMp = fnDfs(nDpth + 1, oTrgLen, roMatrl, cnrvnMatLen);
+  nMinMp = fnDfs(nDpth + 1, oTrgLen, oMatrl, cnrvnMatLen);
 
-  StMatrl oMatrlA(roMatrl);
+  StMatrl oMatrlA(oMatrl);
   nAddMp = oMatrlA.m_nLenA ? 10 : 0;
   oMatrlA.m_nLenA += cnrvnMatLen[nDpth];
   nMinMp = min(nMinMp, fnDfs(nDpth + 1, oTrgLen, oMatrlA, cnrvnMatLen) + nAddMp);
 
-  StMatrl oMatrlB(roMatrl);
+  StMatrl oMatrlB(oMatrl);
   nAddMp = oMatrlB.m_nLenB ? 10 : 0;
   oMatrlB.m_nLenB += cnrvnMatLen[nDpth];
   nMinMp = min(nMinMp, fnDfs(nDpth + 1, oTrgLen, oMatrlB, cnrvnMatLen) + nAddMp);
 
-  StMatrl oMatrlC(roMatrl);
+  StMatrl oMatrlC(oMatrl);
   nAddMp = oMatrlC.m_nLenC ? 10 : 0;
   oMatrlC.m_nLenC += cnrvnMatLen[nDpth];
   nMinMp = min(nMinMp, fnDfs(nDpth + 1, oTrgLen, oMatrlC, cnrvnMatLen) + nAddMp);
