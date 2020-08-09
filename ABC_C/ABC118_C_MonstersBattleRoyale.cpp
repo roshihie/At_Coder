@@ -1,38 +1,40 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(int& rnDivisor)
+void fnInput(vector<int>& rvnLife)
 {
-  cin >> rnDivisor;
+  int nLiftSiz;
+  cin >> nLiftSiz;
+  rvnLife.resize(nLiftSiz);
+
+  for (int& rnLife : rvnLife)
+    cin >> rnLife;
 }
 
-int fnDigit(int nDivisor)
+int fnGcd(int nOne, int nOtr)
 {
-  set<int> seRemain;
+  if (nOtr == 0)
+    return nOne;
+  else
+    return fnGcd(nOtr, nOne % nOtr);
+}
 
-  int nDividend = 7;
-  int nDigit = 1;
-  int nRemain = nDividend % nDivisor;
+int fnMinLife(const vector<int>& cnrvnLife)
+{
+  int nMinLife = cnrvnLife[0];
 
-  while ( seRemain.count(nRemain) == 0 )
-  {
-    seRemain.insert(nRemain);
-    if (!nRemain)
-      return nDigit;
+  for (int i = 1; i < cnrvnLife.size(); i++)
+    nMinLife = fnGcd(nMinLife, cnrvnLife[i]);
 
-    nDividend = nRemain * 10 + 7;
-    nRemain = nDividend % nDivisor;
-    nDigit++;
-  }
-  return -1;
+  return nMinLife;
 }
  
 int main()
 {
-  int nDivisor;
+  vector<int> vnLife;
 
-  fnInput(nDivisor);
-  cout << fnDigit(nDivisor) << endl;
+  fnInput(vnLife);
+  cout << fnMinLife(vnLife) << endl;
 
   return 0;
 }

@@ -11,12 +11,18 @@ void fnInput(vector<int>& rvnNum)
     cin >> rnNum;
 }
 
-int fnGcd(int nOne, int nOtr)
+int fnGcdGet(int nNumA, int nNumB)
 {
-  if (nOtr == 0)
-    return nOne;
-  else
-    return fnGcd(nOtr, nOne % nOtr);
+  int nDividend = max(nNumA, nNumB);
+  int nDivisor  = min(nNumA, nNumB);
+
+  while (nDividend % nDivisor != 0)
+  {
+    int nRemain = nDividend % nDivisor;
+    nDividend = nDivisor;
+    nDivisor  = nRemain;
+  }
+  return nDivisor;
 }
 
 int fnMaxGcd(const vector<int>& cnrvnNum)
@@ -28,12 +34,12 @@ int fnMaxGcd(const vector<int>& cnrvnNum)
   vnLeftGcd[0] = cnrvnNum[0];
   
   for (int i = 1; i < cnrvnNum.size(); i++)
-    vnLeftGcd[i] = fnGcd(vnLeftGcd[i - 1], cnrvnNum[i]);
+    vnLeftGcd[i] = fnGcdGet(vnLeftGcd[i - 1], cnrvnNum[i]);
   
   vnRigtGcd[cnrvnNum.size() - 1] = cnrvnNum[cnrvnNum.size() - 1];
 
   for (int i = cnrvnNum.size() - 2; i >= 0; i--)
-    vnRigtGcd[i] = fnGcd(vnRigtGcd[i + 1], cnrvnNum[i]);
+    vnRigtGcd[i] = fnGcdGet(vnRigtGcd[i + 1], cnrvnNum[i]);
 
   for (int i = 0; i < cnrvnNum.size(); i++)
     if (i == 0)
@@ -41,7 +47,7 @@ int fnMaxGcd(const vector<int>& cnrvnNum)
     else if (i == cnrvnNum.size() - 1)
       nMaxGcd = max(nMaxGcd, vnLeftGcd[i - 1] );
     else
-      nMaxGcd = max(nMaxGcd, fnGcd(vnLeftGcd[i - 1], vnRigtGcd[i + 1] ));
+      nMaxGcd = max(nMaxGcd, fnGcdGet(vnLeftGcd[i - 1], vnRigtGcd[i + 1] ));
   
   return nMaxGcd;
 }
