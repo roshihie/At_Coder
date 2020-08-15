@@ -21,7 +21,6 @@ bool fnDgt753_Check(llong nRecNum)
 
     nRecNum /= 10;
   }
-
   if (nDgt3 && nDgt5 && nDgt7)
     return true;
   else
