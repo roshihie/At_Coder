@@ -14,14 +14,14 @@ int fnColorCount(string sColor)
 
   while (nBgn < sColor.size())
   {
-    nColorCnt++;
-    int nFoward = nBgn + 1;
+    int nFoward = nBgn;
 
-    while ( nFoward < sColor.size()  &&
-            sColor[nFoward] == sColor[nBgn] )
+    while ( nFoward < sColor.size() - 1  &&
+            sColor[nFoward] == sColor[nFoward + 1] )
       nFoward++;
 
-    nBgn = nFoward;
+    nColorCnt++;
+    nBgn = nFoward + 1;
   }
   return nColorCnt;
 }
