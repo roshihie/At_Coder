@@ -16,7 +16,7 @@ int fnLowerCnt(const vector<int>& cnrvnSeq)
   int nMaxSeqCnt = 0;
   int nBgn = 0;
 
-  while (nBgn < cnrvnSeq.size() - 1)
+  while (nBgn < cnrvnSeq.size() )
   {
     int nSeqCnt = 0;
     int nFoward = nBgn;
