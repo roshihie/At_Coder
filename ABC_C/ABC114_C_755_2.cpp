@@ -16,9 +16,13 @@ llong fnToInt(const vector<char>& cnrvcNum)
   for (int i = cnrvcNum.size() - 1; i >= 0; i--)
   {
     if (cnrvcNum[i] == '0') break;
-    nRtn += cnvnDgt[ cnrvcNum[i] - '0' ] * pow(10.0, nNumPos++);
-  }
+    llong nNum = cnvnDgt[ cnrvcNum[i] - '0' ];
+    
+    for (int n = 0; n < nNumPos; n++) nNum *= 10;
 
+    nRtn += nNum;
+    nNumPos++;
+  }
   return nRtn;
 }
 
@@ -57,7 +61,6 @@ int fnDgt753_Count(int nMaxNum)
       else
         break;
   }
-
   return nDgt753Cnt;
 }
 
