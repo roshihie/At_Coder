@@ -15,7 +15,7 @@ int fnDgtDP(string sMaxNum)
   //    nDgt5 : ãˆÊ nPos Œ…‚Ü‚Å‚Å 5 ‚ğ‘I‘ğ‚µ‚½‚©flag
   //    nDgt7 : ãˆÊ nPos Œ…‚Ü‚Å‚Å 7 ‚ğ‘I‘ğ‚µ‚½‚©flag
   //                             ‚ÌğŒ‚ğ–‚½‚·”’l‚Ì”
-  const vector<int> cnvnDgt = {3, 5, 7};
+  const vector<int> cnvnDgt = {0, 3, 5, 7};
   int nLen = sMaxNum.size();
 
   int dp[nLen + 1][2][2][2][2] = {};
@@ -31,7 +31,10 @@ int fnDgtDP(string sMaxNum)
           for (int nDgt7 = 0; nDgt7 < 2; ++nDgt7)
             for (int nx = 0; nx < cnvnDgt.size(); ++nx)
             {
-              if (!nSmall && nMaxDgt < cnvnDgt[nx]) break;
+              if ( !nSmall && nMaxDgt < cnvnDgt[nx] ) 
+                break;
+              if (( nDgt3 || nDgt5 || nDgt7) && !cnvnDgt[nx] )
+                continue;
 
               int nTrgSmall = nSmall || (cnvnDgt[nx] < nMaxDgt);
               int nTrgDgt3  = nDgt3  || (cnvnDgt[nx] == 3);
