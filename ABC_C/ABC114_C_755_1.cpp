@@ -8,57 +8,40 @@ void fnInput(string& rsMaxNum)
 
 int fnDgtDP(string sMaxNum)
 {
-  // dp[nPos][nSmall][nFlag] :=  nPos  : 上位 nPos 桁目まで決定
-  //                             nSmall: small(数字を自由に選べる)か
-  //                             nFlag : 上位 nPos 桁までで {3,5,7} を選択したかflag
-  //                             ( 0:選択なし, 1: 3   選択, 2: 5   選択, 3: 3 5   選択, 
-  //                               4: 7 選択 , 5: 3 7 選択, 6: 5 7 選択, 7: 3 5 7 選択 )
+  // dp[nPos][nSmall][nDgt3][nDgt5][nDgt7] :=
+  //    nPos  : 上位 nPos 桁目まで決定
+  //    nSmall: small(数字を自由に選べる)か
+  //    nDgt3 : 上位 nPos 桁までで 3 を選択したかflag
+  //    nDgt5 : 上位 nPos 桁までで 5 を選択したかflag
+  //    nDgt7 : 上位 nPos 桁までで 7 を選択したかflag
   //                             の条件を満たす数値の数
-  int dp[11][2][8] = {};
-  dp[0][0][0] = 1;
-
+  const vector<int> cnvnDgt = {3, 5, 7};
   int nLen = sMaxNum.size();
 
+  int dp[nLen + 1][2][2][2][2] = {};
+  dp[0][0][0][0][0] = 1;
+
   for (int nPos = 0; nPos < nLen; ++nPos)
+  {
+    int nMaxDgt = sMaxNum[nPos] - '0';
+
     for (int nSmall = 0; nSmall < 2; ++nSmall)
-      for (int nFlag = 0; nFlag < 8; ++nFlag)
-      {
-        if (!dp[nPos][nSmall][nFlag]) continue;
+      for (int nDgt3 = 0; nDgt3 < 2; ++nDgt3)
+        for (int nDgt5 = 0; nDgt5 < 2; ++nDgt5)
+          for (int nDgt7 = 0; nDgt7 < 2; ++nDgt7)
+            for (int nx = 0; nx < cnvnDgt.size(); ++nx)
+            {
+              if (!nSmall && nMaxDgt < cnvnDgt[nx]) break;
 
-        if (nSmall == 1)               // small ([0, 9] から数字を選べる)か
-        {
-          if (!nFlag)
-            dp[nPos + 1][1][0]       += dp[nPos][1][0];                    // nothing
-
-          dp[nPos + 1][1][nFlag | 1] += dp[nPos][1][nFlag];                // +3
-          dp[nPos + 1][1][nFlag | 2] += dp[nPos][1][nFlag];                // +5
-          dp[nPos + 1][1][nFlag | 4] += dp[nPos][1][nFlag];                // +7
-        }
-        else                           // not small ([0, nDgt] から数字を選べる)か
-        {
-          int nDgt = sMaxNum[nPos] - '0';
-
-          if (!nFlag)    dp[nPos + 1][1][0]         += dp[nPos][0][0];     // nothing
-
-          if (nDgt == 3) dp[nPos + 1][0][nFlag | 1] += dp[nPos][0][nFlag]; // +3
-          if (3 < nDgt ) dp[nPos + 1][1][nFlag | 1] += dp[nPos][0][nFlag]; // +3
-          if (nDgt == 5) dp[nPos + 1][0][nFlag | 2] += dp[nPos][0][nFlag]; // +5
-          if (5 < nDgt ) dp[nPos + 1][1][nFlag | 2] += dp[nPos][0][nFlag]; // +5
-          if (nDgt == 7) dp[nPos + 1][0][nFlag | 4] += dp[nPos][0][nFlag]; // +7
-          if (7 < nDgt ) dp[nPos + 1][1][nFlag | 4] += dp[nPos][0][nFlag]; // +7
-        }
-      }
-/*
-  for (int nPos = 0; nPos <= nLen; ++nPos)
-     for (int nSmall = 0; nSmall < 2; ++nSmall)
-       for (int nFlag = 0; nFlag < 8; ++nFlag)
-         if (dp[nPos][nSmall][nFlag])
-         {
-           cout << "dp[" << nPos << "][" << nSmall << "][" << nFlag << "] = (";
-           cout << dp[nPos][nSmall][nFlag] << ")" << endl;
-         }
-*/
-  return dp[nLen][0][7] + dp[nLen][1][7];
+              int nTrgSmall = nSmall || (cnvnDgt[nx] < nMaxDgt);
+              int nTrgDgt3  = nDgt3  || (cnvnDgt[nx] == 3);
+              int nTrgDgt5  = nDgt5  || (cnvnDgt[nx] == 5);
+              int nTrgDgt7  = nDgt7  || (cnvnDgt[nx] == 7);
+              dp[ nPos + 1 ][ nTrgSmall ][ nTrgDgt3 ][ nTrgDgt5 ][ nTrgDgt7 ]
+                += dp[nPos][nSmall][nDgt3][nDgt5][nDgt7];
+            }
+  }
+  return dp[nLen][0][1][1][1] + dp[nLen][1][1][1][1];
 }
 
 int main()
