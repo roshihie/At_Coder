@@ -9,8 +9,8 @@ void fnInput(llong& rnCoordx, llong& rnTimes, llong& rnMovmnt)
   
 llong fnMinCoordx(llong nCoordx, llong nTimes, llong nMovmnt)
 {
-  llong nQuotent  = abs(nCoordx) / nMovmnt;
-  llong nRemain   = abs(nCoordx) % nMovmnt;
+  llong nQuotent = abs(nCoordx) / nMovmnt;
+  llong nRemain  = abs(nCoordx) % nMovmnt;
 
   if (nQuotent <= nTimes)
     if (nQuotent % 2 == nTimes % 2)
