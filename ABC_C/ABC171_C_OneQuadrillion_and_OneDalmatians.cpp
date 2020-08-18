@@ -15,17 +15,17 @@ void fnNumToName(llong nNum)
 
   while ( nDividend )
   {
-    llong nQuotient = nDividend / cnnDivisor;
+    llong nQuotnt = nDividend / cnnDivisor;
     int nRemain = nDividend % cnnDivisor;
     if (!nRemain)
     {
       vnRemain.push_back( cnnDivisor );
-      nQuotient--;
+      nQuotnt--;
     }
     else
       vnRemain.push_back( nRemain );
 
-    nDividend = nQuotient;
+    nDividend = nQuotnt;
   }
   reverse(begin(vnRemain), end(vnRemain));
 
