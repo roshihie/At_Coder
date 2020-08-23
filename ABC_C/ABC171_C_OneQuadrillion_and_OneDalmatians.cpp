@@ -15,22 +15,16 @@ void fnNumToName(llong nNum)
 
   while ( nDividend )
   {
-    llong nQuotnt = nDividend / cnnDivisor;
+    --nDividend;
     int nRemain = nDividend % cnnDivisor;
-    if (!nRemain)
-    {
-      vnRemain.push_back( cnnDivisor );
-      nQuotnt--;
-    }
-    else
-      vnRemain.push_back( nRemain );
+    vnRemain.push_back( nRemain );
 
-    nDividend = nQuotnt;
+    nDividend /= cnnDivisor;
   }
   reverse(begin(vnRemain), end(vnRemain));
 
   for (int nRemain : vnRemain)
-    cout << (char)('a' + nRemain - 1);
+    cout << (char)('a' + nRemain);
 
   cout << endl;
 }
