@@ -44,7 +44,7 @@ void fnIdNum(int nPrefSiz, const vector<StCity>& cnrvoCity)
                    // イテレータを算出し、vvnCity[ nPref ]の begin イテレータを削除し、
                    // nYear が小さい方から何番目かを取得する
     int nIdNum = lower_bound( begin( vvnCity[ nPref ] ), end( vvnCity[ nPref ] ), 
-                              cnrvoCity[i].m_nYear ) - begin( vvnCity[ nPref ] );   
+                              cnrvoCity[i].m_nYear ) - begin( vvnCity[ nPref ] ); 
     cout << setfill('0') << setw(6) << nIdNum + 1 << endl;
   }
 }
