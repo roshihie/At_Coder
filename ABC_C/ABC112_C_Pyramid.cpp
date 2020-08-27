@@ -55,13 +55,13 @@ void fnCenterCoord(const vector<StCoord>& cnrvoCoord)
   oCenter.m_nx = -1;
 
   while ( !bCenter       &&
-          oCenter.m_nx < 101 )
+          oCenter.m_nx < 100 )
   {
     ++oCenter.m_nx;
     oCenter.m_ny = -1;
 
     while ( !bCenter       &&
-            oCenter.m_ny < 101 )
+            oCenter.m_ny < 100 )
     {
       ++oCenter.m_ny;
       bCenter = fnCenterCheck(oCenter, cnrvoCoord);
