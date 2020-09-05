@@ -1,12 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(int& rnTrgSu, int& rnTrgKin)
+void input(int& rnTrgSu, int& rnTrgKin)
 {
   cin >> rnTrgSu >> rnTrgKin;
 }
 
-int fnRcsSch(int nTrgSu, int nTrgKin)
+void searchMoney(int nTrgSu, int nTrgKin)
 {
   vector<int> cnvnMoney{10000, 5000, 1000};
 
@@ -21,13 +21,13 @@ int fnRcsSch(int nTrgSu, int nTrgKin)
       nCalKin -= cnvnMoney[0] * i;
       nCalKin -= cnvnMoney[1] * j;
       nCalKin -= cnvnMoney[2] * (nTrgSu - i - j);
-      if (!nCalKin)
+      if ( !nCalKin )
         break;
     }
-    if (!nCalKin)
+    if ( !nCalKin )
       break;
   }
-  if (!nCalKin)
+  if ( !nCalKin )
     cout << i << " " << j << " " << (nTrgSu - i - j) << endl;
   else
     cout << -1 << " " << -1 << " " << -1 << endl;
@@ -37,8 +37,8 @@ int main()
 {
   int nTrgSu, nTrgKin;
   
-  fnInput(nTrgSu, nTrgKin);
-  fnRcsSch(nTrgSu, nTrgKin);
+  input(nTrgSu, nTrgKin);
+  searchMoney(nTrgSu, nTrgKin);
 
   return 0;
 }

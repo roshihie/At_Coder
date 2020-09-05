@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(vector<string>& rvsGrid)
+void input(vector<string>& rvsGrid)
 {
   int nHigh, nWide;
   cin >> nHigh >> nWide;
@@ -11,7 +11,7 @@ void fnInput(vector<string>& rvsGrid)
     cin >> rvsGrid[ny];
 }
 
-int fnRepaint(int ny, int nx, const vector<string>& cnrvsGrid)
+int repaintCell(int ny, int nx, const vector<string>& cnrvsGrid)
 {
   if (   ny >= 0  && ny < cnrvsGrid.size()
       && nx >= 0  && nx < cnrvsGrid[ny].size())
@@ -22,7 +22,7 @@ int fnRepaint(int ny, int nx, const vector<string>& cnrvsGrid)
   return 0;
 }
 
-int fnGridRepaint(const vector<string>& cnrvsGrid)
+int canAchive(const vector<string>& cnrvsGrid)
 {
   const vector<int> cnvnDy = {-1,  0,  1,  0};
   const vector<int> cnvnDx = { 0, -1,  0,  1};
@@ -33,7 +33,7 @@ int fnGridRepaint(const vector<string>& cnrvsGrid)
       {
         bool bReslt = false;
         for (int i = 0; i < cnvnDy.size(); i++)
-          if (fnRepaint(ny + cnvnDy[i], nx + cnvnDx[i], cnrvsGrid))
+          if (repaintCell(ny + cnvnDy[i], nx + cnvnDx[i], cnrvsGrid))
             bReslt = true;
 
         if (!bReslt)  return 0;
@@ -46,8 +46,8 @@ int main()
 {
   vector<string> vsGrid;
 
-  fnInput(vsGrid);
-  if (fnGridRepaint(vsGrid))  cout << "Yes" << endl;
+  input(vsGrid);
+  if (canAchive(vsGrid))  cout << "Yes" << endl;
   else                        cout << "No"  << endl;
 
   return 0;

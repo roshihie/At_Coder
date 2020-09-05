@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(vector<vector<int>>& rvvnCandy)
+void input(vector<vector<int>>& rvvnCandy)
 {
   int nSize;
   cin >> nSize;
@@ -13,7 +13,7 @@ void fnInput(vector<vector<int>>& rvvnCandy)
       cin >> rvvnCandy[i][j];
 }
 
-int fnCumlSum(const vector<vector<int>>& cnrvvnCandy)
+int calcCandy(const vector<vector<int>>& cnrvvnCandy)
 {
   int nCumlSum = 0;
   int n1stSum  = 0;
@@ -33,8 +33,8 @@ int main()
 {
   vector<vector<int>> vvnCandy;
   
-  fnInput(vvnCandy);
-  cout << fnCumlSum(vvnCandy) << endl;
+  input(vvnCandy);
+  cout << calcCandy(vvnCandy) << endl;
 
   return 0;
 }

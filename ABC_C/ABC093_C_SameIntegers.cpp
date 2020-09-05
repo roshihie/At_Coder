@@ -1,13 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(vector<int>& rvnNum)
+void input(vector<int>& rvnNum)
 {
   for (int& rnElm : rvnNum)
     cin >> rnElm;
 }
 
-int fnSameIntTimes(const vector<int>& cnrvnNum)
+int calcSameNumOpe(const vector<int>& cnrvnNum)
 {
   auto itMaxNum = max_element(begin(cnrvnNum), end(cnrvnNum));
 
@@ -28,8 +28,8 @@ int main()
 {
   vector<int> vnNum(3);
 
-  fnInput(vnNum);
-  cout << fnSameIntTimes(vnNum) << endl;
+  input(vnNum);
+  cout << calcSameNumOpe(vnNum) << endl;
 
   return 0;
 }

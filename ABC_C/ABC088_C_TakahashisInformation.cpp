@@ -1,14 +1,14 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(vector<vector<int>>& rvvnNum)
+void input(vector<vector<int>>& rvvnNum)
 {
   for (int i = 0; i < rvvnNum.size(); i++)
     for (int j = 0; j < rvvnNum[i].size(); j++)
       cin >> rvvnNum[i][j];
 }
 
-int fnCheck(const vector<vector<int>>& cnrvvnNum)
+int isRight(const vector<vector<int>>& cnrvvnNum)
 {
   vector<int> vnDx(2);
 
@@ -28,8 +28,8 @@ int main()
 {
   vector<vector<int>> vvnNum(3, vector<int>(3));
 
-  fnInput(vvnNum);
-  if (fnCheck(vvnNum)) cout << "Yes" << endl;
+  input(vvnNum);
+  if (isRight(vvnNum)) cout << "Yes" << endl;
   else                 cout << "No"  << endl;
 
   return 0;

@@ -12,7 +12,7 @@ struct StPoint
   int m_nYcrd;
 };
 
-void fnInput(vector<StPoint>& rvoPoint)
+void input(vector<StPoint>& rvoPoint)
 {
   StPoint oPoint;
   int nSize;
@@ -23,7 +23,7 @@ void fnInput(vector<StPoint>& rvoPoint)
     cin >> rvoPoint[i + 1].m_nTime >> rvoPoint[i + 1].m_nXcrd >> rvoPoint[i + 1].m_nYcrd;
 }
 
-int fnTravel(const vector<StPoint>& cnrvoPoint)
+int canTravel(const vector<StPoint>& cnrvoPoint)
 {
   for (int i = 0; i < cnrvoPoint.size() - 1; i++)
   {
@@ -41,8 +41,8 @@ int main()
 {
   vector<StPoint> voPoint;
 
-  fnInput(voPoint);
-  if (fnTravel(voPoint))  cout << "Yes" << endl;
+  input(voPoint);
+  if (canTravel(voPoint)) cout << "Yes" << endl;
   else                    cout << "No"  << endl;
 
   return 0;
