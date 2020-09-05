@@ -2,7 +2,7 @@
 using namespace std;
 using llong = long long;
 
-void fnInput(vector<int>& rvnNum)
+void input(vector<int>& rvnNum)
 {
   int nSize;
   cin >> nSize;
@@ -12,7 +12,7 @@ void fnInput(vector<int>& rvnNum)
     cin >> rnElm;
 }
 
-llong fnSignChgTimes(const vector<int>& cnrvnNum)
+llong calcSignChgTimes(const vector<int>& cnrvnNum)
 { 
   vector<llong> vnTimes(2);
 
@@ -48,8 +48,8 @@ int main()
 {
   vector<int> vnNum;
 
-  fnInput(vnNum);
-  cout << fnSignChgTimes(vnNum) << endl;
+  input(vnNum);
+  cout << calcSignChgTimes(vnNum) << endl;
 
   return 0;
 }

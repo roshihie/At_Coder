@@ -2,12 +2,12 @@
 using namespace std;
 using llong = long long;
 
-void fnInput(llong& rnCoordx, llong& rnTimes, llong& rnMovmnt)
+void input(llong& rnCoordx, llong& rnTimes, llong& rnMovmnt)
 {
   cin >> rnCoordx >> rnTimes >> rnMovmnt;
 }
   
-llong fnMinCoordx(llong nCoordx, llong nTimes, llong nMovmnt)
+llong calcMinCoordx(llong nCoordx, llong nTimes, llong nMovmnt)
 {
   llong nQuotnt = abs(nCoordx) / nMovmnt;
   llong nRemain = abs(nCoordx) % nMovmnt;
@@ -25,8 +25,8 @@ int main()
 {
   llong nCoordx, nTimes, nMovmnt;
 
-  fnInput(nCoordx, nTimes, nMovmnt);
-  cout << fnMinCoordx(nCoordx, nTimes, nMovmnt) << endl;
+  input(nCoordx, nTimes, nMovmnt);
+  cout << calcMinCoordx(nCoordx, nTimes, nMovmnt) << endl;
 
   return 0;
 }

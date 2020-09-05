@@ -2,7 +2,7 @@
 using namespace std;
 using llong = long long;
 
-void fnInput(vector<int>& rvnHigh)
+void input(vector<int>& rvnHigh)
 {
   int nHighSiz;
   cin >> nHighSiz;
@@ -12,7 +12,7 @@ void fnInput(vector<int>& rvnHigh)
     cin >> rnHigh;
 }
 
-llong fnMinStepHigh(vector<int>& rvnHigh)
+llong calcMinStepHigh(vector<int>& rvnHigh)
 {
   llong nMinStepHigh = 0;
 
@@ -30,8 +30,8 @@ int main()
 {
   vector<int> vnHigh;
   
-  fnInput(vnHigh);
-  cout << fnMinStepHigh(vnHigh) << endl;
+  input(vnHigh);
+  cout << calcMinStepHigh(vnHigh) << endl;
 
   return 0;
 }

@@ -1,12 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(string& rsTarget)
+void input(string& rsTarget)
 {
   cin >> rsTarget;
 }
 
-int fnParse(string sTarget)
+int parse(string sTarget)
 {
   const vector<string> cnvsWord{"dream", "dreamer", "erase", "eraser"};
   int ixBgn, ixEnd;
@@ -36,9 +36,9 @@ int main()
 {
   string sTarget;
   
-  fnInput(sTarget);
-  if (fnParse(sTarget)) cout << "YES" << endl;
-  else                  cout << "NO"  << endl;
+  input(sTarget);
+  if (parse(sTarget)) cout << "YES" << endl;
+  else                cout << "NO"  << endl;
 
   return 0;
 }

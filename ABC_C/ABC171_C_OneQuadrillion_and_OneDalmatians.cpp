@@ -2,12 +2,12 @@
 using namespace std;
 using llong = long long;
 
-void fnInput(llong& rnNum)
+void input(llong& rnNum)
 {
   cin >> rnNum;
 }
 
-void fnNumToName(llong nNum)
+void calcNumToName(llong nNum)
 {
   const int cnnDivisor = 26;
   vector<int> vnRemain;
@@ -32,8 +32,8 @@ void fnNumToName(llong nNum)
 int main()
 {
   llong nNum;
-  fnInput(nNum);
-  fnNumToName(nNum);
+  input(nNum);
+  calcNumToName(nNum);
 
   return 0;
 }

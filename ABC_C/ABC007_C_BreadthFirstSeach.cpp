@@ -11,7 +11,7 @@ struct StCoord
   int  m_nx;
 };
 
-void fnInput(StCoord& roCoord_S, StCoord& roCoord_G, vector<string>& rvsBoard)
+void input(StCoord& roCoord_S, StCoord& roCoord_G, vector<string>& rvsBoard)
 {
   int nHigh, nWide;
   cin >> nHigh >> nWide;
@@ -28,7 +28,7 @@ void fnInput(StCoord& roCoord_S, StCoord& roCoord_G, vector<string>& rvsBoard)
     cin >> rvsBoard[ny];
 }
 
-int fnCanReach(StCoord oNxtCrd, const vector<string>& cnrvsBoard, const vector<vector<int>>& cnrvvnDis)
+int isReach(StCoord oNxtCrd, const vector<string>& cnrvsBoard, const vector<vector<int>>& cnrvvnDis)
 {
   if      (oNxtCrd.m_ny < 0 || 
            oNxtCrd.m_ny >= cnrvsBoard.size())               return 0;
@@ -39,7 +39,7 @@ int fnCanReach(StCoord oNxtCrd, const vector<string>& cnrvsBoard, const vector<v
   else                                                      return 1;
 }
 
-int fnBfs(queue<StCoord>& rqoCoord ,   const vector<string>& cnrvsBoard, 
+int bfs(queue<StCoord>& rqoCoord ,   const vector<string>& cnrvsBoard, 
                vector<vector<int>> rvvnDis, StCoord oCoord_G)
 {
   const vector<int> cnvnDy = {0, -1,  0, 1};
@@ -58,7 +58,7 @@ int fnBfs(queue<StCoord>& rqoCoord ,   const vector<string>& cnrvsBoard,
       oNxtCrd.m_ny = oCoord.m_ny + cnvnDy[n];
       oNxtCrd.m_nx = oCoord.m_nx + cnvnDx[n];
 
-      if (fnCanReach(oNxtCrd, cnrvsBoard, rvvnDis))
+      if (isReach(oNxtCrd, cnrvsBoard, rvvnDis))
       { 
         rvvnDis[oNxtCrd.m_ny][oNxtCrd.m_nx] = rvvnDis[oCoord.m_ny][oCoord.m_nx] + 1;
         rqoCoord.push(oNxtCrd);
@@ -68,13 +68,13 @@ int fnBfs(queue<StCoord>& rqoCoord ,   const vector<string>& cnrvsBoard,
   return 0;
 }
 
-void fnBfsCntl(StCoord oCoord_S, StCoord oCoord_G, const vector<string>& cnrvsBoard)
+void bfsCntl(StCoord oCoord_S, StCoord oCoord_G, const vector<string>& cnrvsBoard)
 {
   queue<StCoord> qoCoord;
   vector<vector<int>> vvnDis(cnrvsBoard.size(), vector<int>(cnrvsBoard[0].size()));
 
   qoCoord.push(oCoord_S);
-  cout << fnBfs(qoCoord, cnrvsBoard, vvnDis, oCoord_G) << endl;
+  cout << bfs(qoCoord, cnrvsBoard, vvnDis, oCoord_G) << endl;
 }
 
 int main()
@@ -82,8 +82,8 @@ int main()
   StCoord oCoord_S, oCoord_G;
   vector<string> vsBoard;
 
-  fnInput(oCoord_S, oCoord_G, vsBoard);
-  fnBfsCntl(oCoord_S, oCoord_G, vsBoard);
+  input(oCoord_S, oCoord_G, vsBoard);
+  bfsCntl(oCoord_S, oCoord_G, vsBoard);
 
   return 0;
 }

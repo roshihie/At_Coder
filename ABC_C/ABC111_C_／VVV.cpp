@@ -18,7 +18,7 @@ class CGreater_nCnt
     }
 };
 
-void fnInput(vector<int>& rvnNum)
+void input(vector<int>& rvnNum)
 {
   int nNumSiz;
   cin >> nNumSiz;
@@ -28,7 +28,7 @@ void fnInput(vector<int>& rvnNum)
     cin >> rnNum;
 }
 
-int fnMinChangeCnt(const vector<int>& cnrvnNum)
+int calcMinChangeCnt(const vector<int>& cnrvnNum)
 {
   map<int, int> mpNumCntEvn, mpNumCntOdd;
 
@@ -74,8 +74,8 @@ int main()
 {
   vector<int> vnNum;
   
-  fnInput(vnNum);
-  cout << fnMinChangeCnt(vnNum) << endl;
+  input(vnNum);
+  cout << calcMinChangeCnt(vnNum) << endl;
 
   return 0;
 }

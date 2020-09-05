@@ -1,12 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(string& rsSrc, string& rsTrg)
+void input(string& rsSrc, string& rsTrg)
 {
   cin >> rsSrc >> rsTrg;
 }
 
-string fnConvChk(string sSrc, string sTrg)
+string canConvert(string sSrc, string sTrg)
 {
   vector<int> vnSrc(26, -1), vnTrg(26, -1);
 
@@ -32,8 +32,8 @@ int main()
 {
   string sSrc, sTrg;
   
-  fnInput(sSrc, sTrg);
-  cout << fnConvChk(sSrc, sTrg) << endl;
+  input(sSrc, sTrg);
+  cout << canConvert(sSrc, sTrg) << endl;
 
   return 0;
 }

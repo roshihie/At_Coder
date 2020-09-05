@@ -10,7 +10,7 @@ struct StCoord
   int m_nHigh;
 };
 
-void fnInput(vector<StCoord>& rvoCoord)
+void input(vector<StCoord>& rvoCoord)
 {
   int nCoordSiz;
   cin >> nCoordSiz;
@@ -20,27 +20,27 @@ void fnInput(vector<StCoord>& rvoCoord)
     cin >> roCoord.m_nx >> roCoord.m_ny >> roCoord.m_nHigh;
 }
 
-int fnCenterHigh(StCoord oCenter, StCoord oCoord)
+int calcCenterHigh(StCoord oCenter, StCoord oCoord)
 {
   return  abs(oCenter.m_nx - oCoord.m_nx) 
         + abs(oCenter.m_ny - oCoord.m_ny) + oCoord.m_nHigh;
 }
 
-bool fnCenterCheck(StCoord& roCenter, const vector<StCoord>& cnrvoCoord)
+bool isCenter(StCoord& roCenter, const vector<StCoord>& cnrvoCoord)
 {
   int nCenterHigh = 0;
 
   for (int i = 0; i < cnrvoCoord.size(); ++i)
     if ( cnrvoCoord[i].m_nHigh )
       if ( !nCenterHigh )
-        nCenterHigh = fnCenterHigh(roCenter, cnrvoCoord[i]);
+        nCenterHigh = calcCenterHigh(roCenter, cnrvoCoord[i]);
       else
-        if (nCenterHigh != fnCenterHigh(roCenter, cnrvoCoord[i]))
+        if (nCenterHigh != calcCenterHigh(roCenter, cnrvoCoord[i]))
           return false;
 
   for (int i = 0; i < cnrvoCoord.size(); ++i)
     if ( !cnrvoCoord[i].m_nHigh )
-      if (nCenterHigh <= fnCenterHigh(roCenter, cnrvoCoord[i]));
+      if (nCenterHigh <= calcCenterHigh(roCenter, cnrvoCoord[i]));
       else
         return false;
 
@@ -48,7 +48,7 @@ bool fnCenterCheck(StCoord& roCenter, const vector<StCoord>& cnrvoCoord)
   return true;
 }
 
-void fnCenterCoord(const vector<StCoord>& cnrvoCoord)
+void calcCenterCoord(const vector<StCoord>& cnrvoCoord)
 {
   StCoord oCenter;
   bool bCenter = false;
@@ -64,7 +64,7 @@ void fnCenterCoord(const vector<StCoord>& cnrvoCoord)
             oCenter.m_ny < 100 )
     {
       ++oCenter.m_ny;
-      bCenter = fnCenterCheck(oCenter, cnrvoCoord);
+      bCenter = isCenter(oCenter, cnrvoCoord);
     }
   }
   if ( bCenter )  
@@ -75,8 +75,8 @@ int main()
 {
   vector<StCoord> voCoord;
   
-  fnInput(voCoord);
-  fnCenterCoord(voCoord);
+  input(voCoord);
+  calcCenterCoord(voCoord);
 
   return 0;
 }

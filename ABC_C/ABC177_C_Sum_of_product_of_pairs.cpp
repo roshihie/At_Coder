@@ -2,7 +2,7 @@
 using namespace std;
 using llong = long long;
 
-void fnInput(vector<int>& rvnNum)
+void input(vector<int>& rvnNum)
 {
   int nNumSiz;
   cin >> nNumSiz;
@@ -12,7 +12,7 @@ void fnInput(vector<int>& rvnNum)
     cin >> rnNum;
 }
 
-llong fnSumOfMultpl(const vector<int>& cnrvnNum)
+llong calcSumOfMultiple(const vector<int>& cnrvnNum)
 {
   const int cnnMod = 1e9 + 7;
   llong nCumlSum = 0;
@@ -37,8 +37,8 @@ int main()
 {
   vector<int> vnNum;
   
-  fnInput(vnNum);
-  cout << fnSumOfMultpl(vnNum) << endl;
+  input(vnNum);
+  cout << calcSumOfMultiple(vnNum) << endl;
 
   return 0;
 }

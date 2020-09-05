@@ -9,7 +9,7 @@ struct StCity
   int m_nYear;
 };
 
-void fnInput(int& rnPrefSiz, vector<StCity>& rvoCity)
+void input(int& rnPrefSiz, vector<StCity>& rvoCity)
 {
   int nCitySiz;
   cin >> rnPrefSiz >> nCitySiz;
@@ -22,7 +22,7 @@ void fnInput(int& rnPrefSiz, vector<StCity>& rvoCity)
   }
 }
 
-void fnIdNum(int nPrefSiz, const vector<StCity>& cnrvoCity)
+void calcIDNum(int nPrefSiz, const vector<StCity>& cnrvoCity)
 {
   vector<vector<int>> vvnCity(nPrefSiz);
                                            // vvnCity[ nPref ] に nYear を保存 
@@ -54,8 +54,8 @@ int main()
   int nPrefSiz;
   vector<StCity> voCity;
   
-  fnInput(nPrefSiz, voCity);
-  fnIdNum(nPrefSiz, voCity);
+  input(nPrefSiz, voCity);
+  calcIDNum(nPrefSiz, voCity);
 
   return 0;
 }

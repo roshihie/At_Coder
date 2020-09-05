@@ -2,12 +2,12 @@
 using namespace std;
 using llong = long long;
 
-void fnInput(llong& rnNum)
+void input(llong& rnNum)
 {
   cin >> rnNum;
 }
 
-int fnDigitsCheck(int nDividend)
+int calcDigits(int nDividend)
 {
   int nDgtCnt = 1;
 
@@ -17,7 +17,7 @@ int fnDigitsCheck(int nDividend)
   return nDgtCnt;
 }
 
-int fnMultiplCheck(llong nNum)
+int isMultiple(llong nNum)
 {
   int nDivisor = sqrt(nNum);
 
@@ -25,15 +25,15 @@ int fnMultiplCheck(llong nNum)
     nDivisor--;
 
   int nDividend = nNum / nDivisor;
-  return fnDigitsCheck(nDividend);  
+  return calcDigits(nDividend);  
 }
 
 int main()
 {
   llong nNum;
   
-  fnInput(nNum);
-  cout << fnMultiplCheck(nNum) << endl;
+  input(nNum);
+  cout << isMultiple(nNum) << endl;
 
   return 0;
 }
