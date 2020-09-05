@@ -27,13 +27,13 @@ struct StReslt                  // 出力結果
   int m_nAllMass, m_nSugerMass;
 };
 
-void fnInput(StCond& roCond)
+void input(StCond& roCond)
 {
   cin >> roCond.m_nWaterA >> roCond.m_nWaterB >> roCond.m_nSugerC >> roCond.m_nSugerD;
   cin >> roCond.m_nConcE  >> roCond.m_nLimitF;
 }
 
-int fnAmtSumup(string sProc, const StCond& cnroCond, const StAmt& cnroAmt)
+int accumulateAmt(string sProc, const StCond& cnroCond, const StAmt& cnroAmt)
 { 
   if      (sProc == "A")
     return  (cnroCond.m_nWaterA * cnroAmt.m_nAmtA) * 100;
@@ -49,7 +49,7 @@ int fnAmtSumup(string sProc, const StCond& cnroCond, const StAmt& cnroAmt)
     return  (cnroCond.m_nSugerC * cnroAmt.m_nAmtC + cnroCond.m_nSugerD * cnroAmt.m_nAmtD);
 }
 
-double fnConcCalc(const StCond& cnroCond, const StAmt& cnroAmt)
+double calcConc(const StCond& cnroCond, const StAmt& cnroAmt)
 {
   static double stnLimtConc = 0.0;
   double nNowConc = 0.0;
@@ -57,10 +57,10 @@ double fnConcCalc(const StCond& cnroCond, const StAmt& cnroAmt)
   if (!stnLimtConc)
     stnLimtConc = cnroCond.m_nConcE / (100.0 + cnroCond.m_nConcE);
 
-  if ( fnAmtSumup("A+B+C+D", cnroCond, cnroAmt) )
+  if ( accumulateAmt("A+B+C+D", cnroCond, cnroAmt) )
   {
-    nNowConc =  (double)fnAmtSumup("C+D", cnroCond, cnroAmt)
-               /        fnAmtSumup("A+B+C+D", cnroCond, cnroAmt);
+    nNowConc =  (double)accumulateAmt("C+D", cnroCond, cnroAmt)
+               /        accumulateAmt("A+B+C+D", cnroCond, cnroAmt);
     if (stnLimtConc < nNowConc)
       return -1.0;
     else
@@ -70,29 +70,29 @@ double fnConcCalc(const StCond& cnroCond, const StAmt& cnroAmt)
     return -1.0;
 }
 
-void fnConcCheck(const StCond& cnroCond, StReslt& roReslt)
+void totalSearchConc(const StCond& cnroCond, StReslt& roReslt)
 {
   StAmt oAmt;
   double nMaxConc = -1.0;
   
   for ( oAmt.m_nAmtA = 0; 
-        fnAmtSumup("A", cnroCond, oAmt) <= cnroCond.m_nLimitF; oAmt.m_nAmtA++ )
+        accumulateAmt("A", cnroCond, oAmt) <= cnroCond.m_nLimitF; oAmt.m_nAmtA++ )
   {
     for ( oAmt.m_nAmtB = 0; 
-          fnAmtSumup("A+B", cnroCond, oAmt) <= cnroCond.m_nLimitF; oAmt.m_nAmtB++ )
+          accumulateAmt("A+B", cnroCond, oAmt) <= cnroCond.m_nLimitF; oAmt.m_nAmtB++ )
     {
       for ( oAmt.m_nAmtC = 0; 
-            fnAmtSumup("A+B+C", cnroCond, oAmt) <= cnroCond.m_nLimitF; oAmt.m_nAmtC++ )
+            accumulateAmt("A+B+C", cnroCond, oAmt) <= cnroCond.m_nLimitF; oAmt.m_nAmtC++ )
       {
         for ( oAmt.m_nAmtD = 0;
-              fnAmtSumup("A+B+C+D", cnroCond, oAmt) <= cnroCond.m_nLimitF; oAmt.m_nAmtD++ )
+              accumulateAmt("A+B+C+D", cnroCond, oAmt) <= cnroCond.m_nLimitF; oAmt.m_nAmtD++ )
         {
-          double nNowConc = fnConcCalc(cnroCond, oAmt);
+          double nNowConc = calcConc(cnroCond, oAmt);
           if (nMaxConc < nNowConc)
           {
             nMaxConc = nNowConc;
-            roReslt.m_nAllMass = fnAmtSumup("A+B+C+D", cnroCond, oAmt);
-            roReslt.m_nSugerMass = fnAmtSumup("C+D", cnroCond, oAmt);
+            roReslt.m_nAllMass = accumulateAmt("A+B+C+D", cnroCond, oAmt);
+            roReslt.m_nSugerMass = accumulateAmt("C+D", cnroCond, oAmt);
           }
         }
       }
@@ -105,8 +105,8 @@ int main()
   StCond oCond;
   StReslt oReslt;
 
-  fnInput(oCond);
-  fnConcCheck(oCond, oReslt);
+  input(oCond);
+  totalSearchConc(oCond, oReslt);
   cout << oReslt.m_nAllMass << " " << oReslt.m_nSugerMass << endl;
 
   return 0;

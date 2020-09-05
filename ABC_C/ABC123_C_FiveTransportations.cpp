@@ -2,7 +2,7 @@
 using namespace std;
 using llong = long long;
 
-void fnInput(llong& rnMaxNum, vector<llong>& rvnCapcty)
+void input(llong& rnMaxNum, vector<llong>& rvnCapcty)
 {
   cin >> rnMaxNum;
   
@@ -10,7 +10,7 @@ void fnInput(llong& rnMaxNum, vector<llong>& rvnCapcty)
     cin >> rnCapcty;
 }
 
-llong fnTransptCnt(llong nMaxNum, vector<llong>& rvnCapcty)
+llong calcTransptCnt(llong nMaxNum, vector<llong>& rvnCapcty)
 {
   for (int i = 0; i < rvnCapcty.size() - 1; i++)   // 交通機関の容量を直前の大きさに合わせる
     if (rvnCapcty[i] < rvnCapcty[i + 1])
@@ -36,8 +36,8 @@ int main()
   llong nMaxNum;
   vector<llong> vnCapcty(5);
 
-  fnInput(nMaxNum, vnCapcty);
-  cout << fnTransptCnt(nMaxNum, vnCapcty) << endl;
+  input(nMaxNum, vnCapcty);
+  cout << calcTransptCnt(nMaxNum, vnCapcty) << endl;
 
   return 0;
 }

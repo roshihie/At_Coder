@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(vector<int>& rvnBallCnt, int& rnVarie)
+void input(vector<int>& rvnBallCnt, int& rnVarie)
 {
   int nBallSiz;
   cin >> nBallSiz >> rnVarie;
@@ -15,7 +15,7 @@ void fnInput(vector<int>& rvnBallCnt, int& rnVarie)
   }
 }
 
-int fnRewCount(vector<int>& rvnBallCnt, int nVarie)
+int calcRewCount(vector<int>& rvnBallCnt, int nVarie)
 {
   sort(begin(rvnBallCnt), end(rvnBallCnt));
   int nRewCnt = 0;
@@ -31,8 +31,8 @@ int main()
   vector<int> vnBallCnt;
   int nVarie;
 
-  fnInput(vnBallCnt, nVarie);
-  cout << fnRewCount(vnBallCnt, nVarie) << endl;
+  input(vnBallCnt, nVarie);
+  cout << calcRewCount(vnBallCnt, nVarie) << endl;
 
   return 0;
 }

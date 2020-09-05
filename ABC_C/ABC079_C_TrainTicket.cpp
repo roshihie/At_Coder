@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(vector<int>& rvnNum)
+void input(vector<int>& rvnNum)
 {
   string sNum;
   cin >> sNum;
@@ -10,7 +10,7 @@ void fnInput(vector<int>& rvnNum)
     rvnNum[i] = sNum[i] - '0';                 // char → int 変換
 }
 
-int fnBitFullSch(const vector<int>& cnrvnNum)
+int totalSearch(const vector<int>& cnrvnNum)
 {
   for (int nCtl = 0; nCtl < ( 1 << 3 ) - 1; nCtl++)
   {
@@ -24,7 +24,7 @@ int fnBitFullSch(const vector<int>& cnrvnNum)
   return ( 1 << 3 ) - 1;                       // 必ず答えが存在するため
 }
     
-void fnResult(const vector<int>& cnrvnNum, int nReslt)
+void outputReslt(const vector<int>& cnrvnNum, int nReslt)
 {
   cout << cnrvnNum[0];
   for (int nEach = 0; nEach < 3; nEach++)
@@ -41,9 +41,9 @@ int main()
 {
   vector<int> vnNum(4);
   
-  fnInput(vnNum);
-  int nReslt = fnBitFullSch(vnNum);
-  fnResult(vnNum, nReslt);
+  input(vnNum);
+  int nReslt = totalSearch(vnNum);
+  outputReslt(vnNum, nReslt);
 
   return 0;
 }

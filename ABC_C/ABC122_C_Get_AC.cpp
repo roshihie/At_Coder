@@ -9,7 +9,7 @@ struct StQuery
   int m_nRigt;
 };
 
-void fnInput(string& rsStr, vector<StQuery>& rvoQuery)
+void input(string& rsStr, vector<StQuery>& rvoQuery)
 {
   int nStrSiz, nQuerySiz;
   cin >> nStrSiz >> nQuerySiz;
@@ -21,7 +21,7 @@ void fnInput(string& rsStr, vector<StQuery>& rvoQuery)
     cin >> roQuery.m_nLeft >> roQuery.m_nRigt;
 }
 
-void fnSubStrACCnt(string sStr, const vector<StQuery>& cnrvoQuery)
+void calcSubStrACCnt(string sStr, const vector<StQuery>& cnrvoQuery)
 {
   vector<int> vnCumlSum(sStr.size() + 1);      // 累積和
 
@@ -48,8 +48,8 @@ int main()
   string sStr;
   vector<StQuery> voQuery;
 
-  fnInput(sStr, voQuery);
-  fnSubStrACCnt(sStr, voQuery);
+  input(sStr, voQuery);
+  calcSubStrACCnt(sStr, voQuery);
 
   return 0;
 }

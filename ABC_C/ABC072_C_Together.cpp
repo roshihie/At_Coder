@@ -11,7 +11,7 @@ struct StNumCnt
   int m_nCnt;
 };
 
-void fnInput(vector<int>& rvnNum)
+void input(vector<int>& rvnNum)
 {
   int nSize;
   cin >> nSize;
@@ -21,7 +21,7 @@ void fnInput(vector<int>& rvnNum)
     cin >> rnElm;
 }
 
-int fnTogether(const vector<int>& cnrvnNum)
+int calcMaxTogetherCnt(const vector<int>& cnrvnNum)
 {
   map<int, int> mpNumCnt;
   for (int nNum : cnrvnNum)
@@ -42,8 +42,8 @@ int main()
 {
   vector<int> vnNum;
 
-  fnInput(vnNum);
-  cout << fnTogether(vnNum) << endl;
+  input(vnNum);
+  cout << calcMaxTogetherCnt(vnNum) << endl;
 
   return 0;
 }

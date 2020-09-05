@@ -1,12 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(int& rnTrgSu, int& rnTrgKin)
+void input(int& rnTrgSu, int& rnTrgKin)
 {
   cin >> rnTrgSu >> rnTrgKin;
 }
 
-int fnRcsSch(int nPos, int nTrgSu, int nTrgKin, vector<int>& rvnMoneyCnt)
+int dfs(int nPos, int nTrgSu, int nTrgKin, vector<int>& rvnMoneyCnt)
 {
   const vector<int> cnvnMoney{10000, 5000, 1000};
 
@@ -17,7 +17,7 @@ int fnRcsSch(int nPos, int nTrgSu, int nTrgKin, vector<int>& rvnMoneyCnt)
   if (nPos == rvnMoneyCnt.size() - 1)
   {
     rvnMoneyCnt[nPos] = nTrgSu;
-    return fnRcsSch(nPos + 1, 0, nTrgKin - cnvnMoney[nPos] * nTrgSu, rvnMoneyCnt);
+    return dfs(nPos + 1, 0, nTrgKin - cnvnMoney[nPos] * nTrgSu, rvnMoneyCnt);
   }
   else
     for (int i = 0; i <= nTrgSu; i++)
@@ -26,7 +26,7 @@ int fnRcsSch(int nPos, int nTrgSu, int nTrgKin, vector<int>& rvnMoneyCnt)
       for (int i = nPos + 1; i < rvnMoneyCnt.size(); i++)
         rvnMoneyCnt[i] = 0;
 
-      int nReslt = fnRcsSch(nPos + 1, nTrgSu - i, nTrgKin - cnvnMoney[nPos] * i, rvnMoneyCnt);
+      int nReslt = dfs(nPos + 1, nTrgSu - i, nTrgKin - cnvnMoney[nPos] * i, rvnMoneyCnt);
       if      (nReslt ==  1)  return 1;
       else if (nReslt == -1)  break;
     }
@@ -34,11 +34,11 @@ int fnRcsSch(int nPos, int nTrgSu, int nTrgKin, vector<int>& rvnMoneyCnt)
   return 0;
 }
 
-int fnExhSch(int nTrgSu, int nTrgKin)
+void searchCntl(int nTrgSu, int nTrgKin)
 {
   vector<int> vnMoneyCnt(3);
 
-  if (fnRcsSch(0, nTrgSu, nTrgKin, vnMoneyCnt))
+  if ( dfs(0, nTrgSu, nTrgKin, vnMoneyCnt) )
   {
     for (int i = 0; i < vnMoneyCnt.size(); i++)
     {
@@ -55,8 +55,8 @@ int main()
 {
   int nTrgSu, nTrgKin;
   
-  fnInput(nTrgSu, nTrgKin);
-  fnExhSch(nTrgSu, nTrgKin);
+  input(nTrgSu, nTrgKin);
+  searchCntl(nTrgSu, nTrgKin);
 
   return 0;
 }
