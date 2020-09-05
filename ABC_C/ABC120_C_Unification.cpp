@@ -1,12 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(string& rsColor)
+void input(string& rsColor)
 {
   cin >> rsColor;
 }
 
-int fnMaxRemove(string sColor)
+int calcMaxRemove(string sColor)
 {
   vector<int> vnColor(2);
 
@@ -20,8 +20,8 @@ int main()
 {
   string sColor;
 
-  fnInput(sColor);
-  cout << fnMaxRemove(sColor) << endl;
+  input(sColor);
+  cout << calcMaxRemove(sColor) << endl;
 
   return 0;
 }

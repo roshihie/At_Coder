@@ -2,12 +2,12 @@
 using namespace std;
 using llong = long long;
 
-void fnInput(int& rnMaxNum)
+void input(int& rnMaxNum)
 {
   cin >> rnMaxNum;
 }
 
-bool fnDgt753_Check(llong nRecNum)
+bool isDgt753(llong nRecNum)
 {
   int nDgt3 = 0, nDgt5 = 0, nDgt7 = 0;
 
@@ -27,16 +27,16 @@ bool fnDgt753_Check(llong nRecNum)
     return false;
 }
 
-void fnDfs(int nMaxNum, llong nRecNum)
+void dfs(int nMaxNum, llong nRecNum)
 {
   static int stn753DgtCnt = 0;
 
   if (nRecNum > nMaxNum) return;
-  if (fnDgt753_Check(nRecNum)) stn753DgtCnt++;
+  if (isDgt753(nRecNum)) stn753DgtCnt++;
 
-  fnDfs(nMaxNum, 10 * nRecNum + 3);
-  fnDfs(nMaxNum, 10 * nRecNum + 5);
-  fnDfs(nMaxNum, 10 * nRecNum + 7);
+  dfs(nMaxNum, 10 * nRecNum + 3);
+  dfs(nMaxNum, 10 * nRecNum + 5);
+  dfs(nMaxNum, 10 * nRecNum + 7);
 
   if (!nRecNum) cout << stn753DgtCnt << endl;
 }
@@ -45,8 +45,8 @@ int main()
 {
   int nMaxNum;
 
-  fnInput(nMaxNum);
-  fnDfs(nMaxNum, 0);
+  input(nMaxNum);
+  dfs(nMaxNum, 0);
 
   return 0;
 }

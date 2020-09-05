@@ -15,7 +15,7 @@ struct StGoods
   }
 };
 
-void fnInput(int& rnTrgNum, vector<StGoods>& rvoGoods)
+void input(int& rnTrgNum, vector<StGoods>& rvoGoods)
 {
   int nGoodsSiz;
   cin >> nGoodsSiz >> rnTrgNum;
@@ -25,7 +25,7 @@ void fnInput(int& rnTrgNum, vector<StGoods>& rvoGoods)
     cin >> roGoods.m_nPrice >> roGoods.m_nNum;
 }
 
-llong fnMinCost(int nTrgNum, vector<StGoods>& rvoGoods)
+llong calcMinCost(int nTrgNum, vector<StGoods>& rvoGoods)
 {
   sort(begin(rvoGoods), end(rvoGoods));
 
@@ -47,8 +47,8 @@ int main()
   int nTrgNum;
   vector<StGoods> voGoods;
 
-  fnInput(nTrgNum, voGoods);
-  cout << fnMinCost(nTrgNum, voGoods) << endl;
+  input(nTrgNum, voGoods);
+  cout << calcMinCost(nTrgNum, voGoods) << endl;
 
   return 0;
 }

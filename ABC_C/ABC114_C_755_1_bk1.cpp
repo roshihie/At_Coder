@@ -1,12 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(string& rsMaxNum)
+void input(string& rsMaxNum)
 {
   cin >> rsMaxNum;
 }
 
-int fnDgtDP(string sMaxNum)
+int digitDp(string sMaxNum)
 {
   // dp[nPos][nSmall][nFlag] :=  nPos  : ãˆÊ nPos Œ…–Ú‚Ü‚ÅŒˆ’è
   //                             nSmall: small(”š‚ğ©—R‚É‘I‚×‚é)‚©
@@ -65,8 +65,8 @@ int main()
 {
   string sMaxNum;
 
-  fnInput(sMaxNum);
-  cout << fnDgtDP(sMaxNum) << endl;
+  input(sMaxNum);
+  cout << digitDp(sMaxNum) << endl;
   
   return 0;
 }

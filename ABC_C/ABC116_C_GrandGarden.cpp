@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(vector<int>& rvnHeight)
+void input(vector<int>& rvnHeight)
 {
   int nHeightSiz;
   cin >> nHeightSiz;
@@ -11,7 +11,7 @@ void fnInput(vector<int>& rvnHeight)
     cin >> rnHeight;
 }
 
-int fnMinExecCnt(vector<int>& rvnHeight)
+int calcMinExecCnt(vector<int>& rvnHeight)
 {
   int nExecCnt = 0;
   int nPrevExecCnt = -1;
@@ -43,8 +43,8 @@ int main()
 {
   vector<int> vnHeight;
 
-  fnInput(vnHeight);
-  cout << fnMinExecCnt(vnHeight) << endl;
+  input(vnHeight);
+  cout << calcMinExecCnt(vnHeight) << endl;
 
   return 0;
 }

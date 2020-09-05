@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(int& rnSelSiz, vector<int>& rvnHeight)
+void input(int& rnSelSiz, vector<int>& rvnHeight)
 {
   int nHeightSiz;
   cin >> nHeightSiz >> rnSelSiz;
@@ -13,7 +13,7 @@ void fnInput(int& rnSelSiz, vector<int>& rvnHeight)
   sort (begin(rvnHeight), end(rvnHeight));
 }
 
-int fnMinDiffHeight(int nSelSiz, const vector<int>& cnrvnHeight)
+int calcMinDiffHeight(int nSelSiz, const vector<int>& cnrvnHeight)
 {
   int nMinDiffHeight = INT_MAX;
 
@@ -28,8 +28,8 @@ int main()
   int nSelSiz;
   vector<int> vnHeight;
 
-  fnInput(nSelSiz, vnHeight);
-  cout << fnMinDiffHeight(nSelSiz, vnHeight) << endl;
+  input(nSelSiz, vnHeight);
+  cout << calcMinDiffHeight(nSelSiz, vnHeight) << endl;
 
   return 0;
 }

@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(vector<int>& rvnSeq)
+void input(vector<int>& rvnSeq)
 {
   int nSeqSiz;
   cin >> nSeqSiz;
@@ -11,7 +11,7 @@ void fnInput(vector<int>& rvnSeq)
     cin >> rnSeq;
 }
   
-int fnLowerCnt(const vector<int>& cnrvnSeq)
+int calcLower(const vector<int>& cnrvnSeq)
 {
   int nMaxSeqCnt = 0;
   int nBgn = 0;
@@ -37,8 +37,8 @@ int main()
 {
   vector<int> vnSeq;
 
-  fnInput(vnSeq);
-  cout << fnLowerCnt(vnSeq) << endl;
+  input(vnSeq);
+  cout << calcLower(vnSeq) << endl;
 
   return 0;
 }

@@ -2,12 +2,12 @@
 using namespace std;
 using llong = long long;
 
-void fnInput(int& rnMaxNum)
+void input(int& rnMaxNum)
 {
   cin >> rnMaxNum;
 }
 
-llong fnToInt(const vector<char>& cnrvcNum)
+llong toInt(const vector<char>& cnrvcNum)
 {
   const vector<int> cnvnDgt = {0, 3, 5, 7};
   llong nRtn = 0;
@@ -26,7 +26,7 @@ llong fnToInt(const vector<char>& cnrvcNum)
   return nRtn;
 }
 
-int fnDgt753_Check(const vector<char>& cnrvcNum)
+int isDgt753(const vector<char>& cnrvcNum)
 {
   int nDgt3 = 0, nDgt5 = 0, nDgt7 = 0;
 
@@ -41,15 +41,15 @@ int fnDgt753_Check(const vector<char>& cnrvcNum)
     return 0;
 }
 
-int fnDgt753_Count(int nMaxNum)
+int countDgt753(int nMaxNum)
 {
   int nDgt753Cnt = 0;
   int nDgtSiz = to_string(nMaxNum).size();
   vector<char> vcNum(nDgtSiz + 1, '0');
 
-  while (fnToInt(vcNum) <= nMaxNum) 
+  while (toInt(vcNum) <= nMaxNum) 
   {
-    if (fnDgt753_Check(vcNum)) nDgt753Cnt++;
+    if (isDgt753(vcNum)) nDgt753Cnt++;
 
     vcNum[vcNum.size() - 1]++;
     for (int i = vcNum.size() - 1; i > 0; i--)
@@ -68,8 +68,8 @@ int main()
 {
   int nMaxNum;
 
-  fnInput(nMaxNum);
-  cout << fnDgt753_Count(nMaxNum) << endl;
+  input(nMaxNum);
+  cout << countDgt753(nMaxNum) << endl;
 
   return 0;
 }

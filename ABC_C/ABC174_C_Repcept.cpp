@@ -1,12 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(int& rnDivisor)
+void input(int& rnDivisor)
 {
   cin >> rnDivisor;
 }
 
-int fnDigit(int nDivisor)
+int calcDigit(int nDivisor)
 {
   set<int> seRemain;
 
@@ -31,8 +31,8 @@ int main()
 {
   int nDivisor;
 
-  fnInput(nDivisor);
-  cout << fnDigit(nDivisor) << endl;
+  input(nDivisor);
+  cout << calcDigit(nDivisor) << endl;
 
   return 0;
 }
