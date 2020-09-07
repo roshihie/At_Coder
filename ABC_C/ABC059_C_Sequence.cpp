@@ -12,35 +12,35 @@ void input(vector<int>& rvnNum)
     cin >> rnElm;
 }
 
-llong calcSignChgTimes(const vector<int>& cnrvnNum)
+llong calcMinOpeTimes(const vector<int>& cnrvnNum)
 { 
-  vector<llong> vnTimes(2);
+  vector<llong> vnOpeTimes(2);
 
-  for (int nParity = 0; nParity < vnTimes.size(); nParity++)
+  for (int nEvnOdd = 0; nEvnOdd < vnOpeTimes.size(); nEvnOdd++)
   {
-    llong nTimes = 0;
-    llong nSum   = 0;
+    llong nOpeTimes = 0;
+    llong nCumlSum  = 0;
     for (int n = 0; n < cnrvnNum.size(); n++)
     {
-      nSum += cnrvnNum[n];
-      if (n % 2 == nParity)
-        if (nSum > 0);
+      nCumlSum += cnrvnNum[n];
+      if ( n % 2 == nEvnOdd )
+        if ( nCumlSum > 0 );
         else
         {
-          nTimes += 1 - nSum;
-          nSum = 1;
+          nOpeTimes += 1 - nCumlSum;
+          nCumlSum = 1;
         }
       else
-        if (nSum >= 0)
+        if ( nCumlSum < 0 );
+        else
         {
-          nTimes += 1 + nSum;
-          nSum = -1;
+          nOpeTimes += nCumlSum - (-1);
+          nCumlSum = -1;
         }
-        else;
     }
-    vnTimes[nParity] = nTimes;
+    vnOpeTimes[nEvnOdd] = nOpeTimes;
   }
-  auto itElm = min_element(begin(vnTimes), end(vnTimes));
+  auto itElm = min_element(begin(vnOpeTimes), end(vnOpeTimes));
   return *itElm;
 }
 
@@ -49,7 +49,7 @@ int main()
   vector<int> vnNum;
 
   input(vnNum);
-  cout << calcSignChgTimes(vnNum) << endl;
+  cout << calcMinOpeTimes(vnNum) << endl;
 
   return 0;
 }
