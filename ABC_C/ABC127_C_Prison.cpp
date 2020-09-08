@@ -10,7 +10,7 @@ struct StGate
   int m_nPassHigh;
 };
 
-void fnInput(vector<StGate>& rvoGate)
+void input(vector<StGate>& rvoGate)
 {
   int  nPassSiz, nGateSiz;
   cin >> nPassSiz >> nGateSiz;
@@ -20,7 +20,7 @@ void fnInput(vector<StGate>& rvoGate)
     cin >> roGate.m_nPassLow >> roGate.m_nPassHigh;
 }
 
-int fnAlmightyPass(const vector<StGate>& cnrvoGate)
+int countAlmightyPass(const vector<StGate>& cnrvoGate)
 {
   int nAlmightyPassLow = 0;
   int nAlmightyPassHigh = 100001;
@@ -37,8 +37,8 @@ int main()
 {
   vector<StGate> voGate;
 
-  fnInput(voGate);
-  cout << fnAlmightyPass(voGate) << endl;
+  input(voGate);
+  cout << countAlmightyPass(voGate) << endl;
 
   return 0;
 }

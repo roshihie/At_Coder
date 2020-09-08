@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(string& rsColor)
+void input(string& rsColor)
 {
   cin >> rsColor;
 }
@@ -18,7 +18,7 @@ int fnChangeCnt(string sBgnColor, string sColor)
   return nChangeCnt;
 }
 
-int fnMinChangeCnt(string sColor)
+int calcMinChangeCnt(string sColor)
 {
   int nMinChangeCnt = INT_MAX;
   nMinChangeCnt = min(nMinChangeCnt, fnChangeCnt("01", sColor));
@@ -30,8 +30,8 @@ int fnMinChangeCnt(string sColor)
 int main()
 {
   string sColor;
-  fnInput(sColor);
-  cout << fnMinChangeCnt(sColor) << endl;
+  input(sColor);
+  cout << calcMinChangeCnt(sColor) << endl;
 
   return 0;
 }

@@ -2,7 +2,7 @@
 using namespace std;
 using llong = long long;
 
-void fnInput(int& rnStair, vector<int>& rvnFine)
+void input(int& rnStair, vector<int>& rvnFine)
 {
   int nFineSiz;
   cin >> rnStair >> nFineSiz;
@@ -16,7 +16,7 @@ void fnInput(int& rnStair, vector<int>& rvnFine)
   }
 }
 
-llong fnNumOfWays(int nStair, const vector<int>& cnrvnFine)
+llong calcNumOfWays(int nStair, const vector<int>& cnrvnFine)
 {
   const llong cnnMod = 1000000007;
   vector<llong> vnDPWays(nStair + 1);
@@ -40,8 +40,8 @@ int main()
   int nStair;
   vector<int> vnFine;
 
-  fnInput(nStair, vnFine);
-  cout << fnNumOfWays(nStair, vnFine) << endl;
+  input(nStair, vnFine);
+  cout << calcNumOfWays(nStair, vnFine) << endl;
 
   return 0;
 }

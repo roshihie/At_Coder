@@ -3,12 +3,12 @@ using namespace std;
 using llong = long long;
 using ldouble = long double;
 
-void fnInput(int& rnWide, int& rnHigh, int& rnx, int& rny)
+void input(int& rnWide, int& rnHigh, int& rnx, int& rny)
 {
   cin >> rnWide >> rnHigh >> rnx >> rny;
 }
 
-void fnRectCutArea(int nWide, int nHigh, int nx, int ny)
+void calcRectCutArea(int nWide, int nHigh, int nx, int ny)
 {
   llong nRectArea = (llong)nWide * nHigh;
   ldouble nRectCutArea = nRectArea / 2.0L;
@@ -26,8 +26,8 @@ int main()
 {
   int nWide, nHigh, nx, ny;
 
-  fnInput(nWide, nHigh, nx, ny);
-  fnRectCutArea(nWide, nHigh, nx, ny);
+  input(nWide, nHigh, nx, ny);
+  calcRectCutArea(nWide, nHigh, nx, ny);
 
   return 0;
 }

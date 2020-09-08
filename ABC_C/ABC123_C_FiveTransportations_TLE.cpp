@@ -2,7 +2,7 @@
 using namespace std;
 using llong = long long;
 
-void fnInput(llong& rnMaxNum, vector<llong>& rvnCapcty)
+void input(llong& rnMaxNum, vector<llong>& rvnCapcty)
 {
   cin >> rnMaxNum;
 
@@ -10,7 +10,7 @@ void fnInput(llong& rnMaxNum, vector<llong>& rvnCapcty)
     cin >> rnCapcty;
 }
 
-int fnTransptCnt(llong nMaxNum, const vector<llong>& cnrvnCapcty)
+int calcTransptCnt(llong nMaxNum, const vector<llong>& cnrvnCapcty)
 {
   int nTime = 0;
   vector<llong> vnNum(cnrvnCapcty.size() + 1);
@@ -37,8 +37,8 @@ int main()
   llong nMaxNum;
   vector<llong> vnCapcty(5);
 
-  fnInput(nMaxNum, vnCapcty);
-  cout << fnTransptCnt(nMaxNum, vnCapcty) << endl;
+  input(nMaxNum, vnCapcty);
+  cout << calcTransptCnt(nMaxNum, vnCapcty) << endl;
 
   return 0;
 }

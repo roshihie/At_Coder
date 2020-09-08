@@ -2,12 +2,12 @@
 using namespace std;
 using llong = long long;
 
-void fnInput(llong& rnLow, llong& rnHigh, int& rnDivsor1, int& rnDivsor2)
+void input(llong& rnLow, llong& rnHigh, int& rnDivsor1, int& rnDivsor2)
 {
   cin >> rnLow >> rnHigh >> rnDivsor1 >> rnDivsor2;
 }
 
-llong fnAntiDivCnt(llong nNum, int nDivsor1, int nDivsor2)
+llong countAntiDiv(llong nNum, int nDivsor1, int nDivsor2)
 {
   static llong stnDivLcm = 0;
 
@@ -36,8 +36,8 @@ int main()
   llong nLow, nHigh;
   int nDivsor1, nDivsor2;
 
-  fnInput(nLow, nHigh, nDivsor1, nDivsor2);
-  cout << fnAntiDivCnt(nHigh, nDivsor1, nDivsor2) - fnAntiDivCnt(nLow - 1, nDivsor1, nDivsor2);
+  input(nLow, nHigh, nDivsor1, nDivsor2);
+  cout << countAntiDiv(nHigh, nDivsor1, nDivsor2) - countAntiDiv(nLow - 1, nDivsor1, nDivsor2);
   cout << endl;
 
   return 0;

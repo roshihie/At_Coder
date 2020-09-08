@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(vector<int>& rvnProblm)
+void input(vector<int>& rvnProblm)
 {
   int nProblmSiz;
   cin >> nProblmSiz;
@@ -11,7 +11,7 @@ void fnInput(vector<int>& rvnProblm)
     cin >> rnProblm;
 }
   
-int fnDevProblmCnt(const vector<int>& cnrvnProblm)
+int calcDevPgmCnt(const vector<int>& cnrvnProblm)
 {
   vector<int> vnSrtProblm(cnrvnProblm);
   sort(begin(vnSrtProblm), end(vnSrtProblm));
@@ -24,8 +24,8 @@ int main()
 {
   vector<int> vnProblm;
 
-  fnInput(vnProblm);
-  cout << fnDevProblmCnt(vnProblm) << endl;
+  input(vnProblm);
+  cout << calcDevPgmCnt(vnProblm) << endl;
 
   return 0;
 }

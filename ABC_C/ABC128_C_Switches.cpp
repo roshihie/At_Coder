@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(int& rnSwitchSiz, 
+void input(int& rnSwitchSiz, 
              vector<vector<int>>& rvvnLightSw, vector<int>& rvnReslt)
 {
   int  nLightSiz;
@@ -23,7 +23,7 @@ void fnInput(int& rnSwitchSiz,
     cin >> rnReslt;
 }
 
-bool fnLightSwChk(const vector<vector<int>>& cnrvvnLightSw,
+bool canLightSwitch(const vector<vector<int>>& cnrvvnLightSw,
                   const vector<int>& cnrvnSwitch,
                   const vector<int>& cnrvnReslt)
 {
@@ -40,7 +40,7 @@ bool fnLightSwChk(const vector<vector<int>>& cnrvvnLightSw,
   return true;
 }
 
-int fnNumOfCase(int nSwitchSiz,
+int calcNumOfCase(int nSwitchSiz,
                 const vector<vector<int>>& cnrvvnLightSw, 
                 const vector<int>& cnrvnReslt)
 {
@@ -55,7 +55,7 @@ int fnNumOfCase(int nSwitchSiz,
       else
         vnSwitch[nEach] = 0;
 
-    if (fnLightSwChk(cnrvvnLightSw, vnSwitch, cnrvnReslt))
+    if (canLightSwitch(cnrvvnLightSw, vnSwitch, cnrvnReslt))
       nNumOfCase++;
   }
   return nNumOfCase;
@@ -67,8 +67,8 @@ int main()
   vector<vector<int>> vvnLightSw;
   vector<int> vnReslt;
 
-  fnInput(nSwitchSiz, vvnLightSw, vnReslt);
-  cout << fnNumOfCase(nSwitchSiz, vvnLightSw, vnReslt) << endl;
+  input(nSwitchSiz, vvnLightSw, vnReslt);
+  cout << calcNumOfCase(nSwitchSiz, vvnLightSw, vnReslt) << endl;
 
   return 0;
 }
