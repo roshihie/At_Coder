@@ -2,12 +2,12 @@
 using namespace std;
 using llong = long long;
 
-void fnInput(int& rnLeft, int& rnRigt)
+void input(int& rnLeft, int& rnRigt)
 {
   cin >> rnLeft >> rnRigt;
 }
   
-int fnMinRemain2019(int nLeft, int nRigt)
+int calcMinRemain2019(int nLeft, int nRigt)
 {
   if (nLeft + 2018 <= nRigt) return 0;         // nLeft～nRigtまでの数に
                                                // 2019 で割り切れる数が存在
@@ -26,8 +26,8 @@ int fnMinRemain2019(int nLeft, int nRigt)
 int main()
 {
   int nLeft, nRigt;
-  fnInput(nLeft, nRigt);
-  cout << fnMinRemain2019(nLeft, nRigt) << endl;
+  input(nLeft, nRigt);
+  cout << calcMinRemain2019(nLeft, nRigt) << endl;
 
   return 0;
 }

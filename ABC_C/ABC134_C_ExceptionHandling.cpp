@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(vector<int>& rvnSeq)
+void input(vector<int>& rvnSeq)
 {
   int nSeqSiz;
   cin >> nSeqSiz;
@@ -11,7 +11,7 @@ void fnInput(vector<int>& rvnSeq)
     cin >> rnSeq;
 }
   
-void fnSeqMaxNum(const vector<int>& cnrvnSeq)
+void calcSeqMaxNum(const vector<int>& cnrvnSeq)
 {
   vector<int> vnSrtSeq(cnrvnSeq);
   sort(begin(vnSrtSeq), end(vnSrtSeq));
@@ -30,8 +30,8 @@ int main()
 {
   vector<int> vnSeq;
 
-  fnInput(vnSeq);
-  fnSeqMaxNum(vnSeq);
+  input(vnSeq);
+  calcSeqMaxNum(vnSeq);
 
   return 0;
 }
