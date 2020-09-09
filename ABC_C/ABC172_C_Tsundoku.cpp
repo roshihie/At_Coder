@@ -2,7 +2,7 @@
 using namespace std;
 using llong = long long;
 
-void fnInput(int& rnLimit, vector<llong>& rvnCostA, vector<llong>& rvnCostB)
+void input(int& rnLimit, vector<llong>& rvnCostA, vector<llong>& rvnCostB)
 {
   int nCostASiz, nCostBSiz;
   cin >> nCostASiz >> nCostBSiz >> rnLimit;
@@ -24,7 +24,7 @@ void fnInput(int& rnLimit, vector<llong>& rvnCostA, vector<llong>& rvnCostB)
   }
 }
 
-int fnMaxSelCnt(int nLimit, const vector<llong>& cnrvnCostA, 
+int calcMaxSelect(int nLimit, const vector<llong>& cnrvnCostA, 
                             const vector<llong>& cnrvnCostB)
 {
   int nMaxSelCnt = 0;
@@ -52,8 +52,8 @@ int main()
   int nLimit;
   vector<llong> vnCostA, vnCostB;
 
-  fnInput(nLimit, vnCostA, vnCostB);
-  cout << fnMaxSelCnt(nLimit, vnCostA, vnCostB) << endl;
+  input(nLimit, vnCostA, vnCostB);
+  cout << calcMaxSelect(nLimit, vnCostA, vnCostB) << endl;
 
   return 0;
 }

@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(vector<vector<char>>& rvvcColor, int& rnRemain)
+void input(vector<vector<char>>& rvvcColor, int& rnRemain)
 {
   int nySiz, nxSiz;
   cin >> nySiz >> nxSiz >> rnRemain;
@@ -16,7 +16,7 @@ void fnInput(vector<vector<char>>& rvvcColor, int& rnRemain)
   }
 }
 
-void fnColoringRed(int nEach, vector<vector<char>>& rvvcColor)
+void paintColorRed(int nEach, vector<vector<char>>& rvvcColor)
 {
   if (nEach < rvvcColor.size())
   {
@@ -31,7 +31,7 @@ void fnColoringRed(int nEach, vector<vector<char>>& rvvcColor)
   }
 }
 
-int fnNumOfCase(const vector<vector<char>>& cnrvvcColor, int nRemain)
+int calcNumOfCase(const vector<vector<char>>& cnrvvcColor, int nRemain)
 {
   int nNumOfCase = 0;
   int nSize = cnrvvcColor.size() + cnrvvcColor[0].size();
@@ -42,7 +42,7 @@ int fnNumOfCase(const vector<vector<char>>& cnrvvcColor, int nRemain)
 
     for (int nEach = 0; nEach < nSize; nEach++)
       if (nCtl & ( 1 << nEach ))
-        fnColoringRed(nEach, vvcColor);
+        paintColorRed(nEach, vvcColor);
 
     int nCntTrg = 0;
 
@@ -60,8 +60,8 @@ int main()
   vector<vector<char>> vvcColor;
   int nRemain;
 
-  fnInput(vvcColor, nRemain);
-  cout << fnNumOfCase(vvcColor, nRemain) << endl;
+  input(vvcColor, nRemain);
+  cout << calcNumOfCase(vvcColor, nRemain) << endl;
 
   return 0;
 }
