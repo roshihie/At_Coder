@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(vector<string>& rvsColor, int& rnRemain)
+void input(vector<string>& rvsColor, int& rnRemain)
 {
   int nySiz, nxSiz;
   cin >> nySiz >> nxSiz >> rnRemain;
@@ -11,7 +11,7 @@ void fnInput(vector<string>& rvsColor, int& rnRemain)
     cin >> rsColor;
 }
 
-int fnNumOfCase(const vector<string>& cnrvsColor, int nRemain)
+int calcNumOfCase(const vector<string>& cnrvsColor, int nRemain)
 {
   int nNumOfCase = 0;
 
@@ -41,8 +41,8 @@ int main()
   vector<string> vsColor;
   int nRemain;
 
-  fnInput(vsColor, nRemain);
-  cout << fnNumOfCase(vsColor, nRemain) << endl;
+  input(vsColor, nRemain);
+  cout << calcNumOfCase(vsColor, nRemain) << endl;
 
   return 0;
 }

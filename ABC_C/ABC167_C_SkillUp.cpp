@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(int& rnAchieve, vector<int>& rvnPrice, vector<vector<int>>& rvvnSkill)
+void input(int& rnAchieve, vector<int>& rvnPrice, vector<vector<int>>& rvvnSkill)
 {
   int nPriceSiz, nSkillSiz;
   cin >> nPriceSiz >> nSkillSiz >> rnAchieve;
@@ -17,8 +17,8 @@ void fnInput(int& rnAchieve, vector<int>& rvnPrice, vector<vector<int>>& rvvnSki
   }
 }
 
-int fnMinPriceSkillup(int nAchieve, const vector<int> cnrvnPrice, 
-                      const vector<vector<int>>& cnrvvnSkill)
+int calcMinPriceSkillup(int nAchieve, const vector<int> cnrvnPrice, 
+                                      const vector<vector<int>>& cnrvvnSkill)
 {
   int nMinPrice = INT_MAX;
 
@@ -60,8 +60,8 @@ int main()
   vector<int> vnPrice;
   vector<vector<int>> vvnSkill;
 
-  fnInput(nAchieve, vnPrice, vvnSkill);
-  cout << fnMinPriceSkillup(nAchieve, vnPrice, vvnSkill) << endl;
+  input(nAchieve, vnPrice, vvnSkill);
+  cout << calcMinPriceSkillup(nAchieve, vnPrice, vvnSkill) << endl;
 
   return 0;
 }

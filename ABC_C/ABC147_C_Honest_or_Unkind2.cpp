@@ -9,7 +9,7 @@ struct StExpr
   int m_nAttr;
 };
 
-void fnInput(vector<vector<StExpr>>& rvvoExpr)
+void input(vector<vector<StExpr>>& rvvoExpr)
 {
   int nPersonSiz;
   cin >> nPersonSiz;
@@ -26,7 +26,7 @@ void fnInput(vector<vector<StExpr>>& rvvoExpr)
   }
 }
  
-int fnHonestCheck(const vector<vector<StExpr>>& cnrvvoExpr, 
+int isHonest(const vector<vector<StExpr>>& cnrvvoExpr, 
                   const vector<int>& cnrvnHonest, int nMan)
 {
   if (cnrvnHonest[nMan])               // Honest
@@ -49,7 +49,7 @@ int fnHonestCheck(const vector<vector<StExpr>>& cnrvvoExpr,
   }
 }
   
-int fnMaxHonestGet(const vector<vector<StExpr>>& cnrvvoExpr)
+int calcMaxHonest(const vector<vector<StExpr>>& cnrvvoExpr)
 {
   vector<int> vnHonest(cnrvvoExpr.size());
   int nMaxHonestCnt = 0;
@@ -70,7 +70,7 @@ int fnMaxHonestGet(const vector<vector<StExpr>>& cnrvvoExpr)
     bool bReslt = true;
 
     for (int nMan = 0; nMan < vnHonest.size(); nMan++)
-      if (!fnHonestCheck(cnrvvoExpr, vnHonest, nMan))
+      if (!isHonest(cnrvvoExpr, vnHonest, nMan))
       {
         bReslt = false;
         break;
@@ -85,8 +85,8 @@ int main()
 {
   vector<vector<StExpr>> vvoExpr;
 
-  fnInput(vvoExpr);
-  cout << fnMaxHonestGet(vvoExpr) << endl;
+  input(vvoExpr);
+  cout << calcMaxHonest(vvoExpr) << endl;
 
   return 0;
 }
