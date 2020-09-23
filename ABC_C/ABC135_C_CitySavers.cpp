@@ -24,6 +24,7 @@ llong fnStrikMonstr(vector<int>& rvnMonstr, vector<int>& rvnBrave)
     for (int nFwd = nBgn; nFwd < nBgn + 2; ++nFwd)
     {
       int nStrikMonstr = min(rvnBrave[nBgn], rvnMonstr[nFwd]);
+
       rvnMonstr[nFwd] -= nStrikMonstr;
       rvnBrave[nBgn]  -= nStrikMonstr;
       nSumStrikMon += nStrikMonstr;
