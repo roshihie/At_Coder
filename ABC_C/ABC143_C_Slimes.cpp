@@ -10,18 +10,16 @@ void input(string& rsColor)
 int calcColor(string sColor)
 {
   int nColorCnt = 0;
-  int nBgn = 0;
+  int nFwd = 0;
 
-  while (nBgn < sColor.size() )
+  while (nFwd < sColor.size() )
   {
-    int nFoward = nBgn;
+    while ( nFwd < sColor.size() - 1   &&
+            sColor[nFwd] == sColor[nFwd + 1] )
+      ++nFwd;
 
-    while ( nFoward < sColor.size() - 1  &&
-            sColor[nFoward] == sColor[nFoward + 1] )
-      nFoward++;
-
-    nColorCnt++;
-    nBgn = nFoward + 1;
+    ++nColorCnt;
+    ++nFwd;
   }
   return nColorCnt;
 }

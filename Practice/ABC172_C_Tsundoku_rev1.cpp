@@ -24,27 +24,33 @@ void input(int& rnLimit, vector<llong>& rvnCostA, vector<llong>& rvnCostB)
   }
 }
 
-int calcMaxSelect(int nLimit, const vector<llong>& cnrvnCostA,
+int calcMaxSelect(int nLimit, const vector<llong>& cnrvnCostA, 
                               const vector<llong>& cnrvnCostB)
 {
-  int nMaxSelCnt = 0;
-  int nBgnB = cnrvnCostB.size() - 1;
-  int nxA = 0;
+  int nCntA = cnrvnCostA.size() - 1;
+  
+  while ( cnrvnCostA[nCntA] > nLimit )
+    --nCntA;
 
-  while ( nxA < cnrvnCostA.size()  &&
-          cnrvnCostA[nxA] <= nLimit   )
+  int nMaxSelect = nCntA;
+  int nBgnB = 0;
+  int nCntB;
+
+  while ( nCntA >= 0 ) 
   {
-    int nxB = nBgnB;
+    while ( nBgnB < cnrvnCostB.size()  &&
+            cnrvnCostA[nCntA] + cnrvnCostB[nBgnB] <= nLimit )
+    {
+      nCntB = nBgnB;
+      ++nBgnB;
+    }
 
-    while ( cnrvnCostB[nxB] > nLimit - cnrvnCostA[nxA] )
-      nxB--;
+    nMaxSelect = max(nMaxSelect, nCntA + nCntB);
 
-    nMaxSelCnt = max(nMaxSelCnt, nxA + nxB);
-    nBgnB = nxB;
-
-    nxA++;
+    nBgnB = nCntB;
+    --nCntA;
   }
-  return nMaxSelCnt;
+  return nMaxSelect;
 }
  
 int main()

@@ -23,17 +23,17 @@ int calcMinExecCnt(vector<int>& rvnHeight)
   
     while (nBgn < rvnHeight.size() )
     {
-      int nFoward = nBgn;
+      int nFwd = nBgn;
 
-      while (nFoward < rvnHeight.size() &&
-             rvnHeight[nFoward]            )
+      while (nFwd < rvnHeight.size() &&
+             rvnHeight[nFwd]            )
       {
-        rvnHeight[nFoward]--;
-        nFoward++;
+        --rvnHeight[nFwd];
+        ++nFwd;
       }
 
-      if (nBgn != nFoward) nExecCnt++;
-      nBgn = nFoward + 1;
+      if (nBgn != nFwd) ++nExecCnt;
+      nBgn = nFwd + 1;
     }
   }
   return nExecCnt;

@@ -20,12 +20,12 @@ llong fnStrikMonstr(vector<int>& rvnMonstr, vector<int>& rvnBrave)
 {
   llong nSumStrikMon = 0;
 
-  for (int nBgn = 0; nBgn < rvnBrave.size(); nBgn++)
-    for (int nFoward = nBgn; nFoward < nBgn + 2; nFoward++)
+  for (int nBgn = 0; nBgn < rvnBrave.size(); ++nBgn)
+    for (int nFwd = nBgn; nFwd < nBgn + 2; ++nFwd)
     {
-      int nStrikMonstr = min(rvnBrave[nBgn], rvnMonstr[nFoward]);
-      rvnMonstr[nFoward] -= nStrikMonstr;
-      rvnBrave[nBgn] -= nStrikMonstr;
+      int nStrikMonstr = min(rvnBrave[nBgn], rvnMonstr[nFwd]);
+      rvnMonstr[nFwd] -= nStrikMonstr;
+      rvnBrave[nBgn]  -= nStrikMonstr;
       nSumStrikMon += nStrikMonstr;
     }
 

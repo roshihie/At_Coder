@@ -14,21 +14,20 @@ void input(vector<int>& rvnSeq)
 int calcLower(const vector<int>& cnrvnSeq)
 {
   int nMaxSeqCnt = 0;
-  int nBgn = 0;
+  int nFwd = 0;
 
-  while (nBgn < cnrvnSeq.size() )
+  while (nFwd < cnrvnSeq.size() )
   {
     int nSeqCnt = 0;
-    int nFoward = nBgn;
 
-    while ( nFoward < cnrvnSeq.size() - 1  &&
-            cnrvnSeq[nFoward] >= cnrvnSeq[nFoward + 1] )
+    while ( nFwd < cnrvnSeq.size() - 1   &&
+            cnrvnSeq[nFwd] >= cnrvnSeq[nFwd + 1] )
     {
-      nSeqCnt++;
-      nFoward++;
+      ++nSeqCnt;
+      ++nFwd;
     }
     nMaxSeqCnt = max(nMaxSeqCnt, nSeqCnt);
-    nBgn = nFoward + 1;
+    ++nFwd;
   }
   return nMaxSeqCnt;
 }
