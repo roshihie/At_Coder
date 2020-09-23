@@ -2,7 +2,7 @@
 using namespace std;
 using llong = long long;
 
-void fnInput(vector<int>& rvnMonstr, vector<int>& rvnBrave)
+void input(vector<int>& rvnMonstr, vector<int>& rvnBrave)
 {
   int nMonstrSiz;
   cin >> nMonstrSiz;
@@ -16,7 +16,7 @@ void fnInput(vector<int>& rvnMonstr, vector<int>& rvnBrave)
     cin >> rnBrave;
 }
   
-llong fnStrikMonstr(vector<int>& rvnMonstr, vector<int>& rvnBrave)
+llong calcStrikMonstr(vector<int>& rvnMonstr, vector<int>& rvnBrave)
 {
   llong nSumStrikMon = 0;
 
@@ -37,8 +37,8 @@ int main()
 {
   vector<int> vnMonstr, vnBrave;
 
-  fnInput(vnMonstr, vnBrave);
-  cout << fnStrikMonstr(vnMonstr, vnBrave) << endl;
+  input(vnMonstr, vnBrave);
+  cout << calcStrikMonstr(vnMonstr, vnBrave) << endl;
 
   return 0;
 }
