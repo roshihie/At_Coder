@@ -40,11 +40,11 @@ bool canLightSwitch(const vector<vector<int>>& cnrvvnLightSw,
   return true;
 }
 
-int calcNumOfCase(int nSwitchSiz,
+int calcNumOfCases(int nSwitchSiz,
                 const vector<vector<int>>& cnrvvnLightSw, 
                 const vector<int>& cnrvnReslt)
 {
-  int nNumOfCase = 0;
+  int nNumOfCases = 0;
   vector<int> vnSwitch(nSwitchSiz);
 
   for (int nCtl = 0; nCtl < ( 1 << nSwitchSiz ); nCtl++)
@@ -56,9 +56,9 @@ int calcNumOfCase(int nSwitchSiz,
         vnSwitch[nEach] = 0;
 
     if (canLightSwitch(cnrvvnLightSw, vnSwitch, cnrvnReslt))
-      nNumOfCase++;
+      nNumOfCases++;
   }
-  return nNumOfCase;
+  return nNumOfCases;
 }
   
 int main()
@@ -68,7 +68,7 @@ int main()
   vector<int> vnReslt;
 
   input(nSwitchSiz, vvnLightSw, vnReslt);
-  cout << calcNumOfCase(nSwitchSiz, vvnLightSw, vnReslt) << endl;
+  cout << calcNumOfCases(nSwitchSiz, vvnLightSw, vnReslt) << endl;
 
   return 0;
 }

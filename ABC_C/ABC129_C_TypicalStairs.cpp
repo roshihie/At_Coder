@@ -18,8 +18,9 @@ void input(int& rnStair, vector<int>& rvnFine)
 
 llong calcNumOfWays(int nStair, const vector<int>& cnrvnFine)
 {
-  const llong cnnMod = 1000000007;
+  const int cnnMod = 1000000007;
   vector<llong> vnDPWays(nStair + 1);
+
   vnDPWays[0] = 1;
 
   for (int i = 1; i < vnDPWays.size(); i++)

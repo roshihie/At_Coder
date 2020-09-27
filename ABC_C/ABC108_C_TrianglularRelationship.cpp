@@ -7,9 +7,9 @@ void input(int& rnMaxNum, int& rnBase)
   cin >> rnMaxNum >> rnBase;
 }
 
-llong calcNumOfCase(int nMaxNum, int nBase)
+llong calcNumOfCases(int nMaxNum, int nBase)
 {
-  llong nNumOfCase = 0;
+  llong nNumOfCases = 0;
   int nTerm;
 
   if (nBase % 2 == 0)
@@ -19,13 +19,13 @@ llong calcNumOfCase(int nMaxNum, int nBase)
      if ( nMaxNum - (nBase / 2) >= 0 )
      {
        nTerm = ( nMaxNum - (nBase / 2) ) / nBase + 1;
-       nNumOfCase += (llong)nTerm * nTerm * nTerm;
+       nNumOfCases += (llong)nTerm * nTerm * nTerm;
      }
   }
   nTerm = nMaxNum / nBase;
-  nNumOfCase += (llong)nTerm * nTerm * nTerm;
+  nNumOfCases += (llong)nTerm * nTerm * nTerm;
 
-  return nNumOfCase;
+  return nNumOfCases;
 }
   
 int main()
@@ -33,7 +33,7 @@ int main()
   int nMaxNum, nBase;
   
   input(nMaxNum, nBase);
-  cout << calcNumOfCase(nMaxNum, nBase) << endl;
+  cout << calcNumOfCases(nMaxNum, nBase) << endl;
 
   return 0;
 }

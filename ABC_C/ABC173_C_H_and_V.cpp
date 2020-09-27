@@ -11,9 +11,9 @@ void input(vector<string>& rvsColor, int& rnRemain)
     cin >> rsColor;
 }
 
-int calcNumOfCase(const vector<string>& cnrvsColor, int nRemain)
+int calcNumOfCases(const vector<string>& cnrvsColor, int nRemain)
 {
-  int nNumOfCase = 0;
+  int nNumOfCases = 0;
 
   for (int nyCtl = 0; nyCtl < ( 1 << cnrvsColor.size() ); nyCtl++)
     for (int nxCtl = 0; nxCtl < ( 1 << cnrvsColor[0].size() ); nxCtl++)
@@ -30,10 +30,10 @@ int calcNumOfCase(const vector<string>& cnrvsColor, int nRemain)
           if (cnrvsColor[nyEach][nxEach] == '#') nCntTrg++;
         }
       }
-      if (nCntTrg == nRemain) nNumOfCase++;
+      if (nCntTrg == nRemain) nNumOfCases++;
     }
 
-  return nNumOfCase;
+  return nNumOfCases;
 }
  
 int main()
@@ -42,7 +42,7 @@ int main()
   int nRemain;
 
   input(vsColor, nRemain);
-  cout << calcNumOfCase(vsColor, nRemain) << endl;
+  cout << calcNumOfCases(vsColor, nRemain) << endl;
 
   return 0;
 }
