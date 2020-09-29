@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(vector<int>& rvnRally)
+void input(vector<int>& rvnRally)
 {
   int nRallySiz;
   cin >> nRallySiz;
@@ -11,7 +11,7 @@ void fnInput(vector<int>& rvnRally)
     cin >> rnRally;
 }
   
-int fnCostGet(const vector<int>& cnrvnRally)
+int calcMinCost(const vector<int>& cnrvnRally)
 {
   int nAverage = (double)accumulate(begin(cnrvnRally), end(cnrvnRally), 0) / cnrvnRally.size() + 0.5;
   int nCost = 0;
@@ -26,8 +26,8 @@ int main()
 {
   vector<int> vnRally;
 
-  fnInput(vnRally);
-  cout << fnCostGet(vnRally) << endl;
+  input(vnRally);
+  cout << calcMinCost(vnRally) << endl;
 
   return 0;
 }

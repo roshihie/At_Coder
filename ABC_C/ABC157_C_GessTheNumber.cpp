@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(string& rsNum, bool& rbRslt)
+void input(string& rsNum, bool& rbRslt)
 {
   int nDigit, nInfSiz;
   cin >> nDigit >> nInfSiz;
@@ -9,16 +9,16 @@ void fnInput(string& rsNum, bool& rbRslt)
 
   rbRslt = true;
 
-  for (int i = 0; i < nInfSiz; i++)
+  for (int i = 0; i < nInfSiz; ++i)
   {
     int nPos, nNum;
     cin >> nPos >> nNum;
 
-    if (nPos == 1 && nNum == 0 && nDigit > 1)
+    if ( nPos == 1 && nNum == 0 && nDigit > 1 )
       rbRslt = false;
-    else if (rsNum[nPos - 1] == ' ')
+    else if ( rsNum[nPos - 1] == ' ' )
       rsNum[nPos - 1] = '0' + nNum;
-    else if (rsNum[nPos - 1] != '0' + nNum)
+    else if ( rsNum[nPos - 1] != '0' + nNum )
       rbRslt = false;
     else
       continue;
@@ -26,14 +26,14 @@ void fnInput(string& rsNum, bool& rbRslt)
   return;
 }
   
-string fnNumstrGet(string sNum)
+string calcMinNumber(string sNum)
 {
-  for (int i = 0; i < sNum.size(); i++)
-    if (sNum[i] == ' ')
-      if ( !i )
-        if (sNum.size() == 1) sNum[i] = '0';
-        else                  sNum[i] = '1';
-      else                    sNum[i] = '0';
+  for (int nx = 0; nx < sNum.size(); ++nx)
+    if ( sNum[nx] == ' ' )
+      if ( !nx )
+        if ( sNum.size() == 1 ) sNum[nx] = '0';
+        else                    sNum[nx] = '1';
+      else                      sNum[nx] = '0';
 
   return sNum;
 }
@@ -43,11 +43,11 @@ int main()
   string sNum;
   bool bRslt;
 
-  fnInput(sNum, bRslt);
+  input(sNum, bRslt);
   if (!bRslt)
     cout << "-1" << endl;
   else
-    cout << fnNumstrGet(sNum) << endl;
+    cout << calcMinNumber(sNum) << endl;
 
   return 0;
 }

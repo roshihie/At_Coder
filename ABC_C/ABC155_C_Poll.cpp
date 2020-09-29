@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(map<string, int>& rmpPoll)
+void input(map<string, int>& rmpPoll)
 {
   int nPollSiz;
   cin >> nPollSiz;
@@ -14,7 +14,7 @@ void fnInput(map<string, int>& rmpPoll)
   }
 }
   
-void fnMaxPollCnt(const map<string, int>& cnrmpPoll)
+void calcMaxPoll(const map<string, int>& cnrmpPoll)
 {
   int nMaxCnt = 0;
 
@@ -32,8 +32,8 @@ int main()
 {
   map<string, int> mpPoll;
 
-  fnInput(mpPoll);
-  fnMaxPollCnt(mpPoll);
+  input(mpPoll);
+  calcMaxPoll(mpPoll);
 
   return 0;
 }
