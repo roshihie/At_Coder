@@ -2,33 +2,35 @@
 using namespace std;
 using llong = long long;
 
-void fnInput(int& rnMonster, int& rnFinCnt, vector<int>& rvnLifePnt)
+void input(int& rnFinCnt, vector<int>& rvnLifePnt)
 {
-  cin >> rnMonster >> rnFinCnt;
-  rvnLifePnt.resize(rnMonster);
+  int nMonstr;
+  cin >> nMonstr >> rnFinCnt;
+  rvnLifePnt.resize(nMonstr);
 
   for (int& rnLifePnt : rvnLifePnt)
     cin >> rnLifePnt;
+
+  sort(begin(rvnLifePnt), end(rvnLifePnt), greater<int>() );
 }
   
-llong fnGameOverCnt(int nFinCnt, vector<int>& rvnLifePnt)
+llong calcMinAttackCnt(int nFinCnt, const vector<int>& cnrvnLifePnt)
 {
-  sort(begin(rvnLifePnt), end(rvnLifePnt), greater<int>());
+  llong nMinAttackCnt = 0;
 
-  llong nGameOverCnt = 0;
-  for (int n = nFinCnt; n < rvnLifePnt.size(); n++)
-    nGameOverCnt += rvnLifePnt[n];
+  for (int n = nFinCnt; n < cnrvnLifePnt.size(); n++)
+    nMinAttackCnt += cnrvnLifePnt[n];
 
-  return nGameOverCnt;
+  return nMinAttackCnt;
 }
   
 int main()
 {
-  int nMonstr, nFinCnt;
+  int nFinCnt;
   vector<int> vnLifePnt;
 
-  fnInput(nMonstr, nFinCnt, vnLifePnt);
-  cout << fnGameOverCnt(nFinCnt, vnLifePnt) << endl;
+  input(nFinCnt, vnLifePnt);
+  cout << calcMinAttackCnt(nFinCnt, vnLifePnt) << endl;
 
   return 0;
 }

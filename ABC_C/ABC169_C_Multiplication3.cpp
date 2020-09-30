@@ -2,24 +2,24 @@
 using namespace std;
 using llong = long long;
 
-void fnInput(llong& rnNumA, double& rnNumB)
+void input(llong& rnMultplcnd, double& rnMultpler)
 {
-  cin >> rnNumA >> rnNumB;
+  cin >> rnMultplcnd >> rnMultpler;
 }
 
-llong fnMultiple(llong nNumA, double nNumB)
+llong calcMultiple(llong nMultplcnd, double nMultpler)
 {
-  int nNumIB = nNumB * 100 + 0.5;
-  return nNumA * nNumIB / 100;
+  int nIntMultpler = nMultpler * 100 + 0.5;
+  return nMultplcnd * nIntMultpler / 100;
 }
   
 int main()
 {
-  llong nNumA;
-  double nNumB;
+  llong nMultplcnd;
+  double nMultpler;
 
-  fnInput(nNumA, nNumB);
-  cout << fnMultiple(nNumA, nNumB) << endl;
+  input(nMultplcnd, nMultpler);
+  cout << calcMultiple(nMultplcnd, nMultpler) << endl;
 
   return 0;
 }

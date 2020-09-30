@@ -1,32 +1,32 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(int& rnTarget, vector<int>& rvnForbid)
+void input(int& rnTarget, vector<int>& rvnSeq)
 {
-  int nForbidSiz;
-  cin >> rnTarget >> nForbidSiz;
-  rvnForbid.resize(nForbidSiz);
+  int nSeqSiz;
+  cin >> rnTarget >> nSeqSiz;
+  rvnSeq.resize(nSeqSiz);
 
-  for (int& rnForbid : rvnForbid)
-    cin >> rnForbid;
+  for (int& rnSeq : rvnSeq)
+    cin >> rnSeq;
 }
 
-int fnMinAbsNum(int nTarget, const vector<int>& cnrvnForbid)
+int calcMinNolistNum(int nTarget, const vector<int>& cnrvnSeq)
 {
-  map<int, int> mpForbid;
+  map<int, int> mpSeq;
 
-  for (int nForbid : cnrvnForbid)
-    mpForbid[ nForbid ]++;
+  for (int nSeq : cnrvnSeq)
+    mpSeq[ nSeq ]++;
 
   int nMore = nTarget;
-  while (mpForbid[nMore] != 0)
-    nMore++;
+  while ( mpSeq[nMore] != 0 )
+    ++nMore;
 
   int nLess = nTarget;
-  while (mpForbid[nLess] != 0)
-    nLess--;
+  while ( mpSeq[nLess] != 0 )
+    --nLess;
 
-  if (abs(nTarget - nMore) < abs(nTarget - nLess))
+  if ( abs(nTarget - nMore) < abs(nTarget - nLess) )
     return nMore;
   else
     return nLess;
@@ -35,10 +35,10 @@ int fnMinAbsNum(int nTarget, const vector<int>& cnrvnForbid)
 int main()
 {
   int nTarget;
-  vector<int> vnForbid ;
+  vector<int> vnSeq ;
 
-  fnInput(nTarget, vnForbid);
-  cout << fnMinAbsNum(nTarget, vnForbid) << endl;
+  input(nTarget, vnSeq);
+  cout << calcMinNolistNum(nTarget, vnSeq) << endl;
 
   return 0;
 }
