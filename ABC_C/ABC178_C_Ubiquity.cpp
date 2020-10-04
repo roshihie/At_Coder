@@ -7,37 +7,33 @@ void input(int& rnSiz)
   cin >> rnSiz;
 }
 
-llong calcCombintn(llong nConbintn, int nSiz, int nx)
+llong powmod(int nBase, int nSiz)
 {
   const int cnnMod = 1e9 + 7;
-  llong nRtnComb;
+  llong nPowMod = 1;
 
-  if ( !nx )
-    nRtnComb = 1;
-  else
+  for (int nx = 0; nx < nSiz; ++nx)
   {
-    nRtnComb = nCombintn * nSiz - (nx - 1);
-    nRtnComb /= cnnMod;
-    nRtnComb /= nx;
+    nPowMod *= nBase;
+    nPowMod %= cnnMod;
   }
-  return nRtnComb;
+  return nPowMod;
 }
 
 llong calcNumOfCases(int nSiz)
 {
   const int cnnMod = 1e9 + 7;
 
-  for (int nFwd = 0; nFwd <= nSiz; ++nFwd)
-  {
-    llong nCombintn = 1;
+  llong nNumOfCases = powmod(10, nSiz);
+  nNumOfCases -= powmod(9, nSiz) * 2 % cnnMod;
+  nNumOfCases += powmod(8, nSiz);
 
-    for (int nx = 0; nx < nSiz - nFwd; ++nx)
-    {
-      nCombintn = calcCombintn(nCombintn, nSiz, nx);
+  if (nNumOfCases >= 0)
+    nNumOfCases %= cnnMod;
+  else
+    nNumOfCases = (nNumOfCases + cnnMod) % cnnMod;
 
-    llong nConbintn = calcCombintn(nSiz, nFwd);
-  }
-
+  return nNumOfCases;
 }
   
 int main()
