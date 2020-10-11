@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(vector<int>& rvnValue)
+void input(vector<int>& rvnValue)
 {
   int nValueSiz;
   cin >> nValueSiz;
@@ -11,14 +11,15 @@ void fnInput(vector<int>& rvnValue)
     cin >> rnValue;
 }
   
-double fnMaxValueGet(const vector<int>& cnrvnValue)
+double calcMaxValue(const vector<int>& cnrvnValue)
 {
-  vector<int> vnAsdValue(cnrvnValue);
-  sort(begin(vnAsdValue), end(vnAsdValue));
+  vector<int> vnSrtValue(cnrvnValue);
+  sort(begin(vnSrtValue), end(vnSrtValue));
 
-  double nMaxValue = vnAsdValue[0];
-  for (int i = 1; i < vnAsdValue.size(); i++)
-    nMaxValue = (nMaxValue + vnAsdValue[i]) / 2;
+  double nMaxValue = vnSrtValue[0];
+
+  for (int nx = 1; nx < vnSrtValue.size(); ++nx)
+    nMaxValue = (nMaxValue + vnSrtValue[nx]) / 2;
 
   return nMaxValue;
 }
@@ -27,8 +28,8 @@ int main()
 {
   vector<int> vnValue;
 
-  fnInput(vnValue);
-  cout << fnMaxValueGet(vnValue) << endl;
+  input(vnValue);
+  cout << calcMaxValue(vnValue) << endl;
 
   return 0;
 }
