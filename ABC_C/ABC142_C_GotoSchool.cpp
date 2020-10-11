@@ -1,24 +1,24 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(vector<int>& rvnOrder)
+void input(vector<int>& rvnOrder)
 {
   int nOrderSiz;
   cin >> nOrderSiz;
-  rvnOrder.resize(nOrderSiz + 1);
+  rvnOrder.resize(nOrderSiz);
 
-  for (int n = 1; n < rvnOrder.size(); n++)
+  for (int nx = 0; nx < rvnOrder.size(); ++nx)
   {
     int nOrder;
     cin >> nOrder;
-    rvnOrder[nOrder] = n;
+    rvnOrder[--nOrder] = nx + 1;
   }
 }
 
-int fnOrderCheck(const vector<int>& cnrvnOrder)
+void calcOrder(const vector<int>& cnrvnOrder)
 {
   for (int nOrder : cnrvnOrder)
-    if (nOrder) cout << nOrder << " ";
+    cout << nOrder << " ";
 
   cout << endl;
 }
@@ -27,8 +27,8 @@ int main()
 {
   vector<int> vnOrder;
 
-  fnInput(vnOrder);
-  fnOrderCheck(vnOrder);
+  input(vnOrder);
+  calcOrder(vnOrder);
 
   return 0;
 }
