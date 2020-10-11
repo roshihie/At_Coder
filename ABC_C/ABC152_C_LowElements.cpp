@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(vector<int>& rvnSeq)
+void input(vector<int>& rvnSeq)
 {
   int nSeqSiz;
   cin >> nSeqSiz;
@@ -11,27 +11,27 @@ void fnInput(vector<int>& rvnSeq)
     cin >> rnSeq;
 }
   
-int fnLowElemCnt(const vector<int>& cnrvnSeq)
+int calcLowElement(const vector<int>& cnrvnSeq)
 {
-  int nLowElemCnt = 0;
-  int nMinLowElem = cnrvnSeq[0] + 1;
+  int nLowElementCnt = 0;
+  int nMinLowNum = cnrvnSeq[0] + 1;
 
-  for (int i = 0; i < cnrvnSeq.size(); i++)
-    if (cnrvnSeq[i] < nMinLowElem)
+  for (int nx = 0; nx < cnrvnSeq.size(); ++nx)
+    if (cnrvnSeq[nx] < nMinLowNum)
     {
-      nLowElemCnt++;
-      nMinLowElem = cnrvnSeq[i];
+      ++nLowElementCnt;
+      nMinLowNum = cnrvnSeq[nx];
     }
 
-  return nLowElemCnt;
+  return nLowElementCnt;
 }
   
 int main()
 {
   vector<int> vnSeq;
 
-  fnInput(vnSeq);
-  cout << fnLowElemCnt(vnSeq) << endl;
+  input(vnSeq);
+  cout << calcLowElement(vnSeq) << endl;
 
   return 0;
 }
