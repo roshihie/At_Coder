@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(int& rnMember, int& rnScore, vector<int>& rvnAnsMem)
+void input(int& rnMember, int& rnScore, vector<int>& rvnAnsMem)
 {
-  int nMemSiz, nAnsSiz;
+  int nAnsSiz;
   cin >> rnMember >> rnScore >> nAnsSiz;
 
   rvnAnsMem.resize(nAnsSiz);
@@ -11,16 +11,16 @@ void fnInput(int& rnMember, int& rnScore, vector<int>& rvnAnsMem)
     cin >> rnAnsMem;
 }
 
-void fnScoreCheck(int nMember, int nScore, const vector<int>& cnrvnAnsMem)
+void calcWinLoss(int nMember, int nScore, const vector<int>& cnrvnAnsMem)
 {
-  vector<int> vnMemScore(nMember + 1, nScore - cnrvnAnsMem.size());
+  vector<int> vnMemScore(nMember, nScore - cnrvnAnsMem.size() );
 
   for (int nAnsMem : cnrvnAnsMem)
-    vnMemScore[ nAnsMem ]++;
+    ++vnMemScore[ nAnsMem - 1 ];
 
-  for (int i = 1; i <vnMemScore.size(); i++)
-    if (vnMemScore[i] > 0) cout << "Yes" << endl;
-    else                   cout << "No"  << endl;
+  for (int nMemScore : vnMemScore)
+    if (nMemScore > 0) cout << "Yes" << endl;
+    else               cout << "No"  << endl;
 }
 
 int main()
@@ -28,8 +28,8 @@ int main()
   int nMember, nScore;
   vector<int> vnAnsMem;
 
-  fnInput(nMember, nScore, vnAnsMem);
-  fnScoreCheck(nMember, nScore, vnAnsMem);
+  input(nMember, nScore, vnAnsMem);
+  calcWinLoss(nMember, nScore, vnAnsMem);
 
   return 0;
 }

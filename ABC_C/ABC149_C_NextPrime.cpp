@@ -1,24 +1,24 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(int& rnNum)
+void input(int& rnNum)
 {
   cin >> rnNum;
 }
   
-int fnNextPrimeGet(int nNum)
+int calcNextPrime(int nNum)
 {
   int nNextPrime = nNum - 1;
   bool bPrime = false;
 
-  while (!bPrime)
+  while ( !bPrime )
   {
-    nNextPrime++;
+    ++nNextPrime;
     int nSqrtInt = sqrt(nNextPrime);
     bPrime = true;
 
-    for (int n = 2; n <= nSqrtInt; n++)
-      if (nNextPrime % n == 0)
+    for (int nx = 2; nx <= nSqrtInt; ++nx)
+      if (nNextPrime % nx == 0)
       {
         bPrime = false;
         break;
@@ -31,8 +31,8 @@ int main()
 {
   int nNum;
 
-  fnInput(nNum);
-  cout << fnNextPrimeGet(nNum) << endl;
+  input(nNum);
+  cout << calcNextPrime(nNum) << endl;
 
   return 0;
 }
