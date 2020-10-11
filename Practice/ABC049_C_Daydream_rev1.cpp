@@ -21,6 +21,7 @@ int parseString(string sTarget)
     {
       nBgn = nEnd - cnvsWord[nx].size();
       if (nBgn < 0) continue;
+
       if (sTarget.substr(nBgn, cnvsWord[nx].size() ) == cnvsWord[nx])
       {
         bRslt = true;
