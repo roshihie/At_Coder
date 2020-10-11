@@ -3,26 +3,29 @@ using namespace std;
 
 struct StAnsHist
 {
-  StAnsHist() : m_nProblmNo(0), m_sJudge("") { }
+  StAnsHist() : m_nProbNo(0), m_sJudge("") { }
 
-  int    m_nProblmNo;
+  int    m_nProbNo;
   string m_sJudge;
 };
 
-void fnInput(int& rnProblmSiz, vector<StAnsHist>& rvoAnsHist)
+void input(int& rnProbSiz, vector<StAnsHist>& rvoAnsHist)
 {
   int nSubmitSiz;
-  cin >> rnProblmSiz >> nSubmitSiz;
+  cin >> rnProbSiz >> nSubmitSiz;
   rvoAnsHist.resize(nSubmitSiz);
 
   for (StAnsHist& roAnsHist : rvoAnsHist)
-    cin >> roAnsHist.m_nProblmNo >> roAnsHist.m_sJudge;
+  {
+    cin >> roAnsHist.m_nProbNo >> roAnsHist.m_sJudge;
+    --roAnsHist.m_nProbNo;
+  }
 }
   
-void fnAnserCheck(int nProblmSiz, const vector<StAnsHist>& cnrvoAnsHist, 
-                  int& rnRightAns, int& rnPenalty)
+void calcNumOfAnser(int nProbSiz, const vector<StAnsHist>& cnrvoAnsHist, 
+                    int& rnRightAns, int& rnPenalty)
 {
-  vector<int> vnWACnt(nProblmSiz + 1);
+  vector<int> vnWACnt(nProbSiz);
   set<int> seRightAns;
 
   rnRightAns = 0;
@@ -30,10 +33,10 @@ void fnAnserCheck(int nProblmSiz, const vector<StAnsHist>& cnrvoAnsHist,
 
   for (StAnsHist oAnsHist : cnrvoAnsHist)
     if (oAnsHist.m_sJudge == "AC")
-      seRightAns.insert( oAnsHist.m_nProblmNo );
+      seRightAns.insert( oAnsHist.m_nProbNo );
     else
-      if (!seRightAns.count( oAnsHist.m_nProblmNo ))
-        vnWACnt[ oAnsHist.m_nProblmNo ]++;
+      if ( !seRightAns.count( oAnsHist.m_nProbNo ) )
+        ++vnWACnt[ oAnsHist.m_nProbNo ];
 
   rnRightAns = seRightAns.size();
 
@@ -43,12 +46,12 @@ void fnAnserCheck(int nProblmSiz, const vector<StAnsHist>& cnrvoAnsHist,
   
 int main()
 {
-  int nProblmSiz;
+  int nProbSiz;
   vector<StAnsHist> voAnsHist;
-  fnInput(nProblmSiz, voAnsHist);
+  input(nProbSiz, voAnsHist);
 
   int nRightAns, nPenalty;
-  fnAnserCheck(nProblmSiz, voAnsHist, nRightAns, nPenalty);
+  calcNumOfAnser(nProbSiz, voAnsHist, nRightAns, nPenalty);
 
   cout << nRightAns << " " << nPenalty;
   return 0;

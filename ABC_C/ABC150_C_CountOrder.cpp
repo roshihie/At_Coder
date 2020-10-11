@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(vector<int>& rvnSeqP, vector<int>& rvnSeqQ)
+void input(vector<int>& rvnSeqP, vector<int>& rvnSeqQ)
 {
   int nSeqSiz;
   cin >> nSeqSiz;
@@ -14,31 +14,31 @@ void fnInput(vector<int>& rvnSeqP, vector<int>& rvnSeqQ)
     cin >> rnSeqQ;
 }
   
-int fnCountOrderGet(const vector<int>& cnrvnSeqP, const vector<int>& cnrvnSeqQ)
+int calcDiffOrderCnt(const vector<int>& cnrvnSeqP, const vector<int>& cnrvnSeqQ)
 {
   vector<int> vnSeqX(cnrvnSeqP.size());
-  int nCntP = 0;
-  int nCntQ = 0;
-  int nCntX = 0;
+  int nxSeqP = 0;
+  int nxSeqQ = 0;
+  int nxSeqX = 0;
 
   iota(begin(vnSeqX), end(vnSeqX), 1);
   do {
-    nCntX++;
-    if (cnrvnSeqP == vnSeqX) nCntP = nCntX;
-    if (cnrvnSeqQ == vnSeqX) nCntQ = nCntX;
+    ++nxSeqX;
+    if (cnrvnSeqP == vnSeqX) nxSeqP = nxSeqX;
+    if (cnrvnSeqQ == vnSeqX) nxSeqQ = nxSeqX;
   }
-  while ( next_permutation(begin(vnSeqX), end(vnSeqX)) &&
-          ( nCntP == 0 || nCntQ == 0 )                   );
+  while ( next_permutation(begin(vnSeqX), end(vnSeqX) ) &&
+          ( nxSeqP == 0 || nxSeqQ == 0 )                  );
 
-  return abs(nCntP - nCntQ);
+  return abs(nxSeqP - nxSeqQ);
 }
   
 int main()
 {
   vector<int> vnSeqP, vnSeqQ;
 
-  fnInput(vnSeqP, vnSeqQ);
-  cout << fnCountOrderGet(vnSeqP, vnSeqQ) << endl;
+  input(vnSeqP, vnSeqQ);
+  cout << calcDiffOrderCnt(vnSeqP, vnSeqQ) << endl;
 
   return 0;
 }
