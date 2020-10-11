@@ -9,19 +9,21 @@ void input(string& rsLine)
 
 int calcMinChgDir(const string& cnrsLine)
 {
-  int nCumlSum = 0;
-  for (int nx = 1; nx < cnrsLine.size(); ++nx)
-    if (cnrsLine[nx] == 'E')  nCumlSum++;
+  int nMinChgDir = 0;
 
-  int nMinSum = nCumlSum;
+  for (int nx = 1; nx < cnrsLine.size(); ++nx)
+    if (cnrsLine[nx] == 'E') ++nMinChgDir;
+
+  int nChgDir = nMinChgDir;
+
   for (int nx = 1; nx < cnrsLine.size(); ++nx)
   {
-    if (cnrsLine[nx - 1] == 'W')  ++nCumlSum;
-    if (cnrsLine[nx]     == 'E')  --nCumlSum;
+    if (cnrsLine[nx - 1] == 'W')  ++nChgDir;
+    if (cnrsLine[nx]     == 'E')  --nChgDir;
 
-    nMinSum = min(nMinSum, nCumlSum);
+    nMinChgDir = min(nMinChgDir, nChgDir);
   }
-  return nMinSum;
+  return nMinChgDir;
 }
     
 int main()
