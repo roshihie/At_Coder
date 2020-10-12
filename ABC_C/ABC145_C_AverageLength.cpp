@@ -36,8 +36,8 @@ double calcAverageDist(const vector<StCoord>& cnrvoCoord)
   iota(begin(vnCity), end(vnCity), 0);
 
   do {
-    for (int nx = 0; nx < cnrvoCoord.size() - 1; ++nx)
-      nTotalDist += calcDist(vnCity[nx], vnCity[nx + 1], cnrvoCoord);
+    for (int ni = 0; ni < cnrvoCoord.size() - 1; ++ni)
+      nTotalDist += calcDist(vnCity[ni], vnCity[ni + 1], cnrvoCoord);
       ++nTotalCnt;
   }
   while ( next_permutation(begin(vnCity), end(vnCity)) );

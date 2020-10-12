@@ -23,13 +23,13 @@ double calcAverageDist(const vector<StCoord>& cnrvoCoord)
 {
   vector<vector<double>> vvnDist(cnrvoCoord.size(), vector<double>(cnrvoCoord.size()));
   
-  for (int nx = 0; nx < cnrvoCoord.size(); ++nx)
-    for (int ny = 0; ny < cnrvoCoord.size(); ++ny)
-      if (nx != ny)
+  for (int ni = 0; ni < cnrvoCoord.size(); ++ni)
+    for (int nj = 0; nj < cnrvoCoord.size(); ++nj)
+      if (ni != nj)
       {
-        int nDistx = cnrvoCoord[nx].m_nx - cnrvoCoord[ny].m_nx;
-        int nDisty = cnrvoCoord[nx].m_ny - cnrvoCoord[ny].m_ny;
-        vvnDist[nx][ny] = vvnDist[ny][nx] = sqrt(nDistx * nDistx + nDisty * nDisty);
+        int nDistx = cnrvoCoord[ni].m_nx - cnrvoCoord[nj].m_nx;
+        int nDisty = cnrvoCoord[ni].m_ny - cnrvoCoord[nj].m_ny;
+        vvnDist[ni][nj] = vvnDist[nj][ni] = sqrt(nDistx * nDistx + nDisty * nDisty);
       }
 
   double nTotalDist = 0.0;
@@ -39,8 +39,8 @@ double calcAverageDist(const vector<StCoord>& cnrvoCoord)
   iota(begin(vnCity), end(vnCity), 0);
 
   do {
-    for (int nx = 0; nx < cnrvoCoord.size() - 1; ++nx)
-      nTotalDist += vvnDist[ vnCity[nx] ][ vnCity[nx + 1] ];
+    for (int ni = 0; ni < cnrvoCoord.size() - 1; ++ni)
+      nTotalDist += vvnDist[ vnCity[ni] ][ vnCity[ni + 1] ];
       ++nTotalCnt;
   }
   while ( next_permutation(begin(vnCity), end(vnCity)) );
