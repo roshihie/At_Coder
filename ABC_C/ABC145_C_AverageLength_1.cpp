@@ -9,7 +9,7 @@ struct StCoord
   int m_ny;
 };
 
-void fnInput(vector<StCoord>& rvoCoord)
+void input(vector<StCoord>& rvoCoord)
 {
   int nCrdSiz;
   cin >> nCrdSiz;
@@ -19,17 +19,17 @@ void fnInput(vector<StCoord>& rvoCoord)
     cin >> roCoord.m_nx >> roCoord.m_ny;
 }
 
-double fnAveDistGet(const vector<StCoord>& cnrvoCoord)
+double calcAverageDist(const vector<StCoord>& cnrvoCoord)
 {
   vector<vector<double>> vvnDist(cnrvoCoord.size(), vector<double>(cnrvoCoord.size()));
   
-  for (int i = 0; i < cnrvoCoord.size(); i++)
-    for (int j = 0; j < cnrvoCoord.size(); j++)
-      if (i != j)
+  for (int nx = 0; nx < cnrvoCoord.size(); ++nx)
+    for (int ny = 0; ny < cnrvoCoord.size(); ++ny)
+      if (nx != ny)
       {
-        int nDistx = cnrvoCoord[i].m_nx - cnrvoCoord[j].m_nx;
-        int nDisty = cnrvoCoord[i].m_ny - cnrvoCoord[j].m_ny;
-        vvnDist[i][j] = vvnDist[j][i] = sqrt(nDistx * nDistx + nDisty * nDisty);
+        int nDistx = cnrvoCoord[nx].m_nx - cnrvoCoord[ny].m_nx;
+        int nDisty = cnrvoCoord[nx].m_ny - cnrvoCoord[ny].m_ny;
+        vvnDist[nx][ny] = vvnDist[ny][nx] = sqrt(nDistx * nDistx + nDisty * nDisty);
       }
 
   double nTotalDist = 0.0;
@@ -39,9 +39,9 @@ double fnAveDistGet(const vector<StCoord>& cnrvoCoord)
   iota(begin(vnCity), end(vnCity), 0);
 
   do {
-    for (int i = 0; i < cnrvoCoord.size() - 1; i++)
-      nTotalDist += vvnDist[ vnCity[i] ][ vnCity[i + 1] ];
-      nTotalCnt++;
+    for (int nx = 0; nx < cnrvoCoord.size() - 1; ++nx)
+      nTotalDist += vvnDist[ vnCity[nx] ][ vnCity[nx + 1] ];
+      ++nTotalCnt;
   }
   while ( next_permutation(begin(vnCity), end(vnCity)) );
 
@@ -52,8 +52,8 @@ int main()
 {
   vector<StCoord> voCoord;
 
-  fnInput(voCoord);
-  cout << fixed << setprecision(10) << fnAveDistGet(voCoord) << endl;
+  input(voCoord);
+  cout << fixed << setprecision(10) << calcAverageDist(voCoord) << endl;
 
   return 0;
 }
