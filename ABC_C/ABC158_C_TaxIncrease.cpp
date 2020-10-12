@@ -1,24 +1,24 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(int& rnTax8per, int& rnTax10per)
+void input(int& rnTax8per, int& rnTax10per)
 {
   cin >> rnTax8per >> rnTax10per;
 }
   
-int fnNonTaxKinGet(int nTax8per, int nTax10Per)
+int calcNonTaxPrice(int nTax8per, int nTax10Per)
 {
-  vector<int> vnNonTaxKin(10);
+  vector<int> vnNonTaxPrc(10);
+  int nNonTaxP10per = nTax10Per * 10;
 
-  int nNonTax10per = nTax10Per * 10;
-  for (int i = 0; i < vnNonTaxKin.size(); i++)
-    vnNonTaxKin[i] = nNonTax10per++;
+  for (int nx = 0; nx < vnNonTaxPrc.size(); ++nx)
+    vnNonTaxPrc[nx] = nNonTaxP10per++;
 
-  for (int i = 0; i < vnNonTaxKin.size(); i++)
+  for (int nx = 0; nx < vnNonTaxPrc.size(); ++nx)
   {
-    int nCalTax8per = vnNonTaxKin[i] * 0.08;
-    if (nCalTax8per == nTax8per)
-      return vnNonTaxKin[i];
+    int nCalTaxP8per = vnNonTaxPrc[nx] * 0.08;
+    if (nCalTaxP8per == nTax8per)
+      return vnNonTaxPrc[nx];
   }
   return -1;
 }
@@ -27,8 +27,8 @@ int main()
 {
   int nTax8per, nTax10Per;
 
-  fnInput(nTax8per, nTax10Per);
-  cout << fnNonTaxKinGet(nTax8per, nTax10Per) << endl;
+  input(nTax8per, nTax10Per);
+  cout << calcNonTaxPrice(nTax8per, nTax10Per) << endl;
 
   return 0;
 }

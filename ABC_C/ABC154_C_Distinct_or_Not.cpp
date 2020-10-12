@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(vector<int>& rvnSeq)
+void input(vector<int>& rvnSeq)
 {
   int nSeqSiz;
   cin >> nSeqSiz;
@@ -11,7 +11,7 @@ void fnInput(vector<int>& rvnSeq)
     cin >> rnSeq;
 }
   
-string fnDistinctChk(const vector<int>& cnrvnSeq)
+string isDistinct(const vector<int>& cnrvnSeq)
 {
   set<int> seDistinct;
 
@@ -28,8 +28,8 @@ int main()
 {
   vector<int> vnSeq;
 
-  fnInput(vnSeq);
-  cout << fnDistinctChk(vnSeq) << endl;
+  input(vnSeq);
+  cout << isDistinct(vnSeq) << endl;
 
   return 0;
 }

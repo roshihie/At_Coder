@@ -1,23 +1,23 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(int& rnLen)
+void input(int& rnLen)
 {
   cin >> rnLen;
 }
   
-double fnMaxVolGet(int nLen)
+double calcMaxVolume(int nLen)
 {
-  double nDiv3 = nLen / 3.0;
-  return nDiv3 * nDiv3 * nDiv3;
+  double nOneSide = nLen / 3.0;
+  return nOneSide * nOneSide * nOneSide;
 }
   
 int main()
 {
   int nLen;
 
-  fnInput(nLen);
-  cout << fixed << setprecision(10) << fnMaxVolGet(nLen) << endl;
+  input(nLen);
+  cout << fixed << setprecision(10) << calcMaxVolume(nLen) << endl;
 
   return 0;
 }
