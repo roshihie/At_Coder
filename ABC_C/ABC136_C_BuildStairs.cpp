@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(vector<int>& rvnStairs)
+void input(vector<int>& rvnStairs)
 {
   int nStairsSiz;
   cin >> nStairsSiz;
@@ -11,15 +11,15 @@ void fnInput(vector<int>& rvnStairs)
     cin >> rnStairs;
 }
   
-string fnNonDecrChk(const vector<int>& cnrvnStairs)
+string canNonDescStairs(const vector<int>& cnrvnStairs)
 {
-  int nMaxStairs = cnrvnStairs[0];
+  int nCurMaxStair = cnrvnStairs[0];
 
-  for (int i = 0; i < cnrvnStairs.size() - 1; i++)
-    if      (nMaxStairs - 1 > cnrvnStairs[i + 1])
+  for (int nx = 1; nx < cnrvnStairs.size(); ++nx)
+    if (nCurMaxStair - 1 > cnrvnStairs[nx])
       return "No";
-    else if (cnrvnStairs[i] < cnrvnStairs[i + 1])
-      nMaxStairs = cnrvnStairs[i + 1];
+    else if (nCurMaxStair < cnrvnStairs[nx])
+      nCurMaxStair = cnrvnStairs[nx];
 
   return "Yes";
 }
@@ -28,8 +28,8 @@ int main()
 {
   vector<int> vnStairs;
 
-  fnInput(vnStairs);
-  cout << fnNonDecrChk(vnStairs) << endl;
+  input(vnStairs);
+  cout << canNonDescStairs(vnStairs) << endl;
 
   return 0;
 }

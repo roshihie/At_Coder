@@ -1,19 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(int& rnNumK)
+void input(int& rnUpperLim)
 {
-  cin >> rnNumK;
+  cin >> rnUpperLim;
 }
 
-int fnGcdGet(const vector<int>& cnrvnNun)
+int calcGcd(const vector<int>& cnrvnNun)
 {
   int nGcd = cnrvnNun[0];
 
-  for (int i = 1; i < cnrvnNun.size(); i++)
+  for (int nx = 1; nx < cnrvnNun.size(); ++nx)
   {
-    int nDividend = max(nGcd, cnrvnNun[i]);
-    int nDivisor  = min(nGcd, cnrvnNun[i]);
+    int nDividend = max(nGcd, cnrvnNun[nx]);
+    int nDivisor  = min(nGcd, cnrvnNun[nx]);
 
     while ( nDividend % nDivisor )
     {
@@ -26,16 +26,16 @@ int fnGcdGet(const vector<int>& cnrvnNun)
   return nGcd;
 }
   
-int fnSumGcdTuples(int nNumK)
+int calcSumGcdTuples(int nUpperLim)
 {
   int nSumGcd = 0;
 
-  for (int i = 1; i <= nNumK; i++)
-    for (int j = 1; j <= nNumK; j++)
-      for (int k = 1; k <= nNumK; k++)
+  for (int nx = 1; nx <= nUpperLim; ++nx)
+    for (int ny = 1; ny <= nUpperLim; ++ny)
+      for (int nz = 1; nz <= nUpperLim; ++nz)
       {
-        vector<int> vnNum = {i, j, k};
-        nSumGcd += fnGcdGet(vnNum);
+        vector<int> vnNum = {nx, ny, nz};
+        nSumGcd += calcGcd(vnNum);
       }
 
   return nSumGcd;
@@ -43,10 +43,10 @@ int fnSumGcdTuples(int nNumK)
   
 int main()
 {
-  int nNumK;
+  int nUpperLim;
 
-  fnInput(nNumK);
-  cout << fnSumGcdTuples(nNumK) << endl;
+  input(nUpperLim);
+  cout << calcSumGcdTuples(nUpperLim) << endl;
 
   return 0;
 }
