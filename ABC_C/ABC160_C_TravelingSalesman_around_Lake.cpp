@@ -1,35 +1,38 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(int& rnLapDist, vector<int>& rvnOnePos)
+void input(int& rnLapDist, vector<int>& rvnOneDist)
 {
   int nOneDistSiz;
   cin >> rnLapDist >> nOneDistSiz;
-  rvnOnePos.resize(nOneDistSiz);
+  rvnOneDist.resize(nOneDistSiz);
 
-  for (int& nOneDist : rvnOnePos)
+  for (int& nOneDist : rvnOneDist)
     cin >> nOneDist;
 }
   
-double fnMinMoveDist(int nLapDist, const vector<int>& cnrvnOnePos)
+double calcMinMoveDist(int nLapDist, const vector<int>& cnrvnOneDist)
 {
   int nMaxOneDist = 0;
+  int nx = 0;
 
-  int i;
-  for (i = 0; i < cnrvnOnePos.size() - 1; i++)
-    nMaxOneDist = max(nMaxOneDist, abs(cnrvnOnePos[i + 1] - cnrvnOnePos[i]));
+  while (nx < cnrvnOneDist.size() - 1)
+  {
+    nMaxOneDist = max(nMaxOneDist, cnrvnOneDist[nx + 1] - cnrvnOneDist[nx]);
+    ++nx;
+  }
 
-  nMaxOneDist = max(nMaxOneDist, abs(nLapDist -cnrvnOnePos[i]) + cnrvnOnePos[0]);
+  nMaxOneDist = max(nMaxOneDist, nLapDist - cnrvnOneDist[nx] + cnrvnOneDist[0]);
   return nLapDist - nMaxOneDist;
 }
   
 int main()
 {
   int nLapDist;
-  vector<int> vnOnePos;
+  vector<int> vnOneDist;
 
-  fnInput(nLapDist, vnOnePos);
-  cout <<  fnMinMoveDist(nLapDist, vnOnePos) << endl;
+  input(nLapDist, vnOneDist);
+  cout <<  calcMinMoveDist(nLapDist, vnOneDist) << endl;
 
   return 0;
 }
