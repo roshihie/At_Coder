@@ -1,33 +1,32 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(vector<int>& rvnBoss)
+void input(vector<int>& rvnNumOfStaff)
 {
-  int nBossSiz;
-  cin >> nBossSiz;
-  rvnBoss.resize(nBossSiz - 1);
+  int nNumOfStaffSiz;
+  cin >> nNumOfStaffSiz;
+  rvnNumOfStaff.resize(nNumOfStaffSiz);
 
-  for (int& rnBoss : rvnBoss)
-    cin >> rnBoss;
+  for (int nx = 0; nx < rvnNumOfStaff.size() - 1; ++nx)
+  {
+    int nBoss;
+    cin >> nBoss;
+    ++rvnNumOfStaff[ --nBoss ];
+  }
 }
   
-void fnStaffGet(const vector<int>& cnrvnBoss)
+void calcNumOfStaff(const vector<int>& cnrvnNumOfStaff)
 {
-  vector<int> vnStaff(cnrvnBoss.size() + 1);
-
-  for (int nBoss : cnrvnBoss)
-    vnStaff[ nBoss - 1 ]++;
-
-  for (int nStaff : vnStaff)
-    cout << nStaff << endl;
+  for (int nNumOfStaff : cnrvnNumOfStaff)
+    cout << nNumOfStaff << endl;
 }
   
 int main()
 {
-  vector<int> vnBoss;
+  vector<int> vnNumOfStaff;
 
-  fnInput(vnBoss);
-  fnStaffGet(vnBoss);
+  input(vnNumOfStaff);
+  calcNumOfStaff(vnNumOfStaff);
 
   return 0;
 }

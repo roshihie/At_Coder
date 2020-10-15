@@ -16,8 +16,8 @@ int calcGcdTuples(const vector<int>& cnrvnNun)
 {
   int nGcd = cnrvnNun[0];
 
-  for (int nx = 1; nx < cnrvnNun.size(); ++nx)
-    nGcd = calcGcd(nGcd, cnrvnNun[nx]);
+  for (int ni = 1; ni < cnrvnNun.size(); ++ni)
+    nGcd = calcGcd(nGcd, cnrvnNun[ni]);
 
   return nGcd;
 }
