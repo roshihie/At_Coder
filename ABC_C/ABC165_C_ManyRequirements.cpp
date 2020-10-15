@@ -12,7 +12,7 @@ struct StRequir
   int m_nPoint;
 };
 
-void fnInput(int& rnSeqSiz, int& rnMaxNum, vector<StRequir>& rvoRequir)
+void input(int& rnSeqSiz, int& rnMaxNum, vector<StRequir>& rvoRequir)
 {
   int nReqSiz;
   cin >> rnSeqSiz >> rnMaxNum >> nReqSiz;
@@ -22,10 +22,10 @@ void fnInput(int& rnSeqSiz, int& rnMaxNum, vector<StRequir>& rvoRequir)
     cin >> roRequir.m_nBgn >> roRequir.m_nEnd >> roRequir.m_nDiff >> roRequir.m_nPoint;
 }
   
-void fnDfsSeqMake(int nPos, int nMaxNum, vector<int>& rvnSeq,
+void dfsMakeSeq(int nDept, int nMaxNum, vector<int>& rvnSeq,
                   const vector<StRequir>& cnrvoRequir, int& rnMaxPoint)
 {
-  if (nPos == rvnSeq.size())
+  if (nDept == rvnSeq.size())
   {
     int nPoint = 0;
 
@@ -37,22 +37,22 @@ void fnDfsSeqMake(int nPos, int nMaxNum, vector<int>& rvnSeq,
     return;
   }
 
-  if (nPos > 0)
-    rvnSeq[nPos] = rvnSeq[ nPos - 1 ];
+  if (nDept > 0)
+    rvnSeq[nDept] = rvnSeq[ nDept - 1 ];
 
-  while (rvnSeq[nPos] <= nMaxNum)
+  while (rvnSeq[nDept] <= nMaxNum)
   {
-    fnDfsSeqMake(nPos + 1, nMaxNum, rvnSeq, cnrvoRequir, rnMaxPoint);
-    rvnSeq[nPos]++;
+    dfsMakeSeq(nDept + 1, nMaxNum, rvnSeq, cnrvoRequir, rnMaxPoint);
+    ++rvnSeq[nDept];
   }
 }
 
-int fnMaxPointGet(int nSeqSiz, int nMaxNum, const vector<StRequir>& cnrvoRequir)
+int calcMaxPoint(int nSeqSiz, int nMaxNum, const vector<StRequir>& cnrvoRequir)
 {
   int nMaxPoint = 0;
   vector<int> vnSeq(nSeqSiz, 1);
 
-  fnDfsSeqMake(0, nMaxNum, vnSeq, cnrvoRequir, nMaxPoint);
+  dfsMakeSeq(0, nMaxNum, vnSeq, cnrvoRequir, nMaxPoint);
   return nMaxPoint;
 }
   
@@ -61,8 +61,8 @@ int main()
   int nSeqSiz, nMaxNum;
   vector<StRequir> voRequir;
 
-  fnInput(nSeqSiz, nMaxNum, voRequir);
-  cout << fnMaxPointGet(nSeqSiz, nMaxNum, voRequir) << endl;
+  input(nSeqSiz, nMaxNum, voRequir);
+  cout << calcMaxPoint(nSeqSiz, nMaxNum, voRequir) << endl;
 
   return 0;
 }

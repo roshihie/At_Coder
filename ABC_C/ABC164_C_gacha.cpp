@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(vector<string>& rvsGacha)
+void input(vector<string>& rvsGacha)
 {
   int nGachaSiz;
   cin >> nGachaSiz;
@@ -11,7 +11,7 @@ void fnInput(vector<string>& rvsGacha)
     cin >> rsGacha;
 }
   
-int fnGachaCnt(const vector<string>& cnrvsGacha)
+int countGacha(const vector<string>& cnrvsGacha)
 {
   set<string> stGacha;
 
@@ -25,8 +25,8 @@ int main()
 {
   vector<string> vsGacha;
 
-  fnInput(vsGacha);
-  cout << fnGachaCnt(vsGacha) << endl;
+  input(vsGacha);
+  cout << countGacha(vsGacha) << endl;
 
   return 0;
 }
