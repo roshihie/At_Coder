@@ -19,7 +19,10 @@ void input(int& rnSeqSiz, int& rnMaxNum, vector<StRequir>& rvoRequir)
   rvoRequir.resize(nReqSiz);
 
   for (StRequir& roRequir : rvoRequir)
+  {
     cin >> roRequir.m_nBgn >> roRequir.m_nEnd >> roRequir.m_nDiff >> roRequir.m_nPoint;
+    --roRequir.m_nBgn; --roRequir.m_nEnd;
+  }
 }
   
 void dfsMakeSeq(int nDept, int nMaxNum, vector<int>& rvnSeq,
@@ -30,7 +33,7 @@ void dfsMakeSeq(int nDept, int nMaxNum, vector<int>& rvnSeq,
     int nPoint = 0;
 
     for (StRequir oRequir : cnrvoRequir)
-      if (rvnSeq[ oRequir.m_nEnd - 1 ] - rvnSeq[ oRequir.m_nBgn - 1 ] == oRequir.m_nDiff)
+      if (rvnSeq[ oRequir.m_nEnd ] - rvnSeq[ oRequir.m_nBgn ] == oRequir.m_nDiff)
         nPoint += oRequir.m_nPoint;
 
     rnMaxPoint = max(rnMaxPoint, nPoint);

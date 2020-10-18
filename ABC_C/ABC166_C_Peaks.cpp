@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fnInput(vector<int>& rvnNode, vector<vector<int>>& rvvnEdge)
+void input(vector<int>& rvnNode, vector<vector<int>>& rvvnEdge)
 {
   int nNodeSiz, nEdgeSiz;
   cin >> nNodeSiz>> nEdgeSiz;
@@ -12,20 +12,21 @@ void fnInput(vector<int>& rvnNode, vector<vector<int>>& rvvnEdge)
   for (int& rnNode : rvnNode)
     cin >> rnNode;
 
-  for (int i = 0; i <= nEdgeSiz; i++)
+  for (int nx = 0; nx < nEdgeSiz; ++nx)
   {
     int nLeft, nRigt;
     cin >> nLeft >> nRigt;
-    rvvnEdge[ nLeft - 1 ].push_back( nRigt - 1 );
-    rvvnEdge[ nRigt - 1 ].push_back( nLeft - 1 );
+    --nLeft; --nRigt;
+    rvvnEdge[ nLeft ].push_back( nRigt );
+    rvvnEdge[ nRigt ].push_back( nLeft );
   }
 }
 
-int fnPeakCnt(const vector<int> cnrvnNode, const vector<vector<int>>& cnrvvnEdge)
+int calcGoodPeaks(const vector<int> cnrvnNode, const vector<vector<int>>& cnrvvnEdge)
 {
-  int nPeakCnt = 0;
+  int nGoodPeaks = 0;
 
-  for (int nBgn = 0; nBgn < cnrvnNode.size(); nBgn++)
+  for (int nBgn = 0; nBgn < cnrvnNode.size(); ++nBgn)
   {
     bool bPeak = true;
 
@@ -36,9 +37,9 @@ int fnPeakCnt(const vector<int> cnrvnNode, const vector<vector<int>>& cnrvvnEdge
         break;
       }
 
-    if (bPeak) nPeakCnt++;
+    if (bPeak) ++nGoodPeaks;
   }
-  return nPeakCnt;
+  return nGoodPeaks;
 }
   
 int main()
@@ -46,8 +47,8 @@ int main()
   vector<int> vnNode;
   vector<vector<int>> vvnEdge;
 
-  fnInput(vnNode, vvnEdge);
-  cout << fnPeakCnt(vnNode, vvnEdge) << endl;
+  input(vnNode, vvnEdge);
+  cout << calcGoodPeaks(vnNode, vvnEdge) << endl;
 
   return 0;
 }
