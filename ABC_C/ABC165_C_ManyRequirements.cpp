@@ -26,7 +26,7 @@ void input(int& rnSeqSiz, int& rnMaxNum, vector<StRequir>& rvoRequir)
 }
   
 void dfsMakeSeq(int nDept, int nMaxNum, vector<int>& rvnSeq,
-                  const vector<StRequir>& cnrvoRequir, int& rnMaxPoint)
+                const vector<StRequir>& cnrvoRequir, int& rnMaxPoint)
 {
   if (nDept == rvnSeq.size())
   {

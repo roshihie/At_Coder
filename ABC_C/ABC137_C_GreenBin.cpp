@@ -2,7 +2,7 @@
 using namespace std;
 using llong = long long;
 
-void fnInput(vector<string>& rvsStr)
+void input(vector<string>& rvsStr)
 {
   int nStrSiz;
   cin >> nStrSiz;
@@ -12,7 +12,7 @@ void fnInput(vector<string>& rvsStr)
     cin >> rsStr;
 }
   
-llong fnAnagramCnt(const vector<string>& cnrvsStr)
+llong calcAnagramCnt(const vector<string>& cnrvsStr)
 {
   vector<string> vsSortStr(cnrvsStr);
 
@@ -34,8 +34,8 @@ int main()
 {
   vector<string> vsStr;
 
-  fnInput(vsStr);
-  cout << fnAnagramCnt(vsStr) << endl;
+  input(vsStr);
+  cout << calcAnagramCnt(vsStr) << endl;
 
   return 0;
 }
