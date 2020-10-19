@@ -2,33 +2,33 @@
 using namespace std;
 using llong = long long;
 
-void fnInput(llong& rnNumber)
+void input(llong& rnNumber)
 {
   cin >> rnNumber;
 }
 
-llong fnMinStepGet(llong nNumber)
+llong calcMinSteps(llong nNumber)
 {
   int nSqrtInt = sqrt(nNumber);
   int nMultpler;
   llong nMultplcand;
 
-  for (int n = 1; n <= nSqrtInt; n++)
-    if (nNumber % n == 0)
+  for (int nx = 1; nx <= nSqrtInt; ++nx)
+    if (nNumber % nx == 0)
     {
-      nMultpler = n;
-      nMultplcand = nNumber / n;
+      nMultpler = nx;
+      nMultplcand = nNumber / nx;
     }
 
-  return (nMultplcand + nMultpler - 2);
+  return (nMultplcand - 1) + (nMultpler - 1);
 }
 
 int main()
 {
   llong nNumber;
 
-  fnInput(nNumber);
-  cout << fnMinStepGet(nNumber) << endl;
+  input(nNumber);
+  cout << calcMinSteps(nNumber) << endl;
 
   return 0;
 }
