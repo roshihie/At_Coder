@@ -9,24 +9,20 @@ void input(vector<string>& rvsStr)
   rvsStr.resize(nStrSiz);
 
   for (string& rsStr : rvsStr)
+  {
     cin >> rsStr;
+    sort(begin(rsStr), end(rsStr));
+  }
 }
   
 llong calcAnagramCnt(const vector<string>& cnrvsStr)
 {
-  vector<string> vsSortStr(cnrvsStr);
-
-  for (string& rsSortStr : vsSortStr)
-    sort(begin(rsSortStr), end(rsSortStr));
-
   llong nAnagramCnt = 0;
-  map<string, int> mpSortStr;
+  map<string, int> mpAnagram;
 
-  for (string sSortStr : vsSortStr)
-  {
-    nAnagramCnt += mpSortStr[ sSortStr ];
-    mpSortStr[ sSortStr ]++;
-  }
+  for (string sStr : cnrvsStr)
+    nAnagramCnt += mpAnagram[ sStr ]++;
+
   return nAnagramCnt;
 }
   
