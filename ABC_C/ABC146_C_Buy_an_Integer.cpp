@@ -2,12 +2,12 @@
 using namespace std;
 using llong = long long;
 
-void fnInput(int& rnPriceA, int& rnPriceB, llong& rnMoney)
+void input(int& rnPrcA, int& rnPrcB, llong& rnMoney)
 {
-  cin >> rnPriceA >> rnPriceB >> rnMoney;
+  cin >> rnPrcA >> rnPrcB >> rnMoney;
 }
 
-int fnDigitCnt(int nMid)
+int calcDigitCnt(int nMid)
 {
   int nDigitCnt = 0;
 
@@ -20,9 +20,9 @@ int fnDigitCnt(int nMid)
   return nDigitCnt;
 }
 
-int fnCanBuyInt(int nPriceA, int nPriceB, int nMid, llong nMoney)
+int canBuyInt(int nPrcA, int nPrcB, int nInt, llong nMoney)
 {
-   llong nIntPrice = (llong)nPriceA * nMid + (llong)nPriceB * fnDigitCnt(nMid);
+   llong nIntPrice = (llong)nPrcA * nInt + (llong)nPrcB * calcDigitCnt(nInt);
  
    if (nIntPrice <= nMoney)
      return 1;
@@ -30,9 +30,9 @@ int fnCanBuyInt(int nPriceA, int nPriceB, int nMid, llong nMoney)
      return 0;
 }
 
-int fnMaxBuyIntGet(int nPriceA, int nPriceB, llong nMoney)
+int calcMaxBuyInt(int nPrcA, int nPrcB, llong nMoney)
 {
-  int nHigh = 1000000001;
+  int nHigh = 1e9 + 1;
   int nLow  = 1;
   int nMaxBuyInt = 0;
 
@@ -40,7 +40,7 @@ int fnMaxBuyIntGet(int nPriceA, int nPriceB, llong nMoney)
   {
     int nMid = (nLow + nHigh) / 2;
 
-    if (fnCanBuyInt(nPriceA, nPriceB, nMid, nMoney))
+    if (canBuyInt(nPrcA, nPrcB, nMid, nMoney))
     {
       nMaxBuyInt = nMid;
       nLow = nMid + 1;
@@ -54,11 +54,11 @@ int fnMaxBuyIntGet(int nPriceA, int nPriceB, llong nMoney)
 
 int main()
 {
-  int nPriceA, nPriceB;
+  int nPrcA, nPrcB;
   llong nMoney;
 
-  fnInput(nPriceA, nPriceB, nMoney);
-  cout << fnMaxBuyIntGet(nPriceA, nPriceB, nMoney) << endl;
+  input(nPrcA, nPrcB, nMoney);
+  cout << calcMaxBuyInt(nPrcA, nPrcB, nMoney) << endl;
 
   return 0;
 }

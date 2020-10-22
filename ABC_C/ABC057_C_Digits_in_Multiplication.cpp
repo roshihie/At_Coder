@@ -12,7 +12,7 @@ int calcDigits(int nDividend)
   int nDgtCnt = 1;
 
   while (nDividend /= 10)
-    nDgtCnt++;
+    ++nDgtCnt;
 
   return nDgtCnt;
 }
@@ -22,7 +22,7 @@ int isMultiple(llong nNum)
   int nDivisor = sqrt(nNum);
 
   while (nNum % nDivisor)
-    nDivisor--;
+    --nDivisor;
 
   int nDividend = nNum / nDivisor;
   return calcDigits(nDividend);  
