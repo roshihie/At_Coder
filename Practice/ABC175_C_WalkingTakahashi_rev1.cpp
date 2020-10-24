@@ -9,16 +9,20 @@ void input(llong& rnCoordx, llong& rnTimes, llong& rnMovmnt)
   
 llong calcMinCoordx(llong nCoordx, llong nTimes, llong nMovmnt)
 {
-  llong nQuotnt = nCoordx / nMovmnt;
-  llong nRemain = nCoordx % nMovmnt;
+  llong nQuantnt = nCoordx / nMovmnt;
 
-  if (nQuotnt < nTimes)
-    if (nQuotnt % 2 == nTimes % 2)
-      return nRemain;
-    else
-      return abs(nRemain - nMovmnt);
-  else
+  if (nQuantnt >= nTimes)
     return nCoordx - nMovmnt * nTimes;
+  else
+  {
+    nCoordx -= nMovmnt * nQuantnt;
+    nTimes -= nQuantnt;
+
+    if ( nTimes % 2 )
+      return abs(nCoordx - nMovmnt);
+    else
+      return nCoordx;
+  }
 }
   
 int main()

@@ -9,18 +9,18 @@ void input(int& rnLimit, vector<llong>& rvnCostA, vector<llong>& rvnCostB)
   rvnCostA.resize(nCostASiz + 1);
   rvnCostB.resize(nCostBSiz + 1);
 
-  for (int i = 1; i < rvnCostA.size(); i++)
+  for (int nx = 1; nx < rvnCostA.size(); ++nx)
   {
     int nOneCost;
     cin >> nOneCost;
-    rvnCostA[i] = rvnCostA[i - 1] + nOneCost;
+    rvnCostA[nx] = rvnCostA[nx - 1] + nOneCost;
   }
 
-  for (int i = 1; i < rvnCostB.size(); i++)
+  for (int nx = 1; nx < rvnCostB.size(); ++nx)
   {
     int nOneCost;
     cin >> nOneCost;
-    rvnCostB[i] = rvnCostB[i - 1] + nOneCost;
+    rvnCostB[nx] = rvnCostB[nx - 1] + nOneCost;
   }
 }
 
@@ -37,12 +37,12 @@ int calcMaxSelect(int nLimit, const vector<llong>& cnrvnCostA,
     int nxB = nBgnB;
 
     while ( cnrvnCostB[nxB] > nLimit - cnrvnCostA[nxA] )
-      nxB--;
+      --nxB;
 
     nMaxSelCnt = max(nMaxSelCnt, nxA + nxB);
     nBgnB = nxB;
 
-    nxA++;
+    ++nxA;
   }
   return nMaxSelCnt;
 }
