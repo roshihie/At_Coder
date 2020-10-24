@@ -7,24 +7,23 @@ void input(int& rnPrcA, int& rnPrcB, llong& rnMoney)
   cin >> rnPrcA >> rnPrcB >> rnMoney;
 }
 
-int calcDigitCnt(int nMid)
+int calcDigitCnt(int nTrg)
 {
   int nDigitCnt = 0;
 
-  while (nMid != 0)
+  while ( nTrg )
   {
-    nDigitCnt++;
-    nMid /= 10;
+    ++nDigitCnt;
+    nTrg /= 10;
   }
-
   return nDigitCnt;
 }
 
-int canBuyInt(int nPrcA, int nPrcB, int nInt, llong nMoney)
+int canBuyInt(int nPrcA, int nPrcB, int nTrg, llong nMoney)
 {
-   llong nIntPrice = (llong)nPrcA * nInt + (llong)nPrcB * calcDigitCnt(nInt);
+   llong nTrgPrice = (llong)nPrcA * nTrg + (llong)nPrcB * calcDigitCnt(nTrg);
  
-   if (nIntPrice <= nMoney)
+   if (nTrgPrice <= nMoney)
      return 1;
    else
      return 0;

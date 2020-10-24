@@ -9,8 +9,8 @@ void input(llong& nNumN, llong& nNumK)
   
 llong calcMinNum(llong nNumN, llong nNumK)
 {
-  llong nRepNum = nNumN % nNumK;
-  return min(nRepNum, nNumK - nRepNum);
+  llong nModK = nNumN % nNumK;
+  return min(nModK, nNumK - nModK);
 }
   
 int main()
