@@ -28,21 +28,17 @@ int calcMaxSelect(int nLimit, const vector<llong>& cnrvnCostA,
                               const vector<llong>& cnrvnCostB)
 {
   int nMaxSelCnt = 0;
-  int nBgnB = cnrvnCostB.size() - 1;
-  int nxA = 0;
+  int nFwdA = 0;
+  int nBwdB = cnrvnCostB.size() - 1;
 
-  while ( nxA < cnrvnCostA.size()  &&
-          cnrvnCostA[nxA] <= nLimit   )
+  while ( nFwdA < cnrvnCostA.size()  &&
+          cnrvnCostA[nFwdA] <= nLimit   )
   {
-    int nxB = nBgnB;
+    while ( cnrvnCostB[nBwdB] > nLimit - cnrvnCostA[nFwdA] )
+      --nBwdB;
 
-    while ( cnrvnCostB[nxB] > nLimit - cnrvnCostA[nxA] )
-      --nxB;
-
-    nMaxSelCnt = max(nMaxSelCnt, nxA + nxB);
-    nBgnB = nxB;
-
-    ++nxA;
+    nMaxSelCnt = max(nMaxSelCnt, nFwdA + nBwdB);
+    ++nFwdA;
   }
   return nMaxSelCnt;
 }
