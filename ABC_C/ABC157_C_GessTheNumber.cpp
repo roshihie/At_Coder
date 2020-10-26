@@ -9,16 +9,17 @@ void input(string& rsNum, bool& rbRslt)
 
   rbRslt = true;
 
-  for (int i = 0; i < nInfSiz; ++i)
+  for (int nx = 0; nx < nInfSiz; ++nx)
   {
     int nPos, nNum;
     cin >> nPos >> nNum;
+    --nPos;
 
-    if ( nPos == 1 && nNum == 0 && nDigit > 1 )
+    if ( nPos == 0 && nNum == 0 && nDigit > 1 )
       rbRslt = false;
-    else if ( rsNum[nPos - 1] == ' ' )
-      rsNum[nPos - 1] = '0' + nNum;
-    else if ( rsNum[nPos - 1] != '0' + nNum )
+    else if ( rsNum[nPos] == ' ' )
+      rsNum[nPos] = '0' + nNum;
+    else if ( rsNum[nPos] != '0' + nNum )
       rbRslt = false;
     else
       continue;
