@@ -24,7 +24,7 @@ int calcMinPriceSkillup(int nAchieve, const vector<int>& cnrvnPrice,
 
   for (int nCtl = 0; nCtl < ( 1 << cnrvnPrice.size() ); ++nCtl)
   {
-    int nPrice = 0;
+    int nSumPrice = 0;
     vector<int> vnSumSkill(cnrvvnSkill[0].size());
 
     for (int ny = 0; ny < cnrvnPrice.size(); ++ny)
@@ -33,7 +33,7 @@ int calcMinPriceSkillup(int nAchieve, const vector<int>& cnrvnPrice,
         for (int nx = 0; nx < cnrvvnSkill[ny].size(); ++nx)
           vnSumSkill[nx] += cnrvvnSkill[ny][nx];
 
-        nPrice += cnrvnPrice[ny];
+        nSumPrice += cnrvnPrice[ny];
       }
 
     bool bRslt = true;
@@ -46,7 +46,7 @@ int calcMinPriceSkillup(int nAchieve, const vector<int>& cnrvnPrice,
       }
 
     if (bRslt)
-      nMinPrice = min(nMinPrice, nPrice);
+      nMinPrice = min(nMinPrice, nSumPrice);
   }
   if (nMinPrice == INT_MAX)
     return -1;
