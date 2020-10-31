@@ -18,8 +18,8 @@ llong calcMinAttackCnt(int nFinCnt, const vector<int>& cnrvnLifePnt)
 {
   llong nMinAttackCnt = 0;
 
-  for (int n = nFinCnt; n < cnrvnLifePnt.size(); n++)
-    nMinAttackCnt += cnrvnLifePnt[n];
+  for (int nx = nFinCnt; nx < cnrvnLifePnt.size(); ++nx)
+    nMinAttackCnt += cnrvnLifePnt[nx];
 
   return nMinAttackCnt;
 }
