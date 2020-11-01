@@ -15,16 +15,12 @@ void calcSeqMaxNum(const vector<int>& cnrvnSeq)
 {
   vector<int> vnSrtSeq(cnrvnSeq);
   sort(begin(vnSrtSeq), end(vnSrtSeq));
-
+  
   for (int nx = 0; nx < cnrvnSeq.size(); ++nx)
-  {
-    int nMax = vnSrtSeq[vnSrtSeq.size() - 1];
-
     if (cnrvnSeq[nx] == vnSrtSeq[vnSrtSeq.size() - 1])
-      nMax = vnSrtSeq[vnSrtSeq.size() - 2];
-
-    cout << nMax << endl;
-  }
+      cout << vnSrtSeq[vnSrtSeq.size() - 2] << endl;
+    else
+      cout << vnSrtSeq[vnSrtSeq.size() - 1] << endl;
 }
   
 int main()
