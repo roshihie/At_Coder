@@ -18,19 +18,19 @@ void input(vector<int>& rvnMonstr, vector<int>& rvnBrave)
   
 llong calcStrikMonstr(vector<int>& rvnMonstr, vector<int>& rvnBrave)
 {
-  llong nSumStrikMon = 0;
+  llong nStrikMonstr = 0;
 
   for (int nBgn = 0; nBgn < rvnBrave.size(); ++nBgn)
     for (int nFwd = nBgn; nFwd < nBgn + 2; ++nFwd)
     {
-      int nStrikMonstr = min(rvnBrave[nBgn], rvnMonstr[nFwd]);
+      int nCurStrik = min(rvnBrave[nBgn], rvnMonstr[nFwd]);
 
-      rvnMonstr[nFwd] -= nStrikMonstr;
-      rvnBrave[nBgn]  -= nStrikMonstr;
-      nSumStrikMon += nStrikMonstr;
+      rvnMonstr[nFwd] -= nCurStrik;
+      rvnBrave[nBgn]  -= nCurStrik;
+      nStrikMonstr += nCurStrik;
     }
 
-  return nSumStrikMon;
+  return nStrikMonstr;
 }
   
 int main()
