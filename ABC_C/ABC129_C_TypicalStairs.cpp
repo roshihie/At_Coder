@@ -2,47 +2,47 @@
 using namespace std;
 using llong = long long;
 
-void input(int& rnStair, vector<int>& rvnFine)
+void input(vector<int>& rvnFine)
 {
-  int nFineSiz;
-  cin >> rnStair >> nFineSiz;
-  rvnFine.resize(rnStair + 1, true);
+  int nStair;
+  int nBrokenSiz;
+  cin >> nStair >> nBrokenSiz;
+  rvnFine.resize(nStair + 1, true);
 
-  for (int i = 0; i < nFineSiz; i++)
+  for (int i = 0; i < nBrokenSiz; i++)
   {
-    int nFine;
-    cin >> nFine;
-    rvnFine[ nFine ] = false;
+    int nBroken;
+    cin >> nBroken;
+    rvnFine[ nBroken ] = false;
   }
 }
 
-llong calcNumOfWays(int nStair, const vector<int>& cnrvnFine)
+llong calcNumOfWays(const vector<int>& cnrvnFine)
 {
-  const int cnnMod = 1000000007;
-  vector<llong> vnDPWays(nStair + 1);
+  const int cnnMod = 1e9 + 7;
+  vector<llong> vnDpWays(cnrvnFine.size());
 
-  vnDPWays[0] = 1;
+  vnDpWays[0] = 1;
 
-  for (int i = 1; i < vnDPWays.size(); i++)
-    if (cnrvnFine[i])
+  for (int nx = 1; nx < vnDpWays.size(); ++nx)
+    if ( cnrvnFine[nx] )
     {
-      vnDPWays[i] += vnDPWays[i - 1];
-      if (i > 1)
-        vnDPWays[i] += vnDPWays[i - 2];
+      vnDpWays[nx] += vnDpWays[nx - 1];
+      if (nx > 1)
+        vnDpWays[nx] += vnDpWays[nx - 2];
 
-      vnDPWays[i] %= cnnMod;
+      vnDpWays[nx] %= cnnMod;
     }
 
-  return vnDPWays[vnDPWays.size() - 1];
+  return vnDpWays[ vnDpWays.size() - 1 ];
 }
   
 int main()
 {
-  int nStair;
   vector<int> vnFine;
 
-  input(nStair, vnFine);
-  cout << calcNumOfWays(nStair, vnFine) << endl;
+  input(vnFine);
+  cout << calcNumOfWays(vnFine) << endl;
 
   return 0;
 }
