@@ -20,7 +20,7 @@ double calcWinRate(int nMaxNum, int nWinPnt)
   }
   double nWinRate = 0.0;
 
-  for (int nPower = vnBorder.size() - 1; nPower > 0; nPower--)
+  for (int nPower = vnBorder.size() - 1; nPower > 0; --nPower)
   {
     double nOneRate = 0.0;
     int nNum = vnBorder[nPower];
@@ -28,9 +28,9 @@ double calcWinRate(int nMaxNum, int nWinPnt)
     while (nNum < min(vnBorder[nPower - 1], nMaxNum + 1))
     {
       nOneRate += 1.0 / nMaxNum;
-      nNum++;
+      ++nNum;
     }
-    for (int n = 0; n < nPower; n++)
+    for (int nx = 0; nx < nPower; ++nx)
       nOneRate /= 2;
 
     nWinRate += nOneRate;
