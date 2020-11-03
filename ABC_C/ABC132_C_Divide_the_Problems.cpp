@@ -16,8 +16,8 @@ int calcDevPgmCnt(const vector<int>& cnrvnProblm)
   vector<int> vnSrtProblm(cnrvnProblm);
   sort(begin(vnSrtProblm), end(vnSrtProblm));
 
-  int n = vnSrtProblm.size() / 2;
-  return (vnSrtProblm[n] - vnSrtProblm[n - 1]);
+  int nx = vnSrtProblm.size() / 2;
+  return (vnSrtProblm[nx] - vnSrtProblm[nx - 1]);
 }
   
 int main()
