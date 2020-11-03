@@ -11,12 +11,10 @@ void input(vector<int>& rvnNum)
     cin >> rnNum;
 }
 
-int gcd(int nOne, int nOtr)
+int calcGcd(int nOne, int nOtr)
 {
-  if (nOtr == 0)
-    return nOne;
-  else
-    return gcd(nOtr, nOne % nOtr);
+  if ( !nOtr ) return nOne;
+  return calcGcd(nOtr, nOne % nOtr);
 }
 
 int calcMaxGcd(const vector<int>& cnrvnNum)
@@ -27,21 +25,21 @@ int calcMaxGcd(const vector<int>& cnrvnNum)
 
   vnLeftGcd[0] = cnrvnNum[0];
   
-  for (int i = 1; i < cnrvnNum.size(); i++)
-    vnLeftGcd[i] = gcd(vnLeftGcd[i - 1], cnrvnNum[i]);
+  for (int nx = 1; nx < cnrvnNum.size(); ++nx)
+    vnLeftGcd[nx] = calcGcd(vnLeftGcd[nx - 1], cnrvnNum[nx]);
   
   vnRigtGcd[cnrvnNum.size() - 1] = cnrvnNum[cnrvnNum.size() - 1];
 
-  for (int i = cnrvnNum.size() - 2; i >= 0; i--)
-    vnRigtGcd[i] = gcd(vnRigtGcd[i + 1], cnrvnNum[i]);
+  for (int nx = cnrvnNum.size() - 2; nx >= 0; --nx)
+    vnRigtGcd[nx] = calcGcd(vnRigtGcd[nx + 1], cnrvnNum[nx]);
 
-  for (int i = 0; i < cnrvnNum.size(); i++)
-    if (i == 0)
-      nMaxGcd = max(nMaxGcd, vnRigtGcd[i + 1] );
-    else if (i == cnrvnNum.size() - 1)
-      nMaxGcd = max(nMaxGcd, vnLeftGcd[i - 1] );
+  for (int nx = 0; nx < cnrvnNum.size(); ++nx)
+    if (nx == 0)
+      nMaxGcd = max(nMaxGcd, vnRigtGcd[nx + 1] );
+    else if (nx == cnrvnNum.size() - 1)
+      nMaxGcd = max(nMaxGcd, vnLeftGcd[nx - 1] );
     else
-      nMaxGcd = max(nMaxGcd, gcd(vnLeftGcd[i - 1], vnRigtGcd[i + 1] ));
+      nMaxGcd = max(nMaxGcd, calcGcd(vnLeftGcd[nx - 1], vnRigtGcd[nx + 1] ));
   
   return nMaxGcd;
 }

@@ -11,12 +11,10 @@ void input(int& rnBgn, vector<int>& rvnCoord)
     cin >> rnCoord;
 }
 
-int gcd(int nOne, int nOtr)
+int calcGcd(int nOne, int nOtr)
 {
-  if ( !nOtr )
-    return nOne;
-  else
-    return gcd(nOtr, nOne % nOtr);
+  if ( !nOtr ) return nOne;
+  return calcGcd(nOtr, nOne % nOtr);
 }
 
 int calcMaxMovemnt(int nBgn, const vector<int>& cnrvnCoord)
@@ -29,7 +27,7 @@ int calcMaxMovemnt(int nBgn, const vector<int>& cnrvnCoord)
   int nGcd = vnDiff[0];
 
   for (int i = 1; i < vnDiff.size(); ++i)
-    nGcd = gcd(nGcd, vnDiff[i]);
+    nGcd = calcGcd(nGcd, vnDiff[i]);
 
   return nGcd;
 }

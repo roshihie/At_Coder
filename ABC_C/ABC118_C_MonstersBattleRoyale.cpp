@@ -11,12 +11,10 @@ void input(vector<int>& rvnLife)
     cin >> rnLife;
 }
 
-int gcd(int nOne, int nOtr)
+int calcGcd(int nOne, int nOtr)
 {
-  if (nOtr == 0)
-    return nOne;
-  else
-    return gcd(nOtr, nOne % nOtr);
+  if ( !nOtr ) return nOne;
+  return calcGcd(nOtr, nOne % nOtr);
 }
 
 int calcMinLife(const vector<int>& cnrvnLife)
@@ -24,7 +22,7 @@ int calcMinLife(const vector<int>& cnrvnLife)
   int nMinLife = cnrvnLife[0];
 
   for (int i = 1; i < cnrvnLife.size(); i++)
-    nMinLife = gcd(nMinLife, cnrvnLife[i]);
+    nMinLife = calcGcd(nMinLife, cnrvnLife[i]);
 
   return nMinLife;
 }
