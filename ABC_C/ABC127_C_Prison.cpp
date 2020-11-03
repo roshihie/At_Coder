@@ -23,7 +23,7 @@ void input(vector<StGate>& rvoGate)
 int countAlmightyPass(const vector<StGate>& cnrvoGate)
 {
   int nAlmightyPassLow = 0;
-  int nAlmightyPassHigh = 100001;
+  int nAlmightyPassHigh = 1e5 + 1;
 
   for (StGate oGate : cnrvoGate)
   {

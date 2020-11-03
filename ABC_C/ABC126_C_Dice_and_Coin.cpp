@@ -10,10 +10,10 @@ double calcWinRate(int nMaxNum, int nWinPnt)
 {
   double nWinRate = 0;
 
-  for (int n = 1; n <= nMaxNum; n++)
+  for (int nx = 1; nx <= nMaxNum; ++nx)
   {
     double nOneRate = 1.0 / nMaxNum;
-    int nCur = n;
+    int nCur = nx;
 
     while (nCur < nWinPnt)
     {
