@@ -13,15 +13,15 @@ llong toInt(const vector<char>& cnrvcNum)
   llong nRtn = 0;
   int nNumPos = 0;
 
-  for (int i = cnrvcNum.size() - 1; i >= 0; i--)
+  for (int nx = cnrvcNum.size() - 1; nx >= 0; --nx)
   {
-    if (cnrvcNum[i] == '0') break;
-    llong nNum = cnvnDgt[ cnrvcNum[i] - '0' ];
+    if (cnrvcNum[nx] == '0') break;
+    llong nNum = cnvnDgt[ cnrvcNum[nx] - '0' ];
     
-    for (int n = 0; n < nNumPos; n++) nNum *= 10;
+    for (int ny = 0; ny < nNumPos; ++ny) nNum *= 10;
 
     nRtn += nNum;
-    nNumPos++;
+    ++nNumPos;
   }
   return nRtn;
 }
@@ -30,10 +30,10 @@ int isDgt753(const vector<char>& cnrvcNum)
 {
   int nDgt3 = 0, nDgt5 = 0, nDgt7 = 0;
 
-  for (int i = 0; i < cnrvcNum.size(); i++)
-    if      (cnrvcNum[i] == '1') nDgt3++;
-    else if (cnrvcNum[i] == '2') nDgt5++;
-    else if (cnrvcNum[i] == '3') nDgt7++;
+  for (int nx = 0; nx < cnrvcNum.size(); ++nx)
+    if      (cnrvcNum[nx] == '1') ++nDgt3;
+    else if (cnrvcNum[nx] == '2') ++nDgt5;
+    else if (cnrvcNum[nx] == '3') ++nDgt7;
 
   if (nDgt3 && nDgt5 && nDgt7)
     return 1;
@@ -49,14 +49,14 @@ int countDgt753(int nMaxNum)
 
   while (toInt(vcNum) <= nMaxNum) 
   {
-    if (isDgt753(vcNum)) nDgt753Cnt++;
+    if ( isDgt753(vcNum) ) ++nDgt753Cnt;
 
-    vcNum[vcNum.size() - 1]++;
-    for (int i = vcNum.size() - 1; i > 0; i--)
-      if (vcNum[i] > '3')
+    ++vcNum[vcNum.size() - 1];
+    for (int nx = vcNum.size() - 1; nx > 0; --nx)
+      if (vcNum[nx] > '3')
       {  
-        vcNum[i - 1]++;
-        vcNum[i] = '1';
+        ++vcNum[nx - 1];
+        vcNum[nx] = '1';
       }
       else
         break;

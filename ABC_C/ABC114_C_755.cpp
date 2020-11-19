@@ -15,9 +15,9 @@ bool isDgt753(llong nRecNum)
   {
     int n1stDgt = nRecNum % 10;
 
-    if      (n1stDgt == 3) nDgt3++;
-    else if (n1stDgt == 5) nDgt5++;
-    else if (n1stDgt == 7) nDgt7++;
+    if      (n1stDgt == 3) ++nDgt3;
+    else if (n1stDgt == 5) ++nDgt5;
+    else if (n1stDgt == 7) ++nDgt7;
 
     nRecNum /= 10;
   }
@@ -32,13 +32,13 @@ void dfs(int nMaxNum, llong nRecNum)
   static int stn753DgtCnt = 0;
 
   if (nRecNum > nMaxNum) return;
-  if (isDgt753(nRecNum)) stn753DgtCnt++;
+  if ( isDgt753(nRecNum) ) ++stn753DgtCnt;
 
   dfs(nMaxNum, 10 * nRecNum + 3);
   dfs(nMaxNum, 10 * nRecNum + 5);
   dfs(nMaxNum, 10 * nRecNum + 7);
 
-  if (!nRecNum) cout << stn753DgtCnt << endl;
+  if ( !nRecNum ) cout << stn753DgtCnt << endl;
 }
 
 int main()
