@@ -11,17 +11,17 @@ llong toInt(const vector<char>& cnrvcNum)
 {
   const vector<int> cnvnDgt = {0, 3, 5, 7};
   llong nRtn = 0;
-  int nNumPos = 0;
+  int nDgtPos = 0;
 
   for (int nx = cnrvcNum.size() - 1; nx >= 0; --nx)
   {
     if (cnrvcNum[nx] == '0') break;
     llong nNum = cnvnDgt[ cnrvcNum[nx] - '0' ];
     
-    for (int ny = 0; ny < nNumPos; ++ny) nNum *= 10;
+    for (int nPos = 0; nPos < nDgtPos; ++nPos) nNum *= 10;
 
     nRtn += nNum;
-    ++nNumPos;
+    ++nDgtPos;
   }
   return nRtn;
 }
