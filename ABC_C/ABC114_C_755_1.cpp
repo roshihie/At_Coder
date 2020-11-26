@@ -33,7 +33,7 @@ int digitDp(string sMaxNum)
             {
               if ( !nSmall && nMaxDgt < cnvnDgt[nx] ) 
                 break;
-              if (( nDgt3 || nDgt5 || nDgt7) && !cnvnDgt[nx] )
+              if (( nDgt3 || nDgt5 || nDgt7 ) && !cnvnDgt[nx] )
                 continue;
 
               int nTrgSmall = nSmall || (cnvnDgt[nx] < nMaxDgt);
