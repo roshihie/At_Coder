@@ -18,19 +18,19 @@ void fnInput(vector<StCoord>& rvoCoord)
     cin >> roCoord.m_nXcord >> roCoord.m_nYcord;
 }
 
-int fnDistGet(int i, int j, const vector<StCoord>& cnrvoCoord)
+int fnDistGet(int nOne, int nOtr, const vector<StCoord>& cnrvoCoord)
 {
-  return pow((cnrvoCoord[i].m_nXcord - cnrvoCoord[j].m_nXcord), 2) +
-         pow((cnrvoCoord[i].m_nYcord - cnrvoCoord[j].m_nYcord), 2);
+  return pow((cnrvoCoord[nOne].m_nXcord - cnrvoCoord[nOtr].m_nXcord), 2) +
+         pow((cnrvoCoord[nOne].m_nYcord - cnrvoCoord[nOtr].m_nYcord), 2);
 }
 
 double fnLongestDist(const vector<StCoord>& cnrvoCoord)
 {
   int nMaxDist = 0;
-  for (int i = 0; i < cnrvoCoord.size(); i++)
-    for (int j = 0; j < cnrvoCoord.size(); j++)
-      if (i != j)
-        nMaxDist = max(nMaxDist, fnDistGet(i, j, cnrvoCoord));
+  for (int nOne = 0; nOne < cnrvoCoord.size(); ++nOne)
+    for (int nOtr = 0; nOtr < cnrvoCoord.size(); ++nOtr)
+      if (nOne != nOtr)
+        nMaxDist = max(nMaxDist, fnDistGet(nOne, nOtr, cnrvoCoord));
 
    return sqrt((double)nMaxDist); 
 }

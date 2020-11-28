@@ -29,16 +29,16 @@ void calcSubStrACCnt(string sStr, const vector<StQuery>& cnrvoQuery)
   //sStr_pos      1 2 3 4 5 6 7 8
   //sStr          A C A C T A C G
   //sStr_ix       0 1 2 3 4 5 6 7
-  for (int nBgn = 0; nBgn < vnCumlSum.size() - 1; nBgn++)
+  for (int nBgn = 0; nBgn < vnCumlSum.size() - 1; ++nBgn)
   {
     vnCumlSum[ nBgn + 2 ] = vnCumlSum[ nBgn + 1 ];
     if (sStr[nBgn] == 'A' && sStr[nBgn + 1] == 'C')
-      vnCumlSum[ nBgn + 2 ]++;
+      ++vnCumlSum[ nBgn + 2 ];
   }
 
- for (int i = 0; i < cnrvoQuery.size(); i++)
+ for (int nx = 0; nx < cnrvoQuery.size(); ++nx)
   {
-    cout << vnCumlSum[ cnrvoQuery[i].m_nRigt ] - vnCumlSum[ cnrvoQuery[i].m_nLeft ];
+    cout << vnCumlSum[ cnrvoQuery[nx].m_nRigt ] - vnCumlSum[ cnrvoQuery[nx].m_nLeft ];
     cout << endl; 
   }
 }

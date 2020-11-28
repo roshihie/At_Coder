@@ -16,11 +16,11 @@ int fnDPCost(const vector<int>& cnrvnStage, int nJmpStage)
   vector<int> vnDPCost(cnrvnStage.size(), INT_MAX);
   vnDPCost[0] = 0;
 
-  for (int i = 0; i < cnrvnStage.size() - 1; i++)
-    for (int j = 1; j <= nJmpStage; j++)
-      if (i + j < cnrvnStage.size())
-        vnDPCost[i + j] = 
-          min(vnDPCost[i + j], vnDPCost[i] + abs(cnrvnStage[i + j] - cnrvnStage[i]));
+  for (int nx = 0; nx < cnrvnStage.size() - 1; ++nx)
+    for (int ny = 1; ny <= nJmpStage; ++ny)
+      if (nx + ny < cnrvnStage.size())
+        vnDPCost[nx + ny] = 
+          min(vnDPCost[nx + ny], vnDPCost[nx] + abs(cnrvnStage[nx + ny] - cnrvnStage[nx]));
       else
         break;
 

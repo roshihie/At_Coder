@@ -21,8 +21,8 @@ int calcMinLife(const vector<int>& cnrvnLife)
 {
   int nMinLife = cnrvnLife[0];
 
-  for (int i = 1; i < cnrvnLife.size(); i++)
-    nMinLife = calcGcd(nMinLife, cnrvnLife[i]);
+  for (int nx = 1; nx < cnrvnLife.size(); ++nx)
+    nMinLife = calcGcd(nMinLife, cnrvnLife[nx]);
 
   return nMinLife;
 }

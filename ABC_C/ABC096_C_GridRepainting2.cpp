@@ -27,12 +27,12 @@ int canAchive(const vector<string>& cnrvsGrid)
   const vector<int> cnvnDy = {-1,  0,  1,  0};
   const vector<int> cnvnDx = { 0, -1,  0,  1};
 
-  for (int ny = 0; ny < cnrvsGrid.size(); ny++)
-    for (int nx = 0; nx < cnrvsGrid[ny].size(); nx++)
+  for (int ny = 0; ny < cnrvsGrid.size(); ++ny)
+    for (int nx = 0; nx < cnrvsGrid[ny].size(); ++nx)
       if (cnrvsGrid[ny][nx] == '#')
       {
         bool bReslt = false;
-        for (int ni = 0; ni < cnvnDy.size(); ni++)
+        for (int ni = 0; ni < cnvnDy.size(); ++ni)
           if (repaintCell(ny + cnvnDy[ni], nx + cnvnDx[ni], cnrvsGrid))
             bReslt = true;
 

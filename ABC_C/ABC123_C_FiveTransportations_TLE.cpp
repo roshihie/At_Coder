@@ -20,12 +20,12 @@ int calcTransptCnt(llong nMaxNum, const vector<llong>& cnrvnCapcty)
   {
     nTime++;
 
-    for (int n = cnrvnCapcty.size() - 1; n >= 0; n--)
-      if ( vnNum[n] )
+    for (int nx = cnrvnCapcty.size() - 1; nx >= 0; --nx)
+      if ( vnNum[nx] )
       {
-        llong nTrnsNum = min(vnNum[n], cnrvnCapcty[n]);
-        vnNum[n] -= nTrnsNum;
-        vnNum[n + 1] += nTrnsNum;
+        llong nTrnsNum = min(vnNum[nx], cnrvnCapcty[nx]);
+        vnNum[nx] -= nTrnsNum;
+        vnNum[nx + 1] += nTrnsNum;
       }
 
   }

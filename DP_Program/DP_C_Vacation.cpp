@@ -7,25 +7,26 @@ void fnInput(vector<vector<int>>& rvvnEnjoy)
   cin >> nEnjoySiz;
   rvvnEnjoy.resize(nEnjoySiz, vector<int>(3));
 
-  for (int i = 0; i < nEnjoySiz; i++)
-    cin >> rvvnEnjoy[i][0] >> rvvnEnjoy[i][1] >> rvvnEnjoy[i][2];
+  for (int nx = 0; nx < nEnjoySiz; ++nx)
+    cin >> rvvnEnjoy[nx][0] >> rvvnEnjoy[nx][1] >> rvvnEnjoy[nx][2];
 }
   
 int fnDPHappy(const vector<vector<int>>& cnrvvnEnjoy)
 {
   vector<vector<int>> vvnDPHappy(cnrvvnEnjoy.size() + 1, vector<int>(cnrvvnEnjoy[0].size()));
 
-  for (int i = 0; i < cnrvvnEnjoy.size(); i++)
-    for (int j = 0; j < cnrvvnEnjoy[i].size(); j++)
-      for (int k = 0; k < cnrvvnEnjoy[i].size(); k++)
-        if (j != k)
-          vvnDPHappy[i + 1][j] = max(vvnDPHappy[i + 1][j], vvnDPHappy[i][k] + cnrvvnEnjoy[i][j]);
+  for (int nx = 0; nx < cnrvvnEnjoy.size(); ++nx)
+    for (int ny = 0; ny < cnrvvnEnjoy[nx].size(); ++ny)
+      for (int nz = 0; nz < cnrvvnEnjoy[nx].size(); ++nz)
+        if (ny != nz)
+          vvnDPHappy[nx + 1][ny] = max(vvnDPHappy[nx + 1][ny], 
+                                       vvnDPHappy[nx][nz] + cnrvvnEnjoy[nx][ny]);
 
   int nMaxHappy = 0;
   int nLastDay = vvnDPHappy.size() - 1;
 
-  for (int j = 0; j < vvnDPHappy[nLastDay].size(); j++)
-    nMaxHappy = max(nMaxHappy, vvnDPHappy[nLastDay][j]);
+  for (int ny = 0; ny < vvnDPHappy[nLastDay].size(); ++ny)
+    nMaxHappy = max(nMaxHappy, vvnDPHappy[nLastDay][ny]);
 
   return nMaxHappy;
 }

@@ -12,22 +12,22 @@ void input(llong& rnMaxNum, vector<llong>& rvnCapcty)
 
 llong calcTransptCnt(llong nMaxNum, vector<llong>& rvnCapcty)
 {
-  for (int i = 0; i < rvnCapcty.size() - 1; i++)   // 交通機関の容量を直前の大きさに合わせる
-    if (rvnCapcty[i] < rvnCapcty[i + 1])
-      rvnCapcty[i + 1] = rvnCapcty[i];
+  for (int nx = 0; nx < rvnCapcty.size() - 1; ++nx)  // 交通機関の容量を直前の大きさに合わせる
+    if (rvnCapcty[nx] < rvnCapcty[nx + 1])
+      rvnCapcty[nx + 1] = rvnCapcty[nx];
   
-  vector<llong> vnTime(6);                         // 各都市への移動時間
+  vector<llong> vnTime(6);                           // 各都市への移動時間
 
-  for (int i = 0; i < vnTime.size() - 1; i++)      // 移動時間を計算
+  for (int nx = 0; nx < vnTime.size() - 1; ++nx)     // 移動時間を計算
   {
-    vnTime[i + 1] = (nMaxNum + (rvnCapcty[i] - 1)) / rvnCapcty[i]; 
-    vnTime[i + 1] += i;
+    vnTime[nx + 1] = (nMaxNum + (rvnCapcty[nx] - 1)) / rvnCapcty[nx]; 
+    vnTime[nx + 1] += nx;
   }
   llong nTotalTime = 0;
 
-  for (int i = 0; i < vnTime.size() - 1; i++)      // トータル時間を計算
-    nTotalTime += vnTime[i + 1] - vnTime[i];       // 各都市間へ同時に移動しているため
-                                                   // 移動時間の差分を加算
+  for (int nx = 0; nx < vnTime.size() - 1; ++nx)     // トータル時間を計算
+    nTotalTime += vnTime[nx + 1] - vnTime[nx];       // 各都市間へ同時に移動しているため
+                                                     // 移動時間の差分を加算
   return nTotalTime;
 }
  

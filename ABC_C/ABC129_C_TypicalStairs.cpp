@@ -9,7 +9,7 @@ void input(vector<int>& rvnFine)
   cin >> nStair >> nBrokenSiz;
   rvnFine.resize(nStair + 1, true);
 
-  for (int i = 0; i < nBrokenSiz; i++)
+  for (int nx = 0; nx < nBrokenSiz; ++nx)
   {
     int nBroken;
     cin >> nBroken;

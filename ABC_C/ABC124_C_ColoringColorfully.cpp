@@ -10,10 +10,10 @@ int fnChangeCnt(string sBgnColor, string sColor)
 {
   int nChangeCnt = 0;
 
-  for (int i = 0; i < sColor.size(); i++)
+  for (int nx = 0; nx < sColor.size(); ++nx)
   {
-    int n = i % 2;
-    if (sColor[i] != sBgnColor[n]) nChangeCnt++;
+    int nMod2 = nx % 2;
+    if (sColor[nx] != sBgnColor[nMod2]) ++nChangeCnt;
   }
   return nChangeCnt;
 }
