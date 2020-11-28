@@ -31,8 +31,8 @@ int canTravel(const vector<StPoint>& cnrvoPoint)
     int nDist = abs(cnrvoPoint[nx + 1].m_nXcrd - cnrvoPoint[nx].m_nXcrd)
               + abs(cnrvoPoint[nx + 1].m_nYcrd - cnrvoPoint[nx].m_nYcrd);
 
-    if (nTime < nDist)           return 0;
-    if (nTime % 2 != nDist % 2)  return 0;
+    if (nTime < nDist)          return 0;
+    if (nTime % 2 != nDist % 2) return 0;
   }
   return 1;
 }
