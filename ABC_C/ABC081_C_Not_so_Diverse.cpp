@@ -7,7 +7,7 @@ void input(vector<int>& rvnBallCnt, int& rnVarie)
   cin >> nBallSiz >> rnVarie;
 
   rvnBallCnt.resize(nBallSiz);
-  for (int i = 0; i < nBallSiz; i++)
+  for (int nx = 0; nx < nBallSiz; ++nx)
   {
     int nBall;
     cin >> nBall;
@@ -20,8 +20,8 @@ int calcRewCount(vector<int>& rvnBallCnt, int nVarie)
   sort(begin(rvnBallCnt), end(rvnBallCnt));
   int nRewCnt = 0;
 
-  for (int i = 0; i < rvnBallCnt.size() - nVarie; i++)
-    nRewCnt += rvnBallCnt[i];
+  for (int nx = 0; nx < rvnBallCnt.size() - nVarie; ++nx)
+    nRewCnt += rvnBallCnt[nx];
 
   return nRewCnt;
 }

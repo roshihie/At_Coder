@@ -9,17 +9,17 @@ void fnInput(string& rsStr)
 int fnMaxStrAtoZ(string sStr)
 {
   int nBgn, nEnd;
-  for (int i = 0; i < sStr.size(); i++)
-    if (sStr[i] == 'A')
+  for (int nx = 0; nx < sStr.size(); ++nx)
+    if (sStr[nx] == 'A')
     {
-      nBgn = i;
+      nBgn = nx;
       break;
     }
 
-  for (int i = sStr.size() - 1; i >= 0; i--)
-    if (sStr[i] == 'Z')
+  for (int nx = sStr.size() - 1; nx >= 0; --nx)
+    if (sStr[nx] == 'Z')
     {
-      nEnd = i;
+      nEnd = nx;
       break;
     }
 

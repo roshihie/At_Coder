@@ -12,17 +12,17 @@ int fnCaseCount(int nMaxNum, int nTrgNum)
   int nSameTwo = 0;
   int nAllSame = 0;
 
-  for (int i = 0; i <= nMaxNum; i++)
-    for (int j = 0; j <= i; j++)
+  for (int nx = 0; nx <= nMaxNum; ++nx)
+    for (int ny = 0; ny <= nx; ++ny)
     {
-      int nRestNum = nTrgNum - (i + j);
-      if (0 <= nRestNum && nRestNum <= j)
-        if      (i == j && j == nRestNum)
-          nAllSame++;
-        else if (i == j || j == nRestNum || nRestNum == i)
-          nSameTwo++;
+      int nRestNum = nTrgNum - (nx + ny);
+      if (0 <= nRestNum && nRestNum <= ny)
+        if      (nx == ny && ny == nRestNum)
+          ++nAllSame;
+        else if (nx == ny || ny == nRestNum || nRestNum == nx)
+          ++nSameTwo;
         else
-          nAllDiff++;
+          ++nAllDiff;
     }
 
   return (nAllDiff * 6 + nSameTwo * 3 + nAllSame);

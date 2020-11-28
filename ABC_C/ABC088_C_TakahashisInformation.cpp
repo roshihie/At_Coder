@@ -3,21 +3,21 @@ using namespace std;
 
 void input(vector<vector<int>>& rvvnNum)
 {
-  for (int i = 0; i < rvvnNum.size(); i++)
-    for (int j = 0; j < rvvnNum[i].size(); j++)
-      cin >> rvvnNum[i][j];
+  for (int ny = 0; ny < rvvnNum.size(); ++ny)
+    for (int nx = 0; nx < rvvnNum[ny].size(); ++nx)
+      cin >> rvvnNum[ny][nx];
 }
 
 int isRight(const vector<vector<int>>& cnrvvnNum)
 {
   vector<int> vnDx(2);
 
-  for (int j = 0; j < cnrvvnNum[0].size() - 1; j++)
-    vnDx[j] = cnrvvnNum[0][j + 1] - cnrvvnNum[0][j];
+  for (int nx = 0; nx < cnrvvnNum[0].size() - 1; ++nx)
+    vnDx[nx] = cnrvvnNum[0][nx + 1] - cnrvvnNum[0][nx];
 
-  for (int i = 1; i < cnrvvnNum.size(); i++)
-    for (int j = 0; j < cnrvvnNum[i].size() - 1; j++)
-      if (cnrvvnNum[i][j + 1] == cnrvvnNum[i][j] + vnDx[j]);
+  for (int ny = 1; ny < cnrvvnNum.size(); ++ny)
+    for (int nx = 0; nx < cnrvvnNum[ny].size() - 1; ++nx)
+      if (cnrvvnNum[ny][nx + 1] == cnrvvnNum[ny][nx] + vnDx[nx]);
       else
         return 0;
 

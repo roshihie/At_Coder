@@ -17,14 +17,14 @@ int calcMinMoveCnt(int nPicSiz, const vector<int>& cnrvnCoordx)
 {
   vector<int> vnDist;
 
-  for (int i = 0; i < cnrvnCoordx.size() - 1; i++)
-    vnDist.push_back( cnrvnCoordx[i + 1] - cnrvnCoordx[i] );
+  for (int nx = 0; nx < cnrvnCoordx.size() - 1; ++nx)
+    vnDist.push_back( cnrvnCoordx[nx + 1] - cnrvnCoordx[nx] );
 
   sort(begin(vnDist), end(vnDist));
   int nMinMoveCnt = 0;
 
-  for (int i = 0; i < (int)vnDist.size() - (nPicSiz - 1); i++)
-    nMinMoveCnt += vnDist[i];
+  for (int nx = 0; nx < (int)vnDist.size() - (nPicSiz - 1); ++nx)
+    nMinMoveCnt += vnDist[nx];
 
   return nMinMoveCnt;
 }

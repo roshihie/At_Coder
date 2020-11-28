@@ -32,8 +32,8 @@ int canAchive(const vector<string>& cnrvsGrid)
       if (cnrvsGrid[ny][nx] == '#')
       {
         bool bReslt = false;
-        for (int i = 0; i < cnvnDy.size(); i++)
-          if (repaintCell(ny + cnvnDy[i], nx + cnvnDx[i], cnrvsGrid))
+        for (int ni = 0; ni < cnvnDy.size(); ni++)
+          if (repaintCell(ny + cnvnDy[ni], nx + cnvnDx[ni], cnrvsGrid))
             bReslt = true;
 
         if (!bReslt)  return 0;

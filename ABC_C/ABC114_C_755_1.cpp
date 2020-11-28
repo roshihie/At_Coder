@@ -14,7 +14,7 @@ int digitDp(string sMaxNum)
   //    nDgt3 : 上位 nPos 桁までで 3 を選択したかflag
   //    nDgt5 : 上位 nPos 桁までで 5 を選択したかflag
   //    nDgt7 : 上位 nPos 桁までで 7 を選択したかflag
-  //                             の条件を満たす数値の数
+  //                           の条件を満たす数値の数
   const vector<int> cnvnDgt = {0, 3, 5, 7};
   int nLen = sMaxNum.size();
 

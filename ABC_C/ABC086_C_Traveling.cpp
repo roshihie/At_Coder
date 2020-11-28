@@ -19,17 +19,17 @@ void input(vector<StPoint>& rvoPoint)
   cin >> nSize;
 
   rvoPoint.resize(nSize + 1, oPoint);
-  for (int i = 0; i < nSize; i++)
-    cin >> rvoPoint[i + 1].m_nTime >> rvoPoint[i + 1].m_nXcrd >> rvoPoint[i + 1].m_nYcrd;
+  for (int nx = 0; nx < nSize; ++nx)
+    cin >> rvoPoint[nx + 1].m_nTime >> rvoPoint[nx + 1].m_nXcrd >> rvoPoint[nx + 1].m_nYcrd;
 }
 
 int canTravel(const vector<StPoint>& cnrvoPoint)
 {
-  for (int i = 0; i < cnrvoPoint.size() - 1; i++)
+  for (int nx = 0; nx < cnrvoPoint.size() - 1; ++nx)
   {
-    int nTime = cnrvoPoint[i + 1].m_nTime - cnrvoPoint[i].m_nTime;
-    int nDist = abs(cnrvoPoint[i + 1].m_nXcrd - cnrvoPoint[i].m_nXcrd)
-              + abs(cnrvoPoint[i + 1].m_nYcrd - cnrvoPoint[i].m_nYcrd);
+    int nTime = cnrvoPoint[nx + 1].m_nTime - cnrvoPoint[nx].m_nTime;
+    int nDist = abs(cnrvoPoint[nx + 1].m_nXcrd - cnrvoPoint[nx].m_nXcrd)
+              + abs(cnrvoPoint[nx + 1].m_nYcrd - cnrvoPoint[nx].m_nYcrd);
 
     if (nTime < nDist)           return 0;
     if (nTime % 2 != nDist % 2)  return 0;

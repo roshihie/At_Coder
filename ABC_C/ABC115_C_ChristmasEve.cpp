@@ -17,8 +17,8 @@ int calcMinDiffHeight(int nSelSiz, const vector<int>& cnrvnHeight)
 {
   int nMinDiffHeight = INT_MAX;
 
-  for (int i = 0; i < cnrvnHeight.size() - (nSelSiz - 1); i++)
-    nMinDiffHeight = min(nMinDiffHeight, cnrvnHeight[i + (nSelSiz - 1)] - cnrvnHeight[i]);  
+  for (int nx = 0; nx < cnrvnHeight.size() - (nSelSiz - 1); ++nx)
+    nMinDiffHeight = min(nMinDiffHeight, cnrvnHeight[nx + (nSelSiz - 1)] - cnrvnHeight[nx]);  
   
   return nMinDiffHeight;
 }

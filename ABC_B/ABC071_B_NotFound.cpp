@@ -6,11 +6,11 @@ void fnInput(map<char, int>& rmpChars)
   string sStr;
   cin >> sStr;
 
-  for (char ch = 'a'; ch <= 'z'; ch++)
+  for (char ch = 'a'; ch <= 'z'; ++ch)
     rmpChars[ch] = 0;
 
-  for (int i = 0; i < sStr.size(); i++)
-    rmpChars[ sStr[i] ]++;
+  for (int nx = 0; nx < sStr.size(); ++nx)
+    ++rmpChars[ sStr[nx] ];
 }
 
 void fnCharCheck(const map<char, int>& cnrmpChars)
