@@ -11,19 +11,18 @@ struct StTrain
   bool m_nDone;
 };
 
-void fnInput(vector<StTrain>& rvoTrain)
+void input(vector<StTrain>& rvoTrain)
 {
   int nSize;
   cin >> nSize;
 
-  StTrain oTrain;
-  rvoTrain.resize(nSize, oTrain);
+  rvoTrain.resize(nSize);
   
   for (int n = 0; n < nSize; n++)
     cin >> rvoTrain[n].m_nNext;
 }
 
-int fnTrain(vector<StTrain>& rvoTrain)
+int canTrainingEnd(vector<StTrain>& rvoTrain)
 {
   int nCnt = 0;
   int n = 0;
@@ -43,8 +42,8 @@ int main()
 {
   vector<StTrain> voTrain;
   
-  fnInput(voTrain);
-  int nReslt = fnTrain(voTrain);
+  input(voTrain);
+  int nReslt = canTrainingEnd(voTrain);
   cout << nReslt << endl;
 
   return 0;

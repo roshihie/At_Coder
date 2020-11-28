@@ -12,8 +12,8 @@ void fnInput(vector<StCoord>& rvoCoord)
 {
   int nCoordSiz;
   cin >> nCoordSiz;
-
   rvoCoord.resize(nCoordSiz);
+
   for (StCoord& roCoord : rvoCoord)
     cin >> roCoord.m_nXcord >> roCoord.m_nYcord;
 }

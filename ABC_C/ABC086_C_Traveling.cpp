@@ -14,11 +14,10 @@ struct StPoint
 
 void input(vector<StPoint>& rvoPoint)
 {
-  StPoint oPoint;
   int nSize;
   cin >> nSize;
 
-  rvoPoint.resize(nSize + 1, oPoint);
+  rvoPoint.resize(nSize + 1);
   for (int nx = 0; nx < nSize; ++nx)
     cin >> rvoPoint[nx + 1].m_nTime >> rvoPoint[nx + 1].m_nXcrd >> rvoPoint[nx + 1].m_nYcrd;
 }
@@ -27,12 +26,12 @@ int canTravel(const vector<StPoint>& cnrvoPoint)
 {
   for (int nx = 0; nx < cnrvoPoint.size() - 1; ++nx)
   {
-    int nTime = cnrvoPoint[nx + 1].m_nTime - cnrvoPoint[nx].m_nTime;
-    int nDist = abs(cnrvoPoint[nx + 1].m_nXcrd - cnrvoPoint[nx].m_nXcrd)
-              + abs(cnrvoPoint[nx + 1].m_nYcrd - cnrvoPoint[nx].m_nYcrd);
+    int nTimeDiff = cnrvoPoint[nx + 1].m_nTime - cnrvoPoint[nx].m_nTime;
+    int nDistDiff = abs(cnrvoPoint[nx + 1].m_nXcrd - cnrvoPoint[nx].m_nXcrd)
+                  + abs(cnrvoPoint[nx + 1].m_nYcrd - cnrvoPoint[nx].m_nYcrd);
 
-    if (nTime < nDist)          return 0;
-    if (nTime % 2 != nDist % 2) return 0;
+    if (nTimeDiff < nDistDiff)          return 0;
+    if (nTimeDiff % 2 != nDistDiff % 2) return 0;
   }
   return 1;
 }

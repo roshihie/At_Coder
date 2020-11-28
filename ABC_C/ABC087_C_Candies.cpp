@@ -8,25 +8,27 @@ void input(vector<vector<int>>& rvvnCandy)
 
   rvvnCandy.resize(2, vector<int>(nSize, 0));
  
-  for (int nx = 0; nx < 2; ++nx)
-    for (int ny = 0; ny < nSize; ++ny)
-      cin >> rvvnCandy[nx][ny];
+  for (int ny = 0; ny < 2; ++ny)
+    for (int nx = 0; nx < nSize; ++nx)
+      cin >> rvvnCandy[ny][nx];
 }
 
 int calcCandy(const vector<vector<int>>& cnrvvnCandy)
 {
-  int nCumlSum = 0;
-  int n1stSum  = 0;
-  for (int nx = 0; nx < cnrvvnCandy[0].size(); ++nx)
-  {
-    n1stSum += cnrvvnCandy[0][nx];
-    int n2ndSum = 0;
-    for (int ny = nx; ny < cnrvvnCandy[1].size(); ++ny)
-      n2ndSum += cnrvvnCandy[1][ny];
+  int nMaxSum = 0;
+  int nRow0Sum = 0;
 
-    nCumlSum = max(nCumlSum, (n1stSum + n2ndSum));
+  for (int nxR0 = 0; nxR0 < cnrvvnCandy[0].size(); ++nxR0)
+  {
+    nRow0Sum += cnrvvnCandy[0][nxR0];
+    int nRow1Sum = 0;
+
+    for (int nxR1 = nxR0; nxR1 < cnrvvnCandy[1].size(); ++nxR1)
+      nRow1Sum += cnrvvnCandy[1][nxR1];
+
+    nMaxSum = max(nMaxSum, (nRow0Sum + nRow1Sum));
   }
-  return nCumlSum;
+  return nMaxSum;
 }
     
 int main()
