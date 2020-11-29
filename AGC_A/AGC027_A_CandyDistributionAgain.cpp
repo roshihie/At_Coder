@@ -20,11 +20,11 @@ int fnCandyDist(const vector<int>& cnrvnCandy, int nCandySiz)
   {
     nCandySiz -= nCandy;
     if (nCandySiz >= 0)
-      nFullyChld++;
+      ++nFullyChld;
     else
       break;
   }
-  if (nCandySiz > 0)  nFullyChld--;
+  if (nCandySiz > 0) --nFullyChld;
 
   return nFullyChld;
 }
