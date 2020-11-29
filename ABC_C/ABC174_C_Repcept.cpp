@@ -22,7 +22,7 @@ int calcDigit(int nDivisor)
 
     nDividend = nRemain * 10 + 7;
     nRemain = nDividend % nDivisor;
-    nDigit++;
+    ++nDigit;
   }
   return -1;
 }

@@ -10,18 +10,18 @@ void input(vector<int>& rvnNum)
 int calcSameNumOpe(const vector<int>& cnrvnNum)
 {
   auto itMaxNum = max_element(begin(cnrvnNum), end(cnrvnNum));
-
   int  nSum = 0;
+
   for (int nElm : cnrvnNum)
     nSum += nElm;
 
-  int nSameIntTimes;
-  if (*itMaxNum * 3 % 2 == nSum % 2)               // ３数の最大値×３と３数の和のパリティが等しい
-    nSameIntTimes = (*itMaxNum * 3 - nSum) / 2;      // ３数の最大値 ← ３数が等しくなる数
+  int nSameNumTimes;
+  if (*itMaxNum * 3 % 2 == nSum % 2)               // ３数の最大値×３と３数の和の偶奇が等しい
+    nSameNumTimes = (*itMaxNum * 3 - nSum) / 2;      // ３数の最大値 ← ３数が等しくなる数
   else                                             //  上記以外
-    nSameIntTimes = ((*itMaxNum + 1) * 3 - nSum) / 2;// ３数の最大値＋１ ← ３数の等しくなる数
+    nSameNumTimes = ((*itMaxNum + 1) * 3 - nSum) / 2;// ３数の最大値＋１ ← ３数の等しくなる数
 
-  return nSameIntTimes;
+  return nSameNumTimes;
 }
 
 int main()

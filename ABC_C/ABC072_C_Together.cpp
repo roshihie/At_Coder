@@ -26,9 +26,9 @@ int calcMaxTogetherCnt(const vector<int>& cnrvnNum)
   map<int, int> mpNumCnt;
   for (int nNum : cnrvnNum)
   {
-    mpNumCnt[nNum]++;
-    mpNumCnt[nNum - 1]++;
-    mpNumCnt[nNum + 1]++;
+    ++mpNumCnt[nNum];
+    ++mpNumCnt[nNum - 1];
+    ++mpNumCnt[nNum + 1];
   }
 
   int nMaxCnt = 0;

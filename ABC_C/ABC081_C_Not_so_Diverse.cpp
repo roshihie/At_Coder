@@ -11,7 +11,7 @@ void input(vector<int>& rvnBallCnt, int& rnVarie)
   {
     int nBall;
     cin >> nBall;
-    rvnBallCnt[nBall - 1]++;
+    ++rvnBallCnt[nBall - 1];
   }
 }
 

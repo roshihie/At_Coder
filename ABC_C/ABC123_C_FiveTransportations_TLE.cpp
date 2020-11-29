@@ -18,7 +18,7 @@ int calcTransptCnt(llong nMaxNum, const vector<llong>& cnrvnCapcty)
 
   while (vnNum[ cnrvnCapcty.size() ] != nMaxNum)
   {
-    nTime++;
+    ++nTime;
 
     for (int nx = cnrvnCapcty.size() - 1; nx >= 0; --nx)
       if ( vnNum[nx] )

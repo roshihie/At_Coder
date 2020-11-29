@@ -11,7 +11,7 @@ int calcMaxRemove(string sColor)
   vector<int> vnColor(2);
 
   for (int nx = 0; nx < sColor.size(); ++nx)
-    vnColor[ sColor[nx] - '0' ]++;
+    ++vnColor[ sColor[nx] - '0' ];
 
   return min(vnColor[0], vnColor[1]) * 2;
 }
