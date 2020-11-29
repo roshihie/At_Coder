@@ -10,14 +10,14 @@ void input(vector<vector<int>>& rvvnNum)
 
 int isRight(const vector<vector<int>>& cnrvvnNum)
 {
-  vector<int> vnDx(2);
+  vector<int> vnDiffx(2);
 
   for (int nx = 0; nx < cnrvvnNum[0].size() - 1; ++nx)
-    vnDx[nx] = cnrvvnNum[0][nx + 1] - cnrvvnNum[0][nx];
+    vnDiffx[nx] = cnrvvnNum[0][nx + 1] - cnrvvnNum[0][nx];
 
   for (int ny = 1; ny < cnrvvnNum.size(); ++ny)
     for (int nx = 0; nx < cnrvvnNum[ny].size() - 1; ++nx)
-      if (cnrvvnNum[ny][nx + 1] == cnrvvnNum[ny][nx] + vnDx[nx]);
+      if (cnrvvnNum[ny][nx + 1] == cnrvvnNum[ny][nx] + vnDiffx[nx]);
       else
         return 0;
 
