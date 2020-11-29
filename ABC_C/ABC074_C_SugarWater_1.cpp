@@ -102,13 +102,13 @@ void totalSearchConc(const StCond& cnroCond, StReslt& roReslt)
             roReslt.m_nAllMass = accumulateAmt("ALL", cnroCond, oAmt);
             roReslt.m_nSugerMass = accumulateAmt("SUG", cnroCond, oAmt);
           }
-          oAmt.m_nAmtD++;
+          ++oAmt.m_nAmtD;
         }
-        oAmt.m_nAmtC++;
+        ++oAmt.m_nAmtC;
       }
-      oAmt.m_nAmtB++;
+      ++oAmt.m_nAmtB;
     }
-    oAmt.m_nAmtA++;
+    ++oAmt.m_nAmtA;
   }
 }
 

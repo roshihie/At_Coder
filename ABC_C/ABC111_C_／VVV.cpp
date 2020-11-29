@@ -34,9 +34,9 @@ int calcMinChangeCnt(const vector<int>& cnrvnNum)
 
   for (int i = 0; i < cnrvnNum.size(); ++i)
     if ( i % 2 == 0 )
-      mpNumCntEvn[ cnrvnNum[i] ]++;
+      ++mpNumCntEvn[ cnrvnNum[i] ];
     else
-      mpNumCntOdd[ cnrvnNum[i] ]++;
+      ++mpNumCntOdd[ cnrvnNum[i] ];
 
   vector<StNumCnt> voNumCntEvn( mpNumCntEvn.size() ),
                    voNumCntOdd( mpNumCntOdd.size() );
