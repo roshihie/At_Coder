@@ -7,7 +7,7 @@ int main()
   cin >> nNum >> nKnum;
 
   int nComb = nKnum;
-  for (int n = 2; n <= nNum; n++)
+  for (int nx = 2; nx <= nNum; ++nx)
     nComb *= (nKnum - 1);
 
   cout << nComb << endl;

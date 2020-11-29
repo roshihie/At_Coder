@@ -19,12 +19,12 @@ void input(StCoord& roStart, StCoord& roGoal, vector<string>& rvsBoard)
   rvsBoard.resize(nHigh);
 
   cin >> roStart.m_ny >> roStart.m_nx;
-  roStart.m_ny--; roStart.m_nx--;
+  --roStart.m_ny; --roStart.m_nx;
 
   cin >> roGoal.m_ny >> roGoal.m_nx;
-  roGoal.m_ny--; roGoal.m_nx--;
+  --roGoal.m_ny; --roGoal.m_nx;
 
-  for (int ny = 0; ny < nHigh; ny++)
+  for (int ny = 0; ny < nHigh; ++ny)
     cin >> rvsBoard[ny];
 }
 
@@ -53,11 +53,11 @@ int bfs(queue<StCoord>& rqoCoord ,   const vector<string>& cnrvsBoard,
     if (oCurCrd.m_ny == oGoal.m_ny &&
         oCurCrd.m_nx == oGoal.m_nx   ) return rvvnDis[oCurCrd.m_ny][oCurCrd.m_nx];
 
-    for (int n = 0; n < cnvnDy.size(); n++)
+    for (int ni = 0; ni < cnvnDy.size(); ++ni)
     {
       StCoord oNextCrd;
-      oNextCrd.m_ny = oCurCrd.m_ny + cnvnDy[n];
-      oNextCrd.m_nx = oCurCrd.m_nx + cnvnDx[n];
+      oNextCrd.m_ny = oCurCrd.m_ny + cnvnDy[ni];
+      oNextCrd.m_nx = oCurCrd.m_nx + cnvnDx[ni];
 
       if (canReach(oNextCrd, cnrvsBoard, rvvnDis))
       { 

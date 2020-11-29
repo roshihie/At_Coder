@@ -7,10 +7,12 @@ int main()
   cin >> nNum;
 
   long nFact = 1;
-  for (int n = 1; n <= nNum; n++)
+  const int cnnMod = 1e9 + 7;
+
+  for (int nx = 1; nx <= nNum; ++nx)
   {
-    nFact *= n;
-    nFact %= 1000000007;
+    nFact *= nx;
+    nFact %= cnnMod;
   }
 
   cout << nFact << endl;

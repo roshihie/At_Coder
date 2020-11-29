@@ -7,8 +7,8 @@ int main()
   cin >> nAnum >> nBnum >> nCnum;
 
   bool nReslt = false;
-  for (int n = 1; n <= nBnum; n++)
-    if ((nAnum * n - nCnum) % nBnum == 0)
+  for (int nx = 1; nx <= nBnum; ++nx)
+    if ((nAnum * nx - nCnum) % nBnum == 0)
     {
       nReslt = true;
       break;

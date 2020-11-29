@@ -7,7 +7,7 @@ void input(vector<string>& rvsGrid)
   cin >> nHigh >> nWide;
 
   rvsGrid.resize(nHigh);
-  for (int ny = 0; ny < nHigh; ny++)
+  for (int ny = 0; ny < nHigh; ++ny)
     cin >> rvsGrid[ny];
 }
 

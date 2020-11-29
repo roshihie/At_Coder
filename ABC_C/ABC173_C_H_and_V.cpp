@@ -15,22 +15,22 @@ int calcNumOfCases(const vector<string>& cnrvsColor, int nRemain)
 {
   int nNumOfCases = 0;
 
-  for (int nyCtl = 0; nyCtl < ( 1 << cnrvsColor.size() ); nyCtl++)
-    for (int nxCtl = 0; nxCtl < ( 1 << cnrvsColor[0].size() ); nxCtl++)
+  for (int nyCtl = 0; nyCtl < ( 1 << cnrvsColor.size() ); ++nyCtl)
+    for (int nxCtl = 0; nxCtl < ( 1 << cnrvsColor[0].size() ); ++nxCtl)
     {
       int nCntTrg = 0;
 
-      for (int nyEach = 0; nyEach < cnrvsColor.size(); nyEach++)
+      for (int nyEach = 0; nyEach < cnrvsColor.size(); ++nyEach)
       {
         if (nyCtl & ( 1 << nyEach )) continue;
 
-        for (int nxEach = 0; nxEach < cnrvsColor[nyEach].size(); nxEach++)
+        for (int nxEach = 0; nxEach < cnrvsColor[nyEach].size(); ++nxEach)
         {
           if (nxCtl & ( 1 << nxEach )) continue;
-          if (cnrvsColor[nyEach][nxEach] == '#') nCntTrg++;
+          if (cnrvsColor[nyEach][nxEach] == '#') ++nCntTrg;
         }
       }
-      if (nCntTrg == nRemain) nNumOfCases++;
+      if (nCntTrg == nRemain) ++nNumOfCases;
     }
 
   return nNumOfCases;

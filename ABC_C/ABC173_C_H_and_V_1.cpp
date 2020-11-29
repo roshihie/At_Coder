@@ -7,11 +7,11 @@ void input(vector<vector<char>>& rvvcColor, int& rnRemain)
   cin >> nySiz >> nxSiz >> rnRemain;
   rvvcColor.resize(nySiz);
 
-  for (int ny = 0; ny < rvvcColor.size(); ny++)
+  for (int ny = 0; ny < rvvcColor.size(); ++ny)
   {
     rvvcColor[ny].resize(nxSiz);
 
-    for (int nx = 0; nx < rvvcColor[ny].size(); nx++)
+    for (int nx = 0; nx < rvvcColor[ny].size(); ++nx)
       cin >>  rvvcColor[ny][nx];
   }
 }
@@ -20,13 +20,13 @@ void paintColorRed(int nEach, vector<vector<char>>& rvvcColor)
 {
   if (nEach < rvvcColor.size())
   {
-    for (int nx = 0; nx < rvvcColor[nEach].size(); nx++)
+    for (int nx = 0; nx < rvvcColor[nEach].size(); ++nx)
       rvvcColor[nEach][nx] = ' ';
   }
   else
   {
     nEach -= rvvcColor.size();
-    for (int ny = 0; ny < rvvcColor.size(); ny++)
+    for (int ny = 0; ny < rvvcColor.size(); ++ny)
       rvvcColor[ny][nEach] = ' ';
   }
 }
@@ -36,21 +36,21 @@ int calcNumOfCase(const vector<vector<char>>& cnrvvcColor, int nRemain)
   int nNumOfCase = 0;
   int nSize = cnrvvcColor.size() + cnrvvcColor[0].size();
 
-  for (int nCtl = 0; nCtl < ( 1 << nSize ) ; nCtl++)
+  for (int nCtl = 0; nCtl < ( 1 << nSize ) ; ++nCtl)
   {
     vector<vector<char>> vvcColor(cnrvvcColor);
 
-    for (int nEach = 0; nEach < nSize; nEach++)
+    for (int nEach = 0; nEach < nSize; ++nEach)
       if (nCtl & ( 1 << nEach ))
         paintColorRed(nEach, vvcColor);
 
     int nCntTrg = 0;
 
-    for (int ny = 0; ny < vvcColor.size(); ny++)
-      for (int nx = 0; nx < vvcColor[ny].size(); nx++)
-        if (vvcColor[ny][nx] == '#') nCntTrg++;
+    for (int ny = 0; ny < vvcColor.size(); ++ny)
+      for (int nx = 0; nx < vvcColor[ny].size(); ++nx)
+        if (vvcColor[ny][nx] == '#') ++nCntTrg;
 
-    if (nCntTrg == nRemain) nNumOfCase++;
+    if (nCntTrg == nRemain) ++nNumOfCase;
   }
   return nNumOfCase;
 }

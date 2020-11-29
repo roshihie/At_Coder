@@ -18,13 +18,13 @@ llong fnDgtDP(const string& cnrsNum)
 
   dp[0][0][0] = 1;
 
-  for (int nPos = 0; nPos < nSiz; nPos++)
+  for (int nPos = 0; nPos < nSiz; ++nPos)
   {
     int nDgt = cnrsNum[nPos] - '0';
 
-    for (int nSmall = 0; nSmall < 2; nSmall++)
-      for (int nFlag = 0; nFlag < 2; nFlag++)
-        for (int nNum = 0; nNum <= ( nSmall ? 9 : nDgt ); nNum++)
+    for (int nSmall = 0; nSmall < 2; ++nSmall)
+      for (int nFlag = 0; nFlag < 2; ++nFlag)
+        for (int nNum = 0; nNum <= ( nSmall ? 9 : nDgt ); ++nNum)
           dp[nPos + 1][nSmall || (nNum < nDgt)][nFlag || nNum == 4 || nNum == 9]
             += dp[nPos][nSmall][nFlag];
   }

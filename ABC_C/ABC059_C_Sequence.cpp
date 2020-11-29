@@ -16,14 +16,14 @@ llong calcMinOpeTimes(const vector<int>& cnrvnNum)
 { 
   vector<llong> vnOpeTimes(2);
 
-  for (int nEvnOdd = 0; nEvnOdd < vnOpeTimes.size(); nEvnOdd++)
+  for (int nEvnOdd = 0; nEvnOdd < vnOpeTimes.size(); ++nEvnOdd)
   {
     llong nOpeTimes = 0;
     llong nCumlSum  = 0;
-    for (int n = 0; n < cnrvnNum.size(); n++)
+    for (int nx = 0; nx < cnrvnNum.size(); ++nx)
     {
-      nCumlSum += cnrvnNum[n];
-      if ( n % 2 == nEvnOdd )
+      nCumlSum += cnrvnNum[nx];
+      if ( nx % 2 == nEvnOdd )
         if ( nCumlSum > 0 );
         else
         {

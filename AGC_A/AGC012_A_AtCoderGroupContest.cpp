@@ -19,8 +19,8 @@ llong fnStrengthChk(const vector<int>& cnrvnEntry)
   llong nStrength = 0;
   int nEntrySiz = cnrvnEntry.size() * 2 / 3;
 
-  for (int n = 0; n < nEntrySiz; n++)
-    if (n % 2 == 1)  nStrength += cnrvnEntry[n];
+  for (int nx = 0; nx < nEntrySiz; ++nx)
+    if (nx % 2 == 1)  nStrength += cnrvnEntry[nx];
 
   return nStrength;
 }
