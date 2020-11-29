@@ -8,15 +8,15 @@ int main()
 
   vector<int> vnNum(N);
 
-  for (int i = 0; i < N; i++)
-    cin >> vnNum[i];
+  for (int nx = 0; nx < N; ++nx)
+    cin >> vnNum[nx];
 
   int nCount = -1;
   bool bLoop = true;
 
   while (bLoop)
   {
-    nCount++;
+    ++nCount;
     for (int& num : vnNum)
     {
       if (num % 2 != 0)

@@ -7,7 +7,7 @@ void fnInput(vector<string>& rvsBoard)
   cin >> nHigh >> nWide;
 
   rvsBoard.resize(nHigh);
-  for (int ny = 0; ny < nHigh; ny++)
+  for (int ny = 0; ny < nHigh; ++ny)
     cin >> rvsBoard[ny];
 }
 
@@ -25,13 +25,13 @@ void fnMinesweeper(vector<string>& rvsBoard)
 {
   const vector<int> cnvnDy = {-1, -1, -1,  0,  0,  1,  1,  1};
   const vector<int> cnvnDx = {-1,  0,  1, -1,  1, -1,  0,  1};
-  for (int ny = 0; ny < rvsBoard.size(); ny++)
-    for (int nx = 0; nx < rvsBoard[ny].size(); nx++)
+  for (int ny = 0; ny < rvsBoard.size(); ++ny)
+    for (int nx = 0; nx < rvsBoard[ny].size(); ++nx)
       if (rvsBoard[ny][nx] == '.')
       {
         int nCount = 0;
-        for (int i = 0; i < cnvnDy.size(); i++)
-          nCount += fnCountBomb(ny + cnvnDy[i], nx + cnvnDx[i], rvsBoard);
+        for (int ni = 0; ni < cnvnDy.size(); ++ni)
+          nCount += fnCountBomb(ny + cnvnDy[ni], nx + cnvnDx[ni], rvsBoard);
 
         rvsBoard[ny][nx] = '0' + nCount;       // int → char 変換
       }
