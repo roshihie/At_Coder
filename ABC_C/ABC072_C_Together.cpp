@@ -24,6 +24,7 @@ void input(vector<int>& rvnNum)
 int calcMaxTogetherCnt(const vector<int>& cnrvnNum)
 {
   map<int, int> mpNumCnt;
+
   for (int nNum : cnrvnNum)
   {
     ++mpNumCnt[nNum];
@@ -32,6 +33,7 @@ int calcMaxTogetherCnt(const vector<int>& cnrvnNum)
   }
 
   int nMaxCnt = 0;
+
   for (pair<const int, int> PNumCnt : mpNumCnt)
     nMaxCnt = max(PNumCnt.second, nMaxCnt);
 

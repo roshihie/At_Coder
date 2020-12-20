@@ -20,7 +20,7 @@ struct StAmt                   // 使用量
   int m_nAmtA, m_nAmtB, m_nAmtC, m_nAmtD;
 };
 
-struct StReslt                  // 出力結果
+struct StReslt                 // 出力結果
 {
   StReslt() : m_nAllMass(0), m_nSugerMass(0) { }
 
@@ -33,20 +33,20 @@ void input(StCond& roCond)
   cin >> roCond.m_nConcE  >> roCond.m_nLimitF;
 }
 
-int accumulateAmt(string sProc, const StCond& cnroCond, const StAmt& cnroAmt)
+int calcSumAmt(string sProc, const StCond& cnroCond, const StAmt& cnroAmt)
 { 
   if      (sProc == "A")
-    return  (cnroCond.m_nWaterA * cnroAmt.m_nAmtA) * 100;
+    return (cnroCond.m_nWaterA * cnroAmt.m_nAmtA) * 100;
   if      (sProc == "A+B")
-    return  (cnroCond.m_nWaterA * cnroAmt.m_nAmtA + cnroCond.m_nWaterB * cnroAmt.m_nAmtB) * 100;
+    return (cnroCond.m_nWaterA * cnroAmt.m_nAmtA + cnroCond.m_nWaterB * cnroAmt.m_nAmtB) * 100;
   else if (sProc == "A+B+C")
-    return  (cnroCond.m_nWaterA * cnroAmt.m_nAmtA + cnroCond.m_nWaterB * cnroAmt.m_nAmtB) * 100 
-          + (cnroCond.m_nSugerC * cnroAmt.m_nAmtC);
+    return (cnroCond.m_nWaterA * cnroAmt.m_nAmtA + cnroCond.m_nWaterB * cnroAmt.m_nAmtB) * 100 
+         + (cnroCond.m_nSugerC * cnroAmt.m_nAmtC);
   else if (sProc == "A+B+C+D")
-    return  (cnroCond.m_nWaterA * cnroAmt.m_nAmtA + cnroCond.m_nWaterB * cnroAmt.m_nAmtB) * 100 
-          + (cnroCond.m_nSugerC * cnroAmt.m_nAmtC + cnroCond.m_nSugerD * cnroAmt.m_nAmtD);
+    return (cnroCond.m_nWaterA * cnroAmt.m_nAmtA + cnroCond.m_nWaterB * cnroAmt.m_nAmtB) * 100 
+         + (cnroCond.m_nSugerC * cnroAmt.m_nAmtC + cnroCond.m_nSugerD * cnroAmt.m_nAmtD);
   else           // "C+D" 
-    return  (cnroCond.m_nSugerC * cnroAmt.m_nAmtC + cnroCond.m_nSugerD * cnroAmt.m_nAmtD);
+    return (cnroCond.m_nSugerC * cnroAmt.m_nAmtC + cnroCond.m_nSugerD * cnroAmt.m_nAmtD);
 }
 
 double calcConc(const StCond& cnroCond, const StAmt& cnroAmt)
@@ -54,13 +54,13 @@ double calcConc(const StCond& cnroCond, const StAmt& cnroAmt)
   static double stnLimtConc = 0.0;
   double nNowConc = 0.0;
 
-  if (!stnLimtConc)
+  if ( !stnLimtConc )
     stnLimtConc = cnroCond.m_nConcE / (100.0 + cnroCond.m_nConcE);
 
-  if ( accumulateAmt("A+B+C+D", cnroCond, cnroAmt) )
+  if ( calcSumAmt("A+B+C+D", cnroCond, cnroAmt) )
   {
-    nNowConc =  (double)accumulateAmt("C+D", cnroCond, cnroAmt)
-               /        accumulateAmt("A+B+C+D", cnroCond, cnroAmt);
+    nNowConc = (double)calcSumAmt("C+D", cnroCond, cnroAmt)
+              /        calcSumAmt("A+B+C+D", cnroCond, cnroAmt);
     if (stnLimtConc < nNowConc)
       return -1.0;
     else
@@ -76,23 +76,23 @@ void totalSearchConc(const StCond& cnroCond, StReslt& roReslt)
   double nMaxConc = -1.0;
   
   for ( oAmt.m_nAmtA = 0; 
-        accumulateAmt("A", cnroCond, oAmt) <= cnroCond.m_nLimitF; oAmt.m_nAmtA++ )
+        calcSumAmt("A", cnroCond, oAmt) <= cnroCond.m_nLimitF; ++oAmt.m_nAmtA )
   {
     for ( oAmt.m_nAmtB = 0; 
-          accumulateAmt("A+B", cnroCond, oAmt) <= cnroCond.m_nLimitF; oAmt.m_nAmtB++ )
+          calcSumAmt("A+B", cnroCond, oAmt) <= cnroCond.m_nLimitF; ++oAmt.m_nAmtB )
     {
       for ( oAmt.m_nAmtC = 0; 
-            accumulateAmt("A+B+C", cnroCond, oAmt) <= cnroCond.m_nLimitF; oAmt.m_nAmtC++ )
+            calcSumAmt("A+B+C", cnroCond, oAmt) <= cnroCond.m_nLimitF; ++oAmt.m_nAmtC )
       {
         for ( oAmt.m_nAmtD = 0;
-              accumulateAmt("A+B+C+D", cnroCond, oAmt) <= cnroCond.m_nLimitF; oAmt.m_nAmtD++ )
+              calcSumAmt("A+B+C+D", cnroCond, oAmt) <= cnroCond.m_nLimitF; ++oAmt.m_nAmtD )
         {
           double nNowConc = calcConc(cnroCond, oAmt);
           if (nMaxConc < nNowConc)
           {
             nMaxConc = nNowConc;
-            roReslt.m_nAllMass = accumulateAmt("A+B+C+D", cnroCond, oAmt);
-            roReslt.m_nSugerMass = accumulateAmt("C+D", cnroCond, oAmt);
+            roReslt.m_nAllMass = calcSumAmt("A+B+C+D", cnroCond, oAmt);
+            roReslt.m_nSugerMass = calcSumAmt("C+D", cnroCond, oAmt);
           }
         }
       }

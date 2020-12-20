@@ -20,7 +20,7 @@ struct StAmt                   // 使用量
   int m_nAmtA, m_nAmtB, m_nAmtC, m_nAmtD;
 };
 
-struct StReslt                  // 出力結果
+struct StReslt                 // 出力結果
 {
   StReslt() : m_nAllMass(0), m_nSugerMass(0) { }
 
@@ -45,12 +45,12 @@ void clearAmt(string sProc, const StCond& cnroCond, StAmt& roAmt)
     { roAmt.m_nAmtD = 0; }
 }
 
-int accumulateAmt(string sProc, const StCond& cnroCond, const StAmt& cnroAmt)
+int calcSumAmt(string sProc, const StCond& cnroCond, const StAmt& cnroAmt)
 { 
-  if (sProc == "ALL")
+  if (sProc == "All")
     return (cnroCond.m_nWaterA * cnroAmt.m_nAmtA + cnroCond.m_nWaterB * cnroAmt.m_nAmtB) * 100
          + (cnroCond.m_nSugerC * cnroAmt.m_nAmtC + cnroCond.m_nSugerD * cnroAmt.m_nAmtD);
-  else                       // sProc == "SUG"         
+  else                       // sProc == "Sug"         
     return (cnroCond.m_nSugerC * cnroAmt.m_nAmtC + cnroCond.m_nSugerD * cnroAmt.m_nAmtD);
 }
 
@@ -61,8 +61,8 @@ double calcConc(const StCond& cnroCond, const StAmt& cnroAmt)
   if (!stnLimtConc)
     stnLimtConc = cnroCond.m_nConcE / (100.0 + cnroCond.m_nConcE);
 
-  double nNowConc =  (double)accumulateAmt("SUG", cnroCond, cnroAmt)
-                    /        accumulateAmt("ALL", cnroCond, cnroAmt);
+  double nNowConc =  (double)calcSumAmt("Sug", cnroCond, cnroAmt)
+                    /        calcSumAmt("All", cnroCond, cnroAmt);
 
   if (stnLimtConc < nNowConc) return 0.0;
   else                        return nNowConc;
@@ -78,29 +78,29 @@ void totalSearchConc(const StCond& cnroCond, StReslt& roReslt)
   while (true)
   {
     clearAmt("B", cnroCond, oAmt);
-    if (accumulateAmt("ALL", cnroCond, oAmt) > cnroCond.m_nLimitF) break;
-    if (!oAmt.m_nAmtA)  oAmt.m_nAmtB = 1;
+    if (calcSumAmt("All", cnroCond, oAmt) > cnroCond.m_nLimitF) break;
+    if ( !oAmt.m_nAmtA ) oAmt.m_nAmtB = 1;
 
     while (true)
     {
       clearAmt("C", cnroCond, oAmt);
-      if (accumulateAmt("ALL", cnroCond, oAmt) > cnroCond.m_nLimitF) break;
+      if (calcSumAmt("All", cnroCond, oAmt) > cnroCond.m_nLimitF) break;
 
       while (true)
       {
         clearAmt("D", cnroCond, oAmt);
-        if (accumulateAmt("ALL", cnroCond, oAmt) > cnroCond.m_nLimitF) break;
+        if (calcSumAmt("All", cnroCond, oAmt) > cnroCond.m_nLimitF) break;
 
         while (true)
         {
-          if (accumulateAmt("ALL", cnroCond, oAmt) > cnroCond.m_nLimitF) break;
+          if (calcSumAmt("All", cnroCond, oAmt) > cnroCond.m_nLimitF) break;
 
           double nNowConc = calcConc(cnroCond, oAmt);
           if (nMaxConc < nNowConc)
           {
             nMaxConc = nNowConc;
-            roReslt.m_nAllMass = accumulateAmt("ALL", cnroCond, oAmt);
-            roReslt.m_nSugerMass = accumulateAmt("SUG", cnroCond, oAmt);
+            roReslt.m_nAllMass = calcSumAmt("All", cnroCond, oAmt);
+            roReslt.m_nSugerMass = calcSumAmt("Sug", cnroCond, oAmt);
           }
           ++oAmt.m_nAmtD;
         }
