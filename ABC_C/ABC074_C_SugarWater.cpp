@@ -70,7 +70,7 @@ double calcConc(const StCond& cnroCond, const StAmt& cnroAmt)
     return -1.0;
 }
 
-void totalSearchConc(const StCond& cnroCond, StReslt& roReslt)
+void exhstSearchConc(const StCond& cnroCond, StReslt& roReslt)
 {
   StAmt oAmt;
   double nMaxConc = -1.0;
@@ -106,7 +106,7 @@ int main()
   StReslt oReslt;
 
   input(oCond);
-  totalSearchConc(oCond, oReslt);
+  exhstSearchConc(oCond, oReslt);
   cout << oReslt.m_nAllMass << " " << oReslt.m_nSugerMass << endl;
 
   return 0;
