@@ -5,23 +5,23 @@ void input(vector<int>& rvnBallCnt, int& rnVarie)
 {
   int nBallSiz;
   cin >> nBallSiz >> rnVarie;
-
   rvnBallCnt.resize(nBallSiz);
+
   for (int nx = 0; nx < nBallSiz; ++nx)
   {
     int nBall;
     cin >> nBall;
     ++rvnBallCnt[nBall - 1];
   }
+  sort(begin(rvnBallCnt), end(rvnBallCnt));
 }
 
-int calcRewCount(vector<int>& rvnBallCnt, int nVarie)
+int calcRewCount(const vector<int>& cnrvnBallCnt, int nVarie)
 {
-  sort(begin(rvnBallCnt), end(rvnBallCnt));
   int nRewCnt = 0;
 
-  for (int nx = 0; nx < rvnBallCnt.size() - nVarie; ++nx)
-    nRewCnt += rvnBallCnt[nx];
+  for (int nx = 0; nx < cnrvnBallCnt.size() - nVarie; ++nx)
+    nRewCnt += cnrvnBallCnt[nx];
 
   return nRewCnt;
 }
