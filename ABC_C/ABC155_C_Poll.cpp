@@ -18,10 +18,10 @@ void calcMaxPoll(const map<string, int>& cnrmpPoll)
 {
   int nMaxCnt = 0;
 
-  for (pair<string, int> PPoll : cnrmpPoll)
+  for (auto PPoll : cnrmpPoll)
     nMaxCnt = max(nMaxCnt, PPoll.second);
 
-  for (pair<string, int> PPoll : cnrmpPoll)
+  for (auto PPoll : cnrmpPoll)
     if (PPoll.second == nMaxCnt)
       cout << PPoll.first << endl;
 }

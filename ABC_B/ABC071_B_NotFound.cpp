@@ -15,8 +15,8 @@ void fnInput(map<char, int>& rmpChars)
 
 void fnCharCheck(const map<char, int>& cnrmpChars)
 {
-  for (pair<const char, int> PChars : cnrmpChars)
-    if (!PChars.second)
+  for (auto PChars : cnrmpChars)
+    if ( !PChars.second )
     {
       cout << PChars.first << endl;
       return;

@@ -42,14 +42,14 @@ int calcMinChangeCnt(const vector<int>& cnrvnNum)
                    voNumCntOdd( mpNumCntOdd.size() );
 
   int n = 0;
-  for (pair<int, int> PNumCnt : mpNumCntEvn)
+  for (auto PNumCnt : mpNumCntEvn)
   {
     voNumCntEvn[n].m_nNum   = PNumCnt.first;
     voNumCntEvn[n++].m_nCnt = PNumCnt.second;
   }
 
   n = 0;
-  for (pair<int, int> PNumCnt : mpNumCntOdd)
+  for (auto PNumCnt : mpNumCntOdd)
   {
     voNumCntOdd[n].m_nNum   = PNumCnt.first;
     voNumCntOdd[n++].m_nCnt = PNumCnt.second;

@@ -34,7 +34,7 @@ int calcMaxTogetherCnt(const vector<int>& cnrvnNum)
 
   int nMaxCnt = 0;
 
-  for (pair<const int, int> PNumCnt : mpNumCnt)
+  for (auto PNumCnt : mpNumCnt)
     nMaxCnt = max(PNumCnt.second, nMaxCnt);
 
   return nMaxCnt;

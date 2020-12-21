@@ -20,7 +20,7 @@ void input(map<int, int>& rmpCity)
 
 void countRoadSpread(const map<int, int>& cnrmpCity)
 {
-  for (pair<const int, int> PCity : cnrmpCity)
+  for (auto PCity : cnrmpCity)
     cout << PCity.second << endl;
 }
 

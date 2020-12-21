@@ -27,7 +27,7 @@ void fnInput(map<string, int>& rmpScore)
 int fnScoreCheck(const map<string, int>& cnrmpScore)
 {
   int nMaxScore = 0;
-  for (pair<const string, int> PScore : cnrmpScore)
+  for (auto PScore : cnrmpScore)
     nMaxScore = max(nMaxScore, PScore.second);
 
   return nMaxScore;
