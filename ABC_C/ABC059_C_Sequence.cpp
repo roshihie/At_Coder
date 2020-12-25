@@ -20,6 +20,7 @@ llong calcMinOpeTimes(const vector<int>& cnrvnNum)
   {
     llong nOpeTimes = 0;
     llong nCumlSum  = 0;
+
     for (int nx = 0; nx < cnrvnNum.size(); ++nx)
     {
       nCumlSum += cnrvnNum[nx];
