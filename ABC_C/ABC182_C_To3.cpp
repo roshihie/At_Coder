@@ -1,13 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-struct StCoord
-{
-  StCoord() : m_nx(0), m_ny(0) { }
-
-  int m_nx;
-  int m_ny;
-};
+using llong = long long
 
 void input(vector<StCoord>& rvoCoord)
 {
@@ -52,10 +45,9 @@ string isCollinearity(const vector<StCoord> cnrvoCoord)
 
 int main()
 {
-  vector<StCoord> voCoord;
-
-  input(voCoord);
-  cout << isCollinearity(voCoord) << endl;
+  int nNum;
+  input(nNum);
+  cout << canMultiples3() << endl;
 
   return 0;
 }
