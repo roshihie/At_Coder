@@ -40,8 +40,8 @@ int canReach(StCoord oNextCrd,
   else                                                          return 1;
 }
 
-int bfs(queue<StCoord>& rqoCoord ,   const vector<string>& cnrvsBoard, 
-               vector<vector<int>> rvvnDis, StCoord oGoal)
+int bfs(queue<StCoord>& rqoCoord, const vector<string>& cnrvsBoard, 
+        vector<vector<int>> rvvnDis, StCoord oGoal)
 {
   const vector<int> cnvnDy = {0, -1,  0, 1};
   const vector<int> cnvnDx = {1,  0, -1, 0};

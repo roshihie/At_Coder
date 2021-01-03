@@ -16,12 +16,14 @@ void input(vector<int>& rvnSeqP, vector<int>& rvnSeqQ)
   
 int calcDiffOrderCnt(const vector<int>& cnrvnSeqP, const vector<int>& cnrvnSeqQ)
 {
-  vector<int> vnSeqX(cnrvnSeqP.size());
+  vector<int> vnSeqX;
   int nxSeqP = 0;
   int nxSeqQ = 0;
   int nxSeqX = 0;
 
-  iota(begin(vnSeqX), end(vnSeqX), 1);
+  for (int nx = 0; nx < cnrvnSeqP.size(); ++nx)
+    vnSeqX.push_back( nx + 1 );
+
   do {
     ++nxSeqX;
     if (cnrvnSeqP == vnSeqX) nxSeqP = nxSeqX;

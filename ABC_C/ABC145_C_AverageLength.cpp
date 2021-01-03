@@ -32,13 +32,16 @@ double calcAverageDist(const vector<StCoord>& cnrvoCoord)
   double nTotalDist = 0.0;
   int nTotalCnt = 0;
 
-  vector<int> vnCity(cnrvoCoord.size());
-  iota(begin(vnCity), end(vnCity), 0);
+  vector<int> vnCity;
+
+  for (int ni = 0; ni < cnrvoCoord.size(); ++ni)
+    vnCity.push_back( ni );
 
   do {
     for (int ni = 0; ni < cnrvoCoord.size() - 1; ++ni)
       nTotalDist += calcDist(vnCity[ni], vnCity[ni + 1], cnrvoCoord);
-      ++nTotalCnt;
+
+    ++nTotalCnt;
   }
   while ( next_permutation(begin(vnCity), end(vnCity)) );
 
