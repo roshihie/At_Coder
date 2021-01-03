@@ -47,10 +47,10 @@ int calcNumOfCases(int nSwitchSiz,
   int nNumOfCases = 0;
   vector<int> vnSwitch(nSwitchSiz);
 
-  for (int nCtl = 0; nCtl < ( 1 << nSwitchSiz ); ++nCtl)
+  for (int nBit = 0; nBit < ( 1 << nSwitchSiz ); ++nBit)
   {
     for (int nEach = 0; nEach < nSwitchSiz; ++nEach)
-      if (nCtl & ( 1 << nEach ))
+      if (nBit & ( 1 << nEach ))
         vnSwitch[nEach] = 1;
       else
         vnSwitch[nEach] = 0;

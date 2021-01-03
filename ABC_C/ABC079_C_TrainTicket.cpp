@@ -12,15 +12,15 @@ void input(vector<int>& rvnNum)
 
 int exhstSearch(const vector<int>& cnrvnNum)
 {                              // 必ず答えが存在するため 最終の１つ前まででループ終了
-  for (int nCtl = 0; nCtl < ( 1 << 3 ) - 1; ++nCtl)
+  for (int nBit = 0; nBit < ( 1 << 3 ) - 1; ++nBit)
   {
     int nSum = cnrvnNum[0];
 
     for (int nEach = 0; nEach < 3; ++nEach)
-      if (nCtl & ( 1 << nEach )) nSum += cnrvnNum[nEach + 1];
+      if (nBit & ( 1 << nEach )) nSum += cnrvnNum[nEach + 1];
       else                       nSum -= cnrvnNum[nEach + 1];
 
-    if (nSum == 7)  return nCtl;
+    if (nSum == 7)  return nBit;
   }
   return ( 1 << 3 ) - 1;       // 必ず答えが存在するため 最終が求める答え
 }

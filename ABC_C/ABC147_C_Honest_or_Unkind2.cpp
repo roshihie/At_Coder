@@ -54,12 +54,12 @@ int calcMaxHonest(const vector<vector<StExpr>>& cnrvvoExpr)
   vector<int> vnHonest(cnrvvoExpr.size());
   int nMaxHonestCnt = 0;
   
-  for (int nCtl = 0; nCtl < ( 1 << cnrvvoExpr.size() ); ++nCtl)
+  for (int nBit = 0; nBit < ( 1 << cnrvvoExpr.size() ); ++nBit)
   {
     int nHonestCnt = 0;
 
     for (int nEach = 0; nEach < cnrvvoExpr.size() ; ++nEach)
-      if (nCtl & ( 1 << nEach ))
+      if (nBit & ( 1 << nEach ))
       {
         vnHonest[nEach] = 1;            // Honest
         ++nHonestCnt;

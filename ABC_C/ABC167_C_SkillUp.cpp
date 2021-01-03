@@ -22,13 +22,13 @@ int calcMinPriceSkillup(int nAchieve, const vector<int>& cnrvnPrice,
 {
   int nMinPrice = INT_MAX;
 
-  for (int nCtl = 0; nCtl < ( 1 << cnrvnPrice.size() ); ++nCtl)
+  for (int nBit = 0; nBit < ( 1 << cnrvnPrice.size() ); ++nBit)
   {
     int nSumPrice = 0;
     vector<int> vnSumSkill(cnrvvnSkill[0].size());
 
     for (int ny = 0; ny < cnrvnPrice.size(); ++ny)
-      if (nCtl & ( 1 << ny ))
+      if (nBit & ( 1 << ny ))
       {
         for (int nx = 0; nx < cnrvvnSkill[ny].size(); ++nx)
           vnSumSkill[nx] += cnrvvnSkill[ny][nx];

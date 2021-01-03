@@ -36,12 +36,12 @@ int calcNumOfCase(const vector<vector<char>>& cnrvvcColor, int nRemain)
   int nNumOfCase = 0;
   int nSize = cnrvvcColor.size() + cnrvvcColor[0].size();
 
-  for (int nCtl = 0; nCtl < ( 1 << nSize ) ; ++nCtl)
+  for (int nBit = 0; nBit < ( 1 << nSize ) ; ++nBit)
   {
     vector<vector<char>> vvcColor(cnrvvcColor);
 
     for (int nEach = 0; nEach < nSize; ++nEach)
-      if (nCtl & ( 1 << nEach ))
+      if (nBit & ( 1 << nEach ))
         paintColorRed(nEach, vvcColor);
 
     int nCntTrg = 0;
