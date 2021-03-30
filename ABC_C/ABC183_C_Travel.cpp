@@ -20,7 +20,7 @@ int calcMatchCostCnt(const vector<vector<int>>& cnrvvnCost, int nTrgTime)
     vnCity.push_back( nx );
 
   vnCity.push_back( 0 );
-  int nMachcCostCnt = 0;
+  int nMatchCostCnt = 0;
 
   do {
     int nTotalCost = 0;
@@ -29,11 +29,11 @@ int calcMatchCostCnt(const vector<vector<int>>& cnrvvnCost, int nTrgTime)
       nTotalCost += cnrvvnCost[ vnCity[nx] ][ vnCity[nx + 1] ];
 
     if (nTotalCost == nTrgTime)
-      ++nMachcCostCnt;
+      ++nMatchCostCnt;
   }
   while ( next_permutation(begin(vnCity) + 1, end(vnCity) - 1) );
   
-  return nMachcCostCnt;
+  return nMatchCostCnt;
 }
 
 int main()
