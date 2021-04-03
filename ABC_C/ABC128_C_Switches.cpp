@@ -19,8 +19,8 @@ void input(int& rnSwitchSiz,
   }
 
   rvnRslt.resize(nLightSiz);
-  for (int& rnReslt : rvnRslt)
-    cin >> rnReslt;
+  for (int& rnRslt : rvnRslt)
+    cin >> rnRslt;
 }
 
 bool canLinghtOn(const vector<vector<int>>& cnrvvnLightSwt,
