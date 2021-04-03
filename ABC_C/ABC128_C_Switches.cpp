@@ -2,49 +2,49 @@
 using namespace std;
 
 void input(int& rnSwitchSiz, 
-           vector<vector<int>>& rvvnLightSwt, vector<int>& rvnReslt)
+           vector<vector<int>>& rvvnLightSwt, vector<int>& rvnRslt)
 {
-  int  nLightSiz;
+  int nLightSiz;
   cin >> rnSwitchSiz >> nLightSiz;
   rvvnLightSwt.resize(nLightSiz);
 
-  for (int nx = 0; nx < rvvnLightSwt.size(); ++nx)
+  for (int ny = 0; ny < rvvnLightSwt.size(); ++ny)
   {
     int nLightSwtSiz;
     cin >> nLightSwtSiz;
-    rvvnLightSwt[nx].resize(nLightSwtSiz);
+    rvvnLightSwt[ny].resize(nLightSwtSiz);
 
-    for (int ny = 0; ny < rvvnLightSwt[nx].size(); ++ny)
-      cin >> rvvnLightSwt[nx][ny];
+    for (int nx = 0; nx < rvvnLightSwt[ny].size(); ++nx)
+      cin >> rvvnLightSwt[ny][nx];
   }
 
-  rvnReslt.resize(nLightSiz);
-  for (int& rnReslt : rvnReslt)
+  rvnRslt.resize(nLightSiz);
+  for (int& rnReslt : rvnRslt)
     cin >> rnReslt;
 }
 
-bool canLightSwitch(const vector<vector<int>>& cnrvvnLightSwt,
-                    const vector<int>& cnrvnSwitch,
-                    const vector<int>& cnrvnReslt)
+bool canLinghtOn(const vector<vector<int>>& cnrvvnLightSwt,
+                 const vector<int>& cnrvnSwitch,
+                 const vector<int>& cnrvnRslt)
 {
-  for (int nx = 0; nx < cnrvvnLightSwt.size(); ++nx)
+  for (int ny = 0; ny < cnrvvnLightSwt.size(); ++ny)
   {
-    int nLightUpCnt = 0;
+    int nLightOnCnt = 0;
 
-    for (int ny = 0; ny < cnrvvnLightSwt[nx].size(); ++ny)
-      nLightUpCnt += cnrvnSwitch[ cnrvvnLightSwt[nx][ny] - 1 ];
+    for (int nx = 0; nx < cnrvvnLightSwt[ny].size(); ++nx)
+      nLightOnCnt += cnrvnSwitch[ cnrvvnLightSwt[ny][nx] - 1 ];
 
-    if (nLightUpCnt % 2 != cnrvnReslt[nx])
+    if (nLightOnCnt % 2 != cnrvnRslt[ny])
       return false;
   }
   return true;
 }
 
-int calcNumOfCases(int nSwitchSiz,
-                   const vector<vector<int>>& cnrvvnLightSwt, 
-                   const vector<int>& cnrvnReslt)
+int calcNumOfLightOn(int nSwitchSiz,
+                     const vector<vector<int>>& cnrvvnLightSwt, 
+                     const vector<int>& cnrvnRslt)
 {
-  int nNumOfCases = 0;
+  int nNumOfLightOn = 0;
   vector<int> vnSwitch(nSwitchSiz);
 
   for (int nBit = 0; nBit < ( 1 << nSwitchSiz ); ++nBit)
@@ -55,20 +55,20 @@ int calcNumOfCases(int nSwitchSiz,
       else
         vnSwitch[nEach] = 0;
 
-    if (canLightSwitch(cnrvvnLightSwt, vnSwitch, cnrvnReslt))
-      ++nNumOfCases;
+    if (canLinghtOn(cnrvvnLightSwt, vnSwitch, cnrvnRslt))
+      ++nNumOfLightOn;
   }
-  return nNumOfCases;
+  return nNumOfLightOn;
 }
   
 int main()
 {
   int nSwitchSiz;
   vector<vector<int>> vvnLightSwt;
-  vector<int> vnReslt;
+  vector<int> vnRslt;
 
-  input(nSwitchSiz, vvnLightSwt, vnReslt);
-  cout << calcNumOfCases(nSwitchSiz, vvnLightSwt, vnReslt) << endl;
+  input(nSwitchSiz, vvnLightSwt, vnRslt);
+  cout << calcNumOfLightOn(nSwitchSiz, vvnLightSwt, vnRslt) << endl;
 
   return 0;
 }
