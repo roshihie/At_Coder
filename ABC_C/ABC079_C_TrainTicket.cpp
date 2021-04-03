@@ -10,29 +10,33 @@ void input(vector<int>& rvnNum)
     rvnNum[nx] = sNum[nx] - '0';       // char → int 変換
 }
 
-int exhstSearch(const vector<int>& cnrvnNum)
-{                              // 必ず答えが存在するため 最終の１つ前まででループ終了
-  for (int nBit = 0; nBit < ( 1 << 3 ) - 1; ++nBit)
+int calcFormulaEq7(const vector<int>& cnrvnNum)
+{
+  for (int nBit = 0; nBit < ( 1 << 3 ); ++nBit)
   {
     int nSum = cnrvnNum[0];
 
     for (int nEach = 0; nEach < 3; ++nEach)
-      if (nBit & ( 1 << nEach )) nSum += cnrvnNum[nEach + 1];
-      else                       nSum -= cnrvnNum[nEach + 1];
-
-    if (nSum == 7)  return nBit;
+                               // 1の位が op1, 10の位が op2, 100の位が op3 を表す
+      if (nBit & ( 1 << nEach ))
+        nSum += cnrvnNum[nEach + 1];
+      else
+        nSum -= cnrvnNum[nEach + 1];
+                               // 必ず答えが存在するため nSum == 7 が存在 
+    if (nSum == 7)
+      return nBit;
   }
-  return ( 1 << 3 ) - 1;       // 必ず答えが存在するため 最終が求める答え
+  return 7;                    // 必ず答えが存在するため ここには来ない
 }
     
-void outputReslt(const vector<int>& cnrvnNum, int nReslt)
+void outputRslt(const vector<int>& cnrvnNum, int nRslt)
 {
   cout << cnrvnNum[0];
 
   for (int nEach = 0; nEach < 3; ++nEach)
   {
-    if (nReslt & ( 1 << nEach )) cout << "+";
-    else                         cout << "-";
+    if (nRslt & ( 1 << nEach )) cout << "+";
+    else                        cout << "-";
 
     cout << cnrvnNum[nEach + 1];
   }
@@ -44,8 +48,8 @@ int main()
   vector<int> vnNum(4);
   
   input(vnNum);
-  int nReslt = exhstSearch(vnNum);
-  outputReslt(vnNum, nReslt);
+  int nRslt = calcFormulaEq7(vnNum);
+  outputRslt(vnNum, nRslt);
 
   return 0;
 }
