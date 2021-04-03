@@ -6,18 +6,18 @@ void input(string& rsNum)
   cin >> rsNum;
 }
 
-int canMultiples3(const string cnsNum)
+int canMultiples3(const string& cnrsNum)
 {
-  int nMinDgtRemv = cnsNum.size();
+  int nMinDgtRemv = cnrsNum.size();
                                    // 全ての桁を消すことはないため 1 から始める
-  for (int nBit = 1; nBit < ( 1 << cnsNum.size() ); ++nBit)
+  for (int nBit = 1; nBit < ( 1 << cnrsNum.size() ); ++nBit)
   {
     int nDgtSum  = 0;
     int nDgtRemv = 0;
 
-    for (int nEach = 0; nEach < cnsNum.size(); ++nEach)
+    for (int nEach = 0; nEach < cnrsNum.size(); ++nEach)
       if ( nBit & ( 1 << nEach ) )
-        nDgtSum += cnsNum[nEach] - '0';
+        nDgtSum += cnrsNum[nEach] - '0';
       else
         ++nDgtRemv;
 

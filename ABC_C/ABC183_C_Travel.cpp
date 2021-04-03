@@ -1,10 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void input(vector<vector<int>>& rvvnCost, int& rnTrgTime)
+void input(vector<vector<int>>& rvvnCost, int& rnTrgCost)
 {
   int nCostSiz;
-  cin >> nCostSiz >> rnTrgTime;
+  cin >> nCostSiz >> rnTrgCost;
   rvvnCost.resize(nCostSiz, vector<int>(nCostSiz));
 
   for (vector<int>& rvnCost : rvvnCost)
@@ -12,7 +12,7 @@ void input(vector<vector<int>>& rvvnCost, int& rnTrgTime)
       cin >> rnCost;
 }
 
-int calcMatchCostCnt(const vector<vector<int>>& cnrvvnCost, int nTrgTime)
+int calcMatchCostCnt(const vector<vector<int>>& cnrvvnCost, int nTrgCost)
 {
   vector<int> vnCity;
 
@@ -28,7 +28,7 @@ int calcMatchCostCnt(const vector<vector<int>>& cnrvvnCost, int nTrgTime)
     for (int nx = 0; nx < vnCity.size() - 1; ++nx)
       nTotalCost += cnrvvnCost[ vnCity[nx] ][ vnCity[nx + 1] ];
 
-    if (nTotalCost == nTrgTime)
+    if (nTotalCost == nTrgCost)
       ++nMatchCostCnt;
   }
   while ( next_permutation(begin(vnCity) + 1, end(vnCity) - 1) );
@@ -39,10 +39,10 @@ int calcMatchCostCnt(const vector<vector<int>>& cnrvvnCost, int nTrgTime)
 int main()
 {
   vector<vector<int>> vvnCost;
-  int nTrgTime;
+  int nTrgCost;
 
-  input(vvnCost, nTrgTime);
-  cout << calcMatchCostCnt(vvnCost, nTrgTime) << endl;
+  input(vvnCost, nTrgCost);
+  cout << calcMatchCostCnt(vvnCost, nTrgCost) << endl;
 
   return 0;
 }
