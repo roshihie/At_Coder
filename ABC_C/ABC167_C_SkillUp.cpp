@@ -17,7 +17,7 @@ void input(int& rnAchieve, vector<int>& rvnPrice, vector<vector<int>>& rvvnSkill
   }
 }
 
-int calcMinPriceSkillup(int nAchieve, const vector<int>& cnrvnPrice, 
+int calcMinSkillupPrice(int nAchieve, const vector<int>& cnrvnPrice, 
                                       const vector<vector<int>>& cnrvvnSkill)
 {
   int nMinPrice = INT_MAX;
@@ -61,7 +61,7 @@ int main()
   vector<vector<int>> vvnSkill;
 
   input(nAchieve, vnPrice, vvnSkill);
-  cout << calcMinPriceSkillup(nAchieve, vnPrice, vvnSkill) << endl;
+  cout << calcMinSkillupPrice(nAchieve, vnPrice, vvnSkill) << endl;
 
   return 0;
 }
