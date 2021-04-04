@@ -11,9 +11,9 @@ void input(vector<string>& rvsColor, int& rnRemain)
     cin >> rsColor;
 }
 
-int calcNumOfCases(const vector<string>& cnrvsColor, int nRemain)
+int calcNumOfSelHV(const vector<string>& cnrvsColor, int nRemain)
 {
-  int nNumOfCases = 0;
+  int nNumOfSelHV = 0;
 
   for (int nyBit = 0; nyBit < ( 1 << cnrvsColor.size() ); ++nyBit)
     for (int nxBit = 0; nxBit < ( 1 << cnrvsColor[0].size() ); ++nxBit)
@@ -30,10 +30,10 @@ int calcNumOfCases(const vector<string>& cnrvsColor, int nRemain)
           if (cnrvsColor[nyEach][nxEach] == '#') ++nCntTrg;
         }
       }
-      if (nCntTrg == nRemain) ++nNumOfCases;
+      if (nCntTrg == nRemain) ++nNumOfSelHV;
     }
 
-  return nNumOfCases;
+  return nNumOfSelHV;
 }
  
 int main()
@@ -42,7 +42,7 @@ int main()
   int nRemain;
 
   input(vsColor, nRemain);
-  cout << calcNumOfCases(vsColor, nRemain) << endl;
+  cout << calcNumOfSelHV(vsColor, nRemain) << endl;
 
   return 0;
 }
