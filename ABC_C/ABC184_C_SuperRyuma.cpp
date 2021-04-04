@@ -51,8 +51,7 @@ int calcMinStepCnt(StCoord oCrdBgn, StCoord oCrdEnd)
   else if (oDist.m_nDists <= 3  ||
            oDist.m_nDistx == oDist.m_nDisty)
     return 1;
-  else if (oDist.m_nDists % 2 == 0  ||
-           oDist.m_nDists <= 6         )
+  else if (oDist.m_nDists % 2 == 0)
     return 2;
  
   int nStepCnt;
