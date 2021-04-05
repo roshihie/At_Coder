@@ -17,16 +17,16 @@ llong calcSumOfMultiple(const vector<int>& cnrvnNum)
   const int cnnMod = 1e9 + 7;
   llong nCumlSum = 0;
 
-  for (int i = 0; i < cnrvnNum.size(); ++i)
-    nCumlSum += cnrvnNum[i];
+  for (int nx = 0; nx < cnrvnNum.size(); ++nx)
+    nCumlSum += cnrvnNum[nx];
 
   llong nSumOfMultpl = 0;
 
-  for (int i = 0; i < cnrvnNum.size() - 1; ++i)
+  for (int nx = 0; nx < cnrvnNum.size() - 1; ++nx)
   {
-    nCumlSum -= cnrvnNum[i];
+    nCumlSum -= cnrvnNum[nx];
 
-    nSumOfMultpl += cnrvnNum[i] * ( nCumlSum % cnnMod );
+    nSumOfMultpl += cnrvnNum[nx] * ( nCumlSum % cnnMod );
     nSumOfMultpl %= cnnMod;
   }
 
