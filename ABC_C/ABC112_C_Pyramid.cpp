@@ -20,10 +20,15 @@ void input(vector<StCoord>& rvoCoord)
     cin >> roCoord.m_nx >> roCoord.m_ny >> roCoord.m_nHigh;
 }
 
-int calcCenterHigh(StCoord oCenter, StCoord oCoord)
+int calcCenterDiff(StCoord oCenter, StCoord oCoord)
 {
   return  abs(oCenter.m_nx - oCoord.m_nx) 
-        + abs(oCenter.m_ny - oCoord.m_ny) + oCoord.m_nHigh;
+        + abs(oCenter.m_ny - oCoord.m_ny);
+}
+
+int calcCenterHigh(StCoord oCenter, StCoord oCoord)
+{
+  return calcCenterDiff(oCenter, oCoord) + oCoord.m_nHigh;
 }
 
 bool isCenter(StCoord& roCenter, const vector<StCoord>& cnrvoCoord)
@@ -40,7 +45,7 @@ bool isCenter(StCoord& roCenter, const vector<StCoord>& cnrvoCoord)
 
   for (int nz = 0; nz < cnrvoCoord.size(); ++nz)
     if ( !cnrvoCoord[nz].m_nHigh )
-      if (nCenterHigh <= calcCenterHigh(roCenter, cnrvoCoord[nz]));
+      if (nCenterHigh <= calcCenterDiff(roCenter, cnrvoCoord[nz]));
       else
         return false;
 
