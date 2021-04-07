@@ -59,12 +59,12 @@ void calcCenterCoord(const vector<StCoord>& cnrvoCoord)
   bool bCenter = false;
   oCenter.m_nx = -1;
 
-  while ( !bCenter         &&
+  while ( !bCenter  &&
           ++oCenter.m_nx <= 100 )
   {
     oCenter.m_ny = -1;
 
-    while ( !bCenter         &&
+    while ( !bCenter  &&
             ++oCenter.m_ny <= 100 )
       bCenter = isCenter(oCenter, cnrvoCoord);
   }
