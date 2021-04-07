@@ -30,17 +30,17 @@ bool isCenter(StCoord& roCenter, const vector<StCoord>& cnrvoCoord)
 {
   int nCenterHigh = 0;
 
-  for (int i = 0; i < cnrvoCoord.size(); ++i)
-    if ( cnrvoCoord[i].m_nHigh )
+  for (int nz = 0; nz < cnrvoCoord.size(); ++nz)
+    if ( cnrvoCoord[nz].m_nHigh )
       if ( !nCenterHigh )
-        nCenterHigh = calcCenterHigh(roCenter, cnrvoCoord[i]);
+        nCenterHigh = calcCenterHigh(roCenter, cnrvoCoord[nz]);
       else
-        if (nCenterHigh != calcCenterHigh(roCenter, cnrvoCoord[i]))
+        if (nCenterHigh != calcCenterHigh(roCenter, cnrvoCoord[nz]))
           return false;
 
-  for (int i = 0; i < cnrvoCoord.size(); ++i)
-    if ( !cnrvoCoord[i].m_nHigh )
-      if (nCenterHigh <= calcCenterHigh(roCenter, cnrvoCoord[i]));
+  for (int nz = 0; nz < cnrvoCoord.size(); ++nz)
+    if ( !cnrvoCoord[nz].m_nHigh )
+      if (nCenterHigh <= calcCenterHigh(roCenter, cnrvoCoord[nz]));
       else
         return false;
 
@@ -54,18 +54,14 @@ void calcCenterCoord(const vector<StCoord>& cnrvoCoord)
   bool bCenter = false;
   oCenter.m_nx = -1;
 
-  while ( !bCenter       &&
-          oCenter.m_nx < 100 )
+  while ( !bCenter         &&
+          ++oCenter.m_nx <= 100 )
   {
-    ++oCenter.m_nx;
     oCenter.m_ny = -1;
 
-    while ( !bCenter       &&
-            oCenter.m_ny < 100 )
-    {
-      ++oCenter.m_ny;
+    while ( !bCenter         &&
+            ++oCenter.m_ny <= 100 )
       bCenter = isCenter(oCenter, cnrvoCoord);
-    }
   }
   if ( bCenter )  
     cout << oCenter.m_nx << " " << oCenter.m_ny << " " << oCenter.m_nHigh;
