@@ -17,14 +17,13 @@ void input(set<string>& rseStr)
 string isExistStr(const set<string>& cnrseStr)
 {
   for (auto sStr : cnrseStr)
-  {
     if (sStr[0] == '!')
     {
       string s2ndSubStr = sStr.substr(1);
       if ( cnrseStr.count(s2ndSubStr) )
         return s2ndSubStr;
     }
-  }
+
   return "satisfiable";
 }
   
