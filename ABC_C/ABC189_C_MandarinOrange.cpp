@@ -17,15 +17,11 @@ int calcMaxArea(const vector<int>& cnrvnNum)
 
   for (int nLeft = 0; nLeft < cnrvnNum.size(); ++nLeft)
   {
-    int nMinNum = 0;
+    int nMinNum = cnrvnNum[nLeft];
 
     for (int nRight = nLeft; nRight < cnrvnNum.size(); ++nRight)
     {
-      if ( !nMinNum )
-        nMinNum = min(cnrvnNum[nLeft], cnrvnNum[nRight]);
-      else
-        nMinNum = min(nMinNum, cnrvnNum[nRight]);
-
+      nMinNum = min(nMinNum, cnrvnNum[nRight]);
       nMaxArea = max(nMaxArea, (nRight - nLeft + 1) * nMinNum);
     }
   }
