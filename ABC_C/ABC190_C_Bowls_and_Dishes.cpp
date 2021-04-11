@@ -1,67 +1,67 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct StCond
+struct StDish
 {
-  StCond() : m_nDish1(0), m_nDish2(0) { }
+  StDish() : m_nDish1(0), m_nDish2(0) { }
 
   int m_nDish1;
   int m_nDish2;
 };
 
-void input(int& rnDishSiz, vector<StCond>& rvoCond, 
-                           vector<StCond>& rvoStatmnt)
+void input(int& rnDishSiz, vector<StDish>& rvoCond, 
+                           vector<StDish>& rvoPutDish)
 {
   int nCondSiz;
   cin >> rnDishSiz >> nCondSiz;
   rvoCond.resize(nCondSiz);
 
-  for (StCond& roCond : rvoCond)
+  for (StDish& roCond : rvoCond)
   {
     cin >> roCond.m_nDish1 >> roCond.m_nDish2;
     --roCond.m_nDish1; --roCond.m_nDish2;
   }
 
-  int nStatmntSiz;
-  cin >> nStatmntSiz;
-  rvoStatmnt.resize(nStatmntSiz);
+  int nPutDishSiz;
+  cin >> nPutDishSiz;
+  rvoPutDish.resize(nPutDishSiz);
 
-  for (StCond& roStatmnt : rvoStatmnt)
+  for (StDish& roPutDish : rvoPutDish)
   {
-    cin >> roStatmnt.m_nDish1 >> roStatmnt.m_nDish2;
-    --roStatmnt.m_nDish1; --roStatmnt.m_nDish2;
+    cin >> roPutDish.m_nDish1 >> roPutDish.m_nDish2;
+    --roPutDish.m_nDish1; --roPutDish.m_nDish2;
   }
 }
 
-int calcMeetCond(const vector<StCond>& cnrvoCond,
-                 const vector<int>& cnrvnBowlDish)
+int calcMeetCond(const vector<StDish>& cnrvoCond,
+                 const vector<int>& cnrvnSelDish)
 {
   int nMeetCond = 0;
 
-  for (StCond oCond : cnrvoCond)
-    if ( cnrvnBowlDish[ oCond.m_nDish1 ] &&
-         cnrvnBowlDish[ oCond.m_nDish2 ]    )
+  for (StDish oCond : cnrvoCond)
+    if ( cnrvnSelDish[ oCond.m_nDish1 ] &&
+         cnrvnSelDish[ oCond.m_nDish2 ]    )
       ++nMeetCond;
 
   return nMeetCond;
 }
 
-int calcMaxMeetCond(int nDishSiz, const vector<StCond>& cnrvoCond,
-                                  const vector<StCond>& cnrvoStatmnt)
+int calcMaxMeetCond(int nDishSiz, const vector<StDish>& cnrvoCond,
+                                  const vector<StDish>& cnrvoPutDish)
 {
   int nMaxMeetCond = 0;
 
-  for (int nBit = 0; nBit < ( 1 << cnrvoStatmnt.size() ); ++nBit)
+  for (int nBit = 0; nBit < ( 1 << cnrvoPutDish.size() ); ++nBit)
   {
-    vector<int> vnBowlDish(nDishSiz);
+    vector<int> vnSelDish(nDishSiz);
 
-    for (int nEach = 0; nEach < cnrvoStatmnt.size(); ++nEach)
+    for (int nEach = 0; nEach < cnrvoPutDish.size(); ++nEach)
       if ( nBit & ( 1 << nEach ) )
-        vnBowlDish[ cnrvoStatmnt[nEach].m_nDish2 ] = 1;
+        vnSelDish[ cnrvoPutDish[nEach].m_nDish2 ] = 1;
       else
-        vnBowlDish[ cnrvoStatmnt[nEach].m_nDish1 ] = 1;
+        vnSelDish[ cnrvoPutDish[nEach].m_nDish1 ] = 1;
       
-    int nMeetCond = calcMeetCond(cnrvoCond, vnBowlDish);
+    int nMeetCond = calcMeetCond(cnrvoCond, vnSelDish);
     nMaxMeetCond = max(nMaxMeetCond, nMeetCond);
   }
   return nMaxMeetCond;
@@ -70,10 +70,10 @@ int calcMaxMeetCond(int nDishSiz, const vector<StCond>& cnrvoCond,
 int main()
 {
   int nDishSiz;
-  vector<StCond> voCond, voStatmnt;
+  vector<StDish> voCond, voPutDish;
 
-  input(nDishSiz, voCond, voStatmnt);
-  cout << calcMaxMeetCond(nDishSiz, voCond, voStatmnt) << endl;
+  input(nDishSiz, voCond, voPutDish);
+  cout << calcMaxMeetCond(nDishSiz, voCond, voPutDish) << endl;
 
   return 0;
 }
