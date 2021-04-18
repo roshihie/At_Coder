@@ -6,21 +6,21 @@ void input(int& rnNum, int& rnTrg)
   cin >> rnNum >> rnTrg;
 }
 
-int calcMinMaxElm(const vector<int> cnrvnDisit)
+int calcNum(const vector<int> cnrvnDigit)
 {
-  int nMinMaxElm = 0;
+  int nNum = 0;
 
-  for (int nElmx = 0; nElmx < cnrvnDisit.size(); ++nElmx)
+  for (int nElmx = 0; nElmx < cnrvnDigit.size(); ++nElmx)
   {
     int nPlace = 1;
 
     for (int nx = 0; nx < nElmx; ++nx)
       nPlace *= 10;
 
-    nMinMaxElm += cnrvnDisit[nElmx] * nPlace;
+    nNum += cnrvnDigit[nElmx] * nPlace;
   }
 
-  return nMinMaxElm;
+  return nNum;
 }
 
 int calcKaprekarNum(int nSequenceElm)
@@ -37,10 +37,10 @@ int calcKaprekarNum(int nSequenceElm)
   if ( vnDigit.size() )
   {
     sort(begin(vnDigit), end(vnDigit));
-    nMaxElm = calcMinMaxElm(vnDigit);
+    nMaxElm = calcNum(vnDigit);
 
     reverse(begin(vnDigit), end(vnDigit));
-    nMinElm = calcMinMaxElm(vnDigit);
+    nMinElm = calcNum(vnDigit);
   }
 
   return nMaxElm - nMinElm;
