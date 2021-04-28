@@ -2,43 +2,32 @@
 using namespace std;
 using llong = long long;
 
-void input(vector<int>& rvnSeq)
+void input(llong& rnMax)
 {
-  int nSeqSiz;
-  cin >> nSeqSiz;
-  rvnSeq.resize(nSeqSiz);
-
-  for (int& rnSeq : rvnSeq)
-    cin >> rnSeq;
+  cin >> rnMax;
 }
   
-llong calcSumSqreElmDiff(const vector<int>& cnrvnSeq)
+llong calcCommaCnt(llong nMax)
 {
-  llong nSumSqreElmDiff = 0;
-  llong nSumSquares = 0;
-  llong nSumElement = 0;
+  const vector<llong> cnvnBound = 
+    {0, (llong)1e3  - 1, (llong)1e6  - 1, (llong)1e9  - 1,  
+        (llong)1e12 - 1, (llong)1e15 - 1, (llong)1e18 - 1};
 
-  for (int nSeq : cnrvnSeq)
-  {
-    nSumElement += nSeq;
-    nSumSquares += nSeq * nSeq;
-  }
-  nSumSqreElmDiff += nSumSquares * (cnrvnSeq.size() - 1);
+  llong nCommaCnt = 0;
+  int nx = 0;
 
-  for (int nSeq : cnrvnSeq)
-  {
-    nSumElement -= nSeq;
-    nSumSqreElmDiff -= 2 * nSumElement * nSeq; 
-  }
-  return nSumSqreElmDiff;
+  while (cnvnBound[nx + 1] < nMax)
+    nCommaCnt += (cnvnBound[nx + 1] - cnvnBound[nx]) * nx++;
+
+  nCommaCnt += ( min(cnvnBound[nx + 1], nMax) - cnvnBound[nx] ) * nx;
+  return nCommaCnt;
 }
 
 int main()
 {
-  vector<int> vnSeq;
-
-  input(vnSeq);
-  cout << calcSumSqreElmDiff(vnSeq) << endl;
+  llong nMax;
+  input(nMax);
+  cout << calcCommaCnt(nMax) << endl;
 
   return 0;
 }
