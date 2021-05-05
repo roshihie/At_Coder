@@ -27,7 +27,7 @@ int calcMinOrXor(const vector<int>& cnrvnElm)
       nElmOr |= cnrvnElm[nEach];
 
       if ( nEach == cnrvnElm.size() - 1 ||
-           1 & ( nBit >> nEach )          )
+           nBit & ( 1 << nEach )          )
       {
         nElmOrXor ^= nElmOr;
         nElmOr = 0;
