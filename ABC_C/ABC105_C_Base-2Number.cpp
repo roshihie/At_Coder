@@ -8,7 +8,11 @@ void input(int& rnNum)
 
 void calcBaseM2Num(int nNum, vector<int>& rvnRem)
 {
-  do {
+  if ( !nNum )
+    rvnRem.push_back( 0 );
+
+  while ( nNum )
+  {
     int nRem = nNum % -2;
     nNum /= -2;
     
@@ -19,7 +23,6 @@ void calcBaseM2Num(int nNum, vector<int>& rvnRem)
     }
     rvnRem.push_back( nRem );
   }
-  while ( nNum );
 
   reverse(begin(rvnRem), end(rvnRem));
 }
