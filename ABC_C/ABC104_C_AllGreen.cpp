@@ -50,7 +50,8 @@ int calcMinSolveCnt(int nGoal, const vector<StPrblm>& cnrvoPrblm)
         bool bSkip = false;
 
         for (nEachPtial = cnrvoPrblm.size() - 1; nEachPtial >= 0; --nEachPtial)
-          if (nBitPtial & ( 1 << nEachPfect )) 
+          if ( nBitPtial & ( 1 << nEachPtial ) &&
+               nBitPfect & ( 1 << nEachPtial )   ) 
           {
             bSkip = true;
             break;
