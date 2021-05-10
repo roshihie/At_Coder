@@ -25,27 +25,26 @@ int calcMinSolveCnt(int nGoal, const vector<StPrblm>& cnrvoPrblm)
 
   for (int nBitPfect = 0; nBitPfect < ( 1 << cnrvoPrblm.size() ); ++nBitPfect)
   {
-    int nSolvePntPfect = 0;
-    int nSolveCntPfect = 0;
+    int nCntPfect = 0;
+    int nPntPfect = 0;
     int nEachPfect;
 
     for (nEachPfect = 0; nEachPfect < cnrvoPrblm.size(); ++nEachPfect)
       if (nBitPfect & ( 1 << nEachPfect ))
       {
-        nSolveCntPfect += cnrvoPrblm[nEachPfect].m_nPrbCnt; 
-        nSolvePntPfect += cnrvoPrblm[nEachPfect].m_nPrbCnt * (nEachPfect + 1) * 100
+        nCntPfect += cnrvoPrblm[nEachPfect].m_nPrbCnt; 
+        nPntPfect += cnrvoPrblm[nEachPfect].m_nPrbCnt * (nEachPfect + 1) * 100
                         + cnrvoPrblm[nEachPfect].m_nPrbSpc;
       }
 
-    if (nSolvePntPfect >= nGoal)
-      nMinSolveCnt = min(nMinSolveCnt, nSolveCntPfect);
+    if (nPntPfect >= nGoal)
+      nMinSolveCnt = min(nMinSolveCnt, nCntPfect);
     else
     {
-      int nSolvePntPtial = 0;
-      int nSolveCntPtial = 0;
-
       for (int nBitPtial = 0; nBitPtial < ( 1 << cnrvoPrblm.size() ); ++nBitPtial)
       {
+        int nCntPtial = 0;
+        int nPntPtial = 0;
         int nEachPtial;
         bool bSkip = false;
 
@@ -60,18 +59,25 @@ int calcMinSolveCnt(int nGoal, const vector<StPrblm>& cnrvoPrblm)
 
         for (nEachPtial = cnrvoPrblm.size() - 1; nEachPtial >= 0; --nEachPtial)
           if (nBitPtial & ( 1 << nEachPtial ))
-            while ( nSolveCntPtial < cnrvoPrblm[nEachPtial].m_nPrbCnt - 1 &&
-                    nSolvePntPfect + nSolvePntPtial < nGoal                  )
-            {
-              ++nSolveCntPtial;
-              nSolvePntPtial += (nEachPtial + 1) * 100;
-            }
+          {
+            int nCurCnt;
 
-        if (nSolvePntPfect + nSolvePntPtial >= nGoal)
-        {
-          nMinSolveCnt = min(nMinSolveCnt, nSolvePntPfect + nSolveCntPtial);
-          break;
-        }
+            for (nCurCnt = 1; nCurCnt < cnrvoPrblm[nEachPtial].m_nPrbCnt; ++nCurCnt)
+            {
+              nPntPtial += (nEachPtial + 1) * 100;
+
+              if (nPntPfect + nPntPtial >= nGoal)
+              {
+                nCntPtial += nCurCnt;
+                nMinSolveCnt = min(nMinSolveCnt, nCntPfect + nCntPtial);
+                break;
+              }
+            }
+            if (nPntPfect + nPntPtial >= nGoal)
+              break;
+            else
+              nCntPtial += nCurCnt - 1;
+          }
       }
     }  
   }
