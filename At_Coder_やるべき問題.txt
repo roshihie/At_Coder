@@ -1,0 +1,51 @@
+ABC 093 C - Same Integers                 ƒŒ
+
+ABC 059 C - Sequence                      ƒŒ
+
+ATC 001 A - [‚³—Dæ’Tõ                  ƒŒ
+
+ABC 007 C - •—Dæ’Tõ                    ƒŒ
+
+ABC 072 C - Together                      ƒŒ
+
+ABC 088 C - Takahashi's Information       ƒŒ
+
+ARC 096 C - Half and Half                 ƒŒ 
+
+ABC 057 C - Digits in Multiplication      ƒŒ
+
+ABC 074 C - Sugar Water                   ƒŒ
+
+ABC 081 C - Not so Diverse                ƒŒ
+
+ABC 091 B - Two Colors Card Game          ƒŒ
+
+ABC 082 B - Two Anagrams                  ƒŒ
+
+ABC 047 B - Snuke's Coloring 2 (ABC Edit) ƒŒ
+
+ABC 061 B - Counting Roads                ƒŒ 
+
+ABC 071 B - Not Found                     ƒŒ
+
+ABC 090 B - Palindromic Numbers           ƒŒ
+
+ABC 080 B - Harshad Number                ƒŒ
+
+AGC 027 A - Candy Distribution Again      ƒŒ
+
+AGC 012 A - AtCoder Group Contest         ƒŒ
+
+ABC 113 B - Palace                        ƒŒ 
+
+ABC 072 B - OddString                     ƒŒ
+
+ABC 053 B - A to Z String                 ƒŒ
+
+ABC 095 B - Bitter Alchemy                ƒŒ
+
+ABC 105 B - Cakes and Donuts              ƒŒ
+
+ARC 004 A - 2“_ŠÔ‹——£‚ÌÅ‘å’l             ƒŒ 
+
+ABC 051 B - Sum of Three Integers         ƒŒ
