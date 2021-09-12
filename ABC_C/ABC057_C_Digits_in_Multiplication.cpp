@@ -17,7 +17,7 @@ int calcDigits(int nDividend)
   return nDgtCnt;
 }
 
-int isMultiple(llong nNum)
+int calcMultMinDigit(llong nNum)
 {
   int nDivisor = sqrt(nNum);
 
@@ -33,7 +33,7 @@ int main()
   llong nNum;
   
   input(nNum);
-  cout << isMultiple(nNum) << endl;
+  cout << calcMultMinDigit(nNum) << endl;
 
   return 0;
 }
