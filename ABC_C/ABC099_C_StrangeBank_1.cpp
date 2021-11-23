@@ -12,13 +12,13 @@ int calcOpeCnt(int nCash)
   vector<int> vnDPExg(nCash + 1, nCash);
   vnDPExg[0] = 0;
 
-  for (int nx = 1; nx <= nCash; ++nx)
+  for (int nx = 0; nx <= nCash; ++nx)
   {
-    for (int ny = 1; nx - ny >= 0; ny *= 6)
-      vnDPExg[nx] = min(vnDPExg[nx], vnDPExg[nx - ny] + 1);
+    for (int ny = 1; nx + ny <= nCash; ny *= 6)
+      vnDPExg[nx + ny] = min(vnDPExg[nx + ny], vnDPExg[nx] + 1);
 
-    for (int ny = 1; nx - ny >= 0; ny *= 9)
-      vnDPExg[nx] = min(vnDPExg[nx], vnDPExg[nx - ny] + 1);
+    for (int ny = 1; nx + ny <= nCash; ny *= 9)
+      vnDPExg[nx + ny] = min(vnDPExg[nx + ny], vnDPExg[nx] + 1);
   }
   return vnDPExg[nCash];
 }
