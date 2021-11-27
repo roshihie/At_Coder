@@ -50,8 +50,8 @@ int countDgt753(int nMaxNum)
   while (toInt(vcNum) <= nMaxNum) 
   {
     if ( isDgt753(vcNum) ) ++nDgt753Cnt;
-
     ++vcNum[vcNum.size() - 1];
+
     for (int nx = vcNum.size() - 1; nx > 0; --nx)
       if (vcNum[nx] > '3')
       {  
