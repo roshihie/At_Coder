@@ -32,8 +32,8 @@ bool canLinghtOn(const vector<vector<int>>& cnrvvnLightSwt,
   {
     int nCanLightOn = 0;
 
-    for (const int& cnrLightSwt : cnrvvnLightSwt[ny])
-      nCanLightOn += cnrvnSwitch[ cnrLightSwt - 1 ];
+    for (const int& cnrnLightSwt : cnrvvnLightSwt[ny])
+      nCanLightOn += cnrvnSwitch[ cnrnLightSwt - 1 ];
 
     if (nCanLightOn % 2 != cnrvnRslt[ny])
       return false;
