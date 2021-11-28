@@ -8,17 +8,18 @@ void input(int& rnSwitchSiz,
   cin >> rnSwitchSiz >> nLightSiz;
   rvvnLightSwt.resize(nLightSiz);
 
-  for (int ny = 0; ny < rvvnLightSwt.size(); ++ny)
+  for (auto& rvnLightSwt : rvvnLightSwt)
   {
     int nLightSwtSiz;
     cin >> nLightSwtSiz;
-    rvvnLightSwt[ny].resize(nLightSwtSiz);
+    rvnLightSwt.resize(nLightSwtSiz);
 
-    for (int nx = 0; nx < rvvnLightSwt[ny].size(); ++nx)
-      cin >> rvvnLightSwt[ny][nx];
+    for (int& rnLightSwt : rvnLightSwt)
+      cin >> rnLightSwt;
   }
 
   rvnRslt.resize(nLightSiz);
+
   for (int& rnRslt : rvnRslt)
     cin >> rnRslt;
 }
@@ -29,22 +30,22 @@ bool canLinghtOn(const vector<vector<int>>& cnrvvnLightSwt,
 {
   for (int ny = 0; ny < cnrvvnLightSwt.size(); ++ny)
   {
-    int nLightOnCnt = 0;
+    int nCanLightOn = 0;
 
-    for (int nx = 0; nx < cnrvvnLightSwt[ny].size(); ++nx)
-      nLightOnCnt += cnrvnSwitch[ cnrvvnLightSwt[ny][nx] - 1 ];
+    for (const int& cnrLightSwt : cnrvvnLightSwt[ny])
+      nCanLightOn += cnrvnSwitch[ cnrLightSwt - 1 ];
 
-    if (nLightOnCnt % 2 != cnrvnRslt[ny])
+    if (nCanLightOn % 2 != cnrvnRslt[ny])
       return false;
   }
   return true;
 }
 
-int calcNumOfLightOn(int nSwitchSiz,
-                     const vector<vector<int>>& cnrvvnLightSwt, 
-                     const vector<int>& cnrvnRslt)
+int cntLightOn(int nSwitchSiz,
+               const vector<vector<int>>& cnrvvnLightSwt, 
+               const vector<int>& cnrvnRslt)
 {
-  int nNumOfLightOn = 0;
+  int nCntLightOn = 0;
   vector<int> vnSwitch(nSwitchSiz);
 
   for (int nBit = 0; nBit < ( 1 << nSwitchSiz ); ++nBit)
@@ -55,10 +56,10 @@ int calcNumOfLightOn(int nSwitchSiz,
       else
         vnSwitch[nEach] = 0;
 
-    if (canLinghtOn(cnrvvnLightSwt, vnSwitch, cnrvnRslt))
-      ++nNumOfLightOn;
+    if ( canLinghtOn(cnrvvnLightSwt, vnSwitch, cnrvnRslt) )
+      ++nCntLightOn;
   }
-  return nNumOfLightOn;
+  return nCntLightOn;
 }
   
 int main()
@@ -68,7 +69,7 @@ int main()
   vector<int> vnRslt;
 
   input(nSwitchSiz, vvnLightSwt, vnRslt);
-  cout << calcNumOfLightOn(nSwitchSiz, vvnLightSwt, vnRslt) << endl;
+  cout << cntLightOn(nSwitchSiz, vvnLightSwt, vnRslt) << endl;
 
   return 0;
 }
