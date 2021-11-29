@@ -1,11 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void input(vector<int>& rvnCutLen, int& rnCutOffCnt)
+void input(vector<int>& rvnCutLen, int& rnCutCnt)
 {
   int nCutLenSiz, nTotalLen;
   cin >> nCutLenSiz >> nTotalLen;
-  cin >> rnCutOffCnt;
+  cin >> rnCutCnt;
   rvnCutLen.resize(nCutLenSiz);
 
   for (int& nCutLen : rvnCutLen)
@@ -14,14 +14,14 @@ void input(vector<int>& rvnCutLen, int& rnCutOffCnt)
   rvnCutLen.push_back( nTotalLen );
 }
 
-bool canCutOff(const vector<int>& cnrvnCutLen, int nCutOffCnt, int nTrgCutLen)
+bool canCutOff(const vector<int>& cnrvnCutLen, int nCutCnt, int nTrgCutLen)
 {
   int nCanCnt = 0;
   int nFwd = 0;
   int nSumCutLen = 0;
 
   while (nFwd < (int)cnrvnCutLen.size() &&
-         nCanCnt < nCutOffCnt             )
+         nCanCnt < nCutCnt                )
   {
     while (nFwd < (int)cnrvnCutLen.size() &&
            nSumCutLen < nTrgCutLen          )
@@ -42,13 +42,13 @@ bool canCutOff(const vector<int>& cnrvnCutLen, int nCutOffCnt, int nTrgCutLen)
 
   if (nSumCutLen < nTrgCutLen)
     return false;
-  else if (nCanCnt < nCutOffCnt) 
+  else if (nCanCnt < nCutCnt) 
     return false;
   else
     return true;
 }
 
-int calcMaxShortest(const vector<int>& cnrvnCutLen, int nCutOffCnt)
+int calcMaxShortest(const vector<int>& cnrvnCutLen, int nCutCnt)
 {
   int nMaxShortest = 0;
   int nLow = 1, nHigh = cnrvnCutLen[ cnrvnCutLen.size() - 1 ];
@@ -57,7 +57,7 @@ int calcMaxShortest(const vector<int>& cnrvnCutLen, int nCutOffCnt)
   {
     int nMid = (nLow + nHigh) / 2;
 
-    if ( canCutOff(cnrvnCutLen, nCutOffCnt, nMid) )
+    if ( canCutOff(cnrvnCutLen, nCutCnt, nMid) )
     {
       nMaxShortest = nMid;
       nLow = nMid + 1;
@@ -70,11 +70,11 @@ int calcMaxShortest(const vector<int>& cnrvnCutLen, int nCutOffCnt)
   
 int main()
 {
-  int nCutOffCnt;
+  int nCutCnt;
   vector<int> vnCutLen;
 
-  input(vnCutLen, nCutOffCnt);
-  cout << calcMaxShortest(vnCutLen, nCutOffCnt) << endl;
+  input(vnCutLen, nCutCnt);
+  cout << calcMaxShortest(vnCutLen, nCutCnt) << endl;
 
   return 0;
 }
