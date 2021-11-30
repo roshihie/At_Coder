@@ -16,42 +16,29 @@ void input(vector<int>& rvnCutLen, int& rnCutCnt)
 
 bool canCutOff(const vector<int>& cnrvnCutLen, int nCutCnt, int nTrgCutLen)
 {
-  int nCanCnt = 0;
-  int nFwd = 0;
-  int nSumCutLen = 0;
+  int nLast = (int)cnrvnCutLen.size() - 1;
+  int nCanCutCnt = 0;
+  int nCutedLen = 0;
 
-  while (nFwd < (int)cnrvnCutLen.size() &&
-         nCanCnt < nCutCnt                )
-  {
-    while (nFwd < (int)cnrvnCutLen.size() &&
-           nSumCutLen < nTrgCutLen          )
+  for (int nFwd = 0; nFwd < nLast; ++nFwd)
+    if (cnrvnCutLen[nFwd]  - nCutedLen >= nTrgCutLen        &&
+        cnrvnCutLen[nLast] - cnrvnCutLen[nFwd] >= nTrgCutLen  )
     {
-      if ( nFwd )
-        nSumCutLen += (cnrvnCutLen[nFwd] - cnrvnCutLen[nFwd - 1]);
-      else
-        nSumCutLen += cnrvnCutLen[nFwd];
-
-      ++nFwd;
+      nCutedLen = cnrvnCutLen[nFwd];
+      ++nCanCutCnt;
     }
-    ++nCanCnt;
-    nSumCutLen = 0;
-  }
 
-  for ( ; nFwd < (int)cnrvnCutLen.size(); ++nFwd)
-    nSumCutLen += (cnrvnCutLen[nFwd] - cnrvnCutLen[nFwd - 1]);
-
-  if (nSumCutLen < nTrgCutLen)
-    return false;
-  else if (nCanCnt < nCutCnt) 
-    return false;
-  else
+  if (nCanCutCnt >= nCutCnt)
     return true;
+  else
+    return false;
 }
 
 int calcMaxShortest(const vector<int>& cnrvnCutLen, int nCutCnt)
 {
+  int nLast = (int)cnrvnCutLen.size() - 1;
   int nMaxShortest = 0;
-  int nLow = 1, nHigh = cnrvnCutLen[ cnrvnCutLen.size() - 1 ];
+  int nLow = 1, nHigh = cnrvnCutLen[nLast];
 
   while (nLow < nHigh)
   {
