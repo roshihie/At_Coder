@@ -22,7 +22,7 @@ void chkPairKakko(int nNum)
   for (int nBit = 0; nBit < ( 1 << nNum ); ++nBit)
   {
     int nLeftkkCnt = 0, nRigtkkCnt = 0;
-    bool bPair = true;
+    bool bPairkakko = true;
 
     for (int nEach = nNum - 1; nEach >= 0; --nEach)
     {
@@ -33,11 +33,11 @@ void chkPairKakko(int nNum)
 
       if (nLeftkkCnt < nRigtkkCnt)
       {
-        bPair = false;
+        bPairkakko = false;
         break;
       }
     }
-    if (bPair && nLeftkkCnt == nRigtkkCnt)
+    if (bPairkakko && nLeftkkCnt == nRigtkkCnt)
        outPairKakko(nNum, nBit);
   }
 }
