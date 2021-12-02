@@ -1,15 +1,15 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void input( int& rnNum )
+void input( int& rnum )
 {
-  cin >> rnNum;
+  cin >> rnum;
 }
 
-void outPairKakko( int nNum, int nBit )
+void outPairKakko( int num, int bit )
 {
-  for ( int nEach = nNum - 1; nEach >= 0; --nEach )
-    if ( nBit & ( 1 << nEach ))
+  for ( int each = num - 1; each >= 0; --each )
+    if ( bit & ( 1 << each ))
       cout << ")";
     else
       cout << "(";
@@ -17,36 +17,36 @@ void outPairKakko( int nNum, int nBit )
   cout << endl;
 }
 
-void chkPairKakko ( int nNum )
+void chkPairKakko ( int num )
 {
-  for ( int nBit = 0; nBit < ( 1 << nNum ); ++nBit )
+  for ( int bit = 0; bit < ( 1 << num ); ++bit )
   {
-    int nLeftkkCnt = 0, nRigtkkCnt = 0;
-    bool bPairkakko = true;
+    int leftKkCnt = 0, rightKkCnt = 0;
+    bool isPairKakko = true;
 
-    for ( int nEach = nNum - 1; nEach >= 0; --nEach )
+    for ( int each = num - 1; each >= 0; --each )
     {
-      if ( nBit & ( 1 << nEach ))
-         ++nRigtkkCnt;
+      if ( bit & ( 1 << each ))
+         ++rightKkCnt;
       else
-         ++nLeftkkCnt;
+         ++leftKkCnt;
 
-      if ( nLeftkkCnt < nRigtkkCnt )
+      if ( leftKkCnt < rightKkCnt )
       {
-        bPairkakko = false;
+        isPairKakko = false;
         break;
       }
     }
-    if ( bPairkakko && nLeftkkCnt == nRigtkkCnt )
-       outPairKakko( nNum, nBit );
+    if ( isPairKakko && leftKkCnt == rightKkCnt )
+       outPairKakko( num, bit );
   }
 }
   
 int main()
 {
-  int nNum;
-  input( nNum );
-  chkPairKakko( nNum );
+  int num;
+  input( num );
+  chkPairKakko( num );
 
   return 0;
 }

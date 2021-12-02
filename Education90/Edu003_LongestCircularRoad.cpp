@@ -3,64 +3,64 @@ using namespace std;
 
 struct StDist
 {
-  StDist() : m_nNode( 0 ), m_nDist( 0 ) { }
+  StDist() : m_node( 0 ), m_dist( 0 ) { }
 
-  int m_nNode;     // 最大距離の node
-  int m_nDist;     // 最大距離
+  int m_node;      // 最大距離の node
+  int m_dist;      // 最大距離
 };
 
-void input( vector<vector<int>>& rvvnLink )
+void input( vector<vector<int>>& rvvLink )
 {
-  int nLinkSiz;
-  cin >> nLinkSiz;
-  rvvnLink.resize( (nLinkSiz - 1) * 2 );
+  int linkSiz;
+  cin >> linkSiz;
+  rvvLink.resize( (linkSiz - 1) * 2 );
 
-  for (int nCnt = 0; nCnt < nLinkSiz - 1; ++nCnt)
+  for (int cnt = 0; cnt < linkSiz - 1; ++cnt)
   {
-    int nLeft, nRigt;
-    cin >> nLeft >> nRigt;
-    --nLeft; --nRigt;
+    int left, right;
+    cin >> left >> right;
+    --left; --right;
 
-    rvvnLink[nLeft].push_back( nRigt );
-    rvvnLink[nRigt].push_back( nLeft );
+    rvvLink[left].push_back( right );
+    rvvLink[right].push_back( left );
   } 
 }
 
-StDist calcMaxDistance( const vector<vector<int>>& cnrvvnLink, int nStart )
+StDist calcMaxDistance( const vector<vector<int>>& cnrvvLink, int start )
 {
-  int nSize = (int)cnrvvnLink.size() / 2 + 1;
-  vector<int> vnDist( nSize, -1 );
+  int size = (int)cnrvvLink.size() / 2 + 1;
+  vector<int> vDist( size, -1 );
 
-  queue<int> qnNode;
-  qnNode.push( nStart );
-  vnDist[nStart] = 0;
+  queue<int> qNode;
+  qNode.push( start );
+  vDist[start] = 0;
 
-  while ( qnNode.size() )
+  while ( qNode.size() )
   {
-    int nFrom = qnNode.front(); qnNode.pop();
+    int from = qNode.front(); qNode.pop();
 
-    for ( int nTo : cnrvvnLink[nFrom] )
-      if ( vnDist[nTo] == -1 )
+    for ( int to : cnrvvLink[from] )
+      if ( vDist[to] == -1 )
       {
-        qnNode.push( nTo );
-        vnDist[nTo] = vnDist[nFrom] + 1;
+        qNode.push( to );
+        vDist[to] = vDist[from] + 1;
       }
   }
-  auto itMax = max_element( begin( vnDist ), end( vnDist ));
+  auto itMax = max_element( begin( vDist ), end( vDist ));
   StDist oDist;
-  oDist.m_nNode = (int)distance( begin( vnDist ), itMax );
-  oDist.m_nDist = *itMax;
+  oDist.m_node = (int)distance( begin( vDist ), itMax );
+  oDist.m_dist = *itMax;
   return oDist;
 }
   
 int main()
 {
-  vector<vector<int>> vvnLink;
+  vector<vector<int>> vvLink;
 
-  input( vvnLink );
-  int nEnd_From0, nEnd;
+  input( vvLink );
+  int endFrom0, end;
 
-  StDist oDist = calcMaxDistance( vvnLink, 0 );
-  cout << calcMaxDistance( vvnLink, oDist.m_nNode ).m_nDist + 1 << endl;
+  StDist oDist = calcMaxDistance( vvLink, 0 );
+  cout << calcMaxDistance( vvLink, oDist.m_node ).m_dist + 1 << endl;
   return 0;
 }

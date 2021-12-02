@@ -1,67 +1,67 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void input( vector<int>& rvnCutLen, int& rnCutCnt )
+void input( vector<int>& rvCutLen, int& rcutCnt )
 {
-  int nCutLenSiz, nTotalLen;
-  cin >> nCutLenSiz >> nTotalLen;
-  cin >> rnCutCnt;
-  rvnCutLen.resize(nCutLenSiz);
+  int cutLenSiz, totalLen;
+  cin >> cutLenSiz >> totalLen;
+  cin >> rcutCnt;
+  rvCutLen.resize( cutLenSiz );
 
-  for ( int& nCutLen : rvnCutLen )
-    cin >> nCutLen;
+  for ( int& rcutLen : rvCutLen )
+    cin >> rcutLen;
 
-  rvnCutLen.push_back( nTotalLen );
+  rvCutLen.push_back( totalLen );
 }
 
-bool canCutOff( const vector<int>& cnrvnCutLen, int nCutCnt, int nTrgCutLen )
+bool canCutOff( const vector<int>& cnrvCutLen, int cutCnt, int trgCutLen )
 {
-  int nLast = (int)cnrvnCutLen.size() - 1;
-  int nCanCutCnt = 0;
-  int nCutedLen = 0;
+  int last = (int)cnrvCutLen.size() - 1;
+  int cuttingCut = 0;
+  int cutedLen = 0;
 
-  for ( int nFwd = 0; nFwd < nLast; ++nFwd )
-    if ( cnrvnCutLen[nFwd]  - nCutedLen >= nTrgCutLen        &&
-         cnrvnCutLen[nLast] - cnrvnCutLen[nFwd] >= nTrgCutLen  )
+  for ( int fwd = 0; fwd < last; ++fwd )
+    if ( cnrvCutLen[fwd]  - cutedLen >= trgCutLen       &&
+         cnrvCutLen[last] - cnrvCutLen[fwd] >= trgCutLen  )
     {
-      nCutedLen = cnrvnCutLen[nFwd];
-      ++nCanCutCnt;
+      cutedLen = cnrvCutLen[fwd];
+      ++cuttingCut;
     }
 
-  if ( nCanCutCnt >= nCutCnt )
+  if ( cuttingCut >= cutCnt )
     return true;
   else
     return false;
 }
 
-int calcMaxShortest( const vector<int>& cnrvnCutLen, int nCutCnt )
+int calcMaxShortest( const vector<int>& cnrvCutLen, int cutCnt )
 {
-  int nLast = (int)cnrvnCutLen.size() - 1;
-  int nMaxShortest = 0;
-  int nLow = 1, nHigh = cnrvnCutLen[nLast];
+  int last = (int)cnrvCutLen.size() - 1;
+  int maxShortest = 0;
+  int low = 1, high = cnrvCutLen[last];
 
-  while ( nLow < nHigh )
+  while ( low < high )
   {
-    int nMid = ( nLow + nHigh ) / 2;
+    int mid = ( low + high ) / 2;
 
-    if ( canCutOff( cnrvnCutLen, nCutCnt, nMid ))
+    if ( canCutOff( cnrvCutLen, cutCnt, mid ))
     {
-      nMaxShortest = nMid;
-      nLow = nMid + 1;
+      maxShortest = mid;
+      low = mid + 1;
     }
     else
-      nHigh = nMid;
+      high = mid;
   }
-  return nMaxShortest;
+  return maxShortest;
 }
   
 int main()
 {
-  int nCutCnt;
-  vector<int> vnCutLen;
+  int cutCnt;
+  vector<int> vCutLen;
 
-  input( vnCutLen, nCutCnt );
-  cout << calcMaxShortest( vnCutLen, nCutCnt ) << endl;
+  input( vCutLen, cutCnt );
+  cout << calcMaxShortest( vCutLen, cutCnt ) << endl;
 
   return 0;
 }
