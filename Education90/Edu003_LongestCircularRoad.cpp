@@ -3,7 +3,7 @@ using namespace std;
 
 struct StDist
 {
-  StDist() : m_node( 0 ), m_dist( 0 ) { }
+  StDist() : m_node(0), m_dist(0) { }
 
   int m_node;      // 最大距離の node
   int m_dist;      // 最大距離
@@ -26,24 +26,24 @@ void input( vector<vector<int>>& rvvLink )
   } 
 }
 
-StDist calcMaxDistance( const vector<vector<int>>& cnrvvLink, int start )
+StDist calcMaxDistance( const vector<vector<int>>& crvvLink, int startNode )
 {
-  int size = (int)cnrvvLink.size() / 2 + 1;
+  int size = (int)crvvLink.size() / 2 + 1;
   vector<int> vDist( size, -1 );
 
   queue<int> qNode;
-  qNode.push( start );
-  vDist[start] = 0;
+  qNode.push( startNode );
+  vDist[startNode] = 0;
 
   while ( qNode.size() )
   {
-    int from = qNode.front(); qNode.pop();
+    int fromNode = qNode.front(); qNode.pop();
 
-    for ( int to : cnrvvLink[from] )
-      if ( vDist[to] == -1 )
+    for ( int toNode : crvvLink[fromNode] )
+      if ( vDist[toNode] == -1 )
       {
-        qNode.push( to );
-        vDist[to] = vDist[from] + 1;
+        qNode.push( toNode );
+        vDist[toNode] = vDist[fromNode] + 1;
       }
   }
   auto itMax = max_element( begin( vDist ), end( vDist ));
@@ -58,7 +58,7 @@ int main()
   vector<vector<int>> vvLink;
 
   input( vvLink );
-  int endFrom0, end;
+  int endfromNode0, end;
 
   StDist oDist = calcMaxDistance( vvLink, 0 );
   cout << calcMaxDistance( vvLink, oDist.m_node ).m_dist + 1 << endl;
