@@ -1,35 +1,35 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void input(string& rsColor)
+void input( string& rcolor )
 {
-  int nColorSiz;
-  cin >> nColorSiz >> rsColor;
+  int colorSiz;
+  cin >> colorSiz >> rcolor;
 }
 
-int calcColor(string sColor)
+int calcColorCnt( string color )
 {
-  int nColorCnt = 0;
-  int nFwd = 0;
+  int colorCnt = 0;
+  int fwd = 0;
 
-  while (nFwd < sColor.size() )
+  while ( fwd < color.size() )
   {
-    while ( nFwd < sColor.size() - 1   &&
-            sColor[nFwd] == sColor[nFwd + 1] )
-      ++nFwd;
+    while ( fwd < color.size() - 1      &&
+            color[fwd] == color[fwd + 1]  )
+      ++fwd;
 
-    ++nColorCnt;
-    ++nFwd;
+    ++colorCnt;
+    ++fwd;
   }
-  return nColorCnt;
+  return colorCnt;
 }
 
 int main()
 {
-  string sColor;
+  string color;
 
-  input(sColor);
-  cout << calcColor(sColor) << endl;
+  input( color );
+  cout << calcColorCnt( color ) << endl;
 
   return 0;
 }

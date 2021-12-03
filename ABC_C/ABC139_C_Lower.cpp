@@ -1,43 +1,43 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void input(vector<int>& rvnSeq)
+void input( vector<int>& rvSeq )
 {
-  int nSeqSiz;
-  cin >> nSeqSiz;
-  rvnSeq.resize(nSeqSiz);
+  int seqSiz;
+  cin >> seqSiz;
+  rvSeq.resize( seqSiz );
 
-  for (int& rnSeq : rvnSeq)
-    cin >> rnSeq;
+  for ( int& rseq : rvSeq )
+    cin >> rseq;
 }
   
-int calcLower(const vector<int>& cnrvnSeq)
+int calcLower( const vector<int>& crvSeq )
 {
-  int nMaxSeqCnt = 0;
-  int nFwd = 0;
+  int maxSeqCnt = 0;
+  int fwd = 0;
 
-  while (nFwd < cnrvnSeq.size() )
+  while (fwd < crvSeq.size() )
   {
-    int nSeqCnt = 0;
+    int seqCnt = 0;
 
-    while ( nFwd < cnrvnSeq.size() - 1   &&
-            cnrvnSeq[nFwd] >= cnrvnSeq[nFwd + 1] )
+    while ( fwd < crvSeq.size() - 1       &&
+            crvSeq[fwd] >= crvSeq[fwd + 1]  )
     {
-      ++nSeqCnt;
-      ++nFwd;
+      ++seqCnt;
+      ++fwd;
     }
-    nMaxSeqCnt = max(nMaxSeqCnt, nSeqCnt);
-    ++nFwd;
+    maxSeqCnt = max( maxSeqCnt, seqCnt );
+    ++fwd;
   }
-  return nMaxSeqCnt;
+  return maxSeqCnt;
 }
   
 int main()
 {
-  vector<int> vnSeq;
+  vector<int> vSeq;
 
-  input(vnSeq);
-  cout << calcLower(vnSeq) << endl;
+  input( vSeq );
+  cout << calcLower( vSeq ) << endl;
 
   return 0;
 }

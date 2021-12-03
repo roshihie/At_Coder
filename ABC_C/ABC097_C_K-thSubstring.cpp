@@ -1,41 +1,41 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void input(string& rsStr, int& rnKth)
+void input( string& rstr, int& rnumKth )
 {
-  cin >> rsStr >> rnKth;
+  cin >> rstr >> rnumKth;
 }
 
-string calcKthSubstr(string sStr, int nKth)
+string calcKthSubstr( string str, int numKth )
 {
   set<string> seSubstr;
 
-  for (int nPos = 0; nPos < (int)sStr.size(); ++nPos)
+  for ( int pos = 0; pos < (int)str.size(); ++pos )
   {
-    int nLen = 1;
+    int len = 1;
 
-    while (nLen <= 5  &&
-           nPos + nLen <= (int)sStr.size() )
+    while ( len <= 5                    &&
+            pos + len <= (int)str.size()  )
     {
-      seSubstr.insert( sStr.substr(nPos, nLen) );
-      ++nLen;
+      seSubstr.insert( str.substr( pos, len ));
+      ++len;
     }
   }
-  int nCnt = 0;
+  int cnt = 0;
 
-  for (auto sKthSubstr : seSubstr)
-    if ( ++nCnt == nKth)
-      return sKthSubstr;
+  for ( auto substrKth : seSubstr )
+    if ( ++cnt == numKth )
+      return substrKth;
     else;
 }
   
 int main()
 {
-  string sStr;
-  int nKth;
+  string str;
+  int numKth;
 
-  input(sStr, nKth);
-  cout << calcKthSubstr(sStr, nKth) << endl;
+  input( str, numKth );
+  cout << calcKthSubstr( str, numKth ) << endl;
 
   return 0;
 }
