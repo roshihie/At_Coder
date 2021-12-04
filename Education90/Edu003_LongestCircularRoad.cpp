@@ -15,7 +15,7 @@ void input( vector<vector<int>>& rvvLink )
   cin >> linkSiz;
   rvvLink.resize( (linkSiz - 1) * 2 );
 
-  for (int cnt = 0; cnt < linkSiz - 1; ++cnt)
+  for ( int cnt = 0; cnt < linkSiz - 1; ++cnt )
   {
     int left, right;
     cin >> left >> right;
