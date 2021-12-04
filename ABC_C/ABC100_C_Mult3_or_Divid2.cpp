@@ -1,37 +1,37 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void input(vector<int>& rvnSeq)
+void input( vector<int>& rvSeq )
 {
-  int nSeqSiz;
-  cin >> nSeqSiz;
-  rvnSeq.resize(nSeqSiz);
+  int seqSiz;
+  cin >> seqSiz;
+  rvSeq.resize( seqSiz );
 
-  for (int& rnSeq : rvnSeq)
-    cin >> rnSeq;
+  for ( int& rseq : rvSeq )
+    cin >> rseq;
 }
 
-int calcMaxOpeCnt(const vector<int>& cnrvnSeq)
+int calcMaxOpeCnt( const vector<int>& crvSeq )
 {
-  int nMaxOpeCnt = 0;
+  int maxOpeCnt = 0;
 
-  for (int nSeq : cnrvnSeq)
+  for ( int seq : crvSeq )
   {
-    while (nSeq % 2 == 0)
+    while ( seq % 2 == 0 )
     {
-      ++nMaxOpeCnt;
-      nSeq /= 2;
+      ++maxOpeCnt;
+      seq /= 2;
     }
   }
-  return nMaxOpeCnt;
+  return maxOpeCnt;
 }
 
 int main()
 {
-  vector<int> vnSeq;
+  vector<int> vSeq;
   
-  input(vnSeq);
-  cout << calcMaxOpeCnt(vnSeq) << endl;
+  input( vSeq );
+  cout << calcMaxOpeCnt( vSeq ) << endl;
 
   return 0;
 }
