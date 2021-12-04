@@ -1,58 +1,58 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void input(string& rsMaxNum)
+void input( string& rsmaxNum )
 {
-  cin >> rsMaxNum;
+  cin >> rsmaxNum;
 }
 
-int digitDp(string sMaxNum)
+int digitDp( string smaxNum )
 {
-  // dp[nPos][nSmall][nDgt3][nDgt5][nDgt7] :=
-  //    nPos  : 上位 nPos 桁目まで決定
-  //    nSmall: small(数字を自由に選べる)か
-  //    nDgt3 : 上位 nPos 桁までで 3 を選択したかflag
-  //    nDgt5 : 上位 nPos 桁までで 5 を選択したかflag
-  //    nDgt7 : 上位 nPos 桁までで 7 を選択したかflag
-  //                           の条件を満たす数値の数
-  const vector<int> cnvnDgt = {0, 3, 5, 7};
-  int nLen = sMaxNum.size();
+  // dp[pos][small][dgt3][dgt5][dgt7] :=
+  //    pos  : 上位 pos 桁目まで決定
+  //    small: small(数字を自由に選べる)か
+  //    dgt3 : 上位 pos 桁までで 3 を選択したかflag
+  //    dgt5 : 上位 pos 桁までで 5 を選択したかflag
+  //    dgt7 : 上位 pos 桁までで 7 を選択したかflag
+  //                               の条件を満たす数値の数
+  const vector<int> cvDgt = {0, 3, 5, 7};
+  int len = smaxNum.size();
 
-  int dp[nLen + 1][2][2][2][2] = {};
+  int dp[len + 1][2][2][2][2] = {};
   dp[0][0][0][0][0] = 1;
 
-  for (int nPos = 0; nPos < nLen; ++nPos)
+  for ( int pos = 0; pos < len; ++pos )
   {
-    int nMaxDgt = sMaxNum[nPos] - '0';
+    int nMaxDgt = smaxNum[pos] - '0';
 
-    for (int nSmall = 0; nSmall < 2; ++nSmall)
-      for (int nDgt3 = 0; nDgt3 < 2; ++nDgt3)
-        for (int nDgt5 = 0; nDgt5 < 2; ++nDgt5)
-          for (int nDgt7 = 0; nDgt7 < 2; ++nDgt7)
-            for (int nx = 0; nx < cnvnDgt.size(); ++nx)
+    for ( int small = 0; small < 2; ++small )
+      for ( int dgt3 = 0; dgt3 < 2; ++dgt3 )
+        for ( int dgt5 = 0; dgt5 < 2; ++dgt5 )
+          for ( int dgt7 = 0; dgt7 < 2; ++dgt7 )
+            for ( int x = 0; x < (int)cvDgt.size(); ++x )
             {
-              if ( !nSmall && nMaxDgt < cnvnDgt[nx] ) 
+              if ( !small && nMaxDgt < cvDgt[x] ) 
                 break;
-              if (( nDgt3 || nDgt5 || nDgt7 ) && !cnvnDgt[nx] )
+              if (( dgt3 || dgt5 || dgt7 ) && !cvDgt[x] )
                 continue;
 
-              int nTrgSmall = nSmall || (cnvnDgt[nx] < nMaxDgt);
-              int nTrgDgt3  = nDgt3  || (cnvnDgt[nx] == 3);
-              int nTrgDgt5  = nDgt5  || (cnvnDgt[nx] == 5);
-              int nTrgDgt7  = nDgt7  || (cnvnDgt[nx] == 7);
-              dp[ nPos + 1 ][ nTrgSmall ][ nTrgDgt3 ][ nTrgDgt5 ][ nTrgDgt7 ]
-                += dp[nPos][nSmall][nDgt3][nDgt5][nDgt7];
+              int trgSmall = small || (cvDgt[x] < nMaxDgt);
+              int trgDgt3  = dgt3  || (cvDgt[x] == 3);
+              int trgDgt5  = dgt5  || (cvDgt[x] == 5);
+              int trgDgt7  = dgt7  || (cvDgt[x] == 7);
+              dp[ pos + 1 ][trgSmall][trgDgt3][trgDgt5][trgDgt7]
+                 += dp[pos][small][dgt3][dgt5][dgt7];
             }
   }
-  return dp[nLen][0][1][1][1] + dp[nLen][1][1][1][1];
+  return dp[len][0][1][1][1] + dp[len][1][1][1][1];
 }
 
 int main()
 {
-  string sMaxNum;
+  string smaxNum;
 
-  input(sMaxNum);
-  cout << digitDp(sMaxNum) << endl;
+  input( smaxNum );
+  cout << digitDp( smaxNum ) << endl;
   
   return 0;
 }

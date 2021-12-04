@@ -2,74 +2,74 @@
 using namespace std;
 using llong = long long;
 
-void input(int& rnMaxNum)
+void input( int& rmaxNum )
 {
-  cin >> rnMaxNum;
+  cin >> rmaxNum;
 }
 
-llong toInt(const vector<char>& cnrvcNum)
+llong toInt( const vector<char>& crvNum )
 {
-  const vector<int> cnvnDgt = {0, 3, 5, 7};
-  llong nRtn = 0;
-  int nDgtPos = 0;
+  const vector<int> cnvdgt = { 0, 3, 5, 7 };
+  llong rtnInt = 0;
+  int dgtPos = 0;
 
-  for (int nx = cnrvcNum.size() - 1; nx >= 0; --nx)
+  for ( int x = crvNum.size() - 1; x >= 0; --x )
   {
-    if (cnrvcNum[nx] == '0') break;
-    llong nNum = cnvnDgt[ cnrvcNum[nx] - '0' ];
+    if ( crvNum[x] == '0' ) break;
+    llong num = cnvdgt[ crvNum[x] - '0' ];
     
-    for (int nPos = 0; nPos < nDgtPos; ++nPos) nNum *= 10;
+    for ( int pos = 0; pos < dgtPos; ++pos ) num *= 10;
 
-    nRtn += nNum;
-    ++nDgtPos;
+    rtnInt += num;
+    ++dgtPos;
   }
-  return nRtn;
+  return rtnInt;
 }
 
-int isDgt753(const vector<char>& cnrvcNum)
+int isDgt753( const vector<char>& crvNum )
 {
-  int nDgt3 = 0, nDgt5 = 0, nDgt7 = 0;
+  int dgt3 = 0, dgt5 = 0, dgt7 = 0;
 
-  for (int nx = 0; nx < cnrvcNum.size(); ++nx)
-    if      (cnrvcNum[nx] == '1') ++nDgt3;
-    else if (cnrvcNum[nx] == '2') ++nDgt5;
-    else if (cnrvcNum[nx] == '3') ++nDgt7;
+  for ( int x = 0; x < crvNum.size(); ++x )
+    if      (crvNum[x] == '1') ++dgt3;
+    else if (crvNum[x] == '2') ++dgt5;
+    else if (crvNum[x] == '3') ++dgt7;
 
-  if (nDgt3 && nDgt5 && nDgt7)
+  if ( dgt3 && dgt5 && dgt7 )
     return 1;
   else
     return 0;
 }
 
-int countDgt753(int nMaxNum)
+int countDgt753( int maxNum )
 {
-  int nDgt753Cnt = 0;
-  int nDgtSiz = to_string(nMaxNum).size();
-  vector<char> vcNum(nDgtSiz + 1, '0');
+  int cntDgt753 = 0;
+  int dgtSiz = to_string( maxNum ).size();
+  vector<char> vNum( dgtSiz + 1, '0' );
 
-  while (toInt(vcNum) <= nMaxNum) 
+  while ( toInt( vNum ) <= maxNum ) 
   {
-    if ( isDgt753(vcNum) ) ++nDgt753Cnt;
-    ++vcNum[vcNum.size() - 1];
+    if ( isDgt753( vNum )) ++cntDgt753;
+    ++vNum[vNum.size() - 1];
 
-    for (int nx = vcNum.size() - 1; nx > 0; --nx)
-      if (vcNum[nx] > '3')
+    for ( int x = vNum.size() - 1; x > 0; --x )
+      if (vNum[x] > '3')
       {  
-        ++vcNum[nx - 1];
-        vcNum[nx] = '1';
+        ++vNum[x - 1];
+        vNum[x] = '1';
       }
       else
         break;
   }
-  return nDgt753Cnt;
+  return cntDgt753;
 }
 
 int main()
 {
-  int nMaxNum;
+  int maxNum;
 
-  input(nMaxNum);
-  cout << countDgt753(nMaxNum) << endl;
+  input( maxNum );
+  cout << countDgt753( maxNum ) << endl;
 
   return 0;
 }

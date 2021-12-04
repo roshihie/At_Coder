@@ -1,75 +1,75 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void input(int& rnSwitchSiz, 
-           vector<vector<int>>& rvvnLightSwt, vector<int>& rvnRslt)
+void input( int& rswitchSiz, 
+            vector<vector<int>>& rvvLightSwt, vector<int>& rvRslt)
 {
-  int nLightSiz;
-  cin >> rnSwitchSiz >> nLightSiz;
-  rvvnLightSwt.resize(nLightSiz);
+  int lightSiz;
+  cin >> rswitchSiz >> lightSiz;
+  rvvLightSwt.resize( lightSiz );
 
-  for (auto& rvnLightSwt : rvvnLightSwt)
+  for ( auto& rvLightSwt : rvvLightSwt )
   {
-    int nLightSwtSiz;
-    cin >> nLightSwtSiz;
-    rvnLightSwt.resize(nLightSwtSiz);
+    int lightSwtSiz;
+    cin >> lightSwtSiz;
+    rvLightSwt.resize( lightSwtSiz );
 
-    for (int& rnLightSwt : rvnLightSwt)
-      cin >> rnLightSwt;
+    for ( int& rlightSwt : rvLightSwt )
+      cin >> rlightSwt;
   }
 
-  rvnRslt.resize(nLightSiz);
+  rvRslt.resize( lightSiz );
 
-  for (int& rnRslt : rvnRslt)
+  for ( int& rnRslt : rvRslt )
     cin >> rnRslt;
 }
 
-bool canLinghtOn(const vector<vector<int>>& cnrvvnLightSwt,
-                 const vector<int>& cnrvnSwitch,
-                 const vector<int>& cnrvnRslt)
+bool canLinghtOn( const vector<vector<int>>& crvvLightSwt,
+                  const vector<int>& cnrvnSwitch,
+                  const vector<int>& crvRslt)
 {
-  for (int ny = 0; ny < cnrvvnLightSwt.size(); ++ny)
+  for ( int row = 0; row < crvvLightSwt.size(); ++row )
   {
     int nCanLightOn = 0;
 
-    for (const int& cnrnLightSwt : cnrvvnLightSwt[ny])
-      nCanLightOn += cnrvnSwitch[ cnrnLightSwt - 1 ];
+    for ( const int& cnrlightSwt : crvvLightSwt[row] )
+      nCanLightOn += cnrvnSwitch[ cnrlightSwt - 1 ];
 
-    if (nCanLightOn % 2 != cnrvnRslt[ny])
+    if ( nCanLightOn % 2 != crvRslt[row] )
       return false;
   }
   return true;
 }
 
-int cntLightOn(int nSwitchSiz,
-               const vector<vector<int>>& cnrvvnLightSwt, 
-               const vector<int>& cnrvnRslt)
+int calcLightOnCnt( int switchSiz,
+                    const vector<vector<int>>& crvvLightSwt, 
+                    const vector<int>& crvRslt )
 {
-  int nCntLightOn = 0;
-  vector<int> vnSwitch(nSwitchSiz);
+  int lightOnCnt = 0;
+  vector<int> vnSwitch( switchSiz );
 
-  for (int nBit = 0; nBit < ( 1 << nSwitchSiz ); ++nBit)
+  for ( int nBit = 0; nBit < ( 1 << switchSiz ); ++nBit )
   {
-    for (int nEach = 0; nEach < nSwitchSiz; ++nEach)
-      if (nBit & ( 1 << nEach ))
+    for ( int nEach = 0; nEach < switchSiz; ++nEach )
+      if ( nBit & ( 1 << nEach ))
         vnSwitch[nEach] = 1;
       else
         vnSwitch[nEach] = 0;
 
-    if ( canLinghtOn(cnrvvnLightSwt, vnSwitch, cnrvnRslt) )
-      ++nCntLightOn;
+    if ( canLinghtOn( crvvLightSwt, vnSwitch, crvRslt ))
+      ++lightOnCnt;
   }
-  return nCntLightOn;
+  return lightOnCnt;
 }
   
 int main()
 {
-  int nSwitchSiz;
-  vector<vector<int>> vvnLightSwt;
-  vector<int> vnRslt;
+  int switchSiz;
+  vector<vector<int>> vvLightSwt;
+  vector<int> vRslt;
 
-  input(nSwitchSiz, vvnLightSwt, vnRslt);
-  cout << cntLightOn(nSwitchSiz, vvnLightSwt, vnRslt) << endl;
+  input( switchSiz, vvLightSwt, vRslt );
+  cout << calcLightOnCnt( switchSiz, vvLightSwt, vRslt ) << endl;
 
   return 0;
 }

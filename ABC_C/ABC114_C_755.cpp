@@ -2,51 +2,51 @@
 using namespace std;
 using llong = long long;
 
-void input(int& rnMaxNum)
+void input(int& rmaxNum)
 {
-  cin >> rnMaxNum;
+  cin >> rmaxNum;
 }
 
-bool isDgt753(llong nRecrNum)
+bool isDgt753( llong recrNum )
 {
-  int nDgt3 = 0, nDgt5 = 0, nDgt7 = 0;
+  int cntDgt3 = 0, cntDgt5 = 0, cntDgt7 = 0;
 
-  while (nRecrNum)
+  while ( recrNum )
   {
-    int n1stDgt = nRecrNum % 10;
+    int n1stDgt = recrNum % 10;
 
-    if      (n1stDgt == 3) ++nDgt3;
-    else if (n1stDgt == 5) ++nDgt5;
-    else if (n1stDgt == 7) ++nDgt7;
+    if      ( n1stDgt == 3 ) ++cntDgt3;
+    else if ( n1stDgt == 5 ) ++cntDgt5;
+    else if ( n1stDgt == 7 ) ++cntDgt7;
 
-    nRecrNum /= 10;
+    recrNum /= 10;
   }
-  if (nDgt3 && nDgt5 && nDgt7)
+  if ( cntDgt3 && cntDgt5 && cntDgt7 )
     return true;
   else
     return false;
 }
 
-void dfs(int nMaxNum, llong nRecrNum)
+void dfs( int maxNum, llong recrNum )
 {
-  static int stn753DgtCnt = 0;
+  static int stCntDgt753 = 0;
 
-  if (nRecrNum > nMaxNum) return;
-  if ( isDgt753(nRecrNum) ) ++stn753DgtCnt;
+  if ( recrNum > maxNum ) return;
+  if ( isDgt753( recrNum )) ++stCntDgt753;
 
-  dfs(nMaxNum, 10 * nRecrNum + 3);
-  dfs(nMaxNum, 10 * nRecrNum + 5);
-  dfs(nMaxNum, 10 * nRecrNum + 7);
+  dfs( maxNum, 10 * recrNum + 3 );
+  dfs( maxNum, 10 * recrNum + 5 );
+  dfs( maxNum, 10 * recrNum + 7 );
 
-  if ( !nRecrNum ) cout << stn753DgtCnt << endl;
+  if ( !recrNum ) cout << stCntDgt753 << endl;
 }
 
 int main()
 {
-  int nMaxNum;
+  int maxNum;
 
-  input(nMaxNum);
-  dfs(nMaxNum, 0);
+  input( maxNum );
+  dfs( maxNum, 0 );
 
   return 0;
 }
