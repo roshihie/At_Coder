@@ -1,33 +1,33 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void input(int& rnCash)
+void input( int& rcash )
 {
-  cin >> rnCash;
+  cin >> rcash;
 }
 
-int calcOpeCnt(int nCash)
+int calcOpeCnt( int cash )
 {
-  //                           最大値に nCash 指定
-  vector<int> vnDPExg(nCash + 1, nCash);
-  vnDPExg[0] = 0;
+  //                   最大値に cash 指定
+  vector<int> vExchg( cash + 1, cash );
+  vExchg[0] = 0;
 
-  for (int nx = 0; nx <= nCash; ++nx)
+  for ( int x = 0; x <= cash; ++x )
   {
-    for (int ny = 1; nx + ny <= nCash; ny *= 6)
-      vnDPExg[nx + ny] = min(vnDPExg[nx + ny], vnDPExg[nx] + 1);
+    for ( int y = 1; x + y <= cash; y *= 6 )
+      vExchg[ x + y ] = min( vExchg[ x + y ], vExchg[x] + 1 );
 
-    for (int ny = 1; nx + ny <= nCash; ny *= 9)
-      vnDPExg[nx + ny] = min(vnDPExg[nx + ny], vnDPExg[nx] + 1);
+    for ( int y = 1; x + y <= cash; y *= 9 )
+      vExchg[ x + y ] = min( vExchg[ x + y ], vExchg[x] + 1 );
   }
-  return vnDPExg[nCash];
+  return vExchg[cash];
 }
 
 int main()
 {
-  int nCash; 
-  input(nCash);
-  cout << calcOpeCnt(nCash) << endl;
+  int cash; 
+  input( cash );
+  cout << calcOpeCnt( cash ) << endl;
 
   return 0;
 }
