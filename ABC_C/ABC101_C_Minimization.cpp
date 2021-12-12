@@ -1,31 +1,31 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void input(int& rnSelSiz, vector<int>& rvnSeq)
+void input( int& rselSiz, vector<int>& rvSeq )
 {
-  int nSeqSiz;
-  cin >> nSeqSiz >> rnSelSiz;
-  rvnSeq.resize(nSeqSiz);
+  int seqSiz;
+  cin >> seqSiz >> rselSiz;
+  rvSeq.resize( seqSiz );
 
-  for (int& rnSeq : rvnSeq)
+  for ( int& rnSeq : rvSeq )
     cin >> rnSeq;
 }
 
-int calcToMinElmCnt(int nSelSiz, const vector<int>& cnrvnSeq)
+int calcMinSelCnt( int selSiz, const vector<int>& crvSeq )
 {
-  int nToMinElmCnt = 1;
-  nToMinElmCnt += ( (cnrvnSeq.size() - nSelSiz) + (nSelSiz - 2) ) / (nSelSiz - 1);
+  int minSelCnt = 1;
+  minSelCnt += ( ( crvSeq.size() - selSiz ) + ( selSiz - 2 )) / ( selSiz - 1 );
 
-  return nToMinElmCnt;
+  return minSelCnt;
 }
 
 int main()
 {
-  int nSelSiz;
-  vector<int> vnSeq;
+  int selSiz;
+  vector<int> vSeq;
   
-  input(nSelSiz, vnSeq);
-  cout << calcToMinElmCnt(nSelSiz, vnSeq) << endl;
+  input( selSiz, vSeq );
+  cout << calcMinSelCnt( selSiz, vSeq ) << endl;
 
   return 0;
 }

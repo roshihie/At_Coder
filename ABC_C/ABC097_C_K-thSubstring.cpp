@@ -8,14 +8,15 @@ void input( string& rstr, int& rnumKth )
 
 string calcKthSubstr( string str, int numKth )
 {
+  int size = (int)str.size();
   set<string> seSubstr;
 
-  for ( int pos = 0; pos < (int)str.size(); ++pos )
+  for ( int pos = 0; pos < size; ++pos )
   {
     int len = 1;
 
-    while ( len <= 5                    &&
-            pos + len <= (int)str.size()  )
+    while ( len <= 5         &&
+            pos + len <= size  )
     {
       seSubstr.insert( str.substr( pos, len ));
       ++len;
