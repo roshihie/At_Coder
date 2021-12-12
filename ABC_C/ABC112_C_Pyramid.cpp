@@ -33,9 +33,10 @@ int calcCenterHigh( StCoord oCenter, StCoord oCoord )
 
 bool checkCenter( StCoord& roCenter, const vector<StCoord>& crvoCoord )
 {
+  int size = (int)crvoCoord.size();
   int centerHigh = 0;
 
-  for ( int x = 0; x < crvoCoord.size(); ++x )
+  for ( int x = 0; x < size; ++x )
     if ( crvoCoord[x].m_high )
       if ( !centerHigh )
         centerHigh = calcCenterHigh(roCenter, crvoCoord[x]);
@@ -43,7 +44,7 @@ bool checkCenter( StCoord& roCenter, const vector<StCoord>& crvoCoord )
         if ( centerHigh != calcCenterHigh( roCenter, crvoCoord[x] ))
           return false;
 
-  for ( int x = 0; x < crvoCoord.size(); ++x )
+  for ( int x = 0; x < size; ++x )
     if ( !crvoCoord[x].m_high )
       if ( centerHigh <= calcCenterDiff( roCenter, crvoCoord[x] ));
       else

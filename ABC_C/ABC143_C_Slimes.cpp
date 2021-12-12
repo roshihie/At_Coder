@@ -9,12 +9,13 @@ void input( string& rcolor )
 
 int calcColorCnt( string color )
 {
+  int size = (int)color.size();
   int colorCnt = 0;
   int fwd = 0;
 
-  while ( fwd < color.size() )
+  while ( fwd < size )
   {
-    while ( fwd < color.size() - 1      &&
+    while ( fwd < size - 1              &&
             color[fwd] == color[fwd + 1]  )
       ++fwd;
 

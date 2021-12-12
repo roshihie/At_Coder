@@ -13,14 +13,15 @@ void input( vector<int>& rvSeq )
   
 int calcLower( const vector<int>& crvSeq )
 {
+  int size = (int)crvSeq.size();
   int maxSeqCnt = 0;
   int fwd = 0;
 
-  while (fwd < crvSeq.size() )
+  while ( fwd < size )
   {
     int seqCnt = 0;
 
-    while ( fwd < crvSeq.size() - 1       &&
+    while ( fwd < size - 1                &&
             crvSeq[fwd] >= crvSeq[fwd + 1]  )
     {
       ++seqCnt;
