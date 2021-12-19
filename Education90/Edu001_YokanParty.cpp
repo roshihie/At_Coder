@@ -1,67 +1,63 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void input( vector<int>& rvCutLen, int& rcuttingCnt )
+int N, L, K;
+vector<int> vA;
+
+void input()
 {
-  int cutLenSiz, totalLen;
-  cin >> cutLenSiz >> totalLen;
-  cin >> rcuttingCnt;
-  rvCutLen.resize( cutLenSiz );
+  cin >> N >> L >> K;
+  vA.resize( N );
 
-  for ( int& rcutLen : rvCutLen )
-    cin >> rcutLen;
+  for ( int& cutLen : vA )
+    cin >> cutLen;
 
-  rvCutLen.push_back( totalLen );
+  vA.push_back( L );
 }
 
-bool canCutOff( const vector<int>& crvCutLen, int cuttingCnt, int trgCutLen )
+bool canCutOff( int trgCutLen )
 {
-  int lastElm = (int)crvCutLen.size() - 1;
-  int cuttedCnt = 0;
-  int cutedLen = 0;
+  int nowCutCnt = 0;
+  int cuttedLen = 0;
 
-  for ( int fwd = 0; fwd < lastElm; ++fwd )
-    if ( crvCutLen[fwd]  - cutedLen >= trgCutLen         &&
-         crvCutLen[lastElm] - crvCutLen[fwd] >= trgCutLen  )
+  for ( int fwd = 0; fwd < N; ++fwd )
+    if ( vA[fwd] - cuttedLen >= trgCutLen &&
+         vA.back() - vA[fwd] >= trgCutLen   )
     {
-      cutedLen = crvCutLen[fwd];
-      ++cuttedCnt;
+      ++nowCutCnt;
+      cuttedLen = vA[fwd];
     }
 
-  if ( cuttedCnt >= cuttingCnt )
+  if ( nowCutCnt >= K )
     return true;
   else
     return false;
 }
 
-int calcMaxShortest( const vector<int>& crvCutLen, int cuttingCnt )
+int calcMaxShortLen()
 {
-  int lastElm = (int)crvCutLen.size() - 1;
-  int maxShortest = 0;
-  int lowElm = 1, highElm = crvCutLen[lastElm];
+  int maxShortLen = 0;
+  int low = 1;
+  int high = vA.back();
 
-  while ( lowElm < highElm )
+  while ( low < high )
   {
-    int midElm = ( lowElm + highElm ) / 2;
-
-    if ( canCutOff( crvCutLen, cuttingCnt, midElm ))
+    int mid = ( low + high ) / 2;
+    if ( canCutOff( mid ))
     {
-      maxShortest = midElm;
-      lowElm = midElm + 1;
+      maxShortLen = mid;
+      low = mid + 1;
     }
     else
-      highElm = midElm;
+      high = mid;
   }
-  return maxShortest;
+  return maxShortLen;
 }
   
 int main()
 {
-  int cuttingCnt;
-  vector<int> vCutLen;
-
-  input( vCutLen, cuttingCnt );
-  cout << calcMaxShortest( vCutLen, cuttingCnt ) << endl;
+  input();
+  cout << calcMaxShortLen() << endl; 
 
   return 0;
 }

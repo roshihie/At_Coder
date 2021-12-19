@@ -1,41 +1,36 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void input( vector<vector<int>>& rvvNum )
+int H, W;
+vector<vector<int>> vvA;
+
+void input()
 {
-  int rowSiz, colSiz;
-  cin >> rowSiz >> colSiz;
-  rvvNum.resize( rowSiz );
+  cin >> H >> W;
+  vvA.resize( H, vector<int> ( W ));
 
-  for ( auto& rvNum : rvvNum )
-  {
-    rvNum.resize( colSiz );
-
-    for ( int& rnum : rvNum )
-      cin >> rnum;
-  }
+  for ( auto& vA : vvA )
+    for ( int& num : vA )
+      cin >> num;
 }
 
-void calcCrossSum( const vector<vector<int>>& crvvNum )
+void calcCrossSum()
 {
-  int rowSiz = (int)crvvNum.size();
-  int colSiz = (int)crvvNum[0].size();
-  vector<int> vRowSum( rowSiz );
-  vector<int> vColSum( colSiz );
+  vector<int> vRowSum( H ), vColSum( W );
 
-  for ( int row = 0; row < rowSiz; ++row )
-    for ( int col = 0; col < colSiz; ++col )
+  for ( int row = 0; row < H; ++row )
+    for ( int col = 0; col < W; ++col )
     {
-      vRowSum[row] += crvvNum[row][col];
-      vColSum[col] += crvvNum[row][col];
+      vRowSum[row] += vvA[row][col];
+      vColSum[col] += vvA[row][col];
     }
 
-  for ( int row = 0; row < rowSiz; ++row )
+  for ( int row = 0; row < H; ++row )
   {
-    for ( int col = 0; col < colSiz; ++col )
+    for ( int col = 0; col < W; ++col )
     {
-      if  ( col ) cout << " ";
-      cout << vRowSum[row] + vColSum[col] - crvvNum[row][col];
+      if ( col ) cout << " ";
+      cout << vRowSum[row] + vColSum[col] - vvA[row][col];
     }
     cout << endl;
   }
@@ -44,9 +39,8 @@ void calcCrossSum( const vector<vector<int>>& crvvNum )
   
 int main()
 {
-  vector<vector<int>> vvNum;
+  input();
+  calcCrossSum();
 
-  input( vvNum );
-  calcCrossSum( vvNum );
   return 0;
 }
