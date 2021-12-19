@@ -60,7 +60,7 @@ llong calcCntMultipleB()
   vRes[0] = 1;
 
   for ( int each = 0; each < LOG; ++each )
-    // N を二の冪乗の積で表すときに、2^i を含むかどうか
+    // N を２の冪乗の積で表すときに、2^i を含むかどうか
     if ( N & ( 1LL << each ))
       vRes = calcDoubling( vRes, vvdpDbl[each], vTen[each] );
 
