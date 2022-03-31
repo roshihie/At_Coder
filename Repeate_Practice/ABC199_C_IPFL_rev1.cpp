@@ -24,36 +24,35 @@ void input(vector<string>& rvStr, vector<StQuery>& rvQuery)
   rvQuery.resize(querySiz);
 
   for (StQuery& roQuery : rvQuery)
-  {
     cin >> roQuery.m_op >> roQuery.m_pos1 >> roQuery.m_pos2;
-    if (roQuery.m_op == 1) --roQuery.m_pos1, --roQuery.m_pos2;
-  }
 }
 
-void calcIndex(int& rsnx, int& rspos, int halfSiz, int pos)
+void calcIndex(int& rstrnx, int& rstrpos, int halfSiz, int pos)
 {
   if (pos < halfSiz)
   {
-    rsnx = 0;
-    rspos = pos;
+    rstrnx = 0;
+    rstrpos = pos;
   }
   else
   {
-    rsnx = 1;
-    rspos = pos - halfSiz;
+    rstrnx = 1;
+    rstrpos = pos - halfSiz;
   }
 }
 
 string calcString(vector<string>& rvStr, 
                   const vector<StQuery>& crvQuery)
 {
+  const int cHalfSiz = rvStr[0].size();
+
   for (StQuery oQuery : crvQuery)
     if (oQuery.m_op == 1)
     {
-      int snx1, spos1, snx2, spos2;
-      calcIndex(snx1, spos1, rvStr[0].size(), oQuery.m_pos1);
-      calcIndex(snx2, spos2, rvStr[0].size(), oQuery.m_pos2);
-      swap( rvStr[snx1][spos1], rvStr[snx2][spos2] );
+      int strnx1, strpos1, strnx2, strpos2;
+      calcIndex(strnx1, strpos1, cHalfSiz, --oQuery.m_pos1);
+      calcIndex(strnx2, strpos2, cHalfSiz, --oQuery.m_pos2);
+      swap( rvStr[strnx1][strpos1], rvStr[strnx2][strpos2] );
     }
     else
       swap( rvStr[0], rvStr[1] );

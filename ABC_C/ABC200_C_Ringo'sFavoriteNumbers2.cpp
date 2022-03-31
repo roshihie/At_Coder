@@ -2,37 +2,36 @@
 using namespace std;
 using llong = long long;
 
-void input(vector<int>& rvnNum)
+void input(vector<int>& rvNum)
 {
-  int nNumSiz;
-  cin >> nNumSiz;
-  rvnNum.resize(nNumSiz);
+  int numSiz;
+  cin >> numSiz;
+  rvNum.resize(numSiz);
 
-  for (int& rnNum : rvnNum)
-    cin >> rnNum;
+  for (int& rNum : rvNum)
+    cin >> rNum;
 }
 
-llong calc200MultplCnt(const vector<int>& cnrvnNum)
+llong calc200MultCnt(const vector<int>& crvNum)
 {
-  llong n200MultplCnt = 0;
-  vector<int> vnRem(200);
+  llong cnt200Mult = 0;
+  vector<int> vRem(200);
 
-  for (int nNum : cnrvnNum)
-    ++vnRem[ nNum % 200 ];
+  for (int num : crvNum)
+    ++vRem[ num % 200 ];
 
-  for (int nRem : vnRem)
-    if (nRem > 1)
-      n200MultplCnt += (llong)nRem * (nRem - 1) / 2;
+  for (int nRem : vRem)
+    cnt200Mult += (llong)nRem * (nRem - 1) / 2;
 
-  return n200MultplCnt;
+  return cnt200Mult;
 }
 
 int main()
 {
-  vector<int> vnNum;
+  vector<int> vNum;
 
-  input(vnNum);
-  cout << calc200MultplCnt(vnNum) << endl;
+  input(vNum);
+  cout << calc200MultCnt(vNum) << endl;
 
   return 0;
 }
