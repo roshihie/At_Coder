@@ -19,9 +19,9 @@ int calcGoalStps(int distOne, StCoord oGoal)
 {
   double distGoal = sqrt( (llong)oGoal.m_nx * oGoal.m_nx + 
                           (llong)oGoal.m_ny * oGoal.m_ny  );
-  int cntGoalStps = (int)max( distGoal / distOne, 1.0 );
+  int cntGoalStps = max( distGoal / distOne, 1.0 );
 
-  if ( distGoal != (double)distOne * cntGoalStps )
+  if ( distGoal != distOne * cntGoalStps )
     ++cntGoalStps;
 
   return cntGoalStps;
