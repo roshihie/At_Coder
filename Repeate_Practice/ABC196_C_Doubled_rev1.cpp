@@ -7,22 +7,10 @@ void input(llong& rmax)
   cin >> rmax;
 }
   
-llong calcWholeNum(int numHalf2)
+llong calcWholeNum(int numHalf)
 {
-  llong numHalf1 = numHalf2;
-  int num = numHalf2;
-  int digit = 0;
-
-  while ( num )
-  {
-    ++digit;
-    num /= 10;
-  }
-
-  for (int nx = 0; nx < digit; ++nx)
-    numHalf1 *= 10;
-
-  return numHalf1 + numHalf2;
+  string strHalf = to_string(numHalf);
+  return stoll(strHalf + strHalf);
 }
 
 int calcSameHalfNum(llong max)
@@ -37,15 +25,17 @@ int calcSameHalfNum(llong max)
   }
 
   int digitMin = digitMax / 2;
-  int numHalf2 = 1;
+  string strHalf = "1";
 
   for (int nx = 1; nx < digitMin; ++nx)
-    numHalf2 *= 10;
+    strHalf += "0";
 
-  while ( calcWholeNum(numHalf2) <= max )
-    ++numHalf2;
+  int numHalf = stoi(strHalf);
 
-  return numHalf2 - 1;
+  while ( calcWholeNum(numHalf) <= max )
+    ++numHalf;
+
+  return numHalf - 1;
 }
 
 int main()

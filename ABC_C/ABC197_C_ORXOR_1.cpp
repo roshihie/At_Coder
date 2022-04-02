@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+using uint = unsigned;
 
 void input(vector<int>& rvElem)
 {
@@ -11,51 +12,45 @@ void input(vector<int>& rvElem)
     cin >> rElem;
 }
 
-int calcElemOrXor(const vector<int>& crvBgnix, const vector<int>& crvElem)
+int calcElemOrXor(const vector<uint>& crvStartnx, const vector<int>& crvElem)
 {
-  vector<int> vElemOr(crvBgnix.size() - 1);
+  vector<int> vOrElem(crvStartnx.size() - 1);
 
-  for (int nx = 0; nx < crvBgnix.size() - 1; ++nx)
+  for (uint nx = 0; nx < crvStartnx.size() - 1; ++nx)
   {
     int orElem = 0;
 
-    for (int ny = crvBgnix[nx]; ny < crvBgnix[nx + 1]; ++ny)
+    for (uint ny = crvStartnx[nx]; ny < crvStartnx[nx + 1]; ++ny)
       orElem |= crvElem[ny];
 
-    vElemOr[nx] = orElem;
+    vOrElem[nx] = orElem;
   }
 
-  int xorElem = vElemOr[0];
+  int xorElem = 0;
 
-  if (vElemOr.size() > 1)
-    for (int nx = 1; nx < vElemOr.size(); ++nx)
-      xorElem ^= vElemOr[nx];
+  for (int orElem : vOrElem)
+    xorElem ^= orElem;
 
   return xorElem;
 }
 
-void dfsOrXor(int dept, int& rOneOrXor, 
-              vector<int>& rvBgnix, const vector<int>& crvElem)
+void dfsOrXor(uint dept, int& rOneOrXor, 
+              vector<uint>& rvStartnx, const vector<int>& crvElem)
 {
-  if (dept == (int)rvBgnix.size() - 1)
+  if (dept == rvStartnx.size() - 1)    // 深さ＝配列の最終要素 のとき
   {
-    rvBgnix[dept] = crvElem.size();
-    int xorElem = calcElemOrXor(rvBgnix, crvElem);
+    rvStartnx[dept] = crvElem.size();  // 配列の size値 設定
+    int xorElem = calcElemOrXor(rvStartnx, crvElem);
     rOneOrXor = min(rOneOrXor, xorElem);
     return;
   }
-  else if ( !dept )
-  {
-    dfsOrXor(dept + 1, rOneOrXor, rvBgnix, crvElem);
-    return;
-  }
 
-  rvBgnix[dept] = rvBgnix[dept - 1] + 1;
+  rvStartnx[dept] = rvStartnx[dept - 1] + 1;
 
-  while (rvBgnix[dept] < crvElem.size())
+  while (rvStartnx[dept] < crvElem.size())
   {
-    dfsOrXor(dept + 1, rOneOrXor, rvBgnix, crvElem);
-    ++rvBgnix[dept];
+    dfsOrXor(dept + 1, rOneOrXor, rvStartnx, crvElem);
+    ++rvStartnx[dept];
   }
 }
 
@@ -63,12 +58,12 @@ int calcMinOrXor(const vector<int>& crvElem)
 {
   int minOrXor = INT_MAX;
 
-  for (int seprt = 1; seprt <= crvElem.size(); ++seprt)
+  for (uint seprt = 1; seprt <= crvElem.size(); ++seprt)
   {
-    vector<int> vBgnix(seprt + 1);
+    vector<uint> vStartnx(seprt + 1);  // 最終要素は配列の size値 設定
     int oneOrXor = INT_MAX;
 
-    dfsOrXor(0, oneOrXor, vBgnix, crvElem);
+    dfsOrXor(1, oneOrXor, vStartnx, crvElem);
     minOrXor = min(minOrXor, oneOrXor);
   }
   return minOrXor;
