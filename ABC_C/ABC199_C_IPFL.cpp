@@ -13,15 +13,15 @@ struct StQuery
 
 void input(vector<string>& rvStr, vector<StQuery>& rvQuery)
 {
-  int strSiz;
+  int sizStr;
   string str;
-  cin >> strSiz >> str;
-  rvStr[0] = str.substr(0, strSiz);
-  rvStr[1] = str.substr(strSiz);
+  cin >> sizStr >> str;
+  rvStr[0] = str.substr(0, sizStr);
+  rvStr[1] = str.substr(sizStr);
 
-  int querySiz;
-  cin >> querySiz;
-  rvQuery.resize(querySiz);
+  int sizQuery;
+  cin >> sizQuery;
+  rvQuery.resize(sizQuery);
 
   for (StQuery& roQuery : rvQuery)
   {

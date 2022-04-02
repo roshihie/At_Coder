@@ -4,9 +4,9 @@ using llong = long long;
 
 void input(vector<int>& rvNum)
 {
-  int numSiz;
-  cin >> numSiz;
-  rvNum.resize(numSiz);
+  int sizNum;
+  cin >> sizNum;
+  rvNum.resize(sizNum);
 
   for (int& rNum : rvNum)
     cin >> rNum;

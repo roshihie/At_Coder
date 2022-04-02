@@ -1,85 +1,85 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void input(vector<int>& rvnElm)
+void input(vector<int>& rvElem)
 {
-  int nElmSiz;
-  cin >> nElmSiz;
-  rvnElm.resize(nElmSiz);
+  int sizElem;
+  cin >> sizElem;
+  rvElem.resize(sizElem);
 
-  for (int& rnElm : rvnElm)
-    cin >> rnElm;
+  for (int& rElem : rvElem)
+    cin >> rElem;
 }
 
-int calcElmOrXor(const vector<int>& cnrvnBgn, const vector<int>& cnrvnElm)
+int calcElemOrXor(const vector<int>& crvBgnix, const vector<int>& crvElem)
 {
-  vector<int> vnElmOr(cnrvnBgn.size() - 1);
+  vector<int> vElemOr(crvBgnix.size() - 1);
 
-  for (int nBgn = 0; nBgn < cnrvnBgn.size() - 1; ++nBgn)
+  for (int nx = 0; nx < crvBgnix.size() - 1; ++nx)
   {
-    int nElmOr = 0;
+    int orElem = 0;
 
-    for (int nx = cnrvnBgn[nBgn]; nx < cnrvnBgn[nBgn + 1]; ++nx)
-      nElmOr |= cnrvnElm[nx];
+    for (int ny = crvBgnix[nx]; ny < crvBgnix[nx + 1]; ++ny)
+      orElem |= crvElem[ny];
 
-    vnElmOr[nBgn] = nElmOr;
+    vElemOr[nx] = orElem;
   }
 
-  int nElmOrXor = vnElmOr[0];
+  int xorElem = vElemOr[0];
 
-  if (vnElmOr.size() > 1)
-    for (int nx = 1; nx < vnElmOr.size(); ++nx)
-      nElmOrXor ^= vnElmOr[nx];
+  if (vElemOr.size() > 1)
+    for (int nx = 1; nx < vElemOr.size(); ++nx)
+      xorElem ^= vElemOr[nx];
 
-  return nElmOrXor;
+  return xorElem;
 }
 
-void dfsOrXor(int nDept, int& rnSepOrXor, 
-              vector<int>& rvnBgn, const vector<int>& cnrvnElm)
+void dfsOrXor(int dept, int& rOneOrXor, 
+              vector<int>& rvBgnix, const vector<int>& crvElem)
 {
-  if (nDept == rvnBgn.size() - 1)
+  if (dept == (int)rvBgnix.size() - 1)
   {
-    rvnBgn[nDept] = cnrvnElm.size();
-    int nElmOrXor = calcElmOrXor(rvnBgn, cnrvnElm);
-    rnSepOrXor = min(rnSepOrXor, nElmOrXor);
+    rvBgnix[dept] = crvElem.size();
+    int xorElem = calcElemOrXor(rvBgnix, crvElem);
+    rOneOrXor = min(rOneOrXor, xorElem);
     return;
   }
-  else if ( !nDept )
+  else if ( !dept )
   {
-    dfsOrXor(nDept + 1, rnSepOrXor, rvnBgn, cnrvnElm);
+    dfsOrXor(dept + 1, rOneOrXor, rvBgnix, crvElem);
     return;
   }
 
-  rvnBgn[nDept] = rvnBgn[nDept - 1] + 1;
+  rvBgnix[dept] = rvBgnix[dept - 1] + 1;
 
-  while (rvnBgn[nDept] < cnrvnElm.size())
+  while (rvBgnix[dept] < crvElem.size())
   {
-    dfsOrXor(nDept + 1, rnSepOrXor, rvnBgn, cnrvnElm);
-    ++rvnBgn[nDept];
+    dfsOrXor(dept + 1, rOneOrXor, rvBgnix, crvElem);
+    ++rvBgnix[dept];
   }
 }
 
-int calcMinOrXor(const vector<int>& cnrvnElm)
+int calcMinOrXor(const vector<int>& crvElem)
 {
-  int nMinOrXor = INT_MAX;
+  int minOrXor = INT_MAX;
 
-  for (int nSep = 1; nSep <= cnrvnElm.size(); ++nSep)
+  for (int seprt = 1; seprt <= crvElem.size(); ++seprt)
   {
-    vector<int> vnBgn(nSep + 1);
-    int nSepOrXor = INT_MAX;
+    vector<int> vBgnix(seprt + 1);
+    int oneOrXor = INT_MAX;
 
-    dfsOrXor(0, nSepOrXor, vnBgn, cnrvnElm);
-    nMinOrXor = min(nMinOrXor, nSepOrXor);
+    dfsOrXor(0, oneOrXor, vBgnix, crvElem);
+    minOrXor = min(minOrXor, oneOrXor);
   }
-  return nMinOrXor;
+  return minOrXor;
 }
 
 int main()
 {
-  vector<int> vnElm;
+  vector<int> vElem;
 
-  input(vnElm);
-  cout << calcMinOrXor(vnElm) << endl;
+  input(vElem);
+  cout << calcMinOrXor(vElem) << endl;
 
   return 0;
 }

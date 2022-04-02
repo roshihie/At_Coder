@@ -3,9 +3,9 @@ using namespace std;
 
 void input(vector<int>& rvElem)
 {
-  int sizElem;
-  cin >> sizElem;
-  rvElem.resize(sizElem);
+  int elemSiz;
+  cin >> elemSiz;
+  rvElem.resize(elemSiz);
 
   for (int& elem : rvElem)
     cin >> elem;
@@ -13,15 +13,15 @@ void input(vector<int>& rvElem)
 
 int calcMinOrXor(const vector<int>& crvElem)
 {
-  int minOrXor = INT_MAX;
-  int cntSeprt = (int)crvElem.size() - 1;
+  int cntMinXor = INT_MAX;
+  int seprtSiz = (int)crvElem.size() - 1;
 
-  for (int bit = 0; bit < ( 1 << cntSeprt ); ++bit)
+  for (int bit = 0; bit < ( 1 << seprtSiz ); ++bit)
   {
     int orElem = 0;
     int xorElem = 0;
 
-    for (int each = 0; each < cntSeprt; ++each)
+    for (int each = 0; each < seprtSiz; ++each)
     {
       orElem |= crvElem[each];
 
@@ -31,12 +31,12 @@ int calcMinOrXor(const vector<int>& crvElem)
         orElem = 0;
       }
     }
-    orElem |= crvElem[cntSeprt];   // 最左端要素 参照
+    orElem |= crvElem[seprtSiz];
     xorElem ^= orElem;
 
-    minOrXor = min(minOrXor, xorElem);
+    cntMinXor = min(cntMinXor, xorElem);
   }
-  return minOrXor;
+  return cntMinXor;
 }
 
 int main()
