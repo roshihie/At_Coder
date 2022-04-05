@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-using uint = unsigned;
+using uint = unsigned int;
 
 void input(vector<int>& rvElem)
 {
