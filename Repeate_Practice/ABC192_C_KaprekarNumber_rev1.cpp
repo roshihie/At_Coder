@@ -47,7 +47,7 @@ int main()
 {
   int num, term;
   input(num, term);
-  cout << calcMaxMinDiff(num, term) << endl;
+  cout << calcMaxMinDiff(num, term);
 
   return 0;
 }
