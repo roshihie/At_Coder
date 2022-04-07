@@ -10,9 +10,7 @@ struct StDish
   int m_dish2;
 };
 
-void input(int& rmaxDish, 
-           vector<StDish>& rvCond, 
-           vector<StDish>& rvMan  )
+void input(int& rmaxDish, vector<StDish>& rvCond, vector<StDish>& rvMan)
 {
   int sizCond;
   cin >> rmaxDish >> sizCond;
@@ -50,7 +48,7 @@ int calcEachPoint(const vector<StDish>& crvCond,
 
 int calcMaxPoint(int maxDish,
                  const vector<StDish>& crvCond, 
-                 const vector<StDish>& crvMan  )
+                 const vector<StDish> crvMan   )
 {
   int maxPoint = 0;
 
