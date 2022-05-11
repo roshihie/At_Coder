@@ -30,9 +30,9 @@ void input(vector<string>& rvStr, vector<StQuery>& rvQuery)
   }
 }
 
-void calcIndex(int& rsnx, int& rspos, int halfSiz, int pos)
+void calcIndex(int& rsnx, int& rspos, int sizHalf, int pos)
 {
-  if (pos < halfSiz)
+  if (pos < sizHalf)
   {
     rsnx = 0;
     rspos = pos;
@@ -40,7 +40,7 @@ void calcIndex(int& rsnx, int& rspos, int halfSiz, int pos)
   else
   {
     rsnx = 1;
-    rspos = pos - halfSiz;
+    rspos = pos - sizHalf;
   }
 }
 
