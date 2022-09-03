@@ -30,17 +30,17 @@ void input(vector<string>& rvStr, vector<StQuery>& rvQuery)
   }
 }
 
-void calcIndex(int& rsnx, int& rspos, int sizHalf, int pos)
+void calcIndex(int& rhstr, int& rhpos, int sizHalf, int pos)
 {
   if (pos < sizHalf)
   {
-    rsnx = 0;
-    rspos = pos;
+    rhstr = 0;
+    rhpos = pos;
   }
   else
   {
-    rsnx = 1;
-    rspos = pos - sizHalf;
+    rhstr = 1;
+    rhpos = pos - sizHalf;
   }
 }
 
@@ -50,10 +50,10 @@ string moveString(vector<string>& rvStr,
   for (StQuery oQuery : crvQuery)
     if (oQuery.m_op == 1)
     {
-      int snxL, sposL, snxR, sposR;
-      calcIndex(snxL, sposL, rvStr[0].size(), oQuery.m_posL);
-      calcIndex(snxR, sposR, rvStr[0].size(), oQuery.m_posR);
-      swap( rvStr[snxL][sposL], rvStr[snxR][sposR] );
+      int hstrL, hposL, hstrR, hposR;
+      calcIndex(hstrL, hposL, rvStr[0].size(), oQuery.m_posL);
+      calcIndex(hstrR, hposR, rvStr[0].size(), oQuery.m_posR);
+      swap( rvStr[hstrL][hposL], rvStr[hstrR][hposR] );
     }
     else
       swap( rvStr[0], rvStr[1] );
