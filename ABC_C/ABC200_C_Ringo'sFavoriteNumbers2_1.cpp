@@ -18,11 +18,11 @@ llong calc200MultCnt(const vector<int>& crvNum)
   vector<int> vRem(200);
 
   for (int num : crvNum)
-  {
-    int rem = num % 200;
-    cnt200Mult += vRem[rem];
-    ++vRem[rem];
-  }
+    ++vRem[ num % 200 ];
+
+  for (int nRem : vRem)
+    cnt200Mult += (llong)nRem * (nRem - 1) / 2;
+
   return cnt200Mult;
 }
 

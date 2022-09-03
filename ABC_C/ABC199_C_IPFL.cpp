@@ -3,12 +3,12 @@ using namespace std;
 
 struct StQuery
 {
-  StQuery() : m_op(0), m_pos1(0), m_pos2(0)
+  StQuery() : m_op(0), m_posL(0), m_posR(0)
   { }
 
   int m_op;
-  int m_pos1;
-  int m_pos2;
+  int m_posL;
+  int m_posR;
 };
 
 void input(vector<string>& rvStr, vector<StQuery>& rvQuery)
@@ -25,8 +25,8 @@ void input(vector<string>& rvStr, vector<StQuery>& rvQuery)
 
   for (StQuery& roQuery : rvQuery)
   {
-    cin >> roQuery.m_op >> roQuery.m_pos1 >> roQuery.m_pos2;
-    if (roQuery.m_op == 1) --roQuery.m_pos1, --roQuery.m_pos2;
+    cin >> roQuery.m_op >> roQuery.m_posL >> roQuery.m_posR;
+    if (roQuery.m_op == 1) --roQuery.m_posL, --roQuery.m_posR;
   }
 }
 
@@ -44,16 +44,16 @@ void calcIndex(int& rsnx, int& rspos, int sizHalf, int pos)
   }
 }
 
-string calcString(vector<string>& rvStr, 
+string moveString(vector<string>& rvStr, 
                   const vector<StQuery>& crvQuery)
 {
   for (StQuery oQuery : crvQuery)
     if (oQuery.m_op == 1)
     {
-      int snx1, spos1, snx2, spos2;
-      calcIndex(snx1, spos1, rvStr[0].size(), oQuery.m_pos1);
-      calcIndex(snx2, spos2, rvStr[0].size(), oQuery.m_pos2);
-      swap( rvStr[snx1][spos1], rvStr[snx2][spos2] );
+      int snxL, sposL, snxR, sposR;
+      calcIndex(snxL, sposL, rvStr[0].size(), oQuery.m_posL);
+      calcIndex(snxR, sposR, rvStr[0].size(), oQuery.m_posR);
+      swap( rvStr[snxL][sposL], rvStr[snxR][sposR] );
     }
     else
       swap( rvStr[0], rvStr[1] );
@@ -67,7 +67,7 @@ int main()
   vector<StQuery> vQuery;
 
   input(vStr, vQuery);
-  cout << calcString(vStr, vQuery) << endl;
+  cout << moveString(vStr, vQuery) << endl;
 
   return 0;
 }
