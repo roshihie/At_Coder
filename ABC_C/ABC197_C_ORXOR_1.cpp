@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-using uint = unsigned int;
 
 void input(vector<int>& rvElem)
 {
@@ -12,15 +11,15 @@ void input(vector<int>& rvElem)
     cin >> rElem;
 }
 
-int calcElemOrXor(const vector<uint>& crvStartnx, const vector<int>& crvElem)
+int calcElemOrXor(const vector<int>& crvStartnx, const vector<int>& crvElem)
 {
   vector<int> vOrElem(crvStartnx.size() - 1);
 
-  for (uint nx = 0; nx < crvStartnx.size() - 1; ++nx)
+  for (int nx = 0; nx < (int)crvStartnx.size() - 1; ++nx)
   {
     int orElem = 0;
 
-    for (uint ny = crvStartnx[nx]; ny < crvStartnx[nx + 1]; ++ny)
+    for (int ny = crvStartnx[nx]; ny < crvStartnx[nx + 1]; ++ny)
       orElem |= crvElem[ny];
 
     vOrElem[nx] = orElem;
@@ -34,8 +33,8 @@ int calcElemOrXor(const vector<uint>& crvStartnx, const vector<int>& crvElem)
   return xorElem;
 }
 
-void dfsOrXor(uint dept, int& rOneOrXor, 
-              vector<uint>& rvStartnx, const vector<int>& crvElem)
+void dfsOrXor(int dept, int& rOneOrXor, 
+              vector<int>& rvStartnx, const vector<int>& crvElem)
 {
   if (dept == rvStartnx.size() - 1)    // 深さ＝配列の最終要素 のとき
   {
@@ -58,9 +57,9 @@ int calcMinOrXor(const vector<int>& crvElem)
 {
   int minOrXor = INT_MAX;
 
-  for (uint seprt = 1; seprt <= crvElem.size(); ++seprt)
+  for (int seprt = 1; seprt <= (int)crvElem.size(); ++seprt)
   {
-    vector<uint> vStartnx(seprt + 1);  // 最終要素は配列の size値 設定
+    vector<int> vStartnx(seprt + 1);  // 最終要素は配列の size値 設定
     int oneOrXor = INT_MAX;
 
     dfsOrXor(1, oneOrXor, vStartnx, crvElem);
