@@ -11,15 +11,15 @@ void input(vector<int>& rvElem)
     cin >> rElem;
 }
 
-int calcElemOrXor(const vector<int>& crvStartnx, const vector<int>& crvElem)
+int calcElemOrXor(const vector<int>& crvBegin, const vector<int>& crvElem)
 {
-  vector<int> vOrElem(crvStartnx.size() - 1);
+  vector<int> vOrElem(crvBegin.size() - 1);
 
-  for (int nx = 0; nx < (int)crvStartnx.size() - 1; ++nx)
+  for (int nx = 0; nx < (int)crvBegin.size() - 1; ++nx)
   {
     int orElem = 0;
 
-    for (int ny = crvStartnx[nx]; ny < crvStartnx[nx + 1]; ++ny)
+    for (int ny = crvBegin[nx]; ny < crvBegin[nx + 1]; ++ny)
       orElem |= crvElem[ny];
 
     vOrElem[nx] = orElem;
@@ -34,22 +34,22 @@ int calcElemOrXor(const vector<int>& crvStartnx, const vector<int>& crvElem)
 }
 
 void dfsOrXor(int dept, int& rOneOrXor, 
-              vector<int>& rvStartnx, const vector<int>& crvElem)
+              vector<int>& rvBegin, const vector<int>& crvElem)
 {
-  if (dept == rvStartnx.size() - 1)    // 深さ＝配列の最終要素 のとき
+  if (dept == (int)rvBegin.size() - 1)     // 深さ＝配列の最終要素 のとき
   {
-    rvStartnx[dept] = crvElem.size();  // 配列の size値 設定
-    int xorElem = calcElemOrXor(rvStartnx, crvElem);
+    rvBegin[dept] = (int)crvElem.size();   // 配列の size値 設定
+    int xorElem = calcElemOrXor(rvBegin, crvElem);
     rOneOrXor = min(rOneOrXor, xorElem);
     return;
   }
 
-  rvStartnx[dept] = rvStartnx[dept - 1] + 1;
+  rvBegin[dept] = rvBegin[dept - 1] + 1;
 
-  while (rvStartnx[dept] < crvElem.size())
+  while (rvBegin[dept] < (int)crvElem.size())
   {
-    dfsOrXor(dept + 1, rOneOrXor, rvStartnx, crvElem);
-    ++rvStartnx[dept];
+    dfsOrXor(dept + 1, rOneOrXor, rvBegin, crvElem);
+    ++rvBegin[dept];
   }
 }
 
@@ -59,10 +59,10 @@ int calcMinOrXor(const vector<int>& crvElem)
 
   for (int seprt = 1; seprt <= (int)crvElem.size(); ++seprt)
   {
-    vector<int> vStartnx(seprt + 1);  // 最終要素は配列の size値 設定
+    vector<int> vBegin(seprt + 1);     // 最終要素は配列の size値 設定用に＋１
     int oneOrXor = INT_MAX;
 
-    dfsOrXor(1, oneOrXor, vStartnx, crvElem);
+    dfsOrXor(1, oneOrXor, vBegin, crvElem);
     minOrXor = min(minOrXor, oneOrXor);
   }
   return minOrXor;
