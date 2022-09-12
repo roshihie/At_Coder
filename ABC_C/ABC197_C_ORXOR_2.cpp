@@ -46,11 +46,7 @@ void dfsOrXor(int dept, int& rOneOrXor,
 
   rvBegin[dept] = rvBegin[dept - 1] + 1;
 
-  // while loop 条件の補正
-     // dept = rvBegin.size() - 2 (最終要素の１つ前) のとき diff = 0 に設定
-  int diff = rvBegin.size() - 2 - dept; 
-
-  while ( rvBegin[dept] < (int)crvElem.size() - diff )
+  while (rvBegin[dept] < (int)crvElem.size())
   {
     dfsOrXor(dept + 1, rOneOrXor, rvBegin, crvElem);
     ++rvBegin[dept];
