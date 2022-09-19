@@ -13,7 +13,7 @@ void input(vector<int>& rvElem)
 
 int calcElemOrXor(const vector<int>& crvBegin, const vector<int>& crvElem)
 {
-  vector<int> vOrElem(crvBegin.size() - 1);
+  int xorElem = 0;
 
   for (int nx = 0; nx < (int)crvBegin.size() - 1; ++nx)
   {
@@ -22,14 +22,8 @@ int calcElemOrXor(const vector<int>& crvBegin, const vector<int>& crvElem)
     for (int ny = crvBegin[nx]; ny < crvBegin[nx + 1]; ++ny)
       orElem |= crvElem[ny];
 
-    vOrElem[nx] = orElem;
-  }
-
-  int xorElem = 0;
-
-  for (int orElem : vOrElem)
     xorElem ^= orElem;
-
+  }
   return xorElem;
 }
 

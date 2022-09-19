@@ -13,7 +13,7 @@ void input(vector<int>& rvElem)
 
 int calcElemOrXor(const vector<int>& crvBegin, const vector<int>& crvElem)
 {
-  vector<int> vOrElem(crvBegin.size() - 1);
+  int xorElem = 0;
 
   for (int nx = 0; nx < (int)crvBegin.size() - 1; ++nx)
   {
@@ -22,14 +22,8 @@ int calcElemOrXor(const vector<int>& crvBegin, const vector<int>& crvElem)
     for (int ny = crvBegin[nx]; ny < crvBegin[nx + 1]; ++ny)
       orElem |= crvElem[ny];
 
-    vOrElem[nx] = orElem;
-  }
-
-  int xorElem = 0;
-
-  for (int orElem : vOrElem)
     xorElem ^= orElem;
-
+  }
   return xorElem;
 }
 
@@ -46,8 +40,9 @@ void dfsOrXor(int dept, int& rOneOrXor,
 
   rvBegin[dept] = rvBegin[dept - 1] + 1;
 
-  // while loop 条件の補正
-     // dept = rvBegin.size() - 2 (最終要素の１つ前) のとき diff = 0 に設定
+  // while 条件の補正
+     // dept = rvBegin.size() - 2 (最終要素の１つ前) のとき diff = 0 に設定し
+     // crvElem.size() より小さい間ループするように設定
   int diff = rvBegin.size() - 2 - dept; 
 
   while ( rvBegin[dept] < (int)crvElem.size() - diff )

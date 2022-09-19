@@ -6,29 +6,12 @@ void input(llong& rmax)
 {
   cin >> rmax;
 }
-  
-llong calcWholeNum(int numHalfLow)
-{
-  llong numHalfHigh = (llong)numHalfLow;
-  int num = numHalfLow;
-  int digit = 0;
-
-  while ( num )
-  {
-    ++digit;
-    num /= 10;
-  }
-
-  for (int nx = 0; nx < digit; ++nx)
-    numHalfHigh *= 10;
-
-  return numHalfHigh + numHalfLow;
-}
 
 int calcSameHalfNum(llong max)
 {
-  int digtWhole = 0;
   llong num = max;
+  int digtWhole = 0;
+  int digtHalf  = 0;
 
   while ( num )
   {
@@ -36,16 +19,30 @@ int calcSameHalfNum(llong max)
     num /= 10;
   }
 
-  int digtHalf = digtWhole / 2;
-  int numHalfLow = 1;
+  digtHalf = digtWhole / 2;
+  if ( digtWhole % 2 == 0 )
+  {
+    int baseSplt = 1;
 
-  for (int nx = 1; nx < digtHalf; ++nx)
-    numHalfLow *= 10;
+    for (int nx = 0; nx < digtHalf; ++nx)
+      baseSplt *= 10;
+   
+    int numLeft  = max / baseSplt;
+    int numRight = max % baseSplt;
+    if (numLeft <= numRight)
+      return numLeft;
+    else
+      return numLeft - 1;
+  }
+  else
+  {
+    int numHalf = 0;
 
-  while ( calcWholeNum(numHalfLow) <= max )
-    ++numHalfLow;
+    for (int nx = 0; nx < digtHalf; ++nx)
+      numHalf = 10 * numHalf + 9;
 
-  return numHalfLow - 1;
+    return numHalf;
+  }
 }
 
 int main()
