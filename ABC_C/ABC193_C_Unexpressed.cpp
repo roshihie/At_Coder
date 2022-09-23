@@ -7,22 +7,22 @@ void input(llong& rmax)
   cin >> rmax;
 }
   
-llong calcPowerNumCnt(llong max)
+llong calcPowerCnt(llong max)
 {
-  unordered_set<llong> usePowNum;
+  unordered_set<llong> usePower;
 
   for (llong base = 2; base * base <= max; ++base)
-    for (llong num = base * base; num <= max; num *= base)
-      usePowNum.insert( num );
+    for (llong power = base * base; power <= max; power *= base)
+      usePower.insert( power );
 
-  return  max - usePowNum.size();
+  return  max - usePower.size();
 }
 
 int main()
 {
   llong max;
   input(max);
-  cout << calcPowerNumCnt(max) << endl;
+  cout << calcPowerCnt(max) << endl;
 
   return 0;
 }

@@ -11,7 +11,7 @@ llong calcComma(llong max)
 {
   llong cntComma = 0;
 
-  for (llong base = 999; base <= max; base *= 1000, base += 999)
+  for (llong base = 999; base <= max; base = base * 1000 + 999)
     cntComma += max - base;
 
   return cntComma;

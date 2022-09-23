@@ -23,7 +23,7 @@ int calcSameHalfNum(llong max)
   if ( digtWhole % 2 == 0 )
   {
     int baseSplt = 1;
-
+                       // 10 の digtHalf 乗 を作成
     for (int nx = 0; nx < digtHalf; ++nx)
       baseSplt *= 10;
    
@@ -37,7 +37,7 @@ int calcSameHalfNum(llong max)
   else
   {
     int numHalf = 0;
-
+                       // digtHalf 桁の ALL 9 を作成
     for (int nx = 0; nx < digtHalf; ++nx)
       numHalf = 10 * numHalf + 9;
 
