@@ -17,12 +17,12 @@ int calcMaxRect(const vector<int>& crvSeq)
 
   for (int left = 0; left < (int)crvSeq.size(); ++left)
   {
-    int minElm = crvSeq[left];
+    int minQty = crvSeq[left];
 
     for (int right = left; right < (int)crvSeq.size(); ++right)
     {
-      minElm = min( minElm, crvSeq[right] );
-      maxRect = max( maxRect, minElm * (right - left + 1));
+      minQty = min( minQty, crvSeq[right] );
+      maxRect = max( maxRect, minQty * (right - left + 1));
     }
   }
   return maxRect;
