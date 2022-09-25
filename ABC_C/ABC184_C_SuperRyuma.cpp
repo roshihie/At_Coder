@@ -35,15 +35,14 @@ int calcMinStepCnt(StGrid oGridBgn, StGrid oGridEnd)
   llong absDify = abs( oGridBgn.m_y - oGridEnd.m_y );
 
   if ( absDifx + absDify <= 3LL ||
-       sumBgn == sumEnd         ||
-       difBgn == difEnd           )
+       sumBgn - sumEnd == 0LL   || difBgn - difEnd == 0LL )
     return 1;
 
-  if ( absDifx + absDify % 2        && absDifx + absDify >= 7LL  &&
-       abs( absDifx - absDify ) % 2 && abs( absDifx - absDify ) >= 5LL ) 
-    return 3;
+  if ( ( sumBgn + sumEnd ) % 2 == 0  || absDifx + absDify  <= 6LL  ||
+       abs( sumBgn - sumEnd ) <= 3LL || abs( difBgn - difEnd ) <= 3LL )
+    return 2;
 
-  return 2;
+  return 3;
 }
 
 int main()
