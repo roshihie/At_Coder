@@ -16,14 +16,20 @@ void input(unordered_set<string>& ruseStr)
 
 string isExistStr(const unordered_set<string>& cruseStr)
 {
-  for (auto str : cruseStr)
-    if (str[0] == '!')
-    {
-      string wstr = str.substr(1);
-      if ( cruseStr.count(wstr) )
-        return wstr;
-    }
+  unordered_set<string> useChk;
 
+  for (auto str : cruseStr)
+  {
+    string wstr;
+    if (str.substr(0, 1) == "!")
+      wstr = str.substr(1);  
+    else
+      wstr = str.substr(0);
+
+    auto rslt = useChk.insert( wstr );
+    if ( !rslt.second )
+      return *rslt.first;
+  }
   return "satisfiable";
 }
   
