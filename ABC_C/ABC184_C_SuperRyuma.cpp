@@ -2,84 +2,84 @@
 using namespace std;
 using llong = long long;
 
-struct StCoord
+struct StGrid
 {
-  StCoord() : m_nx(0), m_ny(0) {}
-  StCoord(llong nx, llong ny) : m_nx(nx), m_ny(ny) {}
+  StGrid() : m_x(0), m_y(0) {}
+  StGrid(llong nx, llong ny) : m_x(nx), m_y(ny) {}
 
-  bool operator==(const StCoord& cnroCrdOtr) const
+  bool operator==(const StGrid& cnroGridOtr) const
   {
-    return ( m_nx == cnroCrdOtr.m_nx && m_ny == cnroCrdOtr.m_ny );
+    return ( m_x == cnroGridOtr.m_x && m_y == cnroGridOtr.m_y );
   }
 
-  llong m_nx;
-  llong m_ny;
+  llong m_x;
+  llong m_y;
 };
 
 struct StDist
 {
-  StDist() : m_nDistx(0), m_nDisty(0), m_nDists(0) {}
+  StDist() : m_distx(0), m_disty(0), m_dists(0) {}
 
-  llong m_nDistx;
-  llong m_nDisty;
-  llong m_nDists;
+  llong m_distx;
+  llong m_disty;
+  llong m_dists;
 };
 
-void input(StCoord& roCrdBgn, StCoord& roCrdEnd)
+void input(StGrid& roGridBgn, StGrid& roGridEnd)
 {
-  cin >> roCrdBgn.m_nx >> roCrdBgn.m_ny;
-  cin >> roCrdEnd.m_nx >> roCrdEnd.m_ny;
+  cin >> roGridBgn.m_x >> roGridBgn.m_y;
+  cin >> roGridEnd.m_x >> roGridEnd.m_y;
 }
 
-StDist calcDist(StCoord oCrdOne, StCoord oCrdOtr)
+StDist calcDist(StGrid oGridOne, StGrid oGridOtr)
 {
   StDist oDist;
 
-  oDist.m_nDistx = abs(oCrdOne.m_nx - oCrdOtr.m_nx);
-  oDist.m_nDisty = abs(oCrdOne.m_ny - oCrdOtr.m_ny);
-  oDist.m_nDists = oDist.m_nDistx + oDist.m_nDisty;
+  oDist.m_distx = abs(oGridOne.m_x - oGridOtr.m_x);
+  oDist.m_disty = abs(oGridOne.m_y - oGridOtr.m_y);
+  oDist.m_dists = oDist.m_distx + oDist.m_disty;
 
   return oDist;
 }
 
-int calcMinStepCnt(StCoord oCrdBgn, StCoord oCrdEnd)
+int calcMinStepCnt(StGrid oGridBgn, StGrid oGridEnd)
 {
-  StDist oDist = calcDist(oCrdBgn, oCrdEnd);
+  StDist oDist = calcDist(oGridBgn, oGridEnd);
  
-  if (oCrdBgn == oCrdEnd)
+  if (oGridBgn == oGridEnd)
     return 0;
-  else if (oDist.m_nDists <= 3  ||
-           oDist.m_nDistx == oDist.m_nDisty)
+  else if (oDist.m_dists <= 3LL  ||
+           oDist.m_distx == oDist.m_disty)
     return 1;
-  else if (oDist.m_nDists % 2 == 0)
+  else if (oDist.m_dists % 2 == 0)
     return 2;
  
-  int nStepCnt;
-  int nMinStepCnt = 3;
+  int cntStep;
+  int cntMinStep = 3;
 
   for (int nx = -3; nx <= 3; ++nx)
     for (int ny = abs(nx) - 3; ny <= 3 - abs(nx); ++ny)
     {
-      StCoord oCrdOtr(oCrdBgn.m_nx + nx, oCrdBgn.m_ny + ny);
-      StDist oDistOtrEnd = calcDist(oCrdOtr, oCrdEnd);
+      StGrid oGridOtr(oGridBgn.m_x + nx, oGridBgn.m_y + ny);
+      StDist oDistOtrEnd = calcDist(oGridOtr, oGridEnd);
 
-      if (oDistOtrEnd.m_nDists <= 3  ||
-          oDistOtrEnd.m_nDistx == oDistOtrEnd.m_nDisty)
-        nStepCnt = 2;
+      if (oDistOtrEnd.m_dists <= 3LL  ||
+          oDistOtrEnd.m_distx == oDistOtrEnd.m_disty)
+        cntStep = 2;
       else
-        nStepCnt = 3;
+        cntStep = 3;
 
-      nMinStepCnt = min(nMinStepCnt, nStepCnt);
+      cntMinStep = min(cntMinStep, cntStep);
     }
 
-  return nMinStepCnt;
+  return cntMinStep;
 }
 
 int main()
 {
-  StCoord oCrdBgn, oCrdEnd;
-  input(oCrdBgn, oCrdEnd);
-  cout << calcMinStepCnt(oCrdBgn, oCrdEnd) << endl;
+  StGrid oGridBgn, oGridEnd;
+  input(oGridBgn, oGridEnd);
+  cout << calcMinStepCnt(oGridBgn, oGridEnd) << endl;
 
   return 0;
 }
