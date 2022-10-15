@@ -11,10 +11,8 @@ int calcNum(const vector<int>& crvDigit)
   int num = 0;
 
   for (int digit : crvDigit)
-  {
-    num *= 10;
-    num += digit;
-  }
+    num = num * 10 + digit;
+
   return num;
 }
 
@@ -37,17 +35,19 @@ int calcDigitNum(int num)
 
 int calcMaxMinDiff(int num, int term)
 {
-  for (int nx = 1; nx <= term; ++nx)
-    num = calcDigitNum(num);
+  int maxMinDiff = num;
 
-  return num;
+  for (int nx = 0; nx < term; ++nx)
+    maxMinDiff = calcDigitNum(maxMinDiff);
+
+  return maxMinDiff;
 }
   
 int main()
 {
   int num, term;
   input(num, term);
-  cout << calcMaxMinDiff(num, term);
+  cout << calcMaxMinDiff(num, term) << endl;
 
   return 0;
 }

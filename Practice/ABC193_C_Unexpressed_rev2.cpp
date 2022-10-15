@@ -9,13 +9,14 @@ void input(llong& rmax)
   
 llong calcPowerNumCnt(llong max)
 {
-  unordered_set<llong> usePowNum;
+  unordered_set<llong> sePower;
+  llong sqrtNum = (llong)sqrt(max);
 
-  for (llong base = 2; base * base <= max; ++base)
-    for (llong num = base * base; num <= max; num *= base)
-      usePowNum.insert( num );
+  for (llong base = 2; base <= sqrtNum; ++base)
+    for (llong power = base * base; power <= max; power *= base)
+      sePower.insert( power );
 
-  return  max - usePowNum.size();
+  return max - sePower.size();
 }
 
 int main()
