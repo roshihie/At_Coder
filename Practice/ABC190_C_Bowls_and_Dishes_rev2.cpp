@@ -9,25 +9,24 @@ struct StDish
   int m_dish2;
 };
 
-void input(int& rmaxDish, 
+void input(int& rsizDish, 
            vector<StDish>& rvCond, 
            vector<StDish>& rvMan  )
 {
   int sizCond;
-  cin >> rmaxDish >> sizCond;
+  cin >> rsizDish >> sizCond;
   rvCond.resize(sizCond);
 
-  for (StDish& roCond : rvCond)
+  for ( StDish& roCond : rvCond )
   {
     cin >> roCond.m_dish1 >> roCond.m_dish2;
     --roCond.m_dish1, --roCond.m_dish2;
   }
-
   int sizMan;
   cin >> sizMan;
   rvMan.resize(sizMan);
 
-  for (StDish& roMan : rvMan)
+  for ( StDish& roMan : rvMan )
   {
     cin >> roMan.m_dish1 >> roMan.m_dish2;
     --roMan.m_dish1, --roMan.m_dish2;
@@ -39,7 +38,7 @@ int calcEachPoint(const vector<StDish>& crvCond,
 {
   int eachPoint = 0;
 
-  for (StDish oCond : crvCond)
+  for ( StDish oCond : crvCond )
     if ( crvOnDish[ oCond.m_dish1 ] &&
          crvOnDish[ oCond.m_dish2 ]   )
       ++eachPoint;
@@ -47,7 +46,7 @@ int calcEachPoint(const vector<StDish>& crvCond,
   return eachPoint;
 }
 
-int calcMaxPoint(int maxDish,
+int calcMaxPoint(int sizDish,
                  const vector<StDish>& crvCond, 
                  const vector<StDish>& crvMan  )
 {
@@ -55,26 +54,28 @@ int calcMaxPoint(int maxDish,
 
   for (int bit = 0; bit < ( 1 << crvMan.size() ); ++bit)
   {
-    vector<int> vOnDish( maxDish );
+    vector<int> vOnDish(sizDish);
 
     for (int each = 0; each < (int)crvMan.size(); ++each)
-      if ( bit & ( 1 << each ))
-        vOnDish[ crvMan[each].m_dish2 ] = 1;
-      else
+    {
+      if ( bit & ( 1 << each) )
         vOnDish[ crvMan[each].m_dish1 ] = 1;
-
-    maxPoint = max( maxPoint, calcEachPoint(crvCond, vOnDish) );
+      else
+        vOnDish[ crvMan[each].m_dish2 ] = 1;
+    }
+    int eachPoint = calcEachPoint(crvCond, vOnDish);
+    maxPoint = max(maxPoint, eachPoint);
   }
   return maxPoint;
 }
   
 int main()
 {
-  int maxDish;
+  int sizDish;
   vector<StDish> vCond, vMan;
 
-  input(maxDish, vCond, vMan);
-  cout << calcMaxPoint(maxDish, vCond, vMan);
+  input(sizDish, vCond, vMan);
+  cout << calcMaxPoint(sizDish, vCond, vMan);
 
   return 0;
 }

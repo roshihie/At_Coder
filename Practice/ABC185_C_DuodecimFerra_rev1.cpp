@@ -9,16 +9,16 @@ void input(int& rlen)
 
 llong calcCutCombo(int len)
 {
-  const int cn = len - 1;
-  const int cr = 11;
-  llong cntCutCombo = 1;
+  llong cutCombo = 1LL;
+  int combo = len - 11;
 
-  for (int nx = 1; nx <= cr; ++nx)
+  for (int nx = 1; nx < 12; ++nx)
   {
-    cntCutCombo *= (cn - cr + nx);
-    cntCutCombo /= nx;
+    cutCombo = cutCombo * combo / nx;
+    ++combo;
   }
-  return cntCutCombo;
+
+  return cutCombo;
 }
 
 int main()

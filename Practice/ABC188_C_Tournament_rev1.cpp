@@ -3,9 +3,14 @@ using namespace std;
 
 void input(vector<int>& rvRate)
 {
-  int exp;
-  cin >> exp;
-  rvRate.resize( 1 << exp );
+  int sizRate;
+  cin >> sizRate;
+  int pwrRate = 1;
+
+  for (int nx = 0; nx < sizRate; ++nx)
+    pwrRate *= 2;
+
+  rvRate.resize(pwrRate);
 
   for (int& rRate : rvRate)
     cin >> rRate;
@@ -13,15 +18,14 @@ void input(vector<int>& rvRate)
 
 int calc2ndMax(const vector<int>& crvRate)
 {
-  auto itBgn = begin(crvRate);
-  auto itMid = itBgn + crvRate.size() / 2;
-  auto itLeftMax  = max_element( itBgn, itMid );
-  auto itRightMax = max_element( itMid, end(crvRate) );
-
-  if ( *itLeftMax < *itRightMax )
-    return itLeftMax  - itBgn + 1;
+  auto bgn2nd = begin(crvRate) + crvRate.size() / 2;
+  auto it1stMax = max_element(begin(crvRate), bgn2nd);
+  auto it2ndMax = max_element(bgn2nd, end(crvRate));
+ 
+  if ( *it1stMax < *it2ndMax )
+    return it1stMax - begin(crvRate) + 1;
   else
-    return itRightMax - itBgn + 1;
+    return it2ndMax - begin(crvRate) + 1;
 }
   
 int main()
