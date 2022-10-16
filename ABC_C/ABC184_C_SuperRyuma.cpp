@@ -7,9 +7,9 @@ struct StGrid
   StGrid() : m_x(0), m_y(0) {}
   StGrid(llong nx, llong ny) : m_x(nx), m_y(ny) {}
 
-  bool operator==(const StGrid& cnroGridOtr) const
+  bool operator==(const StGrid& croGridOtr) const
   {
-    return ( m_x == cnroGridOtr.m_x && m_y == cnroGridOtr.m_y );
+    return ( m_x == croGridOtr.m_x && m_y == croGridOtr.m_y );
   }
 
   llong m_x;
@@ -31,15 +31,15 @@ int calcMinStepCnt(StGrid oGridBgn, StGrid oGridEnd)
   llong difEnd = oGridEnd.m_x - oGridEnd.m_y;
   llong sumBgn = oGridBgn.m_x + oGridBgn.m_y;
   llong sumEnd = oGridEnd.m_x + oGridEnd.m_y;
-  llong absDifx = abs( oGridBgn.m_x - oGridEnd.m_x );
-  llong absDify = abs( oGridBgn.m_y - oGridEnd.m_y );
+  llong difx   = oGridBgn.m_x - oGridEnd.m_x;
+  llong dify   = oGridBgn.m_y - oGridEnd.m_y;
 
-  if ( absDifx + absDify <= 3LL ||
-       sumBgn - sumEnd == 0LL   || difBgn - difEnd == 0LL )
+  if ( abs(difx) + abs(dify) <= 3LL ||
+       sumBgn - sumEnd == 0LL       || difBgn - difEnd == 0LL )
     return 1;
 
-  if ( ( sumBgn + sumEnd ) % 2 == 0  || absDifx + absDify  <= 6LL  ||
-       abs( sumBgn - sumEnd ) <= 3LL || abs( difBgn - difEnd ) <= 3LL )
+  if ( ( difx + dify ) % 2 == 0LL   || abs(difx) + abs(dify)  <= 6LL  ||
+       abs( difx + dify ) <= 3LL    || abs( difx - dify ) <= 3LL )
     return 2;
 
   return 3;

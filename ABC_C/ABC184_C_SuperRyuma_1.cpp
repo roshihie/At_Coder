@@ -7,13 +7,22 @@ struct StGrid
   StGrid() : m_x(0), m_y(0) {}
   StGrid(llong nx, llong ny) : m_x(nx), m_y(ny) {}
 
-  bool operator==(const StGrid& cnroGridOtr) const
+  bool operator==(const StGrid& croGridOtr) const
   {
-    return ( m_x == cnroGridOtr.m_x && m_y == cnroGridOtr.m_y );
+    return ( m_x == croGridOtr.m_x && m_y == croGridOtr.m_y );
   }
 
   llong m_x;
   llong m_y;
+};
+
+struct StDist
+{
+  StDist() : m_distx(0), m_disty(0), m_dists(0) {}
+
+  llong m_distx;
+  llong m_disty;
+  llong m_dists;
 };
 
 void input(StGrid& roGridBgn, StGrid& roGridEnd)
@@ -22,27 +31,43 @@ void input(StGrid& roGridBgn, StGrid& roGridEnd)
   cin >> roGridEnd.m_x >> roGridEnd.m_y;
 }
 
+StDist calcDist(StGrid oGridOne, StGrid oGridOtr)
+{
+  StDist oDist;
+
+  oDist.m_distx = abs(oGridOne.m_x - oGridOtr.m_x);
+  oDist.m_disty = abs(oGridOne.m_y - oGridOtr.m_y);
+  oDist.m_dists = oDist.m_distx + oDist.m_disty;
+
+  return oDist;
+}
+
 int calcMinStepCnt(StGrid oGridBgn, StGrid oGridEnd)
 {
-  if ( oGridBgn == oGridEnd )
+  StDist oDist = calcDist(oGridBgn, oGridEnd);
+ 
+  if (oGridBgn == oGridEnd)
     return 0;
-
-  llong difBgn = oGridBgn.m_x - oGridBgn.m_y;
-  llong difEnd = oGridEnd.m_x - oGridEnd.m_y;
-  llong sumBgn = oGridBgn.m_x + oGridBgn.m_y;
-  llong sumEnd = oGridEnd.m_x + oGridEnd.m_y;
-  llong absDifx = abs( oGridBgn.m_x - oGridEnd.m_x );
-  llong absDify = abs( oGridBgn.m_y - oGridEnd.m_y );
-
-  if ( absDifx + absDify <= 3LL ||
-       sumBgn - sumEnd == 0LL   || difBgn - difEnd == 0LL )
+  else if (oDist.m_dists <= 3LL  ||
+           oDist.m_distx == oDist.m_disty)
     return 1;
+  else if (oDist.m_dists % 2 == 0)
+    return 2;
+ 
+  int cntStep;
 
-  if ( absDifx + absDify % 2        && absDifx + absDify >= 7LL  &&
-       abs( absDifx - absDify ) % 2 && abs( absDifx - absDify ) >= 5LL ) 
-    return 3;
+  for (int nx = -3; nx <= 3; ++nx)
+    for (int ny = abs(nx) - 3; ny <= 3 - abs(nx); ++ny)
+    {
+      StGrid oGridOtr(oGridBgn.m_x + nx, oGridBgn.m_y + ny);
+      StDist oDistOtrEnd = calcDist(oGridOtr, oGridEnd);
 
-  return 2;
+      if (oDistOtrEnd.m_dists <= 3LL  ||
+          oDistOtrEnd.m_distx == oDistOtrEnd.m_disty)
+        return 2;
+    }
+
+  return 3;
 }
 
 int main()
