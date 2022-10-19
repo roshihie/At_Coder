@@ -16,14 +16,15 @@ void input(int& rdistOne, StGrid& roGoal)
 
 int calcGoalStps(int distOne, StGrid oGoal)
 {
-  double distGoal = sqrt( (double)oGoal.m_x * oGoal.m_x + 
-                          (double)oGoal.m_y * oGoal.m_y  );
-  int goalStps = (int)max( distGoal / distOne, 1.0 );
+  double distAll = sqrt( (double)oGoal.m_x * oGoal.m_x +
+                         (double)oGoal.m_y * oGoal.m_y  );
+  double dbQuotnt = distAll / distOne;
+  int iQuotnt = ceil(dbQuotnt);
 
-  if ( distGoal != (double)distOne * goalStps )
-    ++goalStps;
-
-  return goalStps;
+  if ( dbQuotnt >= 1.0 )
+    return iQuotnt;
+  else
+    return iQuotnt + 1;
 }
 
 int main()
