@@ -44,7 +44,7 @@ void calcIndex(int& rhstr, int& rhpos, int sizHalf, int pos)
   }
 }
 
-string moveString(vector<string>& rvStr, 
+string updtString(vector<string>& rvStr, 
                   const vector<StQuery>& crvQuery)
 {
   for (StQuery oQuery : crvQuery)
@@ -52,7 +52,7 @@ string moveString(vector<string>& rvStr,
     {
       int hstrL, hposL, hstrR, hposR;
       calcIndex(hstrL, hposL, rvStr[0].size(), oQuery.m_posL);
-      calcIndex(hstrR, hposR, rvStr[0].size(), oQuery.m_posR);
+      calcIndex(hstrR, hposR, rvStr[1].size(), oQuery.m_posR);
       swap( rvStr[hstrL][hposL], rvStr[hstrR][hposR] );
     }
     else
@@ -67,7 +67,7 @@ int main()
   vector<StQuery> vQuery;
 
   input(vStr, vQuery);
-  cout << moveString(vStr, vQuery) << endl;
+  cout << updtString(vStr, vQuery) << endl;
 
   return 0;
 }
