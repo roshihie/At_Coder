@@ -11,11 +11,11 @@ llong calcPowerCnt(llong max)
 {
   unordered_set<llong> usPower;
 
-  for (llong base = 2; base * base <= max; ++base)
-    for (llong power = base * base; power <= max; power *= base)
+  for (int base = 2; (llong)base * base <= max; ++base)
+    for (llong power = (llong)base * base; power <= max; power *= base)
       usPower.insert( power );
 
-  return  max - usPower.size();
+  return max - usPower.size();
 }
 
 int main()
