@@ -15,8 +15,8 @@ void input(vector<int>& rvGame,
   int sizGame;
   cin >> sizGame;
   rvGame.resize(sizGame + 1);
-
-                       // 要素No：0＝未使用
+                       // 回数    1 2 … N 
+                       // 要素# 0 1 2 … N
   for (int nx = 1; nx < rvGame.size(); ++nx)
     cin >> rvGame[nx];
 
@@ -31,6 +31,8 @@ void input(vector<int>& rvGame,
 void calcQuery(const vector<int>& crvGame,
                const vector<StQuery>& crvQuery)
 {
+                       // 回数    1 2 … N 
+                       // 要素# 0 1 2 … N
   vector<int> vWinSum ( crvGame.size() );
   vector<int> vLoseSum( crvGame.size() );
 
@@ -62,7 +64,7 @@ int main()
   vector<StQuery> vQuery;
 
   input(vGame, vQuery);
-  calcQuery(vGame, vQuery);;
+  calcQuery(vGame, vQuery);
 
   return 0;
 }

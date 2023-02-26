@@ -16,24 +16,27 @@ void input(vector<int>& rvSeq,
   cin >> sizSeq >> sizQuery;
   rvSeq.resize(sizSeq + 1);
   rvQuery.resize(sizQuery);
-
-                       // 累積和 vector 要素No：1＝1st要素
+                       // 日      1 2 … N
+                       // 要素# 0 1 2 … N
   for (int nx = 1; nx <= sizSeq; ++nx)
-  {
-    int each;
-    cin >> each;
-    rvSeq[nx] = rvSeq[nx - 1] + each;
-  }
+    cin >> rvSeq[nx];
 
   for (StQuery& rQuery : rvQuery)
     cin >> rQuery.m_left >> rQuery.m_right;
 }
 
-void calcQuery(const vector<int>& crvSeq,
-               const vector<StQuery>& crvQuery)
+void calcSumDays(const vector<int>& crvSeq,
+                 const vector<StQuery>& crvQuery)
 {
+                       // 日      1 2 … N
+                       // 要素# 0 1 2 … N
+  vector<int> vCumSum(crvSeq.size() + 1);
+
+  for (int nx = 1; nx < vCumSum.size(); ++nx)
+    vCumSum[nx] += vCumSum[nx - 1] + crvSeq[nx];
+
   for (StQuery oQuery : crvQuery)
-    cout << crvSeq[ oQuery.m_right ] - crvSeq[ oQuery.m_left - 1 ] << endl;
+    cout << vCumSum[ oQuery.m_right ] - vCumSum[ oQuery.m_left - 1 ] << endl;
 
   return;
 }
@@ -44,7 +47,7 @@ int main()
   vector<StQuery> vQuery;
 
   input(vSeq, vQuery);
-  calcQuery(vSeq, vQuery);;
+  calcSumDays(vSeq, vQuery);
 
   return 0;
 }
