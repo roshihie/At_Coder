@@ -4,12 +4,12 @@ using namespace std;
 struct StRect
 {
   StRect() : m_TopRow(0), m_TopCol(0),
-             m_BotRow(0), m_BotCol(0) { }
+             m_BtmRow(0), m_BtmCol(0) { }
 
   int m_TopRow;        // 1-origin
   int m_TopCol;        // 1-origin
-  int m_BotRow;
-  int m_BotCol;
+  int m_BtmRow;
+  int m_BtmCol;
 };
 
 void input(vector<vector<int>>& rvvGrid, vector<StRect>& rvRect)
@@ -30,7 +30,7 @@ void input(vector<vector<int>>& rvvGrid, vector<StRect>& rvRect)
   for ( StRect& rRect : rvRect )
   {
     cin >> rRect.m_TopRow >> rRect.m_TopCol;
-    cin >> rRect.m_BotRow >> rRect.m_BotCol;
+    cin >> rRect.m_BtmRow >> rRect.m_BtmCol;
   }
 }
 
@@ -51,9 +51,9 @@ void calcSumGrid(const vector<vector<int>>& crvvGrid,
 
   for ( StRect rect : crvRect )
   {
-    int sumGrid = vCumGrid[ rect.m_BotRow ][ rect.m_BotCol ];
-    sumGrid -= (  vCumGrid[ rect.m_BotRow ][ rect.m_TopCol - 1]
-                + vCumGrid[ rect.m_TopRow - 1][ rect.m_BotCol ] );
+    int sumGrid = vCumGrid[ rect.m_BtmRow ][ rect.m_BtmCol ];
+    sumGrid -= (  vCumGrid[ rect.m_BtmRow ][ rect.m_TopCol - 1]
+                + vCumGrid[ rect.m_TopRow - 1][ rect.m_BtmCol ] );
     sumGrid += vCumGrid[ rect.m_TopRow - 1 ][ rect.m_TopCol - 1 ];
 
     cout << sumGrid << endl; 

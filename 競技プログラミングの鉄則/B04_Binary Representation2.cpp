@@ -1,25 +1,31 @@
 #include <bits/stdc++.h>
-using namespace std;        実行未済
+using namespace std;
 
-void input(int& rdec)
+void input(int& rbin)
 {
-  cin >> rdec;
+  cin >> rbin;
 }
 
-void convBinary(int dec)
+int convDecimal(int bin)
 {
-  for (int nx = 9; nx >= 0; --nx)
-    cout << ( dec / ( 1 << nx )) % 2;
+  int dec = 0;
+  int base = 0;
 
-  cout << endl;
+  while ( bin )
+  {
+    int rem = bin % 10;
+    bin /= 10;
+    dec += rem * ( 1 << base++ );
+  }
+  return dec;
 }
 
 int main()
 {
-  int dec;
+  int bin;
 
-  input(dec);
-  convBinary(dec);
+  input(bin);
+  cout << convDecimal(bin) << endl;
 
   return 0;
 }
